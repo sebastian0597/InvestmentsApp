@@ -47,7 +47,8 @@ class CreateCustomersTable extends Migration
             $table->string('kinship_third')->nullable(true);
             $table->string('rut_third')->nullable(true);
             
-            
+            $table->string('customer_level')->nullable(true);
+        
             $table->unsignedBigInteger('id_economic_activity');
             $table->unsignedBigInteger('id_bank_account');
             $table->timestamps();
