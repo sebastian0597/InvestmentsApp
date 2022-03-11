@@ -41,7 +41,7 @@ class AdminController extends Controller
         
         $admin = Admin::create([
             'id_user' => $user->id,
-            'admin_code' => 'XTRE21321',
+            'admin_code' =>  mb_strtoupper(strstr($fields['email'], '@', true)).rand(1000, 9999),
         ]);
   
         $token = $user->createToken('myapptoken')->plainTextToken;
