@@ -15,6 +15,7 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_user');
             $table->string('name');
             $table->string('last_name');
             $table->string('phone', 10);
@@ -23,7 +24,7 @@ class CreateCustomersTable extends Migration
             $table->string('department');
             $table->string('country');
             $table->string('file_document');
-            $table->string('description_ind')->nullable(true);
+            $table->text('description_ind')->nullable(true);
             $table->string('file_rut')->nullable(true);
             $table->string('business')->nullable(true);
             $table->string('position_business')->nullable(true);
@@ -31,7 +32,7 @@ class CreateCustomersTable extends Migration
             $table->string('type_contract')->nullable(true);
             $table->string('work_certificate')->nullable(true);
             $table->string('pension_fund')->nullable(true);
-            $table->string('especification_other')->nullable(true);
+            $table->text('especification_other')->nullable(true);
             
             $table->string('account_number')->nullable(true);
             $table->string('account_type')->nullable(true);
@@ -50,6 +51,7 @@ class CreateCustomersTable extends Migration
             $table->unsignedBigInteger('id_bank_account');
             $table->timestamps();
 
+            $table->foreign('id_user')->references('id')->on('users');
             $table->foreign('id_document_type')->references('id')->on('documents_types');
             $table->foreign('id_economic_activity')->references('id')->on('economics_activities');
             $table->foreign('id_bank_account')->references('id')->on('banks_account');

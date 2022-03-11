@@ -26,7 +26,7 @@ class AdminController extends Controller
         $fields = $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|unique:users,email',
-            'id_rol' => 'required'
+            'id_rol' => 'required|numeric'
         ]);
 
        
