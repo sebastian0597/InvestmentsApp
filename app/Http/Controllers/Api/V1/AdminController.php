@@ -50,7 +50,6 @@ class AdminController extends Controller
             'status'=> 201,
             'user' => $user,
             'token' => $token,
-
         ]);
     }
 

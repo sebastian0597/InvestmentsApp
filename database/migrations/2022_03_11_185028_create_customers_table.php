@@ -18,7 +18,9 @@ class CreateCustomersTable extends Migration
             $table->unsignedBigInteger('id_user');
             $table->string('name');
             $table->string('last_name');
-            $table->string('phone', 10);
+            $table->unsignedBigInteger('id_document_type');
+            $table->string('numero_documento')->unique();
+            $table->BigInteger('phone', 10);
             $table->string('address');
             $table->string('city');
             $table->string('department');
@@ -45,8 +47,7 @@ class CreateCustomersTable extends Migration
             $table->string('kinship_third')->nullable(true);
             $table->string('rut_third')->nullable(true);
             
-
-            $table->unsignedBigInteger('id_document_type');
+            
             $table->unsignedBigInteger('id_economic_activity');
             $table->unsignedBigInteger('id_bank_account');
             $table->timestamps();
