@@ -7,6 +7,8 @@ use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Mail;
+
 class CustomerController extends Controller
 {
     /**
@@ -94,11 +96,23 @@ class CustomerController extends Controller
                 'id_economic_activity' => $request->id_economic_activity,
                 'id_bank_account' => $request->id_bank_account
             ]);
-    
-                return response()->json([
-                    'status'=> 201,
-                    'user' => $customer,
-                ]);
+               
+            $data["email"] =  $fields['email'];
+            $data["title"] = "Bienvenido a la plataforma Investment";
+            $data["body"] =  mb_strtoupper(strstr($fields['email'], '@', true)).rand(1000, 9999);
+
+            
+
+            Mail::send([], $data, function ($message) use ($data) {
+                $message->to($data["email"], $data["email"])
+                    ->subject($data["title"]);
+                    //->attachData($pdf->output(), "Certificado_inscripcion_curso_ofalmologia_FOSCAL.pdf");
+            });
+
+            return response()->json([
+                'status'=> 201,
+                'user' => $customer,
+            ]);
             
         } catch (Throwable $e) {
 

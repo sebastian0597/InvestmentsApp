@@ -16,6 +16,7 @@ class AddFeaturesToUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('id_rol');
             $table->tinyinteger('status')->default(1)->nullable(true);
+            $table->string('personal_code')->unique();
             $table->foreign('id_rol')->references('id')->on('roles');  
         });
     }
