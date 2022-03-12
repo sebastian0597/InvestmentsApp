@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <style>
         .container{
@@ -15,7 +15,7 @@
             transform: translate(-50%,-50%);
             max-width: 50%;
             text-align: center;
-        }
+        }/*
       
         .card {
             position: relative;
@@ -60,7 +60,7 @@
             border-radius: 0.25rem;
             transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
-        
+        */
         .label{
            font-size: 18px;
         }
@@ -68,8 +68,7 @@
             font-size: 18px;
             font-weight: bold;
         }
-        
-       
+         
     </style>
 </head>
 <body>
