@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+/*Route::get('/', function () {
 
     $data["email"] =  "oibanez@unab.edu.co";
     $data["title"] = "Bienvenido a la plataforma Investment";
@@ -11,8 +11,8 @@ Route::get('/', function () {
     
     return view('Emails.credentials', compact('data'));
 });
-
-Route::get('/1', function () {
+*/
+Route::get('/', function () {
     return view('app');
 });
 Route::get('login', function () {

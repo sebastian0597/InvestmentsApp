@@ -30,13 +30,15 @@ class AdminController extends Controller
             'id_rol' => 'required|numeric'
         ]);
 
-        $password = "12345";
+        $password = $this->generatePassword();
+        $personal_code = $this->generatePersonalCode($fields['email']);
+
         $user = User::create([
             'name' => $fields['name'],
             'email' => $fields['email'],
             'password' => bcrypt($password),
             'id_rol' => $fields['id_rol'],
-            'personal_code' =>  mb_strtoupper(strstr($fields['email'], '@', true)).rand(1000, 9999),
+            'personal_code' => $personal_code,
 
         ]);
   
@@ -46,6 +48,7 @@ class AdminController extends Controller
             'status'=> 201,
             'user' => $user,
             'token' => $token,
+            'password' => $password
         ]);
     }
 
@@ -92,5 +95,24 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         //
+    }
+
+    public  function generatePassword()
+    {   
+        $length=8;
+        $key = "";
+        $pattern = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $max = strlen($pattern)-1;
+        for($i = 0; $i < $length; $i++){
+            $key .= substr($pattern, mt_rand(0,$max), 1);
+        }
+        return $key;
+    }
+
+    public function generatePersonalCode($email){
+        $codigo_base = mb_strtoupper(strstr($email, '@', true));
+        $codigo_base = strlen($codigo_base)>4 ? substr($codigo_base, 0, 4) : $codigo_base;
+        $codigo = $codigo_base.rand(1000, 9999);
+        return $codigo;
     }
 }
