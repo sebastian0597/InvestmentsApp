@@ -13,7 +13,7 @@
             top:50%;
             left: 50%;
             transform: translate(-50%,-50%);
-            max-width: 50%;
+            max-width: 100%;
             text-align: center;
         }/*
       
@@ -74,12 +74,10 @@
 <body>
     <div class="container">
         <div class="card">
-            
             <div class="card-body">
-                <span class="label">Correo electrónico:</span> <span class="data"> {{$data["email"]}}</span><br><br>
-                <span class="label">Código personal de acceso:</span> <span class="data"> {{$data["code"]}}</span><br><br>
-                <span class="label">Contraseña:</span> <span class="data"> {{$data["password"]}}</span><br><br>
-                <br>
+                <span class="label">Correo electrónico:</span> <span class="data"> {{$data["email"]}}</span><br>
+                <span class="label">Código personal de acceso:</span> <span class="data"> {{$data["code"]}}</span><br>
+                <span class="label">Contraseña:</span><span class="data"> {{$data["password"]}}</span><br><br>
                 <a href="#" class="btn btn-primary">Ir a la plataforma</a>
             </div>
         </div>
