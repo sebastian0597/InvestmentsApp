@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -29,22 +30,35 @@ class AdminController extends Controller
             'id_rol' => 'required|numeric'
         ]);
 
-       
+        $password = "12345";
         $user = User::create([
             'name' => $fields['name'],
             'email' => $fields['email'],
-            'password' => bcrypt('12345678'),
+            'password' => bcrypt($password),
             'id_rol' => $fields['id_rol'],
+            'personal_code' =>  mb_strtoupper(strstr($fields['email'], '@', true)).rand(1000, 9999),
 
         ]);
 
         
-        $admin = Admin::create([
+        /*$admin = Admin::create([
             'id_user' => $user->id,
-            'admin_code' =>  mb_strtoupper(strstr($fields['email'], '@', true)).rand(1000, 9999),
-        ]);
+            
+        ]);*/
   
         $token = $user->createToken('myapptoken')->plainTextToken;
+
+        $data["email"] =  $fields['email'];
+        $data["title"] = "Bienvenido a la plataforma Investment";
+        $data["code"] =  mb_strtoupper(strstr($fields['email'], '@', true)).rand(1000, 9999);
+        $data["password"] = $password;
+        
+
+        Mail::send([], $data, function ($message) use ($data) {
+            $message->to($data["email"], $data["email"])
+                ->subject($data["title"]);
+                //->attachData($pdf->output(), "Certificado_inscripcion_curso_ofalmologia_FOSCAL.pdf");
+        });
 
         return response()->json([
             'status'=> 201,

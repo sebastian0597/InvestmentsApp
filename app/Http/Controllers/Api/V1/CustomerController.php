@@ -101,8 +101,6 @@ class CustomerController extends Controller
             $data["title"] = "Bienvenido a la plataforma Investment";
             $data["body"] =  mb_strtoupper(strstr($fields['email'], '@', true)).rand(1000, 9999);
 
-            
-
             Mail::send([], $data, function ($message) use ($data) {
                 $message->to($data["email"], $data["email"])
                     ->subject($data["title"]);

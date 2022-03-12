@@ -20,7 +20,7 @@ class CreateCustomersTable extends Migration
             $table->string('last_name');
             $table->unsignedBigInteger('id_document_type');
             $table->string('numero_documento')->unique();
-            $table->BigInteger('phone', 10);
+            $table->string('phone', 10);
             $table->string('address');
             $table->string('city');
             $table->string('department');
