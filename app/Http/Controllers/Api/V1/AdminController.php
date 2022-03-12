@@ -13,7 +13,7 @@ class AdminController extends Controller
   
     public function index()
     {
-        //
+      
     }
 
     public function create()
@@ -39,26 +39,8 @@ class AdminController extends Controller
             'personal_code' =>  mb_strtoupper(strstr($fields['email'], '@', true)).rand(1000, 9999),
 
         ]);
-
-        
-        /*$admin = Admin::create([
-            'id_user' => $user->id,
-            
-        ]);*/
   
         $token = $user->createToken('myapptoken')->plainTextToken;
-
-        $data["email"] =  $fields['email'];
-        $data["title"] = "Bienvenido a la plataforma Investment";
-        $data["code"] =  mb_strtoupper(strstr($fields['email'], '@', true)).rand(1000, 9999);
-        $data["password"] = $password;
-        
-
-        Mail::send([], $data, function ($message) use ($data) {
-            $message->to($data["email"], $data["email"])
-                ->subject($data["title"]);
-                //->attachData($pdf->output(), "Certificado_inscripcion_curso_ofalmologia_FOSCAL.pdf");
-        });
 
         return response()->json([
             'status'=> 201,
