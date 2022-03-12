@@ -11,6 +11,7 @@ Route::apiResource('v1/admin', AdminController::class)->only(['store']);
 Route::apiResource('v1/customer', CustomerController::class)->only(['store']);
 
 Route::post('/login', [LoginController::class, 'login']);
+Route::post('/reset_password', [LoginController::class, 'resetPassword']);
 
 /*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

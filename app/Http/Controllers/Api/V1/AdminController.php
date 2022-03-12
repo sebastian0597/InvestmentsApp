@@ -7,6 +7,7 @@ use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Utils\Util;
 
 class AdminController extends Controller
 {
@@ -30,8 +31,8 @@ class AdminController extends Controller
             'id_rol' => 'required|numeric'
         ]);
 
-        $password = $this->generatePassword();
-        $personal_code = $this->generatePersonalCode($fields['email']);
+        $password = Util::generatePassword();
+        $personal_code = Util::generatePersonalCode($fields['email']);
 
         $user = User::create([
             'name' => $fields['name'],
@@ -97,22 +98,5 @@ class AdminController extends Controller
         //
     }
 
-    public  function generatePassword()
-    {   
-        $length=8;
-        $key = "";
-        $pattern = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        $max = strlen($pattern)-1;
-        for($i = 0; $i < $length; $i++){
-            $key .= substr($pattern, mt_rand(0,$max), 1);
-        }
-        return $key;
-    }
-
-    public function generatePersonalCode($email){
-        $codigo_base = mb_strtoupper(strstr($email, '@', true));
-        $codigo_base = strlen($codigo_base)>4 ? substr($codigo_base, 0, 4) : $codigo_base;
-        $codigo = $codigo_base.rand(1000, 9999);
-        return $codigo;
-    }
+  
 }
