@@ -13,6 +13,7 @@ class Customer extends Model
         'id_user',
         'name',
         'last_name',
+        'document_number',
         'phone',
         'address',
         'city',

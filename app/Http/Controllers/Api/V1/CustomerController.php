@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Mail;
+use App\Mail\CredentialsMailable;
+
 
 class CustomerController extends Controller
 {
@@ -49,18 +51,22 @@ class CustomerController extends Controller
                 'city' => 'required|string',
                 'department' => 'required|string',
                 'country' => 'required|string',
+                'document_number' => 'required|numeric',
                 'file_document' => 'required|string',
                 'email' => 'required|string|unique:users,email',
                 'id_rol' => 'required|numeric',
     
             ]);
     
-           
+            $password = '12345678';
+            $personal_code = mb_strtoupper(strstr($fields['email'], '@', true)).rand(1000, 9999);
+
             $user = User::create([
                 'name' => $fields['name'],
                 'email' => $fields['email'],
-                'password' => bcrypt('12345678'),
+                'password' => bcrypt($password),
                 'id_rol' => $fields['id_rol'],
+                'personal_code' => $personal_code
     
             ]);
     
@@ -73,6 +79,7 @@ class CustomerController extends Controller
                 'city' => $fields["city"],
                 'department' => $fields["department"],
                 'country' => $fields["country"],
+                'document_number' => $fields["document_number"],
                 'file_document' => $fields["file_document"],
                 'description_ind' => $request->description_ind,
                 'file_rut' => $request->file_rut,
@@ -99,13 +106,11 @@ class CustomerController extends Controller
                
             $data["email"] =  $fields['email'];
             $data["title"] = "Bienvenido a la plataforma Investment";
-            $data["body"] =  mb_strtoupper(strstr($fields['email'], '@', true)).rand(1000, 9999);
-
-            Mail::send([], $data, function ($message) use ($data) {
-                $message->to($data["email"], $data["email"])
-                    ->subject($data["title"]);
-                    //->attachData($pdf->output(), "Certificado_inscripcion_curso_ofalmologia_FOSCAL.pdf");
-            });
+            $data["code"] = $personal_code; 
+            $data["password"] = $password;
+            
+            $mail = new CredentialsMailable($data);
+            Mail::to($data["email"])->send($mail);
 
             return response()->json([
                 'status'=> 201,
