@@ -60,7 +60,7 @@ class CustomerController extends Controller
             ]);
     
             $password = Util::generatePassword();
-            $personal_code = mb_strtoupper(strstr($fields['email'], '@', true)).rand(1000, 9999);
+            $personal_code = Util::generatePersonalCode($fields['email']);
 
             $user = User::create([
                 'name' => $fields['name'],
