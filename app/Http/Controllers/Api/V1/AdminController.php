@@ -44,13 +44,8 @@ class AdminController extends Controller
         ]);
   
         $token = $user->createToken('myapptoken')->plainTextToken;
-
-        return response()->json([
-            'status'=> 201,
-            'user' => $user,
-            'token' => $token,
-            'password' => $password
-        ]);
+        return  Util::setResponseJson(201, $user, $token);
+      
     }
 
     /**
