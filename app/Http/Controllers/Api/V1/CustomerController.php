@@ -117,10 +117,7 @@ class CustomerController extends Controller
             
         }, 3); 
         
-        return response()->json([
-            'status'=> 201,
-            'user' => $customer,
-        ]);
+        return Util::setResponseJson(201, $customer);
   
     }
 

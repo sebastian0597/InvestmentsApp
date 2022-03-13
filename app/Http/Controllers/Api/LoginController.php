@@ -79,15 +79,16 @@ class LoginController extends Controller
            
 
         }else{
-            
+
             if(!is_null($user) && !is_null($user->blocked_date)){
 
                 Util::validateBlockedTime($user->blocked_date, $user);
                
             }
+
             if($user->status <> 1){
 
-            return Util::setResponseJson(402,'El usuario se encuentra inactivo.');
+                return Util::setResponseJson(402,'El usuario se encuentra inactivo.');
           
             }else if($user->ind_blocked == 1 && !is_null($user->time_blocked)){
 
