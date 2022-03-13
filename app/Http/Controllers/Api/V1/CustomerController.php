@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\User;
+use App\Models\Investment;
 use Illuminate\Http\Request;
 use App\Utils\Util;
 
@@ -56,7 +57,12 @@ class CustomerController extends Controller
                     'file_document' => 'required|string',
                     'email' => 'required|string|unique:users,email',
                     'id_rol' => 'required|numeric',
-        
+
+                    //Datos investment
+                    'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+                    'consignment_file' => 'required|string',
+                    'id_currency' => 'required|numeric',
+                    'id_payment_method' => 'required|numeric',
                 ]);
         
                 $password = Util::generatePassword();
@@ -104,6 +110,18 @@ class CustomerController extends Controller
                     'id_economic_activity' => $request->id_economic_activity,
                     'id_bank_account' => $request->id_bank_account
                 ]);
+
+                $investment = Investment::create([
+                    'id_customer' => $customer->id,
+                    'amount' => $fields['amount'],
+                    'consignment_file' => $fields['consignment_file'],
+                    'id_currency' => $fields['id_currency'],
+                    'other_currency' => $request->other_currency,
+                    'id_payment_method' => $fields['id_payment_method'],
+                    'investment_date' => date('Y-m-d h:i:s'),
+                ]);
+
+                $investment->save();
                 
                 $data["email"] =  $fields['email'];
                 $data["title"] = "Te damos la bienvenida a VIP World Trading";
