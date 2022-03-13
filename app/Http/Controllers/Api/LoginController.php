@@ -78,33 +78,40 @@ class LoginController extends Controller
             }
            
 
-        }else if($user->status <> 1){
+        }else{
+            
+            if(!is_null($user) && !is_null($user->blocked_date)){
+
+                Util::validateBlockedTime($user->blocked_date, $user);
+               
+            }
+            if($user->status <> 1){
 
             return Util::setResponseJson(402,'El usuario se encuentra inactivo.');
           
-        }else if($user->ind_blocked == 1 && !is_null($user->time_blocked)){
+            }else if($user->ind_blocked == 1 && !is_null($user->time_blocked)){
 
-            return Util::setResponseJson(402,'Usuario bloqueado temporalmente.');
+                return Util::setResponseJson(402,'Usuario bloqueado temporalmente.');
+                
+            }else if($user->ind_banned == 1){
+
+                return Util::setResponseJson(402,'Usuario bloqueado por múltiples intentos fallidos, por favor comuníquese con un administrador.');
             
-        }else if($user->ind_banned == 1){
+            }else{
 
-            return Util::setResponseJson(402,'Usuario bloqueado por múltiples intentos fallidos, por favor comuníquese con un administrador.');
-          
-        }else{
+                $user->ind_banned=NULL;
+                $user->ind_blocked=NULL;
+                $user->time_blocked=NULL;
+                $user->blocked_date=NULL;
+                $user->banned_date=NULL;
+                $user->failed_login_attempts=NULL;
+                $user->save();
 
-            $user->ind_banned=NULL;
-            $user->ind_blocked=NULL;
-            $user->time_blocked=NULL;
-            $user->blocked_date=NULL;
-            $user->banned_date=NULL;
-            $user->failed_login_attempts=NULL;
-            $user->save();
-
-            $token = $user->createToken('myapptoken')->plainTextToken;
-            return Util::setResponseJson(200,$user, $token);
-           
+                $token = $user->createToken('myapptoken')->plainTextToken;
+                return Util::setResponseJson(200,$user, $token);
+            
+            }
         }
-
        
     }
 
