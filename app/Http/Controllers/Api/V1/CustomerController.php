@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Utils\Util;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CredentialsMailable;
@@ -58,7 +59,7 @@ class CustomerController extends Controller
     
             ]);
     
-            $password = '12345678';
+            $password = Util::generatePassword();
             $personal_code = mb_strtoupper(strstr($fields['email'], '@', true)).rand(1000, 9999);
 
             $user = User::create([
@@ -105,7 +106,7 @@ class CustomerController extends Controller
             ]);
                
             $data["email"] =  $fields['email'];
-            $data["title"] = "Bienvenido a la plataforma Investment";
+            $data["title"] = "Te damos la bienvenida a VIP World Trading";
             $data["code"] = $personal_code; 
             $data["password"] = $password;
             

@@ -88,7 +88,7 @@ class LoginController extends Controller
             
         }else if($user->ind_banned == 1){
 
-            return Util::setResponseJson(402,'Usuario bloqueado por múlitples intentos fallidos, por favor comuníquese con un administrador.');
+            return Util::setResponseJson(402,'Usuario bloqueado por múltiples intentos fallidos, por favor comuníquese con un administrador.');
           
         }else{
 

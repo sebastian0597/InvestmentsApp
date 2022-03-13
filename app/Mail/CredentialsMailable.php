@@ -11,11 +11,11 @@ class CredentialsMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject = "Bienvenido a la plataforma";
+    public $subject;
     public $data;
     public function __construct($data)
     {
-        
+        $this->subject = $data['title'];
         $this->data = $data;
     }
 
