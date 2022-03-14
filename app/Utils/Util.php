@@ -43,6 +43,22 @@ class Util
        
     }
 
+    public static function validateCustomerLevel($amount){
+        $costumer_level;
+
+        if($amount > 0 && $amount < 25000000){
+
+            $customer_level = 'Standard'; 
+            
+        }else if($amount > 25000000 && $amount < 100000000){
+
+        }
+    }
+
+
+
+
+
     public static function validateLogin($request){
         
         $fields = $request->validate([

@@ -92,7 +92,7 @@ class LoginController extends Controller
           
             }else if($user->ind_blocked == 1 && !is_null($user->time_blocked)){
 
-                return Util::setResponseJson(402,'Usuario bloqueado temporalmente.');
+                return Util::setResponseJson(402,'Usuario bloqueado temporalmente, por favor intente más tarde.');
                 
             }else if($user->ind_banned == 1){
 

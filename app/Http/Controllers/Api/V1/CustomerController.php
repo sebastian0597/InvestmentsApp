@@ -111,6 +111,8 @@ class CustomerController extends Controller
                     'id_bank_account' => $request->id_bank_account
                 ]);
 
+                //Util::validateCustomerLevel($fields['amount']);
+
                 $investment = Investment::create([
                     'id_customer' => $customer->id,
                     'amount' => $fields['amount'],
