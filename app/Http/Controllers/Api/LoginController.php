@@ -16,7 +16,17 @@ class LoginController extends Controller
 {
     public function login(Request $request){
 
-        $fields =  Util::validateLogin($request);
+        //$fields =  Util::validateLogin($request);
+        $email = $request->email;
+        $password = $request->password;
+        $personal_code = $request->personal_code;
+
+        $fields = $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+            'personal_code' => 'required|string'
+        ]);
+
         $user = User::where('email', $fields['email'])
         ->where('personal_code', $fields['personal_code'])->first();
 

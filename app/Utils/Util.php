@@ -51,7 +51,7 @@ class Util
         $customer_level='';
         $amount = intval($amount);
         
-        if($amount > 0 && $amount < 25000000){
+        if($amount > 1000000 && $amount < 25000000){
 
             $customer_level = 'Standard';  
             
@@ -110,7 +110,14 @@ class Util
         Mail::send('Emails.empty', [], function ($message) use ($params, $pdf) {
             $message->to($params["email"], $params["email"])
                 ->subject($params["title"])
-                ->attachData($pdf->output(), "Pagare_".$params['document_number'].".pdf");
+                ->attachData($pdf->output(), $params['document_name'].".pdf");
         });     
+    }
+
+    public static function sendCredentialsEmail($params){
+
+        $mail = new CredentialsMailable($params);
+        Mail::to($params["email"])->send($mail);
+
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Utils\Util;
 use App\Mail\CredentialsMailable;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -26,35 +27,40 @@ class AdminController extends Controller
 
     public function store(Request $request)
     {
-        $fields = $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string|unique:users,email',
-            'id_rol' => 'required|numeric'
-        ]);
+        $admin = DB::transaction(function () use($request){
 
-        $password = Util::generatePassword();
-        $personal_code = Util::generatePersonalCode($fields['email']);
+            $fields = $request->validate([
+                'name' => 'required|string',
+                'email' => 'required|string|unique:users,email',
+                'id_rol' => 'required|numeric'
+            ]);
 
-        $user = User::create([
-            'name' => $fields['name'],
-            'email' => $fields['email'],
-            'password' => bcrypt($password),
-            'id_rol' => $fields['id_rol'],
-            'personal_code' => $personal_code,
+            $password = Util::generatePassword();
+            $personal_code = Util::generatePersonalCode($fields['email']);
 
-        ]);
-  
-        $token = $user->createToken('myapptoken')->plainTextToken;
+            $user = User::create([
+                'name' => $fields['name'],
+                'email' => $fields['email'],
+                'password' => bcrypt($password),
+                'id_rol' => $fields['id_rol'],
+                'personal_code' => $personal_code,
 
-        $data["email"] =  $fields['email'];
-        $data["title"] = "Te damos la bienvenida a VIP World Trading";
-        $data["code"] = $personal_code; 
-        $data["password"] = $password;
+            ]);
+    
+            $token = $user->createToken('myapptoken')->plainTextToken;
+
+            $dataAdmin["email"] =  $fields['email'];
+            $dataAdmin["title"] = "Te damos la bienvenida a VIP World Trading";
+            $dataAdmin["code"] = $personal_code; 
+            $dataAdmin["password"] = $password;
+            
+            Util::sendCredentialsEmail($dataAdmin);
+
+            return array($user, $token);
+
+        }, 3); 
         
-        $mail = new CredentialsMailable($data);
-        Mail::to($data["email"])->send($mail);
-
-        return  Util::setResponseJson(201, $user, $token);
+        return  Util::setResponseJson(201, $admin[0], $admin[1]);
       
     }
 

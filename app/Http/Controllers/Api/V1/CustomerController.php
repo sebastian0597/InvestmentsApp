@@ -58,7 +58,7 @@ class CustomerController extends Controller
                     'id_rol' => 'required|numeric',
 
                     //Datos investment
-                    'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+                    'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/|min:1000000',
                     'consignment_file' => 'required|string',
                     'id_currency' => 'required|numeric',
                     'id_payment_method' => 'required|numeric',
@@ -131,6 +131,7 @@ class CustomerController extends Controller
                 //$nombre_inscrito = $request->input('nombres')." ". $request->input('apellidos');
                 //$nombre_sin_espacios = mb_strtoupper(str_replace(" ", "", $nombre_inscrito)); 
                 //$nombreArchivo = "certificado"."-".$nombre_sin_espacios.".pdf";
+
                 $adminLogged = User::find(1);
                 $customer_fullname = $fields['name']." ".$fields['last_name'];
                 $dataAdmin["email"] = $adminLogged->email;
@@ -139,18 +140,18 @@ class CustomerController extends Controller
                 $dataAdmin["bank_promissor_number"] = $investment->id;
                 $dataAdmin["document_number"] = $fields['document_number'];
                 $dataAdmin["customer_name"] = $customer_fullname;
+                $dataAdmin["document_name"] = "Pagare_".$fields['document_number']."_".$customer_fullname;
                 
                 Util::sendEmailWithPDFFile('Emails.bank_promissor_note', $dataAdmin);
 
                 //ENVIAR CREDENCIALES
-                $data["email"] =  $fields['email'];
-                $data["title"] = "Te damos la bienvenida a VIP World Trading";
-                $data["code"] = $personal_code; 
-                $data["password"] = $password;
+                $dataCustomer["email"] =  $fields['email'];
+                $dataCustomer["title"] = "Te damos la bienvenida a VIP World Trading";
+                $dataCustomer["code"] = $personal_code; 
+                $dataCustomer["password"] = $password;
                 
-                $mail = new CredentialsMailable($data);
-                Mail::to($data["email"])->send($mail);
-  
+                Util::sendCredentialsEmail($dataCustomer);
+              
                 return $customer;
             
         }, 3); 
