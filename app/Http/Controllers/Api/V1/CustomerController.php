@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CredentialsMailable;
 
-
 class CustomerController extends Controller
 {
     /**
@@ -64,12 +63,14 @@ class CustomerController extends Controller
                     'id_currency' => 'required|numeric',
                     'id_payment_method' => 'required|numeric',
                 ]);
-        
+                
+               
+                $customer_level = Util::validateCustomerLevel($fields['amount']);
                 $password = Util::generatePassword();
                 $personal_code = Util::generatePersonalCode($fields['email']);
 
                 $user = User::create([
-                    'name' => $fields['name'],
+                    'name' => $fields['name']." ".$fields['last_name'],
                     'email' => $fields['email'],
                     'password' => bcrypt($password),
                     'id_rol' => $fields['id_rol'],
@@ -108,10 +109,10 @@ class CustomerController extends Controller
                     'rut_third' => $request->rut_third,
                     'id_document_type' => $request->id_document_type,
                     'id_economic_activity' => $request->id_economic_activity,
-                    'id_bank_account' => $request->id_bank_account
+                    'id_bank_account' => $request->id_bank_account,
+                    'customer_level' => $customer_level
                 ]);
 
-                //Util::validateCustomerLevel($fields['amount']);
 
                 $investment = Investment::create([
                     'id_customer' => $customer->id,
@@ -124,7 +125,24 @@ class CustomerController extends Controller
                 ]);
 
                 $investment->save();
+
+                //ENVIAR PAGARÉ
+                //$ruta =  public_path().'\pdfs\\';
+                //$nombre_inscrito = $request->input('nombres')." ". $request->input('apellidos');
+                //$nombre_sin_espacios = mb_strtoupper(str_replace(" ", "", $nombre_inscrito)); 
+                //$nombreArchivo = "certificado"."-".$nombre_sin_espacios.".pdf";
+                $adminLogged = User::find(1);
+                $customer_fullname = $fields['name']." ".$fields['last_name'];
+                $dataAdmin["email"] = $adminLogged->email;
+                $dataAdmin["title"] = "Pagaré del cliente ".$fields['document_number']." ".$customer_fullname;
+                $dataAdmin["amount"] = $fields['amount'];
+                $dataAdmin["bank_promissor_number"] = $investment->id;
+                $dataAdmin["document_number"] = $fields['document_number'];
+                $dataAdmin["customer_name"] = $customer_fullname;
                 
+                Util::sendEmailWithPDFFile('Emails.bank_promissor_note', $dataAdmin);
+
+                //ENVIAR CREDENCIALES
                 $data["email"] =  $fields['email'];
                 $data["title"] = "Te damos la bienvenida a VIP World Trading";
                 $data["code"] = $personal_code; 

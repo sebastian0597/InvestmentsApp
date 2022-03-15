@@ -17,4 +17,5 @@ class Investment extends Model
         'id_payment_method',
         'investment_date'
     ];
+
 }

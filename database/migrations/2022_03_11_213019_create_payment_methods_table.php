@@ -16,6 +16,7 @@ class CreatePaymentMethodsTable extends Migration
         Schema::create('payment_methods', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->tinyinteger('enabling_days')->nullable(true);
             $table->tinyinteger('status')->default(1)->nullable(true);  
             $table->timestamps();
         });

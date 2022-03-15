@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
 class InvestmentController extends Controller
 {
     /**
@@ -51,14 +52,11 @@ class InvestmentController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     public function destroy($id)
     {
         //
     }
+
+   
 }

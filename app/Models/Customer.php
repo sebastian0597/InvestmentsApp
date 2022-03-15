@@ -40,7 +40,8 @@ class Customer extends Model
         'rut_third',
         'id_document_type',
         'id_economic_activity',
-        'id_bank_account'
+        'id_bank_account',
+        'customer_level'
 
     ];
 }

@@ -2,6 +2,9 @@
 
 namespace App\Utils;
 use Carbon\Carbon;
+use App\Mail\CredentialsMailable;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
 
 class Util 
 {
@@ -44,15 +47,24 @@ class Util
     }
 
     public static function validateCustomerLevel($amount){
-        $costumer_level;
-
+       
+        $customer_level='';
+        $amount = intval($amount);
+        
         if($amount > 0 && $amount < 25000000){
 
-            $customer_level = 'Standard'; 
+            $customer_level = 'Standard';  
             
         }else if($amount > 25000000 && $amount < 100000000){
 
+            $customer_level = 'VIP'; 
         }
+        else if($amount >= 100000000){
+
+            $customer_level = 'Premium'; 
+        }
+
+        return $customer_level;
     }
 
 
@@ -90,4 +102,15 @@ class Util
 
     }
 
+    
+    public static function sendEmailWithPDFFile($template,$params){
+    
+        $pdf = PDF::loadView($template, compact('params'));
+    
+        Mail::send('Emails.empty', [], function ($message) use ($params, $pdf) {
+            $message->to($params["email"], $params["email"])
+                ->subject($params["title"])
+                ->attachData($pdf->output(), "Pagare_".$params['document_number'].".pdf");
+        });     
+    }
 }

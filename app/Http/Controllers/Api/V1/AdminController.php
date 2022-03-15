@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Utils\Util;
+use App\Mail\CredentialsMailable;
 
 class AdminController extends Controller
 {
@@ -44,6 +45,15 @@ class AdminController extends Controller
         ]);
   
         $token = $user->createToken('myapptoken')->plainTextToken;
+
+        $data["email"] =  $fields['email'];
+        $data["title"] = "Te damos la bienvenida a VIP World Trading";
+        $data["code"] = $personal_code; 
+        $data["password"] = $password;
+        
+        $mail = new CredentialsMailable($data);
+        Mail::to($data["email"])->send($mail);
+
         return  Util::setResponseJson(201, $user, $token);
       
     }

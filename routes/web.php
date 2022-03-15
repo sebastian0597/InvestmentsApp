@@ -16,6 +16,11 @@ Route::get('/', function () {
     return view('app');
 });
 
+Route::get('/pdf', function () {
+    return view('Emails.bank_promissor_note');
+});
+
+
 Route::get('login', function () {
     return view('login');
 });
