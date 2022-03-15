@@ -7,6 +7,8 @@
       <link href="{{ asset('css/login.css') }}" rel="stylesheet">
       <script src="{{ asset('js/login.js')}}" defer></script>
       <script src="{{ asset('js/app.js')}}" defer></script>
+      <script src="{{ asset('js/util.js')}}" defer></script>
+      <script src="{{ asset('js/ajax.js')}}" defer></script>
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <meta name="csrf-token" content="{{ csrf_token() }}">
    </head>
@@ -17,15 +19,15 @@
          <form>
             <div class="user-box">
                <input type="text" id="codigo" name="codigo" placeholder="Codigo">
-               <label></label>
+               <span class="msg_error_login" id="error_codigo"></span>
             </div>
             <div class="user-box">
-               <input type="text" id="correo" name="correo" placeholder="Correo electrónico">
-               <label></label>
+               <input onblur="validarSintaxisCorreo(this);" type="text" id="correo" name="correo" placeholder="Correo electrónico">
+               <span class="msg_error_login" id="error_correo"></span>
             </div>
             <div class="user-box">
                <input type="password" id="contrasena"  name="contrasena" placeholder="Contraseña">
-               <label></label>
+               <span class="msg_error_login" id="error_contrasena"></span>
             </div>
             <div class="link-contraseña" >
                <a href="#" class="decoracion">
@@ -33,7 +35,7 @@
                </a>
             </div>
             <div class="link-contraseña">  
-               <button type="button" onclick="validarLogin();" class="neon">INGRESAR</button>
+               <button type="button" onclick="login();" class="neon">INGRESAR</button>
             </div>
          </form>
       </div>

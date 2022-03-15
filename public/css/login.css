@@ -37,6 +37,7 @@ body {
   
   .login-box .user-box {
     position: relative;
+    margin-bottom: 30px;
   }
   
   .login-box .user-box input {
@@ -44,7 +45,7 @@ body {
     padding: 10px 0;
     font-size: 16px;
     color: #fff;
-    margin-bottom: 30px;
+    /*margin-bottom: 30px;*/
     border: none;
     border-bottom: 1px solid #fff;
     outline: none;
@@ -120,4 +121,11 @@ text-align:center;
   color:white;
   text-decoration: none;
   text-align: right;
+}
+
+.msg_error_login{
+  color:white;
+  font-size:12px;
+  font-style: oblique;
+
 }
