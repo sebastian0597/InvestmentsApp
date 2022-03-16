@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CredentialsMailable;
 
+use App\Http\Resources\V1\CustomerResource;
+use App\Http\Resources\V1\CustomerCollection;
+
 class CustomerController extends Controller
 {
     /**
@@ -58,7 +61,7 @@ class CustomerController extends Controller
                     'id_rol' => 'required|numeric',
 
                     //Datos investment
-                    'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/|min:1000000',
+                    'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
                     'consignment_file' => 'required|string',
                     'id_currency' => 'required|numeric',
                     'id_payment_method' => 'required|numeric',
@@ -166,9 +169,9 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show($id)
     {
-        //
+        return new CustomerResource(Customer::find($id));
     }
 
     /**
@@ -203,5 +206,12 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         //
+    }
+
+    
+    public function getCustomers($param){
+       
+        return new CustomerCollection(Customer::searchCustomerByParams($param));
+
     }
 }

@@ -44,4 +44,25 @@ class Customer extends Model
         'customer_level'
 
     ];
+
+    //QUERIES
+    public static function searchCustomerByParams($param){    
+        
+        $customer = Customer::where('status',1)->where('name','LIKE','%'.$param.'%')
+        ->orWhere('last_name','LIKE','%'.$param.'%')->orWhere('phone','LIKE','%'.$param.'%')
+        ->orWhere('account_number','LIKE','%'.$param.'%')->orWhere('document_number', $param)->get();
+        
+        return $customer;
+    }
+
+
+
+
+    //RELATIONS Eloquent
+    public function DocumentType(){
+
+        return $this->hasOne(DocumentType::class, 'id_document_type','id');
+    }
+
+
 }

@@ -35,6 +35,7 @@ class CreateCustomersTable extends Migration
             $table->string('work_certificate')->nullable(true);
             $table->string('pension_fund')->nullable(true);
             $table->text('especification_other')->nullable(true);
+            $table->tinyinteger('status')->default(1)->nullable(true);
             
             $table->string('account_number')->nullable(true);
             $table->string('account_type')->nullable(true);
