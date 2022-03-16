@@ -25,7 +25,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        return new CustomerCollection(Customer::where('status',1)->get());
+        
     }
 
     /**
