@@ -9,11 +9,17 @@ const login = () =>{
             personal_code:$("#codigo").val().trim()
         };
         
-        enviarPeticion(url, method, data);
+        enviarPeticion(url, method, data, 'continuarLogin');
 
     }
     
-     
+}
+
+const continuarLogin = (response) =>{
+    $("#correo").val('')
+    $("#contrasena").val('')
+    $("#codigo").val('')
+    console.log(response);
 }
 
 const validarLogin = () =>{

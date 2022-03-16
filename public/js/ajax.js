@@ -21,8 +21,11 @@ function enviarPeticion(url,method, data, funcion=""){
             }else if(result.status === 401 || result.status === 402){
                 Swal.fire({
                     icon: 'error',
-                    title: 'Error',
+                    confirmButtonColor: "#141e30",
+                    confirmButtonText: "Aceptar",
                     text: result.message,
+                    allowEscapeKey : false,
+                    allowOutsideClick: false
                 })
             }
          

@@ -49,19 +49,27 @@ class Customer extends Model
     public static function searchCustomerByParams($param){    
         
         $customer = Customer::where('status',1)->where('name','LIKE','%'.$param.'%')
-        ->orWhere('last_name','LIKE','%'.$param.'%')->orWhere('phone','LIKE','%'.$param.'%')
-        ->orWhere('account_number','LIKE','%'.$param.'%')->orWhere('document_number', $param)->get();
+        ->orWhere('last_name','LIKE','%'.$param.'%')->orWhere('phone',$param)
+        ->orWhere('account_number',$param)->orWhere('document_number', $param)->get();
         
         return $customer;
     }
 
 
-
-
     //RELATIONS Eloquent
-    public function DocumentType(){
+    public function documentType(){
 
-        return $this->hasOne(DocumentType::class, 'id_document_type','id');
+        return $this->hasOne(DocumentType::class, 'id','id_document_type');
+    }
+
+    public function economicActivity(){
+
+        return $this->hasOne(EconomicActivity::class,'id','id_economic_activity');
+    }
+
+    public function bank(){
+
+        return $this->hasOne(Bank::class, 'id','id_bank_account',);
     }
 
 

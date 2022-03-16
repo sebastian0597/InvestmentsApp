@@ -51,6 +51,9 @@ class CustomerResource extends JsonResource
             'id_bank_account'=> $this->id_bank_account,
             'created_at'=> $this->created_at,
             'updated_at'=> $this->updated_at,
+            'document_type' => $this->documentType->name,
+            'economic_activity' => $this->economicActivity->name,
+            'name_bank_account' => $this->bank->name
         ];
     }
 }
