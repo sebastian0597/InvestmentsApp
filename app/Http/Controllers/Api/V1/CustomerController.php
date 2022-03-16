@@ -12,42 +12,35 @@ use App\Utils\Util;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CredentialsMailable;
-
 use App\Http\Resources\V1\CustomerResource;
 use App\Http\Resources\V1\CustomerCollection;
 
+use App\Http\Traits\InvestmentTrait;
+
 class CustomerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    use InvestmentTrait;
+
+
     public function index()
     {
         return new CustomerCollection(Customer::where('status',1)->get());
         
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
         $customer = DB::transaction(function () use($request){
+
+                //Se validan que los campos del cliente obligatorios no estén vacíos.
                 $fields = $request->validate([
                     'name' => 'required|string',
                     'last_name' => 'required|string',
@@ -60,19 +53,17 @@ class CustomerController extends Controller
                     'file_document' => 'required|string',
                     'email' => 'required|string|unique:users,email',
                     'id_rol' => 'required|numeric',
-
-                    //Datos investment
-                    'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-                    'consignment_file' => 'required|string',
-                    'id_currency' => 'required|numeric',
-                    'id_payment_method' => 'required|numeric',
                 ]);
                 
-               
+                //Se calcula la clasificación del cliente dependiendo del monto de la inversión.
                 $customer_level = Util::validateCustomerLevel($fields['amount']);
+                //Se genera una contraseña aleatoria.
                 $password = Util::generatePassword();
+                
+                //Se genera un código personal único, a partir del correo del cliente.
                 $personal_code = Util::generatePersonalCode($fields['email']);
 
+                //Se crea el usuario
                 $user = User::create([
                     'name' => $fields['name']." ".$fields['last_name'],
                     'email' => $fields['email'],
@@ -81,7 +72,9 @@ class CustomerController extends Controller
                     'personal_code' => $personal_code
         
                 ]);
-        
+                
+
+                //Se crea el cliente.
                 $customer = Customer::create([
                     'id_user' => $user->id,
                     'name' => $fields["name"],
@@ -116,42 +109,20 @@ class CustomerController extends Controller
                     'id_bank_account' => $request->id_bank_account,
                     'customer_level' => $customer_level
                 ]);
-
-
-                $investment = Investment::create([
-                    'id_customer' => $customer->id,
-                    'amount' => $fields['amount'],
-                    'consignment_file' => $fields['consignment_file'],
-                    'id_currency' => $fields['id_currency'],
-                    'other_currency' => $request->other_currency,
-                    'id_payment_method' => $fields['id_payment_method'],
-                    'investment_date' => date('Y-m-d h:i:s'),
-                    'id_investment_type' => 2
-                ]);
-
-                $investment->save();
-
-                //ENVIAR PAGARÉ
-                $adminLogged = User::find(1);
-                $customer_fullname = $fields['name']." ".$fields['last_name'];
-                $dataAdmin["email"] = $adminLogged->email;
-                $dataAdmin["title"] = "Pagaré del cliente ".$fields['document_number']." ".$customer_fullname;
-                $dataAdmin["amount"] = $fields['amount'];
-                $dataAdmin["bank_promissor_number"] = $investment->id;
-                $dataAdmin["document_number"] = $fields['document_number'];
-                $dataAdmin["customer_name"] = $customer_fullname;
-                $dataAdmin["document_name"] = "Pagare_".$fields['document_number']."_".$customer_fullname;
                 
-                Util::sendEmailWithPDFFile('Emails.bank_promissor_note', $dataAdmin);
+                //Se usa el Trait InvestmentTrait para guardar la información de la inversión
+                $this->storeInvestment($request, $customer->id);
 
-                //ENVIAR CREDENCIALES
+               
                 $dataCustomer["email"] =  $fields['email'];
                 $dataCustomer["title"] = "Te damos la bienvenida a VIP World Trading";
                 $dataCustomer["code"] = $personal_code; 
                 $dataCustomer["password"] = $password;
                 
+                //Se envían las credenciales del cliente al correo
                 Util::sendCredentialsEmail($dataCustomer);
               
+                
                 return $customer;
             
         }, 3); 
@@ -160,46 +131,25 @@ class CustomerController extends Controller
   
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         return new CustomerResource(Customer::find($id));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(Customer $customer)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, Customer $customer)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy(Customer $customer)
     {
         //
