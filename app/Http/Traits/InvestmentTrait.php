@@ -12,6 +12,7 @@ trait InvestmentTrait
 {
     public function storeInvestment($request, $customer_id="")
     {
+        //Se validan los campos que son obligatorios para crear una inversón.
         $fields = $request->validate([
 
             'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
@@ -24,6 +25,7 @@ trait InvestmentTrait
         $id_customer = $customer_id == "" || is_null($customer_id) ?  $request->id_customer : $customer_id;
         $investment_type = $request->id_investment_type == "" || is_null($request->id_investment_type) ? 2 : $request->id_investment_type;
 
+        //Se crea la inversión.
         $investment = Investment::create([
             'id_customer' =>  $id_customer,
             'amount' => $fields['amount'],
@@ -37,14 +39,17 @@ trait InvestmentTrait
 
         $investment->save();
 
+        //Se consultan todas las inversiones activas del cliente y se suman, para actualizar la clasificación del mismo.
         $total_amount = Investment::where('status', '1')->where('id_customer',$id_customer)->sum('amount');
         $customer_level = Util::validateCustomerLevel($total_amount);
         $customer = Customer::find($id_customer);
         $customer->customer_level = $customer_level;
         $customer->save();
 
+        //Se busca si el tipo de inversion es una reinversión o una nueva inversión
         $investment_type = InvestmentType::find($investment_type);
        
+        //Si es una nueva inversión se envía el pagaré al correo del administrador.
         if($investment_type->ind_generate_bank_note == 1){
 
             $adminLogged = User::find(1);
