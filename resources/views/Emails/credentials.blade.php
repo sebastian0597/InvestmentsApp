@@ -15,52 +15,7 @@
             transform: translate(-50%,-50%);
             max-width: 100%;
             text-align: center;
-        }/*
-      
-        .card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-            word-wrap: break-word;
-            background-color: #fff;
-            background-clip: border-box;
-            border: 1px solid rgba(0, 0, 0, 0.125);
-            border-radius: 0.25rem;
-
         }
-        .card-body{
-            padding-bottom:5rem;
-            padding-top:5rem;
-        }
-        
-        .btn-primary {
-        color: #fff !important;
-        background-color: #0d6efd !important;
-        border-color: #0d6efd !important;
-        }
-      
-        .btn {
-            display: inline-block;
-            font-weight: 400;
-            line-height: 1.6;
-            color: #212529;
-            text-align: center;
-            text-decoration: none;
-            vertical-align: middle;
-            cursor: pointer;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            background-color: transparent;
-            border: 1px solid transparent;
-            padding: 0.375rem 0.75rem;
-            font-size: 0.9rem;
-            border-radius: 0.25rem;
-            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        }
-        */
         .label{
            font-size: 18px;
         }

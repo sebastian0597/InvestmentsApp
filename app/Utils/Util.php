@@ -55,7 +55,7 @@ class Util
 
             $customer_level = 'Standard';  
             
-        }else if($amount > 25000000 && $amount < 100000000){
+        }else if($amount >= 25000000 && $amount < 100000000){
 
             $customer_level = 'VIP'; 
         }

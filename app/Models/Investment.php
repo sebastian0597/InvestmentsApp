@@ -15,7 +15,8 @@ class Investment extends Model
         'id_currency',
         'other_currency',
         'id_payment_method',
-        'investment_date'
+        'investment_date',
+        'id_investment_type'
     ];
 
 }

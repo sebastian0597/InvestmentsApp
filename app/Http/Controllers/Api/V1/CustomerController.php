@@ -126,16 +126,12 @@ class CustomerController extends Controller
                     'other_currency' => $request->other_currency,
                     'id_payment_method' => $fields['id_payment_method'],
                     'investment_date' => date('Y-m-d h:i:s'),
+                    'id_investment_type' => 2
                 ]);
 
                 $investment->save();
 
                 //ENVIAR PAGARÉ
-                //$ruta =  public_path().'\pdfs\\';
-                //$nombre_inscrito = $request->input('nombres')." ". $request->input('apellidos');
-                //$nombre_sin_espacios = mb_strtoupper(str_replace(" ", "", $nombre_inscrito)); 
-                //$nombreArchivo = "certificado"."-".$nombre_sin_espacios.".pdf";
-
                 $adminLogged = User::find(1);
                 $customer_fullname = $fields['name']." ".$fields['last_name'];
                 $dataAdmin["email"] = $adminLogged->email;
