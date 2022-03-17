@@ -36,24 +36,22 @@ class CreateCustomersTable extends Migration
             $table->string('pension_fund')->nullable(true);
             $table->text('especification_other')->nullable(true);
             $table->tinyinteger('status')->default(1)->nullable(true);
-            
             $table->string('account_number')->nullable(true);
             $table->string('account_type')->nullable(true);
             $table->string('bank_name')->nullable(true);
             $table->string('account_certificate')->nullable(true);
-
             $table->string('document_third')->nullable(true);
             $table->string('name_third')->nullable(true);
             $table->string('letter_authorization_third')->nullable(true);
             $table->string('kinship_third')->nullable(true);
             $table->string('rut_third')->nullable(true);
-            
             $table->string('customer_level')->nullable(true);
-        
+            $table->string('photo')->nullable(true);
             $table->unsignedBigInteger('id_economic_activity');
             $table->unsignedBigInteger('id_bank_account');
             $table->timestamps();
 
+            
             $table->foreign('id_user')->references('id')->on('users');
             $table->foreign('id_document_type')->references('id')->on('documents_types');
             $table->foreign('id_economic_activity')->references('id')->on('economics_activities');
