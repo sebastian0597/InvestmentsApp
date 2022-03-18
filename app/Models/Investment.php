@@ -16,7 +16,35 @@ class Investment extends Model
         'other_currency',
         'id_payment_method',
         'investment_date',
-        'id_investment_type'
+        'id_investment_type',
+        'registered_by'
     ];
+
+    public function getTotalInvestmentCustomer($id_customer){
+
+        return Investment::where('status', '1')->where('id_customer',$id_customer)->sum('amount');
+
+    }
+
+    public function getInvestmentsByIdCustomer($id_customer){
+
+        return Investment::where('status', '1')->where('id_customer',$id_customer)->get();
+
+    }
+
+
+
+
+    //RELATIONS ELOQUENT
+
+    public function customer(){
+
+        return $this->belongsTo(Customer::class,'id_customer','id');
+    } 
+
+    public function currency(){
+
+        return $this->hasOne(Currency::class,'id','id_currency');
+    }
 
 }

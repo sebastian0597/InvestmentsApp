@@ -53,6 +53,7 @@ class CustomerController extends Controller
                     'file_document' => 'required|string',
                     'email' => 'required|string|unique:users,email',
                     'id_rol' => 'required|numeric',
+                    'registered_by' => 'required|numeric',
                 ]);
                 
                 //Se calcula la clasificación del cliente dependiendo del monto de la inversión.
@@ -107,7 +108,8 @@ class CustomerController extends Controller
                     'id_document_type' => $request->id_document_type,
                     'id_economic_activity' => $request->id_economic_activity,
                     'id_bank_account' => $request->id_bank_account,
-                    'customer_level' => $customer_level
+                    'customer_level' => $customer_level,
+                    'registered_by' => $fields["registered_by"],
                 ]);
                 
                 //Se usa el Trait InvestmentTrait para guardar la información de la inversión

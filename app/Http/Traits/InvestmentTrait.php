@@ -19,6 +19,7 @@ trait InvestmentTrait
             'consignment_file' => 'required|string',
             'id_currency' => 'required|numeric',
             'id_payment_method' => 'required|numeric',
+            'registered_by' => 'required|numeric',
  
         ]);
 
@@ -35,18 +36,19 @@ trait InvestmentTrait
             'id_payment_method' => $fields['id_payment_method'],
             'investment_date' => date('Y-m-d h:i:s'),
             'id_investment_type' => $investment_type,
+            'registered_by' => $fields["registered_by"],
         ]);
 
         $investment->save();
 
         //Se consultan todas las inversiones activas del cliente y se suman, para actualizar la clasificación del mismo.
-        $total_amount = Investment::where('status', '1')->where('id_customer',$id_customer)->sum('amount');
+        $total_amount = Investment::getTotalInvestmentCustomer($id_customer);
         $customer_level = Util::validateCustomerLevel($total_amount);
         $customer = Customer::find($id_customer);
         $customer->customer_level = $customer_level;
         $customer->save();
 
-        //Se busca si el tipo de inversion es una reinversión o una nueva inversión
+        //Se busca si es una reinversión o una nueva inversión
         $investment_type = InvestmentType::find($investment_type);
        
         //Si es una nueva inversión se envía el pagaré al correo del administrador.
