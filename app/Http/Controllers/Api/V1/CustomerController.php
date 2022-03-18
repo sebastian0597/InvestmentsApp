@@ -56,7 +56,7 @@ class CustomerController extends Controller
                 ]);
                 
                 //Se calcula la clasificación del cliente dependiendo del monto de la inversión.
-                $customer_level = Util::validateCustomerLevel($fields['amount']);
+                $customer_level = Util::validateCustomerLevel($request->amount);
                 //Se genera una contraseña aleatoria.
                 $password = Util::generatePassword();
                 
