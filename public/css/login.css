@@ -124,8 +124,12 @@ text-align:center;
 }
 
 .msg_error_login{
-  color:white;
+  color:#DB7C26;
   font-size:12px;
   font-style: oblique;
 
+}
+
+.error_border{
+  border-bottom: 1px solid #DB7C26 !important;
 }
