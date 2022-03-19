@@ -12,12 +12,13 @@ class Investment extends Model
         'id_customer',
         'amount',
         'consignment_file',
-        'id_currency',
+        'code_currency',
         'other_currency',
         'id_payment_method',
         'investment_date',
         'id_investment_type',
-        'registered_by'
+        'registered_by',
+        'base_amount'
     ];
 
     public function getTotalInvestmentCustomer($id_customer){
@@ -42,9 +43,25 @@ class Investment extends Model
         return $this->belongsTo(Customer::class,'id_customer','id');
     } 
 
-    public function currency(){
+    public function paymentMethod(){
 
-        return $this->hasOne(Currency::class,'id','id_currency');
+        return $this->hasOne(PaymentMethod::class,'id','id_payment_method');
     }
 
+    public function investmentType(){
+
+        return $this->hasOne(InvestmentType::class,'id','id_investment_type');
+    }
+
+    public function registeredBy(){
+
+        return $this->hasOne(User::class,'id','registered_by');
+    }
+
+    public function getStatusTextAttribute(){
+        $status;
+        $status = $this->status == 1 ? "Activa" : "Desembolsada";
+        return $status;
+
+    }
 }

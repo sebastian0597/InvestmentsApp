@@ -16,12 +16,18 @@ class InvestmentResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'base_amount' => $this->base_amount,
             'amount' => $this->amount,
-            'currency' => $this->currency->name,
+            'currency' => $this->code_currency,
             'customer' => [
                 'name' => $this->customer->name,
                 'lastname' => $this->customer->last_name,
-            ]
+            ],
+            'payment_method' => $this->paymentMethod->name,
+            'investment_type' => $this->investmentType->name,
+            'investment_date' => $this->investment_date,
+            'registered_by' => $this->registeredBy->name,
+            'status' => $this->status_text
         ];
     }
 }
