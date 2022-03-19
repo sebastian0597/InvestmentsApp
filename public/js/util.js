@@ -34,3 +34,16 @@ async function consultarAPIDivisas(moneda="USD") {
     const monedas = await response.json();
     return monedas.results.COP;
 }
+
+
+const convertirMoneda = () =>{
+
+    let divisa = $("#divisa").val()
+    let base_amount = $("#base_amount").val().trim();
+    consultarAPIDivisas(divisa).then(moneda => {
+        let amount = moneda * base_amount
+        $("#amount").val(amount);
+
+    });
+
+}

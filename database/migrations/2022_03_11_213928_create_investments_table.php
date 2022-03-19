@@ -16,9 +16,11 @@ class CreateInvestmentsTable extends Migration
         Schema::create('investments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_customer');
+            $table->unsignedBigInteger('id_currency');
+            $table->double('base_amount',20,2);
             $table->double('amount',20,2);
             $table->string('consignment_file');
-            $table->unsignedBigInteger('id_currency');
+            
             $table->string('other_currency')->nullable(true);
             $table->unsignedBigInteger('id_payment_method');
             $table->unsignedBigInteger('id_investment_type');

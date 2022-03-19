@@ -1,7 +1,5 @@
 const login = () =>{
     
-    //consultarAPIDivisas().then(moneda => {
-
        if(validarLogin()){ 
         let url = 'http://127.0.0.1:8000/api/login';
         let method = 'POST';
@@ -15,9 +13,6 @@ const login = () =>{
 
     }
     
-    //});
-    
-  
 }
 
 const continuarLogin = (response) =>{
