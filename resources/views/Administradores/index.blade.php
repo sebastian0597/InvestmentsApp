@@ -13,7 +13,7 @@
         <form>
             <div class="form-row">
               <div class="col-4">
-                <select id="divisa" class="form-control">
+                <select onchange="convertirMoneda();" id="divisa" class="form-control">
                     <option selected>Seleccione...</option>
                     @foreach ($currencies as $item)
                         <option value="{{$item->code}}" >{{$item->name}}</option>
