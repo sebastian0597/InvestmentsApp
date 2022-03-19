@@ -28,10 +28,11 @@ const validarSintaxisCorreo = (element) => {
 };
 
 
-async function consultarAPIDivisas(moneda="USD") {
+async function consultarAPIDivisas(moneda="COP") {
     let opciones = {method: 'GET', headers: {Accept: 'application/json'}}
     const response = await  fetch(`https://api.fastforex.io/fetch-multi?from=${moneda}&to=COP&api_key=73306c96fe-5a91bbb373-r8ylp0`, opciones);
     const monedas = await response.json();
+
     return monedas.results.COP;
 }
 
@@ -40,10 +41,10 @@ const convertirMoneda = () =>{
 
     let divisa = $("#divisa").val()
     let base_amount = $("#base_amount").val().trim();
+
     consultarAPIDivisas(divisa).then(moneda => {
         let amount = moneda * base_amount
         $("#amount").val(amount);
-
     });
 
 }
