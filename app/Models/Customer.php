@@ -73,5 +73,10 @@ class Customer extends Model
         return $this->hasOne(Bank::class, 'id','id_bank_account',);
     }
 
+    public function customerType(){
+
+        return $this->hasOne(CustomerType::class,'id','id_customer_type');
+    }
+
 
 }

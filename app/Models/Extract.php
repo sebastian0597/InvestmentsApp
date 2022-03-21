@@ -9,4 +9,14 @@ class Extract extends Model
 {
     use HasFactory;
     protected $table = 'extracts';
+
+    protected $fillable = [
+        'id_customer',
+        'total_disbursed',
+        'total_reinvested',
+        'profitability_percentage',
+        'grand_total_invested',
+        'registered_by',
+        'month'
+    ];
 }

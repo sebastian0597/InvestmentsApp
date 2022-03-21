@@ -65,7 +65,7 @@ trait InvestmentTrait
             $dataAdmin["customer_name"] = $customer_fullname;
             $dataAdmin["document_name"] = "Pagare_".$customer->document_number."_".$customer_fullname;
             
-            Util::sendEmailWithPDFFile('Emails.bank_promissor_note', $dataAdmin);
+            Util::sendEmailWithPDFFile('Pdfs.bank_promissor_note', $dataAdmin);
         }
 
         return $investment;

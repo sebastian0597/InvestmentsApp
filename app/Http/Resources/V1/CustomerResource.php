@@ -46,7 +46,7 @@ class CustomerResource extends JsonResource
             'letter_authorization_third'=> $this->letter_authorization_third,
             'kinship_third'=> $this->kinship_third,
             'rut_third'=> $this->rut_third,
-            'customer_level'=> $this->customer_level,
+            'customer_type'=> $this->customerType->name,
             'id_economic_activity'=> $this->id_economic_activity,
             'id_bank_account'=> $this->id_bank_account,
             'created_at'=> $this->created_at,

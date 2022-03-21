@@ -20,10 +20,13 @@ class CreateExtractsTable extends Migration
             $table->double('total_reinvested',20,2);
             $table->double('profitability_percentage',20,2)->nullable(true);
             $table->double('grand_total_invested',20,2);
+            $table->unsignedBigInteger('registered_by');
+            $table->string('month');
             
             $table->timestamps();
 
             $table->foreign('id_customer')->references('id')->on('customers');
+            $table->foreign('registered_by')->references('id')->on('users');
         });
     }
 

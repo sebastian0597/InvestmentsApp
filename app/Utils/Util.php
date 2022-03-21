@@ -68,9 +68,6 @@ class Util
     }
 
 
-
-
-
     public static function validateLogin($request){
         
         $fields = $request->validate([
@@ -120,4 +117,23 @@ class Util
         Mail::to($params["email"])->send($mail);
 
     }
+
+    public static function totalInvestedByCustomer($id_customer, $invested_type){
+
+        $mail = new CredentialsMailable($params);
+        Mail::to($params["email"])->send($mail);
+
+    }
+
+    public static function downloadPDF(){
+
+        $data = [
+            'titulo' => 'Prueba'
+        ];
+    
+        $pdf = PDF::loadView('Pdfs.disbursement', $data);
+    
+        return $pdf->download('desembolso.pdf');
+    }
+
 }

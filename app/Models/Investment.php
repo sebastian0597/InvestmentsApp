@@ -27,6 +27,13 @@ class Investment extends Model
 
     }
 
+    public static function getTotalInvestmentCustomerByInvestmentType($id_customer, $investment_type){
+
+        return Investment::where('status', '1')->where('id_customer',$id_customer)
+        ->where('id_investment_type',$investment_type)->sum('amount');
+
+    }
+
     public static function getInvestmentsByIdCustomer($id_customer){
 
         return Investment::where('status', '1')->where('id_customer',$id_customer)->get();
