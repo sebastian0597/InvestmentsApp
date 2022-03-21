@@ -21,13 +21,13 @@ class Investment extends Model
         'base_amount'
     ];
 
-    public function getTotalInvestmentCustomer($id_customer){
+    public static function getTotalInvestmentCustomer($id_customer){
 
         return Investment::where('status', '1')->where('id_customer',$id_customer)->sum('amount');
 
     }
 
-    public function getInvestmentsByIdCustomer($id_customer){
+    public static function getInvestmentsByIdCustomer($id_customer){
 
         return Investment::where('status', '1')->where('id_customer',$id_customer)->get();
 

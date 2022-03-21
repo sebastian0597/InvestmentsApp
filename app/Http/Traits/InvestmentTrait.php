@@ -44,9 +44,9 @@ trait InvestmentTrait
 
         //Se consultan todas las inversiones activas del cliente y se suman, para actualizar la clasificación del mismo.
         $total_amount = Investment::getTotalInvestmentCustomer($id_customer);
-        $customer_level = Util::validateCustomerLevel($total_amount);
+        $customer_type = Util::validateCustomerLevel($total_amount);
         $customer = Customer::find($id_customer);
-        $customer->customer_level = $customer_level;
+        $customer->id_customer_type = $customer_type;
         $customer->save();
 
         //Se busca si es una reinversión o una nueva inversión

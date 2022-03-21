@@ -41,7 +41,7 @@ class Customer extends Model
         'id_document_type',
         'id_economic_activity',
         'id_bank_account',
-        'customer_level',
+        'id_customer_type',
         'registered_by'
 
     ];

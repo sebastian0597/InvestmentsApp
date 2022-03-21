@@ -23,6 +23,7 @@ class CreateInvestmentsTable extends Migration
             $table->string('consignment_file');
             
             $table->string('other_currency')->nullable(true);
+            $table->double('percentage_investment')->nullable(true);
             $table->unsignedBigInteger('id_payment_method');
             $table->unsignedBigInteger('id_investment_type');
             $table->date('investment_date');

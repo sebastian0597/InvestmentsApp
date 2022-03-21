@@ -45,7 +45,7 @@ class CreateCustomersTable extends Migration
             $table->string('letter_authorization_third')->nullable(true);
             $table->string('kinship_third')->nullable(true);
             $table->string('rut_third')->nullable(true);
-            $table->string('customer_level')->nullable(true);
+            $table->unsignedBigInteger('id_customer_type');
             $table->string('photo')->nullable(true);
             $table->unsignedBigInteger('registered_by');
             $table->unsignedBigInteger('id_economic_activity');
@@ -58,6 +58,8 @@ class CreateCustomersTable extends Migration
             $table->foreign('id_economic_activity')->references('id')->on('economics_activities');
             $table->foreign('id_bank_account')->references('id')->on('banks_account');
             $table->foreign('registered_by')->references('id')->on('users');
+            $table->foreign('id_customer_type')->references('id')->on('customer_types');
+            
         });
     }
 
