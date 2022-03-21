@@ -163,4 +163,18 @@ class CustomerController extends Controller
         return new CustomerCollection(Customer::searchCustomerByParams($param));
 
     }
+
+    public function getCustomersbyCustomerType(Request $request){
+       
+        $fields = $request->validate([
+            'param' => 'required|string',
+            'id_customer_type' => 'required|numeric',
+
+        ]);
+        
+        return new CustomerCollection(
+            Customer::searchCustomerByParamsAndCustomerType($fields['param'], $fields['id_customer_type'])
+        );
+
+    }
 }

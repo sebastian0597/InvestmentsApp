@@ -56,6 +56,15 @@ class Customer extends Model
         return $customer;
     }
 
+    public static function searchCustomerByParamsAndCustomerType($param, $customerType){    
+        
+        $customer = Customer::where('status',1)
+        ->where('id_customer_type', $customerType)
+        ->where('document_number', $param)->get();
+        
+        return $customer;
+    }
+
 
     //RELATIONS Eloquent
     public function documentType(){
