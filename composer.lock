@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "063da1836ce4393488b51c471c1c2029",
+    "content-hash": "da13f2d52f75549926118a802f395121",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5301,6 +5301,54 @@
             "time": "2021-12-08T09:12:39+00:00"
         },
         {
+            "name": "torreswil/carbon-colombia",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/torreswil/carbon-colombia.git",
+                "reference": "b841ba8e496f18771deed65f6349a270bd1d2f1f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/torreswil/carbon-colombia/zipball/b841ba8e496f18771deed65f6349a270bd1d2f1f",
+                "reference": "b841ba8e496f18771deed65f6349a270bd1d2f1f",
+                "shasum": ""
+            },
+            "require": {
+                "nesbot/carbon": "^1.0|^2.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "torreswil\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Wilfredo Torres",
+                    "email": "wtorresariza@gmail.com",
+                    "homepage": "http://wilto.co",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Extension de nesbot/carbon, para trabajar con festivos de Colombia",
+            "homepage": "https://github.com/torreswil/carbon-colombia",
+            "keywords": [
+                "carbon-colombia",
+                "torreswil"
+            ],
+            "support": {
+                "issues": "https://github.com/torreswil/carbon-colombia/issues",
+                "source": "https://github.com/torreswil/carbon-colombia/tree/master"
+            },
+            "time": "2019-11-21T16:35:47+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v5.4.1",
             "source": {
@@ -8023,12 +8071,14 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "torreswil/carbon-colombia": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.1.0"
 }

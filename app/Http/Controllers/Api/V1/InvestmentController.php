@@ -12,6 +12,7 @@ use App\Http\Resources\V1\InvestmentResource;
 use App\Http\Resources\V1\InvestmentCollection;
 
 use App\Utils\Util;
+use App\Utils\ProfitabilityDate;
 
 use App\Http\Traits\InvestmentTrait;
 
@@ -21,7 +22,10 @@ class InvestmentController extends Controller
     
     public function index()
     {
-        //
+        $fecha = ProfitabilityDate::create(2022,03,25);
+        $fecha->addBussinessDays(2);
+        dd($fecha->toDateString());
+
     }
 
     public function store(Request $request)

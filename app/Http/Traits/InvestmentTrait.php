@@ -2,11 +2,13 @@
 
 namespace App\Http\Traits;
 
+use App\Utils\ProfitabilityDate;
 use App\Utils\Util;
 use App\Models\Investment;
 use App\Models\Customer;
 use App\Models\User;
 use App\Models\InvestmentType;
+use App\Models\PaymentMethod;
 
 trait InvestmentTrait
 {
@@ -26,6 +28,11 @@ trait InvestmentTrait
         $id_customer = $customer_id == "" || is_null($customer_id) ?  $request->id_customer : $customer_id;
         $investment_type = $request->id_investment_type == "" || is_null($request->id_investment_type) ? 2 : $request->id_investment_type;
 
+        $payment_method = PaymentMethod::find($fields['id_payment_method']);
+        $date = ProfitabilityDate::create(date('Y'),date('m'),date('d'));
+        $date->addBussinessDays($payment_method->enabling_days);
+        $profibality_date = $date->toDateString();
+
         //Se crea la inversión.
         $investment = Investment::create([
             'id_customer' =>  $id_customer,
@@ -37,6 +44,7 @@ trait InvestmentTrait
             'id_payment_method' => $fields['id_payment_method'],
             'investment_date' => date('Y-m-d h:i:s'),
             'id_investment_type' => $investment_type,
+            'profitability_start_date' => $profibality_date,
             'registered_by' => $fields["registered_by"],
         ]);
 
@@ -47,6 +55,7 @@ trait InvestmentTrait
         $customer_type = Util::validateCustomerLevel($total_amount);
         $customer = Customer::find($id_customer);
         $customer->id_customer_type = $customer_type;
+        $customer->status = 1;
         $customer->save();
 
         //Se busca si es una reinversión o una nueva inversión

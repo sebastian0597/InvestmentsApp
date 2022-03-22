@@ -1,7 +1,7 @@
 const login = () =>{
     
        if(validarLogin()){ 
-        let url = 'http://127.0.0.1:8000/api/login';
+        let url = document.location.origin+'/api/login';
         let method = 'POST';
         let data = {
             email:$("#correo").val().trim(),

@@ -17,6 +17,7 @@ class Investment extends Model
         'id_payment_method',
         'investment_date',
         'id_investment_type',
+        'profitability_start_date',
         'registered_by',
         'base_amount'
     ];

@@ -14,7 +14,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "nesbot/carbon": "^2.57",
-        "realrashid/sweet-alert": "^5.0"
+        "realrashid/sweet-alert": "^5.0",
+        "torreswil/carbon-colombia": "dev-master"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
