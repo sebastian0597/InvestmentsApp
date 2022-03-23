@@ -17,6 +17,13 @@ class CreateExtractsDetailsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_extract');
             $table->unsignedBigInteger('id_investment');
+            $table->string('monthly_profitability_percentage');
+            $table->tinyinteger('profitability_days')->nullable(true);
+            $table->double('investment_amount',20,2);
+            $table->double('real_profitability_percentage',4,2);
+            $table->double('investment_return',20,2);
+            
+            
             $table->timestamps();
 
             $table->foreign('id_extract')->references('id')->on('extracts');

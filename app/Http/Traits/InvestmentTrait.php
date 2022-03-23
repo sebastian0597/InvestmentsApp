@@ -10,6 +10,8 @@ use App\Models\User;
 use App\Models\InvestmentType;
 use App\Models\PaymentMethod;
 
+use Illuminate\Support\Facades\DB;
+
 trait InvestmentTrait
 {
     public function storeInvestment($request, $customer_id="")
@@ -78,5 +80,15 @@ trait InvestmentTrait
         }
 
         return $investment;
+    }
+
+    public function setPercentage($percentage, $id_customer){
+
+        DB::statement(" UPDATE investments I 
+        INNER JOIN customers C ON C.id = I.id_customer 
+        SET I.percentage_investment=?
+        WHERE C.id=? AND I.status=1",
+        [$percentage, $id_customer]);
+        
     }
 }
