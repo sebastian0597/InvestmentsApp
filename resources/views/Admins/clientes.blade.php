@@ -50,7 +50,7 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>LISTA DE CLIENTES VINCULADOS</h5><span></span>
+                                    <h5>CLIENTES VINCULADOS</h5><span></span>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">

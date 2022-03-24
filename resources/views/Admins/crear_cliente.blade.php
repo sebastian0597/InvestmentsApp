@@ -54,302 +54,249 @@
                                 </div>
                                 <div class="card-body">
                                     <form class="needs-validation" novalidate="">
-                                        <!-- nombre-->
+
                                         <h5>Datos de inicio</h5>
 
                                         <div class="row g-3">
                                             <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom01">Primer nombre</label>
-                                                <input class="form-control" id="validationCustom01" type="text" value=""
-                                                    required="">
+                                                <label class="form-label">Nombres</label>
+                                                <input class="form-control" id="nombres" type="text">
+                                                <span class="msg_error_form" id="error_nombres"></span>
                                             </div>
                                             <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom02">Segundo
-                                                    nombre</label>
-                                                <input class="form-control" id="validationCustom02" type="text" value=""
-                                                    required="">
+                                                <label class="form-label">Apellidos</label>
+                                                <input class="form-control" id="apellidos" type="text">
+                                                <span class="msg_error_form" id="error_apellidos"></span>
                                             </div>
                                         </div>
 
-                                        <!-- apellido-->
-                                        <div class="row g-3">
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom01">Primer
-                                                    apellido</label>
-                                                <input class="form-control" id="validationCustom01" type="text" value=""
-                                                    required="">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom02">Segundo
-                                                    apellido</label>
-                                                <input class="form-control" id="validationCustom02" type="text" value=""
-                                                    required="">
-                                            </div>
-                                        </div>
-
-
-
-
-
                                         <div class="row g-3">
 
-                                            <div class="col-md-3">
-                                                <label class="form-label" for="validationCustom04">Tipo de documento de
-                                                    identidad</label>
-                                                <select class="form-select" id="validationCustom04" required="">
-                                                    <option>Nit</option>
-                                                    <option>Cédula de ciudanía</option>
-                                                    <option> Cédula de extranjería</option>
-                                                    <option> Pasaporte</option>
+                                            <div class="col-md-4">
+                                                <label class="form-label">Tipo de documento</label>
+                                                <select class="form-select" id="tipo_documento" required="">
+                                                    @foreach ($documents_types as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    @endforeach
                                                 </select>
+                                                <span class="msg_error_form" id="error_tipo_documento"></span>
                                             </div>
 
-                                            <div class="col-md-6">
-                                                <label class="form-label" for="validationCustom03">Numero de
-                                                    identificación</label>
-                                                <input class="form-control" id="validationCustom03" type="text"
-                                                    required="">
-
+                                            <div class="col-md-4">
+                                                <label class="form-label">Número de documento</label>
+                                                <input class="form-control" id="numero_documento" type="text">
+                                                <span class="msg_error_form" id="error_numero_documento"></span>
                                             </div>
 
-                                            <div class="col-md-3 mb-3">
-                                                <label class="form-label" for="validationCustom05">lugar de
-                                                    expedición</label>
-                                                <input class="form-control" id="validationCustom05" type="text"
-                                                    required="">
-                                            </div>
                                         </div>
                                         <br>
                                         <h5>Actividad económica</h5>
-
                                         <div class="row g-3">
 
                                             <div class="col-md-3">
-                                                <label class="form-label" for="validationCustom04">Tipo de actividad
-                                                    economica</label>
-                                                <select class="form-select" id="validationCustom04" required="">
-                                                    <option>Empreado</option>
-                                                    <option>Pensionado</option>
-                                                    <option> independiente</option>
-                                                    <option> otros</option>
+                                                <label class="form-label">Actividad económica</label>
+                                                <select onchange="seleccionarActividadEconomica()" class="form-select"
+                                                    id="actividad_economica" >
+                                                    <option value="">Seleccione---</option>
+                                                    @foreach ($economics_activities as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    @endforeach
+
                                                 </select>
+                                                <span class="msg_error_form" id="error_actividad_economica"></span>
                                             </div>
 
+                                            <!-- CAMPOS CUANDO ES INDEPENDIENTE -->
+                                            <div style="display:none" id="div_independiente" class="row g-3">
 
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Descripción</label>
+                                                    <textarea class="form-control" id="descripcion_independiente" rows="3"></textarea>
+                                                </div>
 
+                                                <div class="col-md-4">
+                                                    <label class="form-label">RUT</label>
+                                                    <input class="form-control" id="archivo_rut" type="file">
+                                                </div>
 
-                                            <div class="mb-3 row">
-                                                <label class="col-sm-3 col-form-label">Si tiene RUT + subir archivo (5 Mb)
-                                                    PDF, jpg (Opcional)</label>
-                                                <div class="col-sm-9">
-                                                    <input class="form-control" type="file">
+                                            </div>
+                                            <!-- CAMPOS CUANDO ES  EMPLEADO -->
+                                            <div style="display:none" id="div_empleado" class="row g-3">
+
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Empresa</label>
+                                                    <input class="form-control" id="empresa" type="text" required="">
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Cargo</label>
+                                                    <input class="form-control" id="cargo" type="text" required="">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Antigüedad</label>
+                                                    <input class="form-control" id="antiguedad" type="text" required="">
+                                                </div>
+
+                                            </div>
+                                            <div style="display:none" id="div_empleado_2" class="row g-3">
+
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Tipo de contrato</label>
+                                                    <select class="form-select" id="tipo_contrato" required="">
+                                                        <option value="Indefinido">Indefinido</option>
+                                                        <option value="Termino Fijo">Término Fijo</option>
+                                                        <option value="Prestacion de servicios">Prestación de servicios
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Certificado laboral</label>
+                                                    <input class="form-control" id="certificado_laboral" type="file">
+                                                </div>
+
+                                            </div>
+                                            <!-- CAMPOS CUANDO ES  PENSIONADO -->
+                                            <div style="display:none" id="div_pensionado" class="row g-3">
+
+                                                <div class="col-md-4">
+
+                                                    <label class="form-label">Fondo de pensión</label>
+                                                    <input class="form-control" id="fondo_pension" type="text"
+                                                        required="">
                                                 </div>
                                             </div>
-                                        </div>
+                                            <!-- CAMPOS CUANDO TIENE OTRA ACTIVIDAD -->
+                                            <div style="display:none" id="div_otros" class="row g-3">
 
+                                                <div class="col-md-4">
 
-
-                                        <div class="row g-3">
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom01">Parametro 1</label>
-                                                <input class="form-control" id="validationCustom01" type="text" value=""
-                                                    required="">
+                                                    <label class="form-label">Especifique</label>
+                                                    <input class="form-control" id="otros_actividad" type="text"
+                                                        required="">
+                                                </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom02">Parametro 2</label>
-                                                <input class="form-control" id="validationCustom02" type="text" value=""
-                                                    required="">
-                                            </div>
-                                        </div>
 
-
-                                        <div class="row g-3">
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom01">Parametro 3</label>
-                                                <input class="form-control" id="validationCustom01" type="text" value=""
-                                                    required="">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom02">Parametro 4</label>
-                                                <input class="form-control" id="validationCustom02" type="text" value=""
-                                                    required="">
-                                            </div>
                                         </div>
 
                                         <br>
                                         <h5>Cuenta bancaria para desembolso</h5>
-                                        <br>
-                                        <h6>Cuenta bancaria personal: </h6>
-
-
 
                                         <div class="row g-3">
-
                                             <div class="col-md-3">
-                                                <label class="form-label" for="validationCustom04">Tipo de cuenta
-                                                </label>
-                                                <select class="form-select" id="validationCustom04" required="">
-                                                    <option>Cuenta corriente</option>
-                                                    <option>Cuenta de ahorros</option>
+                                                <label class="form-label">Cuenta bancaria</label>
+                                                <select onchange="seleccionarCuentaBancaria();" class="form-select"
+                                                    id="cuenta_bancaria" required="">
+                                                    <option value="">Seleccione---</option>
+                                                    @foreach ($banks_accounts as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    @endforeach
 
                                                 </select>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <label class="form-label" for="validationCustom03">Nombre de identida
-                                                    bancaria</label>
-                                                <input class="form-control" id="validationCustom03" type="text"
-                                                    required="">
-
-                                            </div>
-
-                                            <div class="col-md-3 mb-3">
-                                                <label class="form-label" for="validationCustom05">Numero de
-                                                    cuenta</label>
-                                                <input class="form-control" id="validationCustom05" type="text"
-                                                    required="">
                                             </div>
                                         </div>
                                         <br>
 
-                                        <h6>Cuenta bancaria de tercero: </h6>
+                                        <div style="display:none" id="div_cuenta_personal" class="row g-3">
 
+                                            <div class="col-md-4">
+                                                <label class="form-label">Número de cuenta</label>
+                                                <input class="form-control" id="numero_cuenta" type="text" required="">
+                                            </div>
 
-
-                                        <div class="row g-3">
-
-                                            <div class="col-md-3">
-                                                <label class="form-label" for="validationCustom04">Tipo de cuenta
-                                                </label>
-                                                <select class="form-select" id="validationCustom04" required="">
-                                                    <option>Cuenta corriente</option>
-                                                    <option>Cuenta de ahorros</option>
-
+                                            <div class="col-md-4">
+                                                <label class="form-label">Tipo de cuenta</label>
+                                                <select class="form-select" id="tipo_cuenta" required="">
+                                                    <option value="Cuenta corriente">Cuenta corriente</option>
+                                                    <option value="Cuenta de ahorros">Cuenta de ahorros</option>
                                                 </select>
                                             </div>
 
-                                            <div class="col-md-6">
-                                                <label class="form-label" for="validationCustom03">Nombre de identida
-                                                    bancaria</label>
-                                                <input class="form-control" id="validationCustom03" type="text"
-                                                    required="">
-
-                                            </div>
-
-                                            <div class="col-md-3 mb-3">
-                                                <label class="form-label" for="validationCustom05">Numero de
-                                                    cuenta</label>
-                                                <input class="form-control" id="validationCustom05" type="text"
-                                                    required="">
-                                            </div>
                                         </div>
 
+                                        <div style="display:none" id="div_cuenta_personal_2" class="row g-3">
 
-                                        <div class="row g-3">
                                             <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom01">Nombre</label>
-                                                <input class="form-control" id="validationCustom01" type="text" value=""
-                                                    required="">
+                                                <label class="form-label">Nombre del banco</label>
+                                                <input class="form-control" id="nombre_banco" type="text" required="">
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label class="form-label">Certificado de cuenta</label>
+                                                <input class="form-control" id="certificado_cuenta" type="file">
+                                            </div>
+
+                                        </div>
+
+                                        <div style="display:none" id="div_cuenta_tercero" class="row g-3">
+
+                                            <div class="col-md-3">
+                                                <label class="form-label">Cédula</label>
+                                                <input class="form-control" id="cedula_tercero" type="text" required="">
+
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <label class="form-label">Nombre</label>
+                                                <input class="form-control" id="nombre_tercero" type="text" required="">
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <label class="form-label">Relación con el cliente (Parentesco)</label>
+                                                <input class="form-control" id="parentesco" type="text" required="">
+                                            </div>
+
+                                        </div>
+
+                                        <div style="display:none" id="div_cuenta_tercero_2" class="row g-3">
+
+                                            <div class="col-md-3">
+                                                <label class="form-label">Certificado bancario</label>
+                                                <input class="form-control" id="certificado_bancario_tercero"
+                                                    type="file">
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-label" for="validationCustom04">Tipo de documento de
-                                                    identidad</label>
-                                                <select class="form-select" id="validationCustom04" required="">
-                                                    <option>Nit</option>
-                                                    <option>Cédula de ciudanía</option>
-                                                    <option> Cédula de extranjería</option>
-                                                    <option> Pasaporte</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom02">Numero de
-                                                    identificación</label>
-                                                <input class="form-control" id="validationCustom02" type="text" value=""
-                                                    required="">
+                                                <label class="form-label">Carta de autorización para desembolsar al
+                                                    tercero</label>
+                                                <input class="form-control" id="carta_tercero" type="file">
                                             </div>
 
-                                        </div>
-
-
-                                        <div class="row g-3">
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom02">Parentesco</label>
-                                                <input class="form-control" id="validationCustom02" type="text" value=""
-                                                    required="">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom02">Rut opcional</label>
-                                                <input class="form-control" id="validationCustom02" type="text" value="">
+                                            <div class="col-md-3">
+                                                <label class="form-label">RUT</label>
+                                                <input class="form-control" id="rut_tercero" type="file">
                                             </div>
                                         </div>
-                                        <br><br>
 
-                                        <div class="row g-3">
-
-
-                                            <div class="mb-3 row">
-                                                <label class="col-sm-3 col-form-label">Certificado bancario (subir archivo
-                                                    (5 Mb), PDF, jpg)</label>
-                                                <div class="col-sm-9">
-                                                    <input class="form-control" type="file">
-                                                </div>
-                                            </div>
-                                            <div class="mb-3 row">
-                                                <label class="col-sm-3 col-form-label">Carta de autorización para
-                                                    desembolsar al tercero + (5 Mb), PDF, jpg)</label>
-                                                <div class="col-sm-9">
-                                                    <input class="form-control" type="file">
-                                                </div>
-                                            </div>
-                                        </div>
                                         <br><br>
 
                                         <h4>Inversión realizada</h4>
                                         <div class="row g-3">
                                             <div class="col-md-3">
-                                                <label class="form-label" for="validationCustom04">Tipo de
-                                                    moneda</label>
-                                                <select class="form-select" id="validationCustom04" required="">
-                                                    <option>COP</option>
-                                                    <option>USD</option>
-                                                    <option> EUR</option>
+                                                <label class="form-label">Tipo de moneda</label>
+                                                <select class="form-select" id="tipo_moneda" required="">
+                                                    <option value="">Seleccione---</option>
+                                                    @foreach ($currencies as $item)
+                                                        <option value="{{ $item->code }}">{{ $item->name }}</option>
+                                                    @endforeach
 
                                                 </select>
                                             </div>
 
                                             <div class="col-md-3">
-                                                <label class="form-label" for="validationCustom04">Método de
-                                                    pago</label>
-                                                <select class="form-select" id="validationCustom04" required="">
-                                                    <option>Consignación de Bancolombia</option>
-                                                    <option>Consignación otros bancos</option>
-                                                    <option> Consignación cheque de otros bancos</option>
-                                                    <option> Transferencia Billetera Virtual</option>
+                                                <label class="form-label">Método de pago</label>
+                                                <select class="form-select" id="metodo_pago" required="">
+                                                    @foreach ($payment_methods as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    @endforeach
 
                                                 </select>
                                             </div>
 
-                                            <div>
+                                            <div class="col-md-3">
                                                 <label>Monto de inversión</label>
-                                                <div class="input-group mb-3"><span class="input-group-text">$ </span>
-                                                    <input class="form-control" type="text"
-                                                        aria-label="Amount (to the nearest dollar)"><span
-                                                        class="input-group-text">.00 </span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row g-3">
-                                            <div class="mb-3 row g-3">
-                                                <label class="col-sm-3 col-form-label text-end">Fecha de inversión</label>
-                                                <div class="col-xl-5 col-sm-7 col-lg-8">
-                                                    <div class="input-group date" id="dt-date" data-target-input="nearest">
-                                                        <input class="form-control datetimepicker-input digits" type="date"
-                                                            data-target="#dt-date">
-                                                        <div class="input-group-text" data-target="#dt-date"
-                                                            data-toggle="datetimepicker"><i class="fa fa-calendar"></i>
-                                                        </div>
-                                                    </div>
+                                                <div class="input-group mb-3"><span class="input-group-text">$</span>
+                                                    <input id="monto_inversion" onblur="validarMontoMinimo();" class="form-control" type="text"><span 
+                                                    class="input-group-text">.00 </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -366,7 +313,7 @@
                                     <div class="invalid-feedback"></div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="submit">Crear Cliente</button>
+                            <button class="btn btn-primary" type="button" onclick="crearCliente()">Crear Cliente</button>
                             <br><br><br>
                             </form>
 

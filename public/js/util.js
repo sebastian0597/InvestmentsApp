@@ -1,5 +1,5 @@
 const agregarError = (element) =>{
-   
+    
     $("#error_"+element).empty()
     let mensaje = "El campo "+ element + " no puede estar vacío."
     $("#error_"+element).append(mensaje)
@@ -15,6 +15,8 @@ const quitarError = (element) =>{
     .prev()
     .removeClass("error_border");
 } 
+
+
 const validarSintaxisCorreo = (element) => {
   
     let validador = true

@@ -9,4 +9,11 @@ class DocumentType extends Model
 {
     use HasFactory;
     protected $table = 'documents_types';
+
+
+    public static function getByStatus($status){
+
+        return DocumentType::where('status', $status)->get();
+
+    }
 }

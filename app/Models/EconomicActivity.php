@@ -9,4 +9,10 @@ class EconomicActivity extends Model
 {
     use HasFactory;
     protected $table = 'economics_activities';
+
+    public static function getByStatus($status){
+
+        return EconomicActivity::where('status', $status)->get();
+
+    }
 }

@@ -9,4 +9,10 @@ class Currency extends Model
 {
     use HasFactory;
     protected $table = 'currencies';
+
+    public static function getByStatus($status){
+
+        return Currency::where('status', $status)->get();
+
+    }
 }

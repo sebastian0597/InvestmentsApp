@@ -1,0 +1,17 @@
+h1,
+h2,
+h3,
+h4,
+h5 {
+    text-transform: none !important;
+}
+
+.msg_error_form {
+    color: #f44009;
+    font-size: 12px;
+    font-style: oblique;
+}
+
+.error_border {
+    border: 1px solid #f44009 !important;
+}

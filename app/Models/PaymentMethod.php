@@ -9,4 +9,11 @@ class PaymentMethod extends Model
 {
     use HasFactory;
     protected $table = 'payment_methods';
+
+
+    public static function getByStatus($status){
+
+        return PaymentMethod::where('status', $status)->get();
+
+    }
 }

@@ -22,6 +22,7 @@
     <link href="{{ asset('css/admin/style.css') }}" rel="stylesheet">
     <!--<link id="color" rel="stylesheet" href="{{ asset('css/admin/color-1.css') }}" media="screen"> -->
     <link href="{{ asset('css/admin/responsive.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin/admin.css') }}" rel="stylesheet">   
 
 </head>
 
@@ -45,7 +46,8 @@
     <script src="{{ asset('js/admin/support-ticket-custom.js') }}" defer></script>
     <script src="{{ asset('js/admin/tooltip-init.js') }}" defer></script>
     <script src="{{ asset('js/admin/script.js') }}" defer></script>
-   
+    <script src="{{ asset('js/admin/clientes.js') }}" defer></script>  
+    <script src="{{ asset('js/util.js') }}" defer></script> 
 
 </body>
 
