@@ -112,6 +112,7 @@
                                                 <div class="col-md-6">
                                                     <label class="form-label">Descripción</label>
                                                     <textarea class="form-control" id="descripcion_independiente" rows="3"></textarea>
+                                                    <span class="msg_error_form" id="error_descripcion_independiente"></span>
                                                 </div>
 
                                                 <div class="col-md-4">
@@ -125,16 +126,19 @@
 
                                                 <div class="col-md-3">
                                                     <label class="form-label">Empresa</label>
-                                                    <input class="form-control" id="empresa" type="text" required="">
+                                                    <input class="form-control" id="empresa" type="text">
+                                                    <span class="msg_error_form" id="error_empresa"></span>
                                                 </div>
 
                                                 <div class="col-md-3">
                                                     <label class="form-label">Cargo</label>
-                                                    <input class="form-control" id="cargo" type="text" required="">
+                                                    <input class="form-control" id="cargo" type="text">
+                                                    <span class="msg_error_form" id="error_cargo"></span>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <label class="form-label">Antigüedad</label>
-                                                    <input class="form-control" id="antiguedad" type="text" required="">
+                                                    <input class="form-control" id="antiguedad" type="text">
+                                                    <span class="msg_error_form" id="error_antiguedad"></span>
                                                 </div>
 
                                             </div>
@@ -142,7 +146,7 @@
 
                                                 <div class="col-md-4">
                                                     <label class="form-label">Tipo de contrato</label>
-                                                    <select class="form-select" id="tipo_contrato" required="">
+                                                    <select class="form-select" id="tipo_contrato">
                                                         <option value="Indefinido">Indefinido</option>
                                                         <option value="Termino Fijo">Término Fijo</option>
                                                         <option value="Prestacion de servicios">Prestación de servicios
