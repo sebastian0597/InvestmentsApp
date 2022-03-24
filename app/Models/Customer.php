@@ -60,10 +60,11 @@ class Customer extends Model
         
         $customer = Customer::where('status',1)
         ->where('id_customer_type', $customerType)
-        ->where('document_number', $param)->get();
+        ->where('document_number', $param)->first();
         
         return $customer;
     }
+
 
 
     //RELATIONS Eloquent

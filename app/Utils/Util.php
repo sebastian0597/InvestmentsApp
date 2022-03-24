@@ -99,6 +99,19 @@ class Util
 
     }
 
+    public static function calculateProfitableDays($date, $days){ 
+        $result=-1;
+
+        $investmentDays = intval(substr($date,8,2));
+
+        if(!is_null($investmentDays)){
+            $result = $days-$investmentDays;
+        }
+
+        return $result;
+
+   }
+
     
     public static function sendEmailWithPDFFile($template,$params){
     
@@ -134,6 +147,16 @@ class Util
         $pdf = PDF::loadView('Pdfs.disbursement', $data);
     
         return $pdf->download('desembolso.pdf');
+    }
+
+    public static function validateDaysNumberByMonth($month){
+
+        $days = 30;
+        if($month == "02"){
+            $days=28;
+        }
+
+        return $days;
     }
 
 }

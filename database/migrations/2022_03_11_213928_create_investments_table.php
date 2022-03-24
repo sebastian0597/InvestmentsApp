@@ -27,6 +27,7 @@ class CreateInvestmentsTable extends Migration
             $table->unsignedBigInteger('id_payment_method');
             $table->unsignedBigInteger('id_investment_type');
             $table->date('investment_date');
+            $table->date('profitability_start_date')->nullable(true);
             $table->unsignedBigInteger('registered_by');
             $table->tinyinteger('status')->default(1)->nullable(true);
             $table->timestamps();

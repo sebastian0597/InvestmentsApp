@@ -18,7 +18,7 @@ class CreateExtractsTable extends Migration
             $table->unsignedBigInteger('id_customer');
             $table->double('total_disbursed',20,2);
             $table->double('total_reinvested',20,2);
-            $table->double('profitability_percentage',20,2)->nullable(true);
+            $table->double('profitability_percentage',4,2)->nullable(true);
             $table->double('grand_total_invested',20,2);
             $table->double('total_profitability',20,2)->nullable(true);
             $table->unsignedBigInteger('registered_by');
