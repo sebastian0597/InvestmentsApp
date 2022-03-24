@@ -8,6 +8,10 @@ Route::get('/', function () {
 });
 
 
+Route::get('admin', function () {
+    return view('Admins.html.theme.clientes');
+});
+
 Route::get('/currency', function (){
 
     $currencies = Currency::all();
