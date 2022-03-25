@@ -32,8 +32,7 @@ const seleccionarActividadEconomica = () =>{
         default:
             break;
     }
-
-    
+ 
 }
 
 const seleccionarCuentaBancaria = () =>{
