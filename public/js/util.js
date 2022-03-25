@@ -1,19 +1,21 @@
 const agregarError = (element) =>{
     
-    $("#error_"+element).empty()
+    /*$("#error_"+element).empty()
     let mensaje = "El campo "+ element + " no puede estar vacío."
-    $("#error_"+element).append(mensaje)
-   
-    $("#error_" + element)
+    $("#error_"+element).append(mensaje)*/
+    $("#" + element).addClass("error_border");
+    $("#" + element)
+    
         .prev()
-        .addClass("error_border");
+        .addClass("error_text");
 } 
 
 const quitarError = (element) =>{
-    $("#error_"+element).empty()
-    $("#error_" + element)
+    //$("#error_"+element).empty()
+    $("#" + element).removeClass("error_border");
+    $("#"+ element)
     .prev()
-    .removeClass("error_border");
+    .removeClass("error_text");
 } 
 
 

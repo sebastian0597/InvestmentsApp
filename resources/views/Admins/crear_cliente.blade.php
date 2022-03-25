@@ -269,11 +269,10 @@
                                                 <label class="form-label">Certificado bancario</label>
                                                 <input class="form-control" id="certificado_bancario_tercero"
                                                     type="file">
-                                                <span class="msg_error_form" id="error_bancario_tercero"></span>
+                                                <span class="msg_error_form" id="error_certificado_bancario_tercero"></span>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-label">Carta de autorización para desembolsar al
-                                                    tercero</label>
+                                                <label class="form-label">Carta de autorización</label>
                                                 <input class="form-control" id="carta_tercero" type="file">
                                                 <span class="msg_error_form" id="error_carta_tercero"></span>
                                             </div>
@@ -311,19 +310,18 @@
                                             </div>
 
                                             <div class="col-md-3">
+                                               
                                                 <label>Monto de inversión</label>
-                                                <div class="input-group mb-3"><span class="input-group-text">$</span>
-                                                    <input id="base_monto_inversion" onblur="validarMontoMinimo()" class="form-control" type="text">
-                                                    <span class="msg_error_form" id="error_base_monto_inversion"></span>
-                                                </div>
+                                                <input id="base_monto_inversion" onblur="validarMontoMinimo()" class="form-control" type="text">
+                                                <span class="msg_error_form" id="error_base_monto_inversion"></span>
+                                            
                                             </div>
 
                                             <div class="col-md-3">
                                                 <label>Inversión en pesos</label>
-                                                <div class="input-group mb-3"><span class="input-group-text">$</span>
-                                                    <input disabled id="monto_inversion" class="form-control" type="text">
-                                                    <span class="msg_error_form" id="error_monto_inversion"></span>
-                                                </div>
+                                                <input disabled id="monto_inversion" class="form-control" type="text">
+                                                <span class="msg_error_form" id="error_monto_inversion"></span>
+                                                
                                             </div>
                                         </div>
                                 </div>
