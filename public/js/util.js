@@ -42,12 +42,12 @@ async function consultarAPIDivisas(moneda="COP") {
 const convertirMoneda = () =>{
 
    
-    let divisa = $("#divisa").val()
-    let base_amount = $("#base_amount").val().trim()
+    let divisa = $("#tipo_moneda").val()
+    let base_amount = $("#base_monto_inversion").val().trim()
     if(divisa!="" && base_amount!==""){
         consultarAPIDivisas(divisa).then(moneda => {
             let amount = moneda * base_amount
-            $("#amount").val(amount);
+            $("#monto_inversion").val(amount.toFixed(2));
         });
     }   
 

@@ -74,7 +74,7 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Tipo de documento</label>
-                                                <select class="form-select" id="tipo_documento" required="">
+                                                <select class="form-select" id="tipo_documento" >
                                                     @foreach ($documents_types as $item)
                                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                     @endforeach
@@ -121,6 +121,7 @@
                                                 </div>
 
                                             </div>
+
                                             <!-- CAMPOS CUANDO ES  EMPLEADO -->
                                             <div style="display:none" id="div_empleado" class="row g-3">
 
@@ -152,11 +153,13 @@
                                                         <option value="Prestacion de servicios">Prestación de servicios
                                                         </option>
                                                     </select>
+                                                    <span class="msg_error_form" id="error_tipo_contrato"></span>
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <label class="form-label">Certificado laboral</label>
                                                     <input class="form-control" id="certificado_laboral" type="file">
+                                                    <span class="msg_error_form" id="error_certificado_laboral"></span>
                                                 </div>
 
                                             </div>
@@ -166,8 +169,8 @@
                                                 <div class="col-md-4">
 
                                                     <label class="form-label">Fondo de pensión</label>
-                                                    <input class="form-control" id="fondo_pension" type="text"
-                                                        required="">
+                                                    <input class="form-control" id="fondo_pension" type="text">
+                                                    <span class="msg_error_form" id="error_fondo_pension"></span>
                                                 </div>
                                             </div>
                                             <!-- CAMPOS CUANDO TIENE OTRA ACTIVIDAD -->
@@ -176,8 +179,8 @@
                                                 <div class="col-md-4">
 
                                                     <label class="form-label">Especifique</label>
-                                                    <input class="form-control" id="otros_actividad" type="text"
-                                                        required="">
+                                                    <input class="form-control" id="otros_actividad" type="text">
+                                                    <span class="msg_error_form" id="error_otros_actividad"></span>
                                                 </div>
                                             </div>
 
@@ -190,13 +193,13 @@
                                             <div class="col-md-3">
                                                 <label class="form-label">Cuenta bancaria</label>
                                                 <select onchange="seleccionarCuentaBancaria();" class="form-select"
-                                                    id="cuenta_bancaria" required="">
+                                                    id="cuenta_bancaria" >
                                                     <option value="">Seleccione---</option>
                                                     @foreach ($banks_accounts as $item)
                                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                     @endforeach
-
                                                 </select>
+                                                <span class="msg_error_form" id="error_cuenta_bancaria"></span>
                                             </div>
                                         </div>
                                         <br>
@@ -205,15 +208,18 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Número de cuenta</label>
-                                                <input class="form-control" id="numero_cuenta" type="text" required="">
+                                                <input class="form-control" id="numero_cuenta" type="text">
+                                                <span class="msg_error_form" id="error_numero_cuenta"></span>
                                             </div>
+                                            
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Tipo de cuenta</label>
-                                                <select class="form-select" id="tipo_cuenta" required="">
+                                                <select class="form-select" id="tipo_cuenta">
                                                     <option value="Cuenta corriente">Cuenta corriente</option>
                                                     <option value="Cuenta de ahorros">Cuenta de ahorros</option>
                                                 </select>
+                                                <span class="msg_error_form" id="error_tipo_cuenta"></span>
                                             </div>
 
                                         </div>
@@ -222,12 +228,14 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Nombre del banco</label>
-                                                <input class="form-control" id="nombre_banco" type="text" required="">
+                                                <input class="form-control" id="nombre_banco" type="text">
+                                                <span class="msg_error_form" id="error_nombre_banco"></span>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Certificado de cuenta</label>
                                                 <input class="form-control" id="certificado_cuenta" type="file">
+                                                <span class="msg_error_form" id="error_certificado_cuenta"></span>
                                             </div>
 
                                         </div>
@@ -236,18 +244,21 @@
 
                                             <div class="col-md-3">
                                                 <label class="form-label">Cédula</label>
-                                                <input class="form-control" id="cedula_tercero" type="text" required="">
-
+                                                <input class="form-control" id="cedula_tercero" type="text">
+                                                <span class="msg_error_form" id="error_cedula_tercero"></span>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <label class="form-label">Nombre</label>
-                                                <input class="form-control" id="nombre_tercero" type="text" required="">
+                                                <input class="form-control" id="nombre_tercero" type="text">
+                                                <span class="msg_error_form" id="error_nombre_tercero"></span>
+                                                
                                             </div>
 
                                             <div class="col-md-3">
                                                 <label class="form-label">Relación con el cliente (Parentesco)</label>
-                                                <input class="form-control" id="parentesco" type="text" required="">
+                                                <input class="form-control" id="parentesco" type="text">
+                                                <span class="msg_error_form" id="error_parentesco"></span>
                                             </div>
 
                                         </div>
@@ -258,49 +269,60 @@
                                                 <label class="form-label">Certificado bancario</label>
                                                 <input class="form-control" id="certificado_bancario_tercero"
                                                     type="file">
+                                                <span class="msg_error_form" id="error_bancario_tercero"></span>
                                             </div>
                                             <div class="col-md-3">
                                                 <label class="form-label">Carta de autorización para desembolsar al
                                                     tercero</label>
                                                 <input class="form-control" id="carta_tercero" type="file">
+                                                <span class="msg_error_form" id="error_carta_tercero"></span>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <label class="form-label">RUT</label>
                                                 <input class="form-control" id="rut_tercero" type="file">
+                                                <span class="msg_error_form" id="error_rut_tercero"></span>
                                             </div>
                                         </div>
 
                                         <br><br>
 
-                                        <h4>Inversión realizada</h4>
+                                        <h4>Inversión</h4>
                                         <div class="row g-3">
                                             <div class="col-md-3">
                                                 <label class="form-label">Tipo de moneda</label>
-                                                <select class="form-select" id="tipo_moneda" required="">
+                                                <select class="form-select" onchange="convertirMoneda();" id="tipo_moneda">
                                                     <option value="">Seleccione---</option>
                                                     @foreach ($currencies as $item)
                                                         <option value="{{ $item->code }}">{{ $item->name }}</option>
                                                     @endforeach
-
                                                 </select>
+                                                <span class="msg_error_form" id="error_tipo_moneda"></span>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <label class="form-label">Método de pago</label>
-                                                <select class="form-select" id="metodo_pago" required="">
+                                                <select class="form-select" id="metodo_pago" >
                                                     @foreach ($payment_methods as $item)
                                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                     @endforeach
-
                                                 </select>
+                                                <span class="msg_error_form" id="error_metodo_pago"></span>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <label>Monto de inversión</label>
                                                 <div class="input-group mb-3"><span class="input-group-text">$</span>
-                                                    <input id="monto_inversion" onblur="validarMontoMinimo();" class="form-control" type="text"><span 
-                                                    class="input-group-text">.00 </span>
+                                                    <input id="base_monto_inversion" onblur="validarMontoMinimo()" class="form-control" type="text">
+                                                    <span class="msg_error_form" id="error_base_monto_inversion"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <label>Inversión en pesos</label>
+                                                <div class="input-group mb-3"><span class="input-group-text">$</span>
+                                                    <input disabled id="monto_inversion" class="form-control" type="text">
+                                                    <span class="msg_error_form" id="error_monto_inversion"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -311,7 +333,7 @@
                             <div class="mb-3">
                                 <div class="form-check">
                                     <div class="checkbox p-0">
-                                        <input class="form-check-input" id="invalidCheck" type="checkbox" required="">
+                                        <input class="form-check-input" id="invalidCheck" type="checkbox" >
                                         <label class="form-check-label" for="invalidCheck"></label>
                                     </div>
                                     <div class="invalid-feedback"></div>

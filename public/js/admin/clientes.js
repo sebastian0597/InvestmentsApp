@@ -61,13 +61,13 @@ const seleccionarCuentaBancaria = () =>{
     }
 }
 
-$('#monto_inversion').on('input', function () { 
+$('#base_monto_inversion').on('input', function () { 
     this.value = this.value.replace(/[^0-9]/g,'');
 });
 
 const validarMontoMinimo = () =>{
-
-    if($('#monto_inversion').val().trim()<1000000){
+    convertirMoneda();
+    if(parseFloat($('#monto_inversion').val().trim())<1000000){
         alert('El monto no puede ser menor a 1000000')
     }
 }
@@ -92,10 +92,66 @@ const validarFormularioCliente = () =>{
     if($('#numero_documento').val().trim() == ""){
         agregarError('numero_documento')
     }
+
+    //Actividad económica
     if($('#actividad_economica').val() == ""){
         agregarError('actividad_economica')
     }
+    if($('#descripcion_independiente').val().trim() == "" && $('#descripcion_independiente').is(':visible')){
+        agregarError('descripcion_independiente')
+    }
+    if($('#empresa').val().trim() == "" && $('#empresa').is(':visible')){
+        agregarError('empresa')
+    }
+    if($('#cargo').val().trim() == "" && $('#cargo').is(':visible')){
+        agregarError('cargo')
+    }
+    if($('#antiguedad').val().trim() == "" && $('#antiguedad').is(':visible')){
+        agregarError('antiguedad')
+    }
 
+    if($('#tipo_contrato').val() == "" && $('#tipo_contrato').is(':visible')){
+        agregarError('tipo_contrato')
+    }
+
+    if($('#certificado_laboral').val() == "" && $('#certificado_laboral').is(':visible')){
+        agregarError('certificado_laboral')
+    }
+    if($('#fondo_pension').val().trim() == "" && $('#fondo_pension').is(':visible')){
+        agregarError('fondo_pension')
+    }
+
+    if($('#otros_actividad').val().trim() == "" && $('#otros_actividad').is(':visible')){
+        agregarError('otros_actividad')
+    }
+ 
+
+    
+    
+    
+
+
+
+    if($('#cuenta_bancaria').val() == ""){
+        agregarError('cuenta_bancaria')
+    }
+
+    if($('#tipo_moneda').val() == ""){
+        agregarError('tipo_moneda')
+    }
+
+    if($('#metodo_pago').val() == ""){
+        agregarError('metodo_pago')
+    }
+    if($('#base_monto_inversion').val() == ""){
+        agregarError('base_monto_inversion')
+    }
+
+    
+    
+    
+
+    
     
     
 }
