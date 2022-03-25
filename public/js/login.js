@@ -1,54 +1,54 @@
 const login = () =>{
     
        if(validarLogin()){ 
-        let url = document.location.origin+'/api/login';
-        let method = 'POST';
-        let data = {
-            email:$("#correo").val().trim(),
-            password:$("#contrasena").val().trim(),
-            personal_code:$("#codigo").val().trim()
-        };
+        let url = document.location.origin+'/api/login'
+        let method = 'POST'
         
-        enviarPeticion(url, method, data, 'continuarLogin');
+        var form_data = new FormData()
+        form_data.append('email', $('#correo').val().trim())
+        form_data.append('password', $('#contrasena').val().trim())
+        form_data.append('personal_code', $('#codigo').val().trim())
+
+        enviarPeticion(url, method, form_data, 'continuarLogin')
 
     }
     
 }
 
 const continuarLogin = (response) =>{
-    $("#correo").val('')
-    $("#contrasena").val('')
-    $("#codigo").val('')
-    console.log(response);
+    $('#correo').val('')
+    $('#contrasena').val('')
+    $('#codigo').val('')
+    console.log(response)
 }
 
 const validarLogin = () =>{
-    let validador=true;
+    let validador=true
    
-    if($("#correo").val().trim() == ""){
-        validador=false;
-        agregarError("correo");
+    if($('#correo').val().trim() == ''){
+        validador=false
+        agregarErrorLogin('correo')
     }else{
-        quitarError("correo");
+        quitarErrorLogin('correo')
     }
 
-    if(!validarSintaxisCorreo($("#correo")[0])){
-        validador=false;
+    if(!validarSintaxisCorreo($('#correo')[0])){
+        validador=false
     }
 
-    if($("#contrasena").val().trim() == ""){
-        validador=false;
-        agregarError("contrasena");
+    if($('#contrasena').val().trim() == ''){
+        validador=false
+        agregarErrorLogin('contrasena')
     }else{
-        quitarError("contrasena");
+        quitarErrorLogin('contrasena')
     }
 
-    if($("#codigo").val().trim() == ""){
-        agregarError("codigo");
-        validador=false;
+    if($('#codigo').val().trim() == ''){
+        agregarErrorLogin('codigo')
+        validador=false
     }else{
-        quitarError("codigo");
+        quitarErrorLogin('codigo')
     }
 
-    return validador;
+    return validador
 } 

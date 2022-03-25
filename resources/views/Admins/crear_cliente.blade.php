@@ -53,7 +53,7 @@
                                     <h5>Formulario de registro para clientes nuevos</h5>
                                 </div>
                                 <div class="card-body">
-                                    <form class="needs-validation" novalidate="">
+                                    <form class="needs-validation" novalidate="" accept-charset="UTF-8" enctype="multipart/form-data">
 
                                         <h5>Datos de inicio</h5>
 

@@ -9,6 +9,9 @@ function enviarPeticion(url,method, data, funcion=""){
         url: url,
         type: method,
         data:data, 
+        cache:false,
+        contentType: false,
+        processData: false,
         success: function (result) {
             
             if (funcion != "" && result.status === 200 || result.status === 201) {
@@ -37,6 +40,14 @@ function enviarPeticion(url,method, data, funcion=""){
                
             }else{ 
                 console.log(e.responseJSON);
+            }
+            
+            if(e.status == 500){
+
+                console.error("Message => " + e.responseJSON.message);
+                console.error("Exception => "+ e.responseJSON.exception);
+                console.error("File => "+ e.responseJSON.file);
+                
             }
         }
     });

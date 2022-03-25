@@ -18,6 +18,26 @@ const quitarError = (element) =>{
     .removeClass("error_text");
 } 
 
+const agregarErrorLogin = (element) =>{
+    
+    $("#error_"+element).empty()
+    let mensaje = "El campo "+ element + " no puede estar vacío."
+    $("#error_"+element).append(mensaje)
+    $("#" + element).addClass("error_border");
+    /*$("#" + element)
+    
+        .prev()
+        .addClass("error_text");*/
+} 
+
+const quitarErrorLogin = (element) =>{
+    $("#error_"+element).empty()
+    $("#" + element).removeClass("error_border");
+    /*$("#"+ element)
+    .prev()
+    .removeClass("error_text");**/
+} 
+
 
 const validarSintaxisCorreo = (element) => {
   

@@ -11,26 +11,26 @@ const seleccionarActividadEconomica = () =>{
         case '1':
             $('#div_independiente').css('display','flex')
             //Se muestra el div de Independiente
-            break;
+            break
         case '2':
                 $('#div_empleado').css('display','flex')
                 $('#div_empleado_2').css('display','flex')
                 
                 //Se muestra el div de Empleado
-            break;
+            break
             case '3':
                 $('#div_pensionado').css('display','flex')
                
                 //Se muestra el div de Pensionado
-            break;
+            break
             case '4':
                 $('#div_otros').css('display','flex')
                
                 //Se muestra el div de Otra actividad
-            break;
+            break
     
         default:
-            break;
+            break
     }
  
 }
@@ -47,25 +47,25 @@ const seleccionarCuentaBancaria = () =>{
             $('#div_cuenta_personal').css('display','flex')
             $('#div_cuenta_personal_2').css('display','flex')
         
-            break;
+            break
 
         case '2':
                 $('#div_cuenta_tercero').css('display','flex')
                 $('#div_cuenta_tercero_2').css('display','flex')
             
-            break;
+            break
     
         default:
-            break;
+            break
     }
 }
 
 $('#base_monto_inversion').on('input', function () { 
-    this.value = this.value.replace(/[^0-9]/g,'');
-});
+    this.value = this.value.replace(/[^0-9]/g,'')
+})
 
 const validarMontoMinimo = () =>{
-    convertirMoneda();
+    convertirMoneda()
     if(parseFloat($('#monto_inversion').val().trim())<1000000){
         alert('El monto no puede ser menor a 1000000')
     }
@@ -74,12 +74,28 @@ const validarMontoMinimo = () =>{
 const crearCliente = () =>{
 
     if(validarFormularioCliente()){
-        alert('Campos validados')
+        
+        /*let file_carnet_seguro=""
+        if($("#file_carnet_seguro").is(':visible') ){ 
+            file_carnet_seguro = document.getElementById('file_carnet_seguro').files[0]
+        }
+      
+        let file_carnet_vacunacion = document.getElementById('file_carnet_vacunacion').files[0]
+        
+        var form_data = new FormData()
+        form_data.append('file_carnet_seguro', file_carnet_seguro)
+        form_data.append('file_carnet_vacunacion', file_carnet_vacunacion)
+        form_data.append('id_participante', respuesta.id_participante)
+        form_data.append('documento', respuesta.documento)*/
     }
+
+
+
+
 }
 
 const validarFormularioCliente = () =>{
-    let validador=true;
+    let validador=true
     if($('#nombres').val().trim() == ""){
         agregarError('nombres')
         validador=false
@@ -264,7 +280,7 @@ const validarFormularioCliente = () =>{
         quitarError('base_monto_inversion')
     }
 
-    return validador;
+    return validador
     
     
 
