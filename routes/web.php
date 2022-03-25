@@ -3,15 +3,19 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontEnd\CustomerController;
 
-Route::get('/', function () {
+Route::get('login', function () {
     return view('login');
+})->name('login');
+
+Route::group(['middleware' => ['web']], function () {
+    Route::get('crear_cliente', [CustomerController::class, 'create'])->name('crear_cliente');
+
+    Route::get('/', function () { return view('Admins.clientes'); })->name('');
+    Route::get('clientes', function () { return view('Admins.clientes'); })->name('clientes');
+    //Route::get('crear_cliente', function () { return view('Admins.crear_cliente'); });
+    Route::get('extractos', function () { return view('Admins.extractos'); })->name('extractos');
 });
 
-Route::get('crear_cliente', [CustomerController::class, 'create']);
-
-Route::get('clientes', function () { return view('Admins.clientes'); });
-//Route::get('crear_cliente', function () { return view('Admins.crear_cliente'); });
-Route::get('extractos', function () { return view('Admins.extractos'); });
 
 /*Route::get('/currency', function (){
     $currencies = Currency::all();

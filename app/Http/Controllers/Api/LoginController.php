@@ -16,7 +16,8 @@ class LoginController extends Controller
 {
     public function login(Request $request){
 
-        //$fields =  Util::validateLogin($request);
+       
+        $auth = false;
         $email = $request->email;
         $password = $request->password;
         $personal_code = $request->personal_code;
@@ -117,9 +118,24 @@ class LoginController extends Controller
                 $user->banned_date=NULL;
                 $user->failed_login_attempts=NULL;
                 $user->save();
+               
+               
+                if (Auth::attempt(['email' => $fields['email'], 'password' => $fields['password'], 'status' => 1])) {
+                    $token = $user->createToken('myapptoken')->plainTextToken;
+                    //$request->session()->regenerate();
+                    //return Util::setResponseJson(402,);
+                    /*Auth::user();
+                    Auth::guard();
+                    $auth = true;
+                    session(['user' => Auth::user()]);*/
 
-                $token = $user->createToken('myapptoken')->plainTextToken;
-                return Util::setResponseJson(200,$user, $token);
+                    return Util::setResponseJson(200,'Login correcto', $token);
+                   
+                    
+                   
+                }
+
+                return Util::setResponseJson(501,'Algo ha salido mal, comuníquese con un administrador', $token);
             
             }
         }

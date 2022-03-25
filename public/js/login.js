@@ -16,10 +16,11 @@ const login = () =>{
 }
 
 const continuarLogin = (response) =>{
-    $('#correo').val('')
+    /*$('#correo').val('')
     $('#contrasena').val('')
-    $('#codigo').val('')
+    $('#codigo').val('')*/
     console.log(response)
+    location.href='/'
 }
 
 const validarLogin = () =>{
