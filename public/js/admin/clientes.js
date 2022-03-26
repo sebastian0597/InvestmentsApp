@@ -213,7 +213,7 @@ const crearCliente = () =>{
         form_data.append('document_number', numero_documento)
         form_data.append('file_document', archivo_documento)
         form_data.append('description_ind', descripcion_independiente)
-        form_data.append('file_rut', file_rut)
+        form_data.append('file_rut', archivo_rut)
         form_data.append('business', empresa)
         form_data.append('position_business', cargo)
         form_data.append('antique_bussiness', antiguedad)
