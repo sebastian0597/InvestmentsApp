@@ -52,10 +52,11 @@ class CustomerController extends Controller
                     'document_number' => 'required|numeric|unique:customers',
                     'file_document' => 'required|string',
                     'email' => 'required|string|unique:users,email',
-                    'id_rol' => 'required|numeric',
+                    /*'id_rol' => 'required|numeric',*/
                     'registered_by' => 'required|numeric',
                 ]);
                 
+                               
                 //Se calcula la clasificación del cliente dependiendo del monto de la inversión.
                 $customer_type = Util::validateCustomerLevel($request->amount);
                 //Se genera una contraseña aleatoria.
@@ -69,7 +70,7 @@ class CustomerController extends Controller
                     'name' => $fields['name']." ".$fields['last_name'],
                     'email' => $fields['email'],
                     'password' => bcrypt($password),
-                    'id_rol' => $fields['id_rol'],
+                    'id_rol' => 2,
                     'personal_code' => $personal_code
         
                 ]);

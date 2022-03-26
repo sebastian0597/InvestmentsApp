@@ -89,6 +89,63 @@
                                             </div>
 
                                         </div>
+                                        <div class="row g-3">
+
+                                            <div class="col-md-4">
+                                                <label class="form-label">Correo eléctronico</label>
+                                                <input class="form-control" id="correo" type="email">
+                                                <span class="msg_error_form" id="error_correo"></span>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label class="form-label">Teléfono</label>
+                                                <input class="form-control" id="telefono" type="text">
+                                                <span class="msg_error_form" id="error_telefono"></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="row g-3">
+
+                                            <div class="col-md-4">
+                                                <label class="form-label">Archivo documento identidad</label>
+                                                <input class="form-control" id="archivo_documento" type="file">
+                                            </div>
+
+                                        </div>
+                                       
+                                        <div class="row g-3">
+
+                                            <div class="col-md-4">
+                                                <label class="form-label">País</label>
+                                                <input class="form-control" id="pais" type="text">
+                                                <span class="msg_error_form" id="error_pais"></span>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label class="form-label">Departamento</label>
+                                                <input class="form-control" id="departamento" type="text">
+                                                <span class="msg_error_form" id="error_departamento"></span>
+                                            </div>
+                                          
+
+                                        </div>
+                                        <div class="row g-3">
+
+                                            <div class="col-md-4">
+                                                <label class="form-label">Dirección</label>
+                                                <input class="form-control" id="direccion" type="text">
+                                                <span class="msg_error_form" id="error_direccion"></span>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label class="form-label">Ciudad</label>
+                                                <input class="form-control" id="ciudad" type="text">
+                                                <span class="msg_error_form" id="error_ciudad"></span>
+                                            </div>
+                                          
+
+                                        </div>
+                                        
                                         <br>
                                         <h5>Actividad económica</h5>
                                         <div class="row g-3">
@@ -320,6 +377,16 @@
                                             <div class="col-md-3">
                                                 <label>Inversión en pesos</label>
                                                 <input disabled id="monto_inversion" class="form-control" type="text">
+                                                <span class="msg_error_form" id="error_monto_inversion"></span>
+                                                
+                                            </div>
+                                        </div>
+
+                                        <div class="row g-3">
+                                           
+                                            <div class="col-md-3">
+                                                <label>Documento de consignación</label>
+                                                <input class="form-control" id="archivo_consignacion" type="file">
                                                 <span class="msg_error_form" id="error_monto_inversion"></span>
                                                 
                                             </div>

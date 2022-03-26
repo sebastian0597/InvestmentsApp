@@ -8,7 +8,6 @@ const login = () =>{
         form_data.append('email', $('#correo').val().trim())
         form_data.append('password', $('#contrasena').val().trim())
         form_data.append('personal_code', $('#codigo').val().trim())
-
         enviarPeticion(url, method, form_data, 'continuarLogin')
 
     }
@@ -16,10 +15,6 @@ const login = () =>{
 }
 
 const continuarLogin = (response) =>{
-    /*$('#correo').val('')
-    $('#contrasena').val('')
-    $('#codigo').val('')*/
-    console.log(response)
     location.href='/'
 }
 

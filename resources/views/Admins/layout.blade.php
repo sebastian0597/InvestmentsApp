@@ -48,6 +48,7 @@
     <script src="{{ asset('js/admin/script.js') }}" defer></script>
     <script src="{{ asset('js/admin/clientes.js') }}" defer></script>  
     <script src="{{ asset('js/util.js') }}" defer></script> 
+    <script src="{{ asset('js/ajax.js') }}" defer></script> 
 
 </body>
 
