@@ -76,7 +76,7 @@ class CustomerController extends Controller
         
                 ]);
                 
-                $file_document="";
+                $file_document=NULL;
                 if($request->hasFile("file_document")){
                     $file=$request->file("file_document");
                     
@@ -85,7 +85,7 @@ class CustomerController extends Controller
                     copy($file, $ruta);
                 }
               
-                $work_certificate="";
+                $work_certificate=NULL;
                 if($request->hasFile("work_certificate")){
                     $file=$request->file("work_certificate");
                     
@@ -94,7 +94,7 @@ class CustomerController extends Controller
                     copy($file, $ruta);
                 }
 
-                $account_certificate="";
+                $account_certificate=NULL;
                 if($request->hasFile("account_certificate")){
                     $file=$request->file("account_certificate");
                     
@@ -103,7 +103,7 @@ class CustomerController extends Controller
                     copy($file, $ruta);
                 }
 
-                $letter_authorization_third="";
+                $letter_authorization_third=NULL;
                 if($request->hasFile("letter_authorization_third")){
                     $file=$request->file("letter_authorization_third");
                     
@@ -112,7 +112,7 @@ class CustomerController extends Controller
                     copy($file, $ruta);
                 }
 
-                $file_rut="";
+                $file_rut=NULL;
                 if($request->hasFile("file_rut")){
                     $file=$request->file("file_rut");
                     
@@ -121,7 +121,7 @@ class CustomerController extends Controller
                     copy($file, $ruta);
                 }
 
-                $rut_third="";
+                $rut_third=NULL;
                 if($request->hasFile("rut_third")){
                     $file=$request->file("rut_third");
                     
@@ -130,7 +130,6 @@ class CustomerController extends Controller
                     copy($file, $ruta);
                 }
             
-
                 //Se crea el cliente.
                 $customer = Customer::create([
                     'id_user' => $user->id,

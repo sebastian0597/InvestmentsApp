@@ -35,7 +35,7 @@ trait InvestmentTrait
         $date->addBussinessDays($payment_method->enabling_days);
         $profibality_date = $date->toDateString();
 
-        $consignment_file="";
+        $consignment_file=NULL;
         if($request->hasFile("consignment_file")){
             $file=$request->file("consignment_file");
             
