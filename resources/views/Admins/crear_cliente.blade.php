@@ -109,6 +109,7 @@
                                             <div class="col-md-4">
                                                 <label class="form-label">Archivo documento identidad</label>
                                                 <input class="form-control" id="archivo_documento" type="file">
+                                                <span class="msg_error_form" id="error_archivo_documento"></span>
                                             </div>
 
                                         </div>
@@ -386,7 +387,7 @@
                                             <div class="col-md-3">
                                                 <label>Documento de consignación</label>
                                                 <input class="form-control" id="archivo_consignacion" type="file">
-                                                <span class="msg_error_form" id="error_monto_inversion"></span>
+                                                <span class="msg_error_form" id="error_archivo_consignacion"></span>
                                                 
                                             </div>
                                         </div>

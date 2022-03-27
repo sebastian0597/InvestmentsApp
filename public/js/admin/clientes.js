@@ -100,7 +100,7 @@ const crearCliente = () =>{
         let telefono = $('#telefono').val().trim()
 
         let pais = $('#pais').val().trim()
-        let departamento = $('#ciudad').val().trim()
+        let departamento = $('#departamento').val().trim()
         let ciudad = $('#ciudad').val().trim()
         let direccion = $('#direccion').val().trim()
         
@@ -120,17 +120,17 @@ const crearCliente = () =>{
         
         let empresa=''
         if($('#empresa').is(':visible') ){ 
-            empresa = $('#descripcion_independiente').val().trim()
+            empresa = $('#empresa').val().trim()
         }
         
         let cargo=''
         if($('#cargo').is(':visible') ){ 
-            cargo = $('#descripcion_independiente').val().trim()
+            cargo = $('#cargo').val().trim()
         }
 
         let antiguedad=''
         if($('#antiguedad').is(':visible') ){ 
-            antiguedad = $('#descripcion_independiente').val().trim()
+            antiguedad = $('#antiguedad').val().trim()
         }
 
         let tipo_contrato=''
@@ -140,7 +140,7 @@ const crearCliente = () =>{
 
         let certificado_laboral=''
         if($('#certificado_laboral').is(':visible') ){ 
-            certificado_laboral = $('#certificado_laboral').val().trim()
+            certificado_laboral = document.getElementById('certificado_laboral').files[0]
         }
 
         let fondo_pension=''
@@ -202,12 +202,10 @@ const crearCliente = () =>{
         if($('#rut_tercero').is(':visible') ){ 
             rut_tercero =  document.getElementById('rut_tercero').files[0]
         }
-
   
         let archivo_consignacion =  document.getElementById('archivo_consignacion').files[0]
       
 
-    
         var form_data = new FormData()
         form_data.append('name', nombres)
         form_data.append('last_name', apellidos)
@@ -472,17 +470,13 @@ const validarFormularioCliente = () =>{
     }else{
         quitarError('certificado_bancario_tercero')
     }
+
     if($('#carta_tercero').val().trim() == '' && $('#carta_tercero').is(':visible')){
         agregarError('carta_tercero')
         validador=false
     }else{
         quitarError('carta_tercero')
     }
-    
-    
-    
-
-
     
 
     if($('#tipo_moneda').val() == ''){
@@ -504,6 +498,15 @@ const validarFormularioCliente = () =>{
     }else{
         quitarError('base_monto_inversion')
     }
+
+    if($('#archivo_consignacion').val().trim() == ''){
+        agregarError('archivo_consignacion')
+        validador=false
+    }else{
+        quitarError('archivo_consignacion')
+    }
+
+    
 
     return validador
     
