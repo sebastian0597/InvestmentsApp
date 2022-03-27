@@ -9,7 +9,10 @@ use App\Models\EconomicActivity;
 use App\Models\Bank;
 use App\Models\Currency;
 use App\Models\PaymentMethod;
+use App\Models\Customer;
 
+use App\Http\Resources\V1\CustomerResource;
+use App\Http\Resources\V1\CustomerCollection;
 
 class CustomerController extends Controller
 {   
@@ -23,5 +26,11 @@ class CustomerController extends Controller
         $payment_methods = PaymentMethod::getByStatus(1);
                         
         return view('Admins.crear_cliente', compact('documents_types', 'economics_activities','banks_accounts','currencies','payment_methods'));
+    }
+
+    public function index(){
+        
+        $customers =  new CustomerCollection(Customer::where('status',1)->get());
+        return view('Admins.clientes', compact('customers'));
     }
 }

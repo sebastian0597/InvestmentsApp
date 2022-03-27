@@ -3,6 +3,7 @@ const seleccionarActividadEconomica = () =>{
     $('#div_independiente').css('display','none')
     $('#div_empleado').css('display','none')
     $('#div_empleado_2').css('display','none')
+    $('#div_empleado_3').css('display','none')
     $('#div_pensionado').css('display','none')
     $('#div_otros').css('display','none')
     
@@ -15,6 +16,7 @@ const seleccionarActividadEconomica = () =>{
         case '2':
                 $('#div_empleado').css('display','flex')
                 $('#div_empleado_2').css('display','flex')
+                $('#div_empleado_3').css('display','flex')
                 
                 //Se muestra el div de Empleado
             break
@@ -42,6 +44,7 @@ const seleccionarCuentaBancaria = () =>{
     $('#div_cuenta_tercero').css('display','none')
     $('#div_cuenta_tercero_2').css('display','none')
     
+    
     switch ($('#cuenta_bancaria').val()) {
         case '1':
             $('#div_cuenta_personal').css('display','flex')
@@ -63,12 +66,25 @@ const seleccionarCuentaBancaria = () =>{
 $('#base_monto_inversion').on('input', function () { 
     this.value = this.value.replace(/[^0-9]/g,'')
 })
+
 $('#telefono').on('input', function () { 
     this.value = this.value.replace(/[^0-9]/g,'')
 })
+
 $('#numero_documento').on('input', function () { 
     this.value = this.value.replace(/[^0-9]/g,'')
 })
+
+$('#numero_cuenta').on('input', function () { 
+    this.value = this.value.replace(/[^0-9]/g,'')
+})
+
+$('#cedula_tercero').on('input', function () { 
+    this.value = this.value.replace(/[^0-9]/g,'')
+})
+
+
+
 
 const validarMontoMinimo = () =>{
     convertirMoneda()

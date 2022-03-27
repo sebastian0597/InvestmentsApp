@@ -19,13 +19,13 @@
                                 data-feather="users"></i><span>MÓDULO SOLICITUDES</span></a>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('clientes')}}"><i
-                                data-feather="users"></i><span>CLIENTES</span></a>
+                                data-feather="users"></i><span>MÓDULO CLIENTES</span></a>
                     </li>
 
 
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('crear_cliente')}}"><i
+                    <!--<li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('crear_cliente')}}"><i
                                 data-feather="file-text"></i><span>CREAR
-                                CLIENTE</span></a></li>
+                                CLIENTE</span></a></li> -->
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i
                                 data-feather="users"></i><span>MÓDULO INVERSIÓN</span></a>
                     </li>

@@ -9,9 +9,10 @@ Route::get('login', function () {
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('crear_cliente', [CustomerController::class, 'create'])->name('crear_cliente');
+    Route::get('clientes', [CustomerController::class, 'index'])->name('clientes');
 
     Route::get('/', function () { return view('Admins.clientes'); })->name('');
-    Route::get('clientes', function () { return view('Admins.clientes'); })->name('clientes');
+    //Route::get('clientes', function () { return view('Admins.clientes'); })->name('clientes');
     //Route::get('crear_cliente', function () { return view('Admins.crear_cliente'); });
     Route::get('extractos', function () { return view('Admins.extractos'); })->name('extractos');
 });

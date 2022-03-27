@@ -49,8 +49,9 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h5>CLIENTES VINCULADOS</h5><span></span>
+                                <div style="display:flex; align-items:center;" class="card-header">
+                                    <h5>CLIENTES VINCULADOS</h5>
+                                    <a class="btn btn-primary float-right" href="{{url('crear_cliente')}}">Crear cliente</a>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -60,27 +61,30 @@
                                                     <th rowspan="2">NOMBRE</th>
                                                 </tr>
                                                 <tr>
-                                                    <th>ESTATUS</th>
-                                                    <th>INVERSIÓN</th>
+                                                    <th>TIPO DE CLIENTE</th>
+                                                    <th>TELÉFONO</th>
                                                     <th>UBICACIÓN</th>
                                                     <th>E-MAIL</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach($customers as $item)
                                                 <tr>
                                                     <td>
                                                         <div class="media"><img class="rounded-circle img-30 me-3"
                                                                 src="{{ asset('images/profile.jpg') }}" alt="" />
                                                             <div class="media-body align-self-center">
-                                                                <div>Sofia Muñoz</div>
+                                                                <div>{{$item->name}} {{$item->last_name }}</div>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td>VIP</td>
-                                                    <td>$6.000.000,00</td>
-                                                    <td>Cali - COL</td>
+                                                    <td>{{ $item->phone }}</td>
+                                                    <td>{{$item->city }} - {{$item->country}}</td>
                                                     <td>sofiam@gmail.com</td>
                                                 </tr>
+                                                @endforeach
+                                                
                                             </tbody>
                                         </table>
                                     </div>

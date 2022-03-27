@@ -182,18 +182,21 @@
                                             <!-- CAMPOS CUANDO ES  EMPLEADO -->
                                             <div style="display:none" id="div_empleado" class="row g-3">
 
-                                                <div class="col-md-3">
+                                                <div class="col-md-8">
                                                     <label class="form-label">Empresa</label>
                                                     <input class="form-control" id="empresa" type="text">
                                                     <span class="msg_error_form" id="error_empresa"></span>
                                                 </div>
 
-                                                <div class="col-md-3">
+                                            </div>
+                                            <div style="display:none" id="div_empleado_3" class="row g-3">
+
+                                                <div class="col-md-4">
                                                     <label class="form-label">Cargo</label>
                                                     <input class="form-control" id="cargo" type="text">
                                                     <span class="msg_error_form" id="error_cargo"></span>
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <label class="form-label">Antigüedad</label>
                                                     <input class="form-control" id="antiguedad" type="text">
                                                     <span class="msg_error_form" id="error_antiguedad"></span>
@@ -313,7 +316,7 @@
                                             </div>
 
                                             <div class="col-md-3">
-                                                <label class="form-label">Relación con el cliente (Parentesco)</label>
+                                                <label class="form-label">Relación con el cliente</label>
                                                 <input class="form-control" id="parentesco" type="text">
                                                 <span class="msg_error_form" id="error_parentesco"></span>
                                             </div>
