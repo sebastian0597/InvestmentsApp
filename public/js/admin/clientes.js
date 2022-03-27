@@ -63,6 +63,16 @@ const seleccionarCuentaBancaria = () =>{
 $('#base_monto_inversion').on('input', function () { 
     this.value = this.value.replace(/[^0-9]/g,'')
 })
+$('#telefono').on('input', function () { 
+    this.value = this.value.replace(/[^0-9]/g,'')
+})
+$('#numero_documento').on('input', function () { 
+    this.value = this.value.replace(/[^0-9]/g,'')
+})
+
+//$("#telefono").mask('ZZ',{translation:  {'Z': {pattern: /[^.,]/, recursive: true}}});
+
+
 
 const validarMontoMinimo = () =>{
     convertirMoneda()
@@ -197,10 +207,7 @@ const crearCliente = () =>{
         let archivo_consignacion =  document.getElementById('archivo_consignacion').files[0]
       
 
-        
-        
-        
-
+    
         var form_data = new FormData()
         form_data.append('name', nombres)
         form_data.append('last_name', apellidos)
@@ -243,7 +250,7 @@ const crearCliente = () =>{
         form_data.append('amount', monto_inversion)
         form_data.append('code_currency', tipo_moneda)
         form_data.append('id_payment_method', metodo_pago)
-        form_data.append('id_investment_type', 1)
+        form_data.append('id_investment_type', 2)
 
         form_data.append('consignment_file', archivo_consignacion)
         
@@ -251,9 +258,15 @@ const crearCliente = () =>{
         let url = document.location.origin+'/api/v1/customer/'
         let method = 'POST'
 
-        enviarPeticion(url, method, form_data, '')
+        enviarPeticion(url, method, form_data, 'continuarCrearCliente')
     }
 
+}
+
+
+const continuarCrearCliente = (response) => {
+
+    console.log(response);
 }
 
 const validarFormularioCliente = () =>{
@@ -264,6 +277,55 @@ const validarFormularioCliente = () =>{
         validador=false
     }else{
         quitarError('nombres')
+    }
+
+    if($('#correo').val().trim() == ''){
+        agregarError('correo')
+        validador=false
+    }else{
+        quitarError('correo')
+    }
+
+    if($('#telefono').val().trim() == ''){
+        agregarError('telefono')
+        validador=false
+    }else{
+        quitarError('telefono')
+    }
+
+    if($('#archivo_documento').val().trim() == ''){
+        agregarError('archivo_documento')
+        validador=false
+    }else{
+        quitarError('archivo_documento')
+    }
+
+    if($('#pais').val().trim() == ''){
+        agregarError('pais')
+        validador=false
+    }else{
+        quitarError('pais')
+    }
+    
+    if($('#departamento').val().trim() == ''){
+        agregarError('departamento')
+        validador=false
+    }else{
+        quitarError('departamento')
+    }
+    
+    if($('#ciudad').val().trim() == ''){
+        agregarError('ciudad')
+        validador=false
+    }else{
+        quitarError('ciudad')
+    }
+    
+    if($('#direccion').val().trim() == ''){
+        agregarError('direccion')
+        validador=false
+    }else{
+        quitarError('direccion')
     }
     
     if($('#apellidos').val().trim() == ''){

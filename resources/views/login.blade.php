@@ -22,7 +22,7 @@
                <span class="msg_error_login" id="error_codigo"></span>
             </div>
             <div class="user-box">
-               <input onblur="validarSintaxisCorreo(this);" type="text" id="correo" name="correo" placeholder="Correo electrónico">
+               <input onblur="validarSintaxisCorreo(this)" type="text" id="correo" name="correo" placeholder="Correo electrónico">
                <span class="msg_error_login" id="error_correo"></span>
             </div>
             <div class="user-box">

@@ -51,7 +51,7 @@ class Util
         $customer_level='';
         $amount = intval($amount);
         
-        if($amount > 1000000 && $amount < 25000000){
+        if($amount >= 1000000 && $amount < 25000000){
 
             $customer_level = 1;  
             

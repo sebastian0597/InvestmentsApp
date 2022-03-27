@@ -50,7 +50,7 @@ class CustomerController extends Controller
                     'department' => 'required|string',
                     'country' => 'required|string',
                     'document_number' => 'required|numeric|unique:customers',
-                    'file_document' => 'required|string',
+                    'file_document' => 'required|file',
                     'email' => 'required|string|unique:users,email',
                     /*'id_rol' => 'required|numeric',*/
                     'registered_by' => 'required|numeric',
@@ -59,6 +59,7 @@ class CustomerController extends Controller
                                
                 //Se calcula la clasificación del cliente dependiendo del monto de la inversión.
                 $customer_type = Util::validateCustomerLevel($request->amount);
+              
                 //Se genera una contraseña aleatoria.
                 $password = Util::generatePassword();
                 
@@ -75,6 +76,60 @@ class CustomerController extends Controller
         
                 ]);
                 
+                $file_document="";
+                if($request->hasFile("file_document")){
+                    $file=$request->file("file_document");
+                    
+                    $file_document = "documento_".$fields["document_number"].".".$file->guessExtension();
+                    $ruta = public_path("archivos/documentos_identidad/".$file_document);
+                    copy($file, $ruta);
+                }
+              
+                $work_certificate="";
+                if($request->hasFile("work_certificate")){
+                    $file=$request->file("work_certificate");
+                    
+                    $work_certificate = "certificado_laboral_".$fields["document_number"].".".$file->guessExtension();
+                    $ruta = public_path("archivos/certificados_laborales/".$work_certificate);
+                    copy($file, $ruta);
+                }
+
+                $account_certificate="";
+                if($request->hasFile("account_certificate")){
+                    $file=$request->file("account_certificate");
+                    
+                    $account_certificate = "certificado_cuenta_".$fields["document_number"].".".$file->guessExtension();
+                    $ruta = public_path("archivos/certificados_cuenta/".$account_certificate);
+                    copy($file, $ruta);
+                }
+
+                $letter_authorization_third="";
+                if($request->hasFile("letter_authorization_third")){
+                    $file=$request->file("letter_authorization_third");
+                    
+                    $letter_authorization_third = "carta_autorizacion_".$fields["document_number"].".".$file->guessExtension();
+                    $ruta = public_path("archivos/certificados_cuenta/".$letter_authorization_third);
+                    copy($file, $ruta);
+                }
+
+                $file_rut="";
+                if($request->hasFile("file_rut")){
+                    $file=$request->file("file_rut");
+                    
+                    $file_rut = "rut_".$fields["document_number"].".".$file->guessExtension();
+                    $ruta = public_path("archivos/rut/".$file_rut);
+                    copy($file, $ruta);
+                }
+
+                $rut_third="";
+                if($request->hasFile("rut_third")){
+                    $file=$request->file("rut_third");
+                    
+                    $rut_third = "rut_".$fields["document_number"].".".$file->guessExtension();
+                    $ruta = public_path("archivos/rut_terceros/".$rut_third);
+                    copy($file, $ruta);
+                }
+            
 
                 //Se crea el cliente.
                 $customer = Customer::create([
@@ -87,30 +142,31 @@ class CustomerController extends Controller
                     'department' => $fields["department"],
                     'country' => $fields["country"],
                     'document_number' => $fields["document_number"],
-                    'file_document' => $fields["file_document"],
+                    'file_document' => $file_document,
                     'description_ind' => $request->description_ind,
-                    'file_rut' => $request->file_rut,
+                    'file_rut' => $file_rut,
                     'business' => $request->business,
                     'position_business' => $request->position_business,
                     'antique_bussiness' => $request->antique_bussiness,
                     'type_contract' => $request->type_contract,
-                    'work_certificate' => $request->work_certificate,
+                    'work_certificate' => $work_certificate,
                     'pension_fund' => $request->pension_fund,
                     'especification_other' => $request->especification_other,
                     'account_number' => $request->account_number,
                     'account_type' => $request->account_type,
                     'bank_name' => $request->bank_name,
-                    'account_certificate' => $request->account_certificate,
+                    'account_certificate' => $account_certificate,
                     'document_third' => $request->document_third,
                     'name_third' => $request->name_third,
-                    'letter_authorization_third' => $request->letter_authorization_third,
+                    'letter_authorization_third' => $letter_authorization_third,
                     'kinship_third' => $request->kinship_third,
-                    'rut_third' => $request->rut_third,
+                    'rut_third' => $rut_third,
                     'id_document_type' => $request->id_document_type,
                     'id_economic_activity' => $request->id_economic_activity,
                     'id_bank_account' => $request->id_bank_account,
                     'id_customer_type' => $customer_type,
                     'registered_by' => $fields["registered_by"],
+
                 ]);
                 
                 //Se usa el Trait InvestmentTrait para guardar la información de la inversión

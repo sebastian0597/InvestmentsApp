@@ -93,7 +93,7 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Correo eléctronico</label>
-                                                <input class="form-control" id="correo" type="email">
+                                                <input onblur="validarSintaxisCorreo(this)" class="form-control" id="correo" type="email">
                                                 <span class="msg_error_form" id="error_correo"></span>
                                             </div>
 
@@ -132,17 +132,16 @@
                                         <div class="row g-3">
 
                                             <div class="col-md-4">
-                                                <label class="form-label">Dirección</label>
-                                                <input class="form-control" id="direccion" type="text">
-                                                <span class="msg_error_form" id="error_direccion"></span>
-                                            </div>
-
-                                            <div class="col-md-4">
                                                 <label class="form-label">Ciudad</label>
                                                 <input class="form-control" id="ciudad" type="text">
                                                 <span class="msg_error_form" id="error_ciudad"></span>
                                             </div>
-                                          
+
+                                            <div class="col-md-4">
+                                                <label class="form-label">Dirección</label>
+                                                <input class="form-control" id="direccion" type="text">
+                                                <span class="msg_error_form" id="error_direccion"></span>
+                                            </div>                                        
 
                                         </div>
                                         
