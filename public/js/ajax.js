@@ -34,20 +34,21 @@ function enviarPeticion(url,method, data, funcion=""){
          
         },
         error: function (e) {
+            if (funcion != "") {
+                eval(funcion + "(" + JSON.stringify(e) + ")");
+            }
              
             if (e.status == 422) { // when status code is 422, it's a validation issue
                 console.log(e.responseJSON.errors);
                
-            }else{ 
-                console.log(e.responseJSON);
-            }
-            
-            if(e.status == 500){
+            }else if(e.status == 500){
 
                 console.error("Message => " + e.responseJSON.message);
                 console.error("Exception => "+ e.responseJSON.exception);
                 console.error("File => "+ e.responseJSON.file);
                 
+            }else{ 
+                console.log(e.responseJSON);
             }
         }
     });

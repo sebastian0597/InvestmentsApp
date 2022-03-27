@@ -81,6 +81,8 @@ const crearCliente = () =>{
 
     if(validarFormularioCliente()){
         
+        $('#btn_crear_cliente').text('Creando cliente...');
+        $('#btn_crear_cliente').prop('disabled', true);
  
         let nombres = $('#nombres').val().trim()
         let apellidos = $('#apellidos').val().trim()
@@ -261,6 +263,8 @@ const crearCliente = () =>{
 const continuarCrearCliente = (response) => {
 
     console.log(response);
+    $('#btn_crear_cliente').text('Crear cliente');
+    $('#btn_crear_cliente').prop('disabled', false);
 }
 
 const validarFormularioCliente = () =>{
