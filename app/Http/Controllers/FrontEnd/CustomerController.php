@@ -29,8 +29,9 @@ class CustomerController extends Controller
     }
 
     public function index(){
-        
+
         $customers =  new CustomerCollection(Customer::where('status',1)->get());
+        //dd(new CustomerCollection(Customer::where('status',1)->get()));
         return view('Admins.clientes', compact('customers'));
     }
 }

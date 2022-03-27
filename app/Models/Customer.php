@@ -88,5 +88,10 @@ class Customer extends Model
         return $this->hasOne(CustomerType::class,'id','id_customer_type');
     }
 
+    public function user(){
+
+        return $this->hasOne(User::class,'id','id_user');
+    }
+
 
 }

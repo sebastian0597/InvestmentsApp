@@ -78,10 +78,10 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td>VIP</td>
+                                                    <td>{{ $item->customer_type }}</td>
                                                     <td>{{ $item->phone }}</td>
                                                     <td>{{$item->city }} - {{$item->country}}</td>
-                                                    <td>sofiam@gmail.com</td>
+                                                    <td>{{ $item->email }}</td>
                                                 </tr>
                                                 @endforeach
                                                 
