@@ -185,7 +185,7 @@ class CustomerController extends Controller
             
         }, 3); 
         
-        return Util::setResponseJson(201, $customer);
+        return Util::setResponseJson(201, 'Se ha registrado el cliente y la inversión de exitosamente.');
   
     }
 

@@ -49,6 +49,7 @@
     <script src="{{ asset('js/admin/clientes.js') }}" defer></script>  
     <script src="{{ asset('js/util.js') }}" defer></script> 
     <script src="{{ asset('js/ajax.js') }}" defer></script> 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 
