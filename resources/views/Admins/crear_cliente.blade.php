@@ -404,7 +404,7 @@
                                     <div class="invalid-feedback"></div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="button" onclick="crearCliente()">Crear Cliente</button>
+                            <button class="btn btn-primary" id="btn_crear_cliente" type="button" onclick="crearCliente()">Crear Cliente</button>
                             <br><br><br>
                             </form>
 

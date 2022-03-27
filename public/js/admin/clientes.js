@@ -70,10 +70,6 @@ $('#numero_documento').on('input', function () {
     this.value = this.value.replace(/[^0-9]/g,'')
 })
 
-//$("#telefono").mask('ZZ',{translation:  {'Z': {pattern: /[^.,]/, recursive: true}}});
-
-
-
 const validarMontoMinimo = () =>{
     convertirMoneda()
     if(parseFloat($('#monto_inversion').val().trim())<1000000){
