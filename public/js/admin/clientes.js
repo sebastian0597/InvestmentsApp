@@ -302,10 +302,18 @@ const continuarCrearCliente = (response) => {
             break;
         
         case 422: 
-            console.log(response.responseText);
+            Swal.fire({
+                icon: 'warning',
+                confirmButtonColor: "#6610f2",
+                confirmButtonText: "Aceptar",
+                text: response.responseText,
+                allowEscapeKey : false,
+                allowOutsideClick: false
+          })
+           
         break;
         case 404:
-            console.log(404)
+           
             break;
 
         case 500:

@@ -37,7 +37,7 @@ class CustomerResource extends JsonResource
             'work_certificate'=> $this->work_certificate,
             'pension_fund'=> $this->pension_fund,
             'especification_other'=> $this->especification_other,
-            'status'=> $this->status,
+            'status'=> $this->status_text,
             'account_number'=> $this->account_number,
             'account_type'=> $this->account_type,
             'bank_name'=> $this->bank_name,

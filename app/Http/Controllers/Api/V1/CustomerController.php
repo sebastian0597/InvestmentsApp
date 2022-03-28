@@ -23,8 +23,9 @@ class CustomerController extends Controller
     use InvestmentTrait;
 
 
-    public function index()
-    {
+    public function index(){      
+
+
         return new CustomerCollection(Customer::where('status',1)->get());
         
     }

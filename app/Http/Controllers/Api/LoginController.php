@@ -127,11 +127,12 @@ class LoginController extends Controller
                     /*Auth::user();
                     Auth::guard();
                     $auth = true;
-                    session(['user' => Auth::user()]);*/
-
-                    return Util::setResponseJson(200,'Login correcto', $token);
+                   */
+                    Auth::login($user, true);
+                    $request->session()->regenerate();
+                    session(['user' => $user, 'token'=>$token]);
                    
-                    
+                    return Util::setResponseJson(200,'Login correcto');
                    
                 }
 

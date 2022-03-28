@@ -36,7 +36,7 @@
                             </div>
                             <div class="col-6">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
+                                    @include('Admins/componentes/enlance_navegacion')
 
                                     <li class="breadcrumb-item active">Clientes</li>
                                 </ol>
@@ -49,10 +49,22 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card">
-                                <div style="display:flex; align-items:center;" class="card-header">
-                                    <h5>CLIENTES VINCULADOS</h5>
-                                    <a class="btn btn-primary float-right" href="{{url('crear_cliente')}}">Crear cliente</a>
+                                <div style="display:flex; align-items:center; padding-right: 0px;" class="card-header">
+                                    <div style="width:100%" class="row">
+                                        <div class="col-6">
+                                            <h5>CLIENTES VINCULADOS</h5>
+                                        </div>
+                                        <div class="col-6">
+                                            <ol style="float:right;" class="breadcrumb">
+                                                <a class="btn btn-primary" href="{{ url('crear_cliente') }}">Crear
+                                                    cliente</a>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                  
                                 </div>
+                              
+                                
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="display" id="basic-6">
@@ -68,25 +80,35 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($customers as $item)
-                                                <tr>
-                                                    <td>
-                                                        <div class="media"><img class="rounded-circle img-30 me-3"
-                                                                src="{{ asset('images/profile.jpg') }}" alt="" />
-                                                            <div class="media-body align-self-center">
-                                                                <div>{{$item->name}} {{$item->last_name }}</div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>{{ $item->customer_type }}</td>
-                                                    <td>{{ $item->phone }}</td>
-                                                    <td>{{$item->city }} - {{$item->country}}</td>
-                                                    <td>{{ $item->email }}</td>
-                                                </tr>
-                                                @endforeach
-                                                
+                                               
+                                                @if (count($customers['data'])>0)
+                                                    <?php $i = 0; ?>
+                                                    @foreach ($customers as $item)
+                                                        <tr>
+                                                            <td>
+                                                                <div class="media"><img
+                                                                        class="rounded-circle img-30 me-3"
+                                                                        src="{{ asset('images/profile.jpg') }}" alt="" />
+                                                                    <div class="media-body align-self-center">
+                                                                        <div>{{ $item[$i]['name'] }}
+                                                                            {{ $item[$i]['last_name'] }}</div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>{{ $item[$i]['customer_type'] }}</td>
+                                                            <td>{{ $item[$i]['phone'] }}</td>
+                                                            <td>{{ $item[$i]['city'] }} - {{ $item[$i]['country'] }}</td>
+                                                            <td>{{ $item[$i]['email'] }}</td>
+                                                        </tr>
+
+                                                        <?php $i++; ?>
+                                                    @endforeach
+                                                @endif
+                                                    
+
+
                                             </tbody>
-                                           
+
                                         </table>
                                     </div>
                                 </div>
@@ -97,7 +119,7 @@
                 <!-- Container-fluid Ends-->
             </div>
             <!-- footer start-->
-          
+
         </div>
     </div>
 @stop

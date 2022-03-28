@@ -65,7 +65,13 @@ class Customer extends Model
         return $customer;
     }
 
+    //VIRTUAL attributes
+    public function getStatusTextAttribute(){
+        
+        $status = $this->status == 1 ? "Activo" : "Inactivo";
+        return $status;
 
+    }
 
     //RELATIONS Eloquent
     public function documentType(){
