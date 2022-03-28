@@ -86,7 +86,7 @@
                                                 @endforeach
                                                 
                                             </tbody>
-                                            {{ session() }}
+                                           
                                         </table>
                                     </div>
                                 </div>
