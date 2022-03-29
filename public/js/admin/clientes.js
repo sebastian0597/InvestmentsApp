@@ -628,30 +628,30 @@ const buscarClientePorParametros = () => {
 };
 
 const continuarBuscarClientePorParametros = (response) => {
-    let cliente = response.data[0]
-    console.log(cliente)
+    let cliente = response.data[0];
+    console.log(cliente);
 
-    if(cliente.length>0)
+    //if (cliente.length > 0) {
         html = ` <div class="row">
-                    <div class="col">
-                    <input type="text" disabled class="form-control" placeholder="${cliente.name}">
-                    </div>
-                    <div class="col">
-                    <input type="text" disabled class="form-control" placeholder="${cliente.last_name}">
-                    </div>
-                    
-                </div>
-                <div class="row">
-                    <div class="col">
-                    <input type="text" disabled class="form-control" placeholder="${cliente.document_number}">
-                    </div>
-                    <div class="col">
-                    <input type="text" disabled class="form-control" placeholder="${cliente.customer_type}">
-                    </div>
-                    
-                </div>
-                `;
+        <div class="col">
+        <input type="text" disabled class="form-control" placeholder="${cliente.name}">
+        </div>
+        <div class="col">
+        <input type="text" disabled class="form-control" placeholder="${cliente.last_name}">
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col">
+        <input type="text" disabled class="form-control" placeholder="${cliente.document_number}">
+        </div>
+        <div class="col">
+        <input type="text" disabled class="form-control" placeholder="${cliente.customer_type}">
+        </div>
+        
+    </div>`;
 
-    $("#content-clientes").empty();
-    $("#content-clientes").append(html);
+        $("#content-clientes").empty();
+        $("#content-clientes").append(html);
 };
+
