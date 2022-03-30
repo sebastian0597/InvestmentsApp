@@ -15,6 +15,7 @@ const login = () =>{
 }
 
 const continuarLogin = (response) =>{
+    console.log(response)
     location.href='/'
 }
 

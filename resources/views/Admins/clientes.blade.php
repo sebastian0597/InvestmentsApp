@@ -32,7 +32,7 @@
                     <div class="page-title">
                         <div class="row">
                             <div class="col-6">
-                                <h3>Clientes</h3>
+                                <h3>CLIENTES</h3>
                             </div>
                             <div class="col-6">
                                 <ol class="breadcrumb">
@@ -52,7 +52,7 @@
                                 <div style="display:flex; align-items:center; padding-right: 0px;" class="card-header">
                                     <div style="width:100%" class="row">
                                         <div class="col-6">
-                                            <h5>CLIENTES VINCULADOS</h5>
+                                            <h5>Clientes vinculados</h5>
                                         </div>
                                         <div class="col-6">
                                             <ol style="float:right;" class="breadcrumb">
@@ -80,9 +80,9 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                               
-                                                @if (count($customers['data'])>0)
-                                                    <?php $i = 0; ?>
+                                                <?php $i=0; ?>
+                                                @if (count($customers)>0)
+                                                    
                                                     @foreach ($customers as $item)
                                                         <tr>
                                                             <td>
@@ -100,7 +100,6 @@
                                                             <td>{{ $item[$i]['city'] }} - {{ $item[$i]['country'] }}</td>
                                                             <td>{{ $item[$i]['email'] }}</td>
                                                         </tr>
-
                                                         <?php $i++; ?>
                                                     @endforeach
                                                 @endif

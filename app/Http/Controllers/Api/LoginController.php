@@ -128,11 +128,11 @@ class LoginController extends Controller
                     Auth::guard();
                     $auth = true;
                    */
-                    Auth::login($user, true);
-                    $request->session()->regenerate();
-                    session(['user' => $user, 'token'=>$token]);
+                    auth()->loginUsingId($user->id);
+                    //$request->session()->regenerate();
+                   // session(['user' => $user, 'token'=>$token]);
                    
-                    return Util::setResponseJson(200,'Login correcto');
+                    return Util::setResponseJson(200, auth()->loginUsingId($user->id));
                    
                 }
 

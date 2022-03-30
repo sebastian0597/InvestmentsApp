@@ -29,11 +29,11 @@ class CustomerController extends Controller
     }
 
     public function index(){
-        
+        dd(auth()->user());
         $customer = new CustomerCollection(Customer::where('status',1)->get());
         $customer = json_encode($customer);
         $customer = json_decode($customer, true);
-        
+        //dd($customer["data"]);
         return view('Admins.clientes')->with('customers', $customer);
 
     }
