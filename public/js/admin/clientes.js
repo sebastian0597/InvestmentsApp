@@ -636,16 +636,16 @@ const continuarBuscarClientePorParametros = (response) => {
 
         trInversiones = ``
         cliente.investments.forEach(function(element) {
-          
+           let amount = formatNumber(element.amount)
             if (element.status == 1) {
                 
                 trInversiones += `
                 <tr>
                     <td>${element.investment_date == null ? '' : element.investment_date}</td>
-                    <td>${element.amount == null ? 0 : element.amount}</td>
+                    <td>$${amount == null ? 0 : amount}</td>
                     <td>${element.percentage_investment == null ? 0 : element.percentage_investment}</td>
                     <td>${element.percentage_investment == null ? 0 : element.percentage_investment}</td>
-                    <td>${element.amount == null ? 0 : element.amount}</td>
+                    <td>$${amount == null ? 0 : amount}</td>
                 </tr>
                 `
             }       

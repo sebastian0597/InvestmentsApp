@@ -16,7 +16,7 @@ const login = () =>{
 
 const continuarLogin = (response) =>{
     console.log(response)
-    location.href='/'
+    //location.href='/'
 }
 
 const validarLogin = () =>{
