@@ -632,24 +632,36 @@ const continuarBuscarClientePorParametros = (response) => {
     console.log(cliente);
 
     //if (cliente.length > 0) {
-        html = ` <div class="row">
+        html = ` 
+        <div style="margin-top:20px;">
+        <h5>Datos del cliente</h5>
+        </div>
+        <div class="row">
         <div class="col">
+        <label>Nombres</label>
         <input type="text" disabled class="form-control" placeholder="${cliente.name}">
         </div>
         <div class="col">
+        <label>Apellidos</label>
         <input type="text" disabled class="form-control" placeholder="${cliente.last_name}">
         </div>
         
     </div>
     <div class="row">
         <div class="col">
+        <label>Número documento</label>
         <input type="text" disabled class="form-control" placeholder="${cliente.document_number}">
         </div>
         <div class="col">
+        <label>Tipo de cliente</label>
         <input type="text" disabled class="form-control" placeholder="${cliente.customer_type}">
         </div>
         
-    </div>`;
+    </div>
+    
+    
+    
+    `;
 
         $("#content-clientes").empty();
         $("#content-clientes").append(html);

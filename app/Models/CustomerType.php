@@ -9,4 +9,9 @@ class CustomerType extends Model
 {
     use HasFactory;
     protected $table = 'customer_types';
+
+    public static function getByStatus($status){
+
+        return CustomerType::where('status', $status)->get();
+    }
 }

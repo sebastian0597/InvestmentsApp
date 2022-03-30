@@ -64,9 +64,9 @@
                                               <label class="form-label">Tipo de cliente</label>
                                               <select class="form-select" id="tipo_cliente">
                                                 <option selected>Seleccione---</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                @foreach($extracts as $item)
+                                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                                @endforeach
                                               </select>
                                             </div>
                                             <div class="mb-3">
@@ -134,17 +134,7 @@
                                                                 </div>
                                                               
                                                             </li>
-                                                            
-                                                            <li ng-repeat="option in documentationControl.menuOptions"
-                                                                ng-class="{'active': documentationControl.currentDoc[0] === $index}"
-                                                                class="ng-scope">
-                                                                <div ng-click="documentationControl.selectedDoc($index,$event);"
-                                                                    class="ng-binding">Movimientos del mes
-                                                                   
-                                                                </div>
-                                                               
-                                                            </li>
-                                                           
+                                                                                                                   
                                                         </ul>
                                                     </div>
                                                 </div>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontEnd\CustomerController;
+use App\Http\Controllers\FrontEnd\ExtractController;
 
 Route::get('login', function () {
     return view('login');
@@ -15,7 +16,7 @@ Route::group(['middleware' => ['web']], function () {
     //Route::get('/', function () { return view('Admins.clientes'); })->name('');
     //Route::get('clientes', function () { return view('Admins.clientes'); })->name('clientes');
     //Route::get('crear_cliente', function () { return view('Admins.crear_cliente'); });
-    Route::get('extractos', function () { return view('Admins.extractos'); })->name('extractos');
+    Route::get('extractos', [ExtractController::class, 'index'] )->name('extractos');
 });
 
 
