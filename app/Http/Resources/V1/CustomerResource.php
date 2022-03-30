@@ -54,7 +54,9 @@ class CustomerResource extends JsonResource
             'updated_at'=> $this->updated_at,
             'document_type' => $this->documentType->name,
             'economic_activity' => $this->economicActivity->name,
-            'name_bank_account' => $this->bank->name
+            'name_bank_account' => $this->bank->name,
+            'investments' => $this->investsments
+            
         ];
     }
 }

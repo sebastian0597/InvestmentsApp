@@ -64,7 +64,7 @@
                                               <label class="form-label">Tipo de cliente</label>
                                               <select class="form-select" id="tipo_cliente">
                                                 <option selected>Seleccione---</option>
-                                                @foreach($extracts as $item)
+                                                @foreach($customer_types as $item)
                                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                                 @endforeach
                                               </select>

@@ -99,5 +99,10 @@ class Customer extends Model
         return $this->hasOne(User::class,'id','id_user');
     }
 
+    public function investsments()
+    {
+        return $this->hasMany(Investment::class, 'id_customer', 'id');
+    }
+
 
 }

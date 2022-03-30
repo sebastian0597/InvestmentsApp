@@ -10,8 +10,9 @@ class ExtractController extends Controller
 {
     public function index(){
 
-        $extracts = CustomerType::getByStatus(1);
-        return view('Admins.extractos', compact('extracts'));
+        $customer_types = CustomerType::getByStatus(1);
+       
+        return view('Admins.extractos', compact('customer_types'));
 
     }
 

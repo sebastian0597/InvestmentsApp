@@ -20,7 +20,7 @@ trait InvestmentTrait
         $fields = $request->validate([
 
             'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            'consignment_file' => 'required|file',
+            'consignment_file' => 'required|string',
             'code_currency' => 'required|string',
             'id_payment_method' => 'required|numeric',
             'registered_by' => 'required|numeric',
@@ -36,6 +36,7 @@ trait InvestmentTrait
         $profibality_date = $date->toDateString();
 
         $consignment_file=NULL;
+        //$consignment_file='Consignacion_2.pdf';
         if($request->hasFile("consignment_file")){
             $file=$request->file("consignment_file");
             
