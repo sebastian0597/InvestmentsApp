@@ -16,12 +16,12 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {   
-        dd(auth()->check());
-       //if(auth()->check()){
+        //dd(auth()->check());
+        if(auth()->check()){
             return $next($request);
-       //}else{
-           //return redirect()->route('login');
-       //}
+        }else{
+           return redirect()->route('login');
+        }
        
     }
 }
