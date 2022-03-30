@@ -8,7 +8,8 @@ Route::get('login', function () {
     return view('login');
 })->name('login');
 
-Route::group(['middleware' => ['admin']], function () {
+
+//Route::group(['middleware' => ['admin']], function () {
     Route::get('crear_cliente', [CustomerController::class, 'create'])->name('crear_cliente');
     //Route::get('clientes', [CustomerController::class, 'index'])->name('clientes');
     Route::get('/', [CustomerController::class, 'index'])->name('inicio');
@@ -18,7 +19,7 @@ Route::group(['middleware' => ['admin']], function () {
     //Route::get('clientes', function () { return view('Admins.clientes'); })->name('clientes');
     //Route::get('crear_cliente', function () { return view('Admins.crear_cliente'); });
   
-});
+//});
 
 //Route::get('clientes', [CustomerController::class, 'index'])->name('clientes');
 
