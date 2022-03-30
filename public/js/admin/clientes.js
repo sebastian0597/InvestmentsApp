@@ -635,8 +635,9 @@ const continuarBuscarClientePorParametros = (response) => {
     if (!isObjEmpty(cliente)) {
 
         trInversiones = ``
-        cliente.investments.forEach(element => 
-           // if (element.status == 'Activo') {
+        cliente.investments.forEach(function(element) {
+          
+            if (element.status == 1) {
                 
                 trInversiones += `
                 <tr>
@@ -647,11 +648,9 @@ const continuarBuscarClientePorParametros = (response) => {
                     <td>${element.amount == null ? 0 : element.amount}</td>
                 </tr>
                 `
-            
-            //}     
-           
+            }       
                                   
-        );
+        });
         
       
 
