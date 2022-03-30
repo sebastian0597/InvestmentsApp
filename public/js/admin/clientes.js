@@ -652,9 +652,6 @@ const continuarBuscarClientePorParametros = (response) => {
                                   
         });
         
-      
-
-
         html = ` 
             <div style="margin-top:20px">
                 <h5>Datos del cliente</h5>
