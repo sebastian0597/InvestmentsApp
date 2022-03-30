@@ -693,7 +693,9 @@ const continuarBuscarClientePorParametros = (response) => {
                     </thead>
                     <tbody>
                        `+
-                         trInversiones      
+                       trInversiones
+                            
+                            
                     +`</tbody>
                 </table>
         
