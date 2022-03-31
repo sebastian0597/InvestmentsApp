@@ -18,13 +18,13 @@ class AdminMiddleware
     {   
         //dd(auth()->check());
 
-        if(auth()->check()){
+        //if(auth()->check()){
 
        //if(auth()->check()){
             return $next($request);
-        }else{
-           return redirect()->route('login');
-        }
+        //}else{
+           //return redirect()->route('login');
+        //}
        
     }
 }

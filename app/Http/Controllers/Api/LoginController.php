@@ -119,8 +119,8 @@ class LoginController extends Controller
                 $user->failed_login_attempts=NULL;
                 $user->save();
                
-                //auth()->loginUsingId($user->id);
-                auth()->login($user);
+                auth()->loginUsingId($user->id);
+                //auth()->login($user);
                 $token = $user->createToken('myapptoken')->plainTextToken;
                 return Util::setResponseJson(200, auth()->user(), $token);
            
