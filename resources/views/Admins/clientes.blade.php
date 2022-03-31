@@ -36,8 +36,8 @@
                             </div>
                             <div class="col-6">
                                 <ol class="breadcrumb">
-                                    @include('Admins/componentes/enlance_navegacion')
-
+                                        @include('Admins/componentes/enlance_navegacion')
+                                        
                                     <li class="breadcrumb-item active">Clientes</li>
                                 </ol>
                             </div>
@@ -66,6 +66,7 @@
                               
                                 
                                 <div class="card-body">
+                                  
                                     <div class="table-responsive">
                                         <table class="display" id="basic-6">
                                             <thead>
@@ -80,32 +81,31 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $i=0; ?>
+                                              
                                                 @if (count($customers)>0)
-                                                    
+                                                   
                                                     @foreach ($customers as $item)
+                                                       
                                                         <tr>
                                                             <td>
                                                                 <div class="media"><img
                                                                         class="rounded-circle img-30 me-3"
                                                                         src="{{ asset('images/profile.jpg') }}" alt="" />
                                                                     <div class="media-body align-self-center">
-                                                                        <div>{{ $item[$i]['name'] }}
-                                                                            {{ $item[$i]['last_name'] }}</div>
+                                                                        <div>{{ $item['name'] }}
+                                                                            {{ $item['last_name'] }}</div>
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td>{{ $item[$i]['customer_type'] }}</td>
-                                                            <td>{{ $item[$i]['phone'] }}</td>
-                                                            <td>{{ $item[$i]['city'] }} - {{ $item[$i]['country'] }}</td>
-                                                            <td>{{ $item[$i]['email'] }}</td>
+                                                            <td>{{ $item['customer_type'] }}</td>
+                                                            <td>{{ $item['phone'] }}</td>
+                                                            <td>{{ $item['city'] }} - {{ $item['country'] }}</td>
+                                                            <td>{{ $item['email'] }}</td>
                                                         </tr>
-                                                        <?php $i++; ?>
+                                                       
                                                     @endforeach
                                                 @endif
-                                                    
-
-
+  
                                             </tbody>
 
                                         </table>

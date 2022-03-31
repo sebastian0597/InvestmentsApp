@@ -20,7 +20,7 @@ trait InvestmentTrait
         $fields = $request->validate([
 
             'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            'consignment_file' => 'required|string',
+            'consignment_file' => 'required|file',
             'code_currency' => 'required|string',
             'id_payment_method' => 'required|numeric',
             'registered_by' => 'required|numeric',

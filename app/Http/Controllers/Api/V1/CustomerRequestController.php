@@ -11,6 +11,8 @@ use App\Utils\Util;
 use App\Http\Resources\V1\RequestResource;
 use App\Http\Resources\V1\RequestCollection;
 
+use Carbon\Carbon;
+
 class CustomerRequestController extends Controller
 {
    
@@ -32,12 +34,17 @@ class CustomerRequestController extends Controller
 
             ]);
 
+            $fecha_actual = new Carbon();
+            $fecha_actual=$fecha_actual->setTimezone('America/Bogota');
+            $time = strtotime($fecha_actual);
+            $fechaLocal = date("Y-m-d H:i:s", $time);
+
             $requestModel = CustomerRequest::create([
 
-                'id_customer' => $fields['id_customer'],
-                'request_date' => date('Y-m-d h:i:s'),
+                'id_customer' =>   $fields['id_customer'],
+                'request_date' =>  $fechaLocal,
                 'request_type' =>  $fields['request_type'],
-                'description' => $fields['description'],
+                'description' =>   $fields['description'],
     
             ]);
 

@@ -38,6 +38,17 @@ class CustomerRequest extends Model
 
 
     /*VIRTUAL ATRIBUTTES*/
+    public function getDateRequestAttribute(){
+
+        return substr($this->request_date, 0, 9);
+
+    }
+
+    public function getHourAttribute(){
+
+        return date("g:i a", strtotime(substr($this->request_date, 11, 14)));
+
+    }
 
     public function getRequestedAtAttribute(){
 

@@ -33,7 +33,7 @@
                     <div class="page-title">
                         <div class="row">
                             <div class="col-6">
-                                <h3>Extractos</h3>
+                                <h3>EXTRACTOS</h3>
                             </div>
                             <div class="col-6">
                                 <ol class="breadcrumb">
@@ -52,7 +52,7 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>EXTRACTOS MENSUALES</h5><span></span>
+                                    <h5>Extractos mensuales</h5><span></span>
                                 </div>
 
                                 <div class="card-body">

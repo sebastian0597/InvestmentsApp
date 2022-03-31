@@ -26,6 +26,8 @@ class RequestResource extends JsonResource
                 'name' => $this->customer->name,
                 'last_name' => $this->customer->last_name
             ],
+            'date' => $this->date_request,
+            'hour' => $this->hour
             /*'user_attend' =>[
                 'name' => $this->userAttend->name,
             ]*/

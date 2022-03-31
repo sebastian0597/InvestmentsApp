@@ -34,7 +34,7 @@ class CustomerController extends Controller
         $customer = json_encode($customer);
         $customer = json_decode($customer, true);
         //dd($customer["data"]);
-        return view('Admins.clientes')->with('customers', $customer);
+        return view('Admins.clientes')->with('customers', $customer["data"]);
 
     }
 }

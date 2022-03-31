@@ -15,7 +15,7 @@
                                 data-feather="users"></i><span>PERFIL
                                 ADMINISTRADOR</span></a>
                     </li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('solicitudes')}}"><i
                                 data-feather="users"></i><span>MÓDULO SOLICITUDES</span></a>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('clientes')}}"><i
