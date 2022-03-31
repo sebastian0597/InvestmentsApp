@@ -168,4 +168,10 @@ class Util
         return $fecha_local;
     }
 
+    public static function setJSONResponse($object){
+        $object = json_encode($object);
+        $object = json_decode($object, true);
+        $json = $object["data"];
+        return $json;
+    }
 }

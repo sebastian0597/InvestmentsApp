@@ -14,6 +14,8 @@ use App\Models\Customer;
 use App\Http\Resources\V1\CustomerResource;
 use App\Http\Resources\V1\CustomerCollection;
 
+use App\Utils\Util;
+
 class CustomerController extends Controller
 {   
 
@@ -30,11 +32,8 @@ class CustomerController extends Controller
 
     public function index(){
         //dd(auth()->user());
-        $customer = new CustomerCollection(Customer::where('status',1)->get());
-        $customer = json_encode($customer);
-        $customer = json_decode($customer, true);
-       
-        return view('Admins.clientes')->with('customers', $customer["data"]);
-
+        $customers = new CustomerCollection(Customer::where('status',1)->get());
+        $customers = Util::setJSONResponse($customers);
+        return view('Admins.clientes',compact('customers'));
     }
 }
