@@ -8,12 +8,13 @@
             <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
             <div id="sidebar-menu">
                 <ul class="sidebar-links" id="simple-bar">
-                    <!--<li class="back-btn"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo-icon.png" alt=""></a>
-                        <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
-                    </li> -->
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="perfil-administrador.html"><i
-                                data-feather="users"></i><span>PERFIL
-                                ADMINISTRADOR</span></a>
+                   
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" ><i
+                                data-feather="users"></i><span></span></a>
+                    </li>
+
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('crear_administrador')}}"><i
+                        data-feather="users"></i><span>PERFIL ADMINISTRADOR</span></a>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('solicitudes')}}"><i
                                 data-feather="users"></i><span>MÓDULO SOLICITUDES</span></a>

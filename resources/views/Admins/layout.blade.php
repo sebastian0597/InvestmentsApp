@@ -38,6 +38,7 @@
     <script src="{{ asset('js/admin/scrollbar/simplebar.js') }}" defer></script>
     <script src="{{ asset('js/admin/scrollbar/custom.js') }}" defer></script>
     <script src="{{ asset('js/admin/config.js') }}" defer></script>
+    
     <script src="{{ asset('js/admin/sidebar-menu.js') }}" defer></script>
     <script src="{{ asset('js/admin/counter/jquery.waypoints.min.js') }}" defer></script>
     <script src="{{ asset('js/admin/counter/jquery.counterup.min.js') }}" defer></script>
@@ -47,6 +48,7 @@
     <script src="{{ asset('js/admin/tooltip-init.js') }}" defer></script>
     <script src="{{ asset('js/admin/script.js') }}" defer></script>
     <script src="{{ asset('js/admin/clientes.js') }}" defer></script>  
+    <script src="{{ asset('js/admin/admins.js') }}" defer></script>  
     <script src="{{ asset('js/util.js') }}" defer></script> 
     <script src="{{ asset('js/ajax.js') }}" defer></script> 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

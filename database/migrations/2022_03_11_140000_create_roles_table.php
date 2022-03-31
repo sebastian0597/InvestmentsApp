@@ -16,6 +16,7 @@ class CreateRolesTable extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->string('rol');
+            $table->tinyinteger('ind_admin_rol')->nullable(true);
             $table->tinyinteger('status')->default(1)->nullable(true);
             $table->timestamps();
         });

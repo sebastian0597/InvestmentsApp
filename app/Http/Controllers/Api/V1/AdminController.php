@@ -56,7 +56,7 @@ class AdminController extends Controller
             
             Util::sendCredentialsEmail($dataAdmin);
 
-            return array($user, $token);
+            return array("Se ha creado el administrador correctamente.", $token);
 
         }, 3); 
         

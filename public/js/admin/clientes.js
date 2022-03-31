@@ -708,23 +708,3 @@ const continuarBuscarClientePorParametros = (response) => {
     }
     $("#content-clientes").append(html)
 }
-
-/*const consultarClientes = () =>{
-    
-    form_data = {}
-    let url = document.location.origin + `/api/v1/customer`
-    let method = "GET"
-
-    enviarPeticion(
-        url,
-        method,
-        form_data,
-        "continuarConsultarClientes"
-    )
-}
-
-document.addEventListener('DOMContentLoaded', consultarClientes, false);
-
-const continuarConsultarClientes = (response) =>{
-  console.log(response)
-}*/
