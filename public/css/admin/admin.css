@@ -20,3 +20,7 @@ h5 {
     color: #f44009;
     font-style: oblique;
 }
+
+.breadcrumb-item.active {
+    text-transform: none !important; 
+}

@@ -43,7 +43,7 @@
                             <li class="b-l-warning border-4">
                                 <p><span class="font-warning"></span></p>
                             </li>
-                            <li><a class="f-w-700" href="#">Ver todas las notificaciones
+                            <li><a class="f-w-700" href="{{url('solicitudes')}}">Ver todas las notificaciones
                                 </a></li>
                         </ul>
                     </div>

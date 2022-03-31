@@ -35,7 +35,7 @@
                     <div class="page-title">
                         <div class="row">
                             <div class="col-6">
-                                <h3>Perfil de administrador</h3>
+                                <h3>ADMINISTRADOR</h3>
                             </div>
                             <div class="col-6">
                                 <ol class="breadcrumb">
@@ -43,7 +43,7 @@
                                     'Admins/componentes/enlance_navegacion'
                                   )
 
-                                    <li class="breadcrumb-item active"> perfil de administrador</li>
+                                    <li class="breadcrumb-item active">Perfil de administrador</li>
                                 </ol>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Creación de perfil de administración </h5>
+                                    <h5>Registro de administrador </h5>
                                 </div>
                                 <div class="card-body">
                                     <form class="needs-validation" id="form-admin">

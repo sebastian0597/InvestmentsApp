@@ -393,11 +393,20 @@
                                                 
                                             </div>
                                         </div>
+                                        @foreach ($collection as $item)
+                                            
+                                        @endforeach
+                                        <br><br>
+                                        <div class="mb-4">
+                                            <button class="btn btn-primary" id="btn_crear_cliente" type="button" onclick="crearCliente()">Crear Cliente</button>
+                                        </div>
+                                        <br>
                                 </div>
+                              
 
                             </div>
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <div class="form-check">
                                     <div class="checkbox p-0">
                                         <input class="form-check-input" id="invalidCheck" type="checkbox" >
@@ -405,9 +414,8 @@
                                     </div>
                                     <div class="invalid-feedback"></div>
                                 </div>
-                            </div>
-                            <button class="btn btn-primary" id="btn_crear_cliente" type="button" onclick="crearCliente()">Crear Cliente</button>
-                            <br><br><br>
+                            </div> -->
+                           
                             </form>
 
                         </div>

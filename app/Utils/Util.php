@@ -159,4 +159,13 @@ class Util
         return $days;
     }
 
+    public static function getCurrentDate(){
+        $fecha_actual = new Carbon();
+        $fecha_actual=$fecha_actual->setTimezone('America/Bogota');
+        $time = strtotime($fecha_actual);
+        $fecha_local = date("Y-m-d H:i:s", $time);
+
+        return $fecha_local;
+    }
+
 }

@@ -14,10 +14,10 @@
                     </li>
 
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('crear_administrador')}}"><i
-                        data-feather="users"></i><span>PERFIL ADMINISTRADOR</span></a>
+                        data-feather="user"></i><span>PERFIL ADMINISTRADOR</span></a>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('solicitudes')}}"><i
-                                data-feather="users"></i><span>MÓDULO SOLICITUDES</span></a>
+                                data-feather="bell"></i><span>MÓDULO SOLICITUDES</span></a>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('clientes')}}"><i
                                 data-feather="users"></i><span>MÓDULO CLIENTES</span></a>
@@ -27,18 +27,18 @@
                     <!--<li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('crear_cliente')}}"><i
                                 data-feather="file-text"></i><span>CREAR
                                 CLIENTE</span></a></li> -->
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i
-                                data-feather="users"></i><span>MÓDULO INVERSIÓN</span></a>
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('investments')}}"><i
+                                data-feather="check-square"></i><span>MÓDULO INVERSIONES</span></a>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('extractos')}}"><i
-                                data-feather="briefcase"></i><span> EXTRACTOS</span></a></li>
+                                data-feather="briefcase"></i><span>MÓDULO EXTRACTOS</span></a></li>
 
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i
-                                data-feather="file-text"></i><span> DESEMBOLSOS</span></a></li>
+                                data-feather="dollar-sign"></i><span>MÓDULO DESEMBOLSOS</span></a></li>
 
 
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i
-                                data-feather="file-text"></i><span> KPI'S</span></a></li>
+                                data-feather="file"></i><span>MÓDULO KPI'S</span></a></li>
 
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
