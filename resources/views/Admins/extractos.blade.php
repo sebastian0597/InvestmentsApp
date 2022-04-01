@@ -53,60 +53,54 @@
 
                                 <div class="card-body">
 
-                                    <section class="welcome-wrap welcome-login documentation-wrap">
-                                        <div class="welcome-box-wrap">
-
-                                            <div class="mb-3">
-                                                <div class="input-group mb-3">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Nombre o número de documento del cliente"
-                                                        id="busqueda_cliente_extractos">
-                                                    <button onclick="buscarClientePorParametros()"
-                                                        style="display: flex; align-items: center"
-                                                        class="btn btn-outline-primary" type="button"><span
-                                                            class="material-icons-outlined">
-                                                            search
-                                                        </span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Tipo de cliente</label>
-                                                <select onchange="seleccionarTipoCliente()" class="form-select" id="tipo_cliente">
-                                                    <option selected>Seleccione---</option>
-                                                    @foreach ($customer_types as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="mb-3">
-                                                <div class="input-group mb-3">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Nombre o número de documento del cliente Premium"
-                                                        id="busqueda_cliente_premium_extractos">
-                                                    <button onclick="buscarClientePremiumPorDocumento()"
-                                                        style="display: flex; align-items: center"
-                                                        class="btn btn-outline-primary" type="button"><span
-                                                            class="material-icons-outlined">
-                                                            search
-                                                        </span>
-                                                    </button>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12 col-md-12">
-                                                <preview-documentation documenttype="[0]">
-                                                    <section class="doc-preview-wrap">
-                                                        <div>
-                                                            <h2 class="ng-binding">Extractos</h2>
-                                                            <p class="doc-intro ng-binding"> </p>
-                                                            <div id="content-clientes"></div>
-                                                        </div>
-                                                    </section>
-                                                </preview-documentation>
+                                    <div class="mb-3">
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control"
+                                                placeholder="Nombre o número de documento del cliente"
+                                                id="busqueda_cliente_extractos">
+                                            <button onclick="buscarClientePorParametros()"
+                                                style="display: flex; align-items: center"
+                                                class="btn btn-outline-primary" type="button"><span
+                                                    class="material-icons-outlined">
+                                                    search
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-lg-12 col-md-12">
+                                        <h2 class="ng-binding">Extractos</h2>
+                                        <p class="doc-intro ng-binding"> </p>
+                                        <div id="content-clientes"></div>
+                                    </div>
+                                    <div class='row'>
+                                        <h4 class="ng-binding">Porcentaje de rentabilidad</h4>
+                                        <div class='col-6'>
+                                            <label class="form-label">Tipo de cliente</label>
+                                            <select onchange="seleccionarTipoCliente()" class="form-select" id="tipo_cliente">
+                                                <option selected>Seleccione---</option>
+                                                @foreach ($customer_types as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div id="div_cliente_premium" style="display: none" class='col-6'>
+                                           
+                                            <label>Nombre o documento del cliente</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control"
+                                                    placeholder="Nombre o número de documento del cliente Premium"
+                                                    id="busqueda_cliente_premium_extractos">
+                                                <button onclick="buscarClientePremiumPorDocumento()"
+                                                    style="display: flex; align-items: center"
+                                                    class="btn btn-outline-primary" type="button"><span
+                                                        class="material-icons-outlined">
+                                                        search
+                                                    </span>
+                                                </button>
                                             </div>
                                         </div>
-                                    </section>
+                                    </div>
                                 </div> 
                             </div>
                         </div>

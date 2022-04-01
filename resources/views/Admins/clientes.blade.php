@@ -62,11 +62,11 @@
                                         </div>
                                     </div> 
                                 </div>
-                              
+                               
                                 <div class="card-body">
                                   
                                     <div class="table-responsive">
-                                        <table class="display" id="basic-6">
+                                        <table class="display tablesorter" id="basic-6">
                                             <thead>
                                                 <tr>
                                                     <th rowspan="2">NOMBRE</th>

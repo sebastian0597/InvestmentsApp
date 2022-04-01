@@ -99,7 +99,7 @@
                                                 </div> -->  
                                                 
                                                 <div class="table-responsive add-project">
-                                                    <table class="table card-table table-vcenter text-nowrap">
+                                                    <table class="display tablesorter" id="basic-6">
                                                         <thead>
                                                             <tr>
                                                                 <th>Nombre</th>
@@ -138,6 +138,25 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
+
+
+
+
+
+
+
+                                            
+
+
+
+
+
+
+
+
+
+
+
                                             </div>
                                         </div>
 

@@ -14,7 +14,7 @@
         <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 
     <link href="{{ asset('css/material-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/admin/font-awesome.css') }}" rel="stylesheet">
+    
     <link href="{{ asset('css/admin/icofont.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/themify.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/scrollbar.css') }}" rel="stylesheet">
@@ -23,6 +23,13 @@
     <!--<link id="color" rel="stylesheet" href="{{ asset('css/admin/color-1.css') }}" media="screen"> -->
     <link href="{{ asset('css/admin/responsive.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/admin.css') }}" rel="stylesheet">   
+    <link href="{{ asset('css/admin/tables.css') }}" rel="stylesheet">   
+
+    <!-- <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'> -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+
+
 
 </head>
 
@@ -52,7 +59,10 @@
     <script src="{{ asset('js/admin/extractos.js') }}" defer></script>  
     <script src="{{ asset('js/util.js') }}" defer></script> 
     <script src="{{ asset('js/ajax.js') }}" defer></script> 
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/sweetalert2@11.js') }}"></script>
+    <script src="{{ asset('js/admin/datatable/datatables/jquery.tablesorter.min.js') }}" defer></script>
+    <script src="{{ asset('js/admin/datatable/datatables/tablesort.min.js') }}" defer></script>
+    <script src="{{ asset('js/admin/datatable/datatables/jquery.tablesorter.widgets.js') }}" defer></script>
 
 </body>
 
