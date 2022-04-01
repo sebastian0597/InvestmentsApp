@@ -100,9 +100,9 @@ class Customer extends Model
     }
 
     public function investsments()
-    {
-        return $this->hasMany(Investment::class, 'id_customer', 'id');
+    {   
+     
+        return $this->hasMany(Investment::class, 'id_customer', 'id')->where('investments.status', '=', 1);
     }
-
 
 }

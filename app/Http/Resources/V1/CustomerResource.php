@@ -55,8 +55,9 @@ class CustomerResource extends JsonResource
             'document_type' => $this->documentType->name,
             'economic_activity' => $this->economicActivity->name,
             'name_bank_account' => $this->bank->name,
-            'investments' => $this->investsments
-            
+            'investments' => $this->investsments,
+            'total_investments' => number_format($this->investsments->sum('amount'), 2,',',".")//$this->when($this->investsments->status == 1, $this->investsments->sum('amount')),
+                        
         ];
     }
 }

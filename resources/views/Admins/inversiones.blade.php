@@ -65,22 +65,39 @@
                                         </div>
 
                                         <a class="btn btn-primary btn-sm" href="javascript:void(0)">
-                                            <i class="fa fa-pencil"></i> Exportar informe total</a>
+                                            <i class="fa fa-pencil"></i>Exportar informe total</a>
                                     </div>
 
                                     <div class="card-body">
 
                                         <div class="col-md-12">
                                             <div class="card">
-                                                <div class="card-header">
+                                                <div style="display:flex; align-items:center; padding-right: 0px; width:100%" class="card-header">
                                                     <h4 class="card-title mb-0">Listado de clientes</h4>
-                                                    <div class="card-options"><a class="card-options-collapse" href="#"
+                                                    <!--<div class="card-options"><a class="card-options-collapse" href="#"
                                                             data-bs-toggle="card-collapse"><i
                                                                 class="fe fe-chevron-up"></i></a><a
                                                             class="card-options-remove" href="#"
                                                             data-bs-toggle="card-remove"><i class="fe fe-x"></i></a>
-                                                    </div>
+                                                    </div>-->
+                                                    <b style="float: right">Total clientes: {{count($customers)}}</b>
+
                                                 </div>
+                                                
+                                                <!--<div style="display:flex; align-items:center; padding-right: 0px;" class="card-header">
+                                                    <div style="width:100%" class="row">
+                                                        <div class="col-6">
+                                                            <h4 class="card-title mb-0">Listado de clientes</h4>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <ol style="float:right;" class="breadcrumb">
+                                                                <a class="btn btn-primary" href="{{ url('crear_cliente') }}">Crear
+                                                                    cliente</a>
+                                                            </ol>
+                                                        </div>
+                                                    </div> 
+                                                </div> -->  
+                                                
                                                 <div class="table-responsive add-project">
                                                     <table class="table card-table table-vcenter text-nowrap">
                                                         <thead>
@@ -103,7 +120,7 @@
                                                                     <td><span class="status-icon bg-success"></span>{{$item["customer_type"]}}</td>
                                                                     <td>{{$item["phone"]}}</td>
                                                                     <td>{{$item["email"]}}</td>
-                                                                    <td>$5.000.000,00</td>
+                                                                    <td>{{'$'.$item['total_investments']}}</td>
                                                                     <td class="text-end">
                                                                     
                                                                         <a class="btn btn-success btn-sm"
