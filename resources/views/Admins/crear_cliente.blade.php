@@ -393,9 +393,7 @@
                                                 
                                             </div>
                                         </div>
-                                        @foreach ($collection as $item)
-                                            
-                                        @endforeach
+                                       
                                         <br><br>
                                         <div class="mb-4">
                                             <button class="btn btn-primary" id="btn_crear_cliente" type="button" onclick="crearCliente()">Crear Cliente</button>
