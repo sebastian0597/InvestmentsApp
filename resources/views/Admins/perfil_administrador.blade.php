@@ -55,12 +55,12 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Registro de administrador </h5>
+                                    <h4>Registro de administrador </h4>
                                 </div>
                                 <div class="card-body">
                                     <form class="needs-validation" id="form-admin">
                                       
-                                        <h5>Datos de inicio</h5>
+                                        <h5>Datos</h5>
 
                                         <div class="row g-3">
                                             <div class="col-md-8">

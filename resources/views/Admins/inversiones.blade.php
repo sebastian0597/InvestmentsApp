@@ -55,7 +55,7 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5>Módulo de Inversiones </h5>
+                                        <h4>Módulo de Inversiones </h4>
                                         <br>
                                         <div class="box">
                                             <div class="container-1">
@@ -73,7 +73,7 @@
                                         <div class="col-md-12">
                                             <div class="card">
                                                 <div style="display:flex; align-items:center; padding-right: 0px; width:100%" class="card-header">
-                                                    <h4 class="card-title mb-0">Listado de clientes</h4>
+                                                    <h5 class="card-title mb-0">Listado de clientes</h5>
                                                     <!--<div class="card-options"><a class="card-options-collapse" href="#"
                                                             data-bs-toggle="card-collapse"><i
                                                                 class="fe fe-chevron-up"></i></a><a

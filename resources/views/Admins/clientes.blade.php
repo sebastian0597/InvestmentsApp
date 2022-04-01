@@ -69,13 +69,13 @@
                                         <table class="display tablesorter" id="basic-6">
                                             <thead>
                                                 <tr>
-                                                    <th rowspan="2">NOMBRE</th>
+                                                    <th rowspan="2">Nombres</th>
                                                 </tr>
                                                 <tr>
-                                                    <th>TIPO DE CLIENTE</th>
-                                                    <th>TELÉFONO</th>
-                                                    <th>UBICACIÓN</th>
-                                                    <th>E-MAIL</th>
+                                                    <th>Tipo cliente</th>
+                                                    <th>Teléfono</th>
+                                                    <th>Ubicación</th>
+                                                    <th>Correo</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

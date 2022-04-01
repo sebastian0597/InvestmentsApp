@@ -53,7 +53,7 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Solicitudes de usuarios y novedades </h5>
+                                    <h4>Solicitudes de usuarios y novedades </h4>
                                 </div>
                                 <div class="card-body">
 
