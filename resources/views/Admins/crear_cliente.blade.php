@@ -107,7 +107,7 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Archivo documento identidad</label>
-                                                <input class="form-control" id="archivo_documento" type="file">
+                                                <input class="form-control" id="archivo_documento" accept=".pdf, .png, .jpg, .jpeg" type="file">
                                                 <span class="msg_error_form" id="error_archivo_documento"></span>
                                             </div>
 
@@ -173,7 +173,7 @@
 
                                                 <div class="col-md-4">
                                                     <label class="form-label">RUT</label>
-                                                    <input class="form-control" id="archivo_rut" type="file">
+                                                    <input class="form-control" id="archivo_rut" accept=".pdf, .png, .jpg, .jpeg" type="file">
                                                 </div>
 
                                             </div>
@@ -217,7 +217,7 @@
 
                                                 <div class="col-md-4">
                                                     <label class="form-label">Certificado laboral</label>
-                                                    <input class="form-control" id="certificado_laboral" type="file">
+                                                    <input class="form-control" id="certificado_laboral" accept=".pdf, .png, .jpg, .jpeg" type="file">
                                                     <span class="msg_error_form" id="error_certificado_laboral"></span>
                                                 </div>
 
@@ -293,7 +293,7 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Certificado de cuenta</label>
-                                                <input class="form-control" id="certificado_cuenta" type="file">
+                                                <input class="form-control" id="certificado_cuenta" accept=".pdf, .png, .jpg, .jpeg" type="file">
                                                 <span class="msg_error_form" id="error_certificado_cuenta"></span>
                                             </div>
 
@@ -326,19 +326,19 @@
 
                                             <div class="col-md-3">
                                                 <label class="form-label">Certificado bancario</label>
-                                                <input class="form-control" id="certificado_bancario_tercero"
+                                                <input class="form-control" id="certificado_bancario_tercero" accept=".pdf, .png, .jpg, .jpeg"
                                                     type="file">
                                                 <span class="msg_error_form" id="error_certificado_bancario_tercero"></span>
                                             </div>
                                             <div class="col-md-3">
                                                 <label class="form-label">Carta de autorización</label>
-                                                <input class="form-control" id="carta_tercero" type="file">
+                                                <input class="form-control" id="carta_tercero" accept=".pdf, .png, .jpg, .jpeg" type="file">
                                                 <span class="msg_error_form" id="error_carta_tercero"></span>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <label class="form-label">RUT</label>
-                                                <input class="form-control" id="rut_tercero" type="file">
+                                                <input class="form-control" id="rut_tercero" accept=".pdf, .png, .jpg, .jpeg" type="file">
                                                 <span class="msg_error_form" id="error_rut_tercero"></span>
                                             </div>
                                         </div>
@@ -388,7 +388,7 @@
                                            
                                             <div class="col-md-3">
                                                 <label>Documento de consignación</label>
-                                                <input class="form-control" id="archivo_consignacion" type="file">
+                                                <input class="form-control" id="archivo_consignacion" accept=".pdf, .png, .jpg, .jpeg" type="file">
                                                 <span class="msg_error_form" id="error_archivo_consignacion"></span>
                                                 
                                             </div>

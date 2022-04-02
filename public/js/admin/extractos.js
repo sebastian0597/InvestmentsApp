@@ -136,3 +136,19 @@ const seleccionarTipoCliente = () => {
 };
 
 const buscarClientePremiumPorDocumento = () => {};
+
+
+$('input[type="file"]').on('change', function(){
+  var fileList = $(this)[0].files || [] 
+  for (file of fileList){ 
+    ext=file.name.split('.').pop()
+    
+    if(ext == 'pdf' || ext == 'png' || ext == 'jpg' || ext == 'jpeg'  || ext == 'bim'){
+      
+    }
+    else{
+        alert('Tipo de archivo incorrecto.')
+        file.name = null
+    }
+  }
+});
