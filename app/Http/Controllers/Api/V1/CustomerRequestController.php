@@ -69,10 +69,12 @@ class CustomerRequestController extends Controller
                     'id_user_attends_request' => 'required|numeric',
                     'answer' => 'required|string',
                 ]);
-
+                
+                $fecha_local = Util::getCurrentDate();
+                
                 $request_customer->id_user_attends_request = $fields["id_user_attends_request"];
                 $request_customer->answer = $fields["answer"];
-                $request_customer->answer_date = date('Y-m-d h:i:s');
+                $request_customer->answer_date = $fecha_local;
                 $request_customer->status = 2;
                 $request_customer->update();
 

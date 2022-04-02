@@ -2,8 +2,11 @@ function enviarPeticion(url,method, data, funcion=""){
 
     switch (method) {
         case 'POST':
-        case 'post':
         case 'Post':
+        case 'post':
+        case 'PUT':
+        case 'Put':
+        case 'put':
             $.ajaxSetup({
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),

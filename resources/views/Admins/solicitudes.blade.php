@@ -54,8 +54,21 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4>Solicitudes de usuarios y novedades </h4>
+                                    <br>
+
+                                    <div class="mb-3 row g-3">
+                                    
+                                    <div class="col-xl-5 col-sm-9">
+                                        <div class="input-group">
+                                        
+                                        <input class="datepicker-here form-control digits" type="date" data-language="en">
+                                        <button class="btn btn-secondary" type="submit">Buscar solicitudes</button>
+                                        </div>
+                                    </div>
+                                    
+                                    </div>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body pt-0">
 
                                     <div class="col-xl-12 notification box-col-12">
                                         <div class="card">
@@ -66,11 +79,10 @@
                                                 </div>
                                             </div>
                                             <div class="card-body pt-0">
+                                                <?php $aux=0; ?>
                                                 @foreach ($request as $item)
                                                     <div class="media">
                                                         <div class="media-body">
-                                                            <input type="hidden" type="hdd_id_request"
-                                                                value="{{ $item['id'] }}">
                                                             <p>{{ $item['date'] }} <span>{{ $item['hour'] }}</span><span
                                                                     class="badge badge-secondary">{{ $item['status'] }}</span>
                                                             </p>
@@ -78,14 +90,65 @@
                                                             <span>{{ $item['description'] }}</span>
 
                                                         </div>
-                                                        <button class="btn btn-primary" type="submit">Responder</button>
-                                                    </div>
-                                                @endforeach
 
+                                                        <ul class="nav main-menu" role="tablist">
+                                                            <li class="nav-item">
+                                                                <button class="btn btn-primary btn-block btn-mail w-100" type="button" data-bs-toggle="modal" data-bs-target=".modalRquests_<?= $aux ?>">Responder</button>
+
+                                                                <div class="modal fade modal-bookmark modalRquests_<?= $aux; ?>" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                        <!-- titulo de solicitud para responder-->
+                                                                        <h5 class="modal-title" id="exampleModalLabel">{{$item['request_type']}}</h5>
+                                                                        <!-- boton de cerrar-->
+                                                                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"> </button>
+                                                                        </div>
+
+                                                                        <div class="modal-body">
+                                                                        <form class="form-bookmark needs-validation" id="bookmark-form" novalidate="">
+                                                                            <div class="row">
+                                                                            <div class="media-body">
+                                                                                <div class="mb-3 mt-0 col-md-12">
+                                                                                <h6>Nombres</h6>
+                                                                                <label>{{$item['customer']['name']}} {{$item['customer']['last_name']}}</label>
+                                                                                <h6>N° Identificación</h6>
+                                                                                <label>{{$item['customer']['document_number']}}</label>
+                                                                                </div>
+                                                                                <div class="mb-3 mt-0 col-md-6">
+                                                                                <h6>Tipo cliente</h6>
+                                                                                <label>{{$item['customer']['customer_type']}}</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div  class="mb-3 mt-0 col-md-12">
+                                                                                
+                                                                                <h5>Asunto de la solicitud</h5>
+                                                                
+                                                                                <span>{{$item['description']}}
+                                                                                </span>
+                                                            
+                                                                            </div>
+                                        
+                                                                            <div class="mb-3 col-md-12 my-0">
+                                                                                <textarea class="form-control" id="respuesta_solicitud_<?= $aux ?>" autocomplete="off"></textarea>
+                                                                            </div>
+                                                                            </div>
+                                                                            <input id="index_var" type="hidden" value="6">
+                                                                            <button class="btn btn-secondary" id="btn_responder" onclick="responderSolicitud({{$item['id']}}, {{$aux}})" type="button">Enviar</button>
+                                                                            <button class="btn btn-primary" type="button" data-bs-dismiss="modal">Cancel</button>
+                                                                        </form>
+                                                                        </div>
+                                                                    </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <?php $aux++; ?>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
