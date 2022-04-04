@@ -106,3 +106,84 @@ const validarCrearAdmin = () =>{
     return validador;
 
 }
+
+
+const consultarUsuariosAdmin = () => {
+
+    form_data = {};
+    let url = document.location.origin + `/api/v1/admin/`;
+    let method = 'GET';
+
+    enviarPeticion(
+        url,
+        method,
+        form_data,
+        'continuarConsultarUsuariosAdmin'
+    );
+}
+
+const continuarConsultarUsuariosAdmin = (response) => {
+    
+   
+    let users = response.data;
+    users = users == undefined || null ? {} : users;
+    $('#content-users').empty();
+
+    if (!isObjEmpty(users)) {
+        
+        trAdmins = ``;
+        users.forEach(function (user) {
+           
+            if (user.id_rol != 2) {
+                trAdmins += `
+                <tr>
+                    <td>${
+                        user.name == null
+                            ? ''
+                            : user.name
+                    }</td>
+                    <td>${
+                        user.email == null
+                            ? ''
+                            : user.email
+                    }</td>
+                    <td>${
+                        user.status == null
+                            ? ''
+                            : user.status
+                    }</td>
+                    <td>${
+                        user.roles.role == null
+                            ? ''
+                            : user.roles.role
+                    }</td>
+                </tr>
+                `;
+            }
+        });
+
+         html = `
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Rol</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    ` +
+                        trAdmins +
+                    `
+                    </tbody>
+                </table>
+            ` 
+
+    }
+
+    $('#content-users').append(html);
+
+    
+
+}

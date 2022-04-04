@@ -74,7 +74,6 @@ class CustomerController extends Controller
                     'password' => bcrypt($password),
                     'id_rol' => 2,
                     'personal_code' => $personal_code
-        
                 ]);
                 
                 $file_document=NULL;
