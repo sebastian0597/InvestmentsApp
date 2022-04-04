@@ -99,7 +99,7 @@
                                         <br><br><br>
                                     </form>
 
-                                    <div id="content-users" class="col-sm-12">
+                                    <div id="content-users" class="col-sm-8">
                             
                                     </div>
                                 </div>
