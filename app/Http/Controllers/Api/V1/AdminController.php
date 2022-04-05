@@ -11,12 +11,15 @@ use App\Utils\Util;
 use App\Mail\CredentialsMailable;
 use Illuminate\Support\Facades\DB;
 
+use App\Http\Resources\V1\AdminResource;
+use App\Http\Resources\V1\AdminCollection;
+
 class AdminController extends Controller
 {
   
     public function index()
     {
-      
+        return new AdminCollection(Admin::all());
     }
 
     public function create()

@@ -54,8 +54,17 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h4>Registro de administrador </h4>
+                                <div style="display:flex; align-items:center; padding-right: 0px;" class="card-header">
+                                    <div style="width:100%" class="row">
+                                        <div class="col-6">
+                                            <h5>Registro administradores</h5>
+                                        </div>
+                                        <div class="col-6">
+                                            <ol style="float:right;" class="breadcrumb">
+                                                <a onclick="consultarUsuariosAdmin()" class="btn btn-primary">Consultar usuarios</a>
+                                            </ol>
+                                        </div>
+                                    </div> 
                                 </div>
                                 <div class="card-body">
                                     <form class="needs-validation" id="form-admin">
@@ -88,15 +97,17 @@
                                         <br>
                                         <button id="btn_crear_admin" onclick="crearAdmin()" class="btn btn-primary" type="button">Crear administrador</button>
                                         <br><br><br>
+                                    </form>
 
+                                    <div id="content-users" class="col-sm-8">
+                            
+                                    </div>
                                 </div>
-
                             </div>
-
-                            </form>
 
                         </div>
                     </div>
+                   
                 </div>
             </div>
         </div>
