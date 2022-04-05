@@ -81,7 +81,8 @@
                                         <div class="row g-3">
                                             <div class="col-md-4">
                                                 <label class="form-label">Correo</label>
-                                                <input class="form-control" id="correo" type="email" value="">
+                                                <input onblur="validarSintaxisCorreo(this)" class="form-control" id="correo" type="email" value="">
+                                                <span class="msg_error_form" id="error_correo"></span>
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="form-label">Rol</label>
