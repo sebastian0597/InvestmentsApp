@@ -17,7 +17,7 @@ class CreateRequestsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_customer');
             $table->unsignedBigInteger('id_user_attends_request')->nullable(true);
-            $table->timestamp('request_date');
+            $table->timestamp('request_date')->nullable(true);
             $table->unsignedBigInteger('request_type');
             $table->text('description')->nullable(true);
             $table->tinyinteger('status')->default(1)->nullable(true);

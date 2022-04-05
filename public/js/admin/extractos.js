@@ -1,33 +1,33 @@
 const buscarClientePorParametros = () => {
-    let parametro = $('#busqueda_cliente_extractos').val().trim();
-    quitarError('busqueda_cliente_extractos');
+    let parametro = $('#busqueda_cliente_extractos').val().trim()
+    quitarError('busqueda_cliente_extractos')
     if (parametro != '') {
-        form_data = {};
+        form_data = {}
         let url =
             document.location.origin +
-            `/api/v1/get_customers_param/${parametro}`;
-        let method = 'GET';
+            `/api/v1/get_customers_param/${parametro}`
+        let method = 'GET'
 
         enviarPeticion(
             url,
             method,
             form_data,
             'continuarBuscarClientePorParametros'
-        );
+        )
     } else {
-        agregarError('busqueda_cliente_extractos');
+        agregarError('busqueda_cliente_extractos')
     }
-};
+}
 
 const continuarBuscarClientePorParametros = (response) => {
-    let cliente = response.data[0];
-    cliente = cliente == undefined || null ? {} : cliente;
-    $('#content-clientes').empty();
+    let cliente = response.data[0]
+    cliente = cliente == undefined || null ? {} : cliente
+    $('#content-clientes').empty()
 
     if (!isObjEmpty(cliente)) {
-        trInversiones = ``;
+        trInversiones = ``
         cliente.investments.forEach(function (inversion) {
-            let amount = formatNumber(inversion.amount);
+            let amount = formatNumber(inversion.amount)
 
             if (inversion.status == 1) {
                 trInversiones += `
@@ -50,9 +50,9 @@ const continuarBuscarClientePorParametros = (response) => {
                     }</td>
                     <td>$${amount == null ? 0 : amount}</td>
                 </tr>
-                `;
+                `
             }
-        });
+        })
 
         html =
             ` 
@@ -119,23 +119,23 @@ const continuarBuscarClientePorParametros = (response) => {
                 </div>
               
             </div>
-           `;
+           `
     } else {
-        html = `<span>No hay datos para los parámetros ingresados</span>`;
+        html = `<span>No hay datos para los parámetros ingresados</span>`
     }
-    $('#content-clientes').append(html);
-};
+    $('#content-clientes').append(html)
+}
 
 const seleccionarTipoCliente = () => {
 
-    $('#div_cliente_premium').css('display', 'none');
+    $('#div_cliente_premium').css('display', 'none')
 
     if ($('#tipo_cliente').val() == '3') {
-        $('#div_cliente_premium').css('display', 'block');
+        $('#div_cliente_premium').css('display', 'block')
     }
-};
+}
 
-const buscarClientePremiumPorDocumento = () => {};
+const buscarClientePremiumPorDocumento = () => {}
 
 
 $('input[type="file"]').on('change', function(){
@@ -151,4 +151,4 @@ $('input[type="file"]').on('change', function(){
         file.name = null
     }
   }
-});
+})

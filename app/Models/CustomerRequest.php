@@ -19,6 +19,16 @@ class CustomerRequest extends Model
 
     ];
 
+
+    //QUERIES
+    public static function getRequestByDate($date){
+        
+        $from = date($date);
+        $to = date($date);
+
+        return CustomerRequest::whereBetween('request_date', [$from.' 00:00:00', $to.' 23:59:59'])->get();
+    }
+
     /*ELOQUENT RELATIONS*/
     public function customer(){
         
@@ -62,4 +72,5 @@ class CustomerRequest extends Model
         return $status;
 
     }
+
 }

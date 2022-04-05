@@ -64,21 +64,23 @@ class CustomerRequestController extends Controller
         $request_update = DB::transaction(function () use($request_customer,$request){
             
             if($request_customer){
-
+                
                 $fields = $request->validate([
                     'id_user_attends_request' => 'required|numeric',
                     'answer' => 'required|string',
                 ]);
                 
+
                 $fecha_local = Util::getCurrentDate();
                 
                 $request_customer->id_user_attends_request = $fields["id_user_attends_request"];
                 $request_customer->answer = $fields["answer"];
                 $request_customer->answer_date = $fecha_local;
                 $request_customer->status = 2;
+                $request_customer->request_date = $request_customer->request_date;
                 $request_customer->update();
 
-                return array(201,$request_customer);
+                return array(201,"Se ha respondido la solicitud correctamente.");
             
             }else{
                 return array(404,"La solicitud no se ha encontrado.");
@@ -93,5 +95,12 @@ class CustomerRequestController extends Controller
     public function destroy(Request $request)
     {
         //
+    }
+
+    public function getRequestByDate($date){
+
+        return new RequestCollection(CustomerRequest::getRequestByDate($date));
+
+
     }
 }

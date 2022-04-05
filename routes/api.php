@@ -28,9 +28,8 @@ Route::post('v1/extracts_customer_premium', [ExtractController::class, 'extractC
 
 Route::apiResource('v1/disbursetment', DisbursetmentController::class)->only(['store']);
 
-
 Route::apiResource('v1/request', CustomerRequestController::class)->only(['store', 'show','index','update']);
-
+Route::get('v1/get_request_by_date/{param}', [CustomerRequestController::class, 'getRequestByDate']);
 
 Route::post('login', [LoginController::class, 'login']);
 Route::post('reset_password', [LoginController::class, 'resetPassword']);

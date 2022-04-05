@@ -61,8 +61,8 @@
                                     <div class="col-xl-5 col-sm-9">
                                         <div class="input-group">
                                         
-                                        <input class="datepicker-here form-control digits" type="date" data-language="en">
-                                        <button class="btn btn-secondary" type="submit">Buscar solicitudes</button>
+                                        <input id="calendario" class="datepicker-here form-control digits" type="date" data-language="en">
+                                        <button class="btn btn-secondary" onclick="buscarSolicitudesFecha()" type="submit">Buscar solicitudes</button>
                                         </div>
                                     </div>
                                     
