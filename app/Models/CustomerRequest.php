@@ -73,4 +73,10 @@ class CustomerRequest extends Model
 
     }
 
+    public function getShortDescriptionAttribute(){
+   
+        return substr($this->description, 0, 80); 
+
+    }
+
 }

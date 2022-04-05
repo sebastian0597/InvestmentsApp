@@ -273,55 +273,8 @@ const continuarCrearCliente = (response) => {
     $('#btn_crear_cliente').text('Crear cliente')
     $('#btn_crear_cliente').prop('disabled', false)
 
-    switch (response.status) {
-        case 200:
-        case 201:
-        case 202:
-            Swal.fire({
-                icon: 'success',
-                confirmButtonColor: '#6610f2',
-                confirmButtonText: 'Aceptar',
-                text: response.message,
-                allowEscapeKey: false,
-                allowOutsideClick: false,
-            })
-            break
-
-        case 400:
-        case 401:
-        case 402:
-            console.log(response)
-            break
-
-        case 422:
-            Swal.fire({
-                icon: 'warning',
-                confirmButtonColor: '#6610f2',
-                confirmButtonText: 'Aceptar',
-                text: response.responseText,
-                allowEscapeKey: false,
-                allowOutsideClick: false,
-            })
-
-            break
-        case 404:
-            break
-
-        case 500:
-            Swal.fire({
-                icon: 'error',
-                confirmButtonColor: '#6610f2',
-                confirmButtonText: 'Aceptar',
-                text: response.responseJSON.message,
-                allowEscapeKey: false,
-                allowOutsideClick: false,
-            })
-
-            break
-        default:
-            console.log(response)
-            break
-    }
+    setResponseMessage(response)
+    
 }
 
 const validarFormularioCliente = () => {

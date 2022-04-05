@@ -87,7 +87,7 @@
                                                                     class="badge badge-secondary">{{ $item['status'] }}</span>
                                                             </p>
                                                             <h6>{{ $item['request_type'] }}</h6>
-                                                            <span>{{ $item['description'] }}</span>
+                                                            <span>{{ $item['short_desc'] }}</span>
 
                                                         </div>
 
