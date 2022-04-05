@@ -20,6 +20,7 @@ class RequestResource extends JsonResource
             'description' => $this->description,
             'answer_date' => $this->answer_date,
             'request_type' => $this->requesType->name,
+            'id_status' => $this->status,
             'status' => $this->status_text,
             'requested_at' => $this->requested_at,
             'customer' =>[

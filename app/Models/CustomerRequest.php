@@ -50,7 +50,7 @@ class CustomerRequest extends Model
     /*VIRTUAL ATRIBUTTES*/
     public function getDateRequestAttribute(){
 
-        return substr($this->request_date, 0, 9);
+        return substr($this->request_date, 0, 10);
 
     }
 
@@ -68,7 +68,7 @@ class CustomerRequest extends Model
 
     public function getStatusTextAttribute(){
         $status;
-        $status = $this->status == 1 ? "Nueva" : "Leída";
+        $status = $this->status == 1 ? "Nueva" : "Respondida";
         return $status;
 
     }

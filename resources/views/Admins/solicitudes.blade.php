@@ -78,7 +78,7 @@
 
                                                 </div>
                                             </div>
-                                            <div class="card-body pt-0">
+                                            <div id="card_body" class="card-body pt-0">
                                                 <?php $aux=0; ?>
                                                 @foreach ($request as $item)
                                                     <div class="media">
