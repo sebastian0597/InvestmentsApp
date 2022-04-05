@@ -12,7 +12,7 @@ use App\Http\Controllers\Api\V1\DisbursetmentController;
 use App\Http\Controllers\Api\V1\ExtractController;
 
 
-Route::apiResource('v1/admin', AdminController::class)->only(['store', 'index']);
+Route::apiResource('v1/admin', AdminController::class)->only(['store', 'index', 'update']);
 
 
 Route::apiResource('v1/customer', CustomerController::class)->only(['store','show','index']);

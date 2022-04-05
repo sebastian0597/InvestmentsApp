@@ -52,7 +52,7 @@ class CustomerController extends Controller
                     'country' => 'required|string',
                     'document_number' => 'required|numeric|unique:customers',
                     'file_document' => 'required|file',
-                    'email' => 'required|string|unique:users,email',
+                    'email' => 'required|email|unique:users,email',
                     /*'id_rol' => 'required|numeric',*/
                     'registered_by' => 'required|numeric',
                 ]);

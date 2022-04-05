@@ -96,9 +96,37 @@ class AdminController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, $id)
     {
-        //
+        $admin = Admin::find($id);
+        
+        $admin_response = DB::transaction(function () use($admin,$request){
+            
+            if($admin){
+                
+                $fields = $request->validate([
+                    'name' => 'required|string',
+                    'email' => 'required|email',
+                    'status' => 'required|string',
+                    'rol' => 'required|string',
+                ]);
+                //$fecha_local = Util::getCurrentDate();
+                
+                $admin->name = $fields["name"];
+                $admin->email = $fields["email"];
+                $admin->id_rol = $fields["rol"];
+                $admin->status = $fields["status"];
+                $admin->update();
+              
+                return array(201,"Se ha actualizado el administrador correctamente.");
+            
+            }else{
+                return array(402,"No se ha encontrado el administrador que desea actualizar.");
+            }
+
+        }, 3); 
+
+        return Util::setResponseJson($admin_response [0], $admin_response [1]);
     }
 
     /**

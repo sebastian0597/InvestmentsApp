@@ -15,15 +15,56 @@ const responderSolicitud = (id_solicitud, contador) =>{
 
 const continuarResponderSolicitud = (response) => {
 
-    Swal.fire({
-        icon: 'success',
-        confirmButtonColor: '#141e30',
-        confirmButtonText: 'Aceptar',
-        text: response.message,
-        allowEscapeKey : false,
-        allowOutsideClick: false
-    })
-    location.reload();
+    switch (response.status) {
+        case 200:
+        case 201:
+        case 202:
+            Swal.fire({
+                icon: 'success',
+                confirmButtonColor: '#6610f2',
+                confirmButtonText: 'Aceptar',
+                text: response.message,
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+            })
+            location.reload()
+            break
+
+        case 400:
+        case 401:
+        case 402:
+            console.log(response)
+            break
+
+        case 422:
+            Swal.fire({
+                icon: 'warning',
+                confirmButtonColor: '#6610f2',
+                confirmButtonText: 'Aceptar',
+                text: response.responseText,
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+            })
+
+            break
+        case 404:
+            break
+
+        case 500:
+            Swal.fire({
+                icon: 'error',
+                confirmButtonColor: '#6610f2',
+                confirmButtonText: 'Aceptar',
+                text: response.responseJSON.message,
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+            })
+
+            break
+        default:
+            console.log(response)
+            break
+    }
 
 }
 
