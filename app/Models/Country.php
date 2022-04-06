@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Bank extends Model
+class Country extends Model
 {
     use HasFactory;
-    protected $table = 'banks';
+    protected $table = 'countries';
+
 
     public static function getByStatus($status){
 
-        return Bank::where('status', $status)->get();
+        return Country::where('status', $status)->get();
 
     }
     

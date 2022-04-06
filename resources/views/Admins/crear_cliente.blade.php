@@ -286,8 +286,15 @@
                                         <div style="display:none" id="div_cuenta_personal_2" class="row g-3">
 
                                             <div class="col-md-4">
-                                                <label class="form-label">Nombre del banco</label>
-                                                <input class="form-control" id="nombre_banco" type="text">
+                                                <label class="form-label">Banco</label>
+                                                
+                                                <select class="form-select" onchange="convertirMoneda();" id="banco">
+                                                    <option value="">Seleccione---</option>
+                                                    @foreach ($banks as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                               
                                                 <span class="msg_error_form" id="error_nombre_banco"></span>
                                             </div>
 
