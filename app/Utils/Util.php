@@ -169,9 +169,16 @@ class Util
     }
 
     public static function setJSONResponse($object){
-        $object = json_encode($object);
+        $object = json_encode($object);       
         $object = json_decode($object, true);
         $json = $object["data"];
         return $json;
+    }
+
+    public static function setJSONResponseUniqueData($object){
+        $object = json_encode($object);
+        $json = json_decode($object, true);
+        return $json;
+       
     }
 }

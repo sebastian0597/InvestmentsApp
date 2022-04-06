@@ -25,6 +25,10 @@
     <link href="{{ asset('css/admin/admin.css') }}" rel="stylesheet">   
     <link href="{{ asset('css/admin/tables.css') }}" rel="stylesheet">   
 
+    <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery-ui.structure.css') }}" rel="stylesheet">   
+    <link href="{{ asset('css/jquery-ui.theme.css') }}" rel="stylesheet">   
+
     <!--<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
      <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +44,9 @@
         @yield('content')
     </div>
     @include('Admins.componentes.footer')
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
     <script src="{{ asset('js/admin/bootstrap/bootstrap.bundle.min.js') }}" defer></script>
     <script src="{{ asset('js/admin/icons/feather-icon/feather.min.js') }}" defer></script>
     <script src="{{ asset('js/admin/icons/feather-icon/feather-icon.js') }}" defer></script>
@@ -61,13 +67,14 @@
     <script src="{{ asset('js/admin/solicitudes.js') }}" defer></script>
     <script src="{{ asset('js/util.js') }}" defer></script> 
     <script src="{{ asset('js/ajax.js') }}" defer></script> 
-    <script src="{{ asset('js/tables.js') }}" defer></script> 
     <script src="{{ asset('js/sweetalert2@11.js') }}"></script>
+    
     <script src="{{ asset('js/admin/datatable/datatables/jquery.tablesorter.min.js') }}" defer></script>
     <script src="{{ asset('js/admin/datatable/datatables/tablesort.min.js') }}" defer></script>
     <script src="{{ asset('js/admin/datatable/datatables/jquery.tablesorter.widgets.js') }}" defer></script>
     <script src="{{ asset('js/admin/datatable/datatables/jquery.tablesorter.pager.js') }}" defer></script>
-
+    <script src="{{ asset('js/tables.js') }}" defer></script> 
+    
 </body>
 
 </html>

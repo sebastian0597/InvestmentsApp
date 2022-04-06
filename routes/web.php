@@ -15,6 +15,7 @@ Route::get('login', function () {
 
 //Route::group(['middleware' => ['admin']], function () {
     Route::get('crear_cliente', [CustomerController::class, 'create'] )->name('crear_cliente');
+    Route::get('editar_cliente/{id_cliente}', [CustomerController::class, 'edit'] )->name('editar_cliente');
     Route::get('clientes', [CustomerController::class, 'index'] )->name('clientes');
     Route::get('/', [CustomerController::class, 'index'] )->name('inicio');
     Route::get('extractos', [ExtractController::class, 'index'] )->name('extractos');

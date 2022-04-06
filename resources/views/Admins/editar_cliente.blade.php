@@ -32,12 +32,12 @@
                     <div class="page-title">
                         <div class="row">
                             <div class="col-6">
-                                <h3>CREAR CLIENTE</h3>
+                                <h3>EDITAR CLIENTE</h3>
                             </div>
                             <div class="col-6">
                                 <ol class="breadcrumb">
                                     @include('Admins/componentes/enlance_navegacion')
-                                    <li class="breadcrumb-item active"> Creación de clientes</li>
+                                    <li class="breadcrumb-item active">Edición de clientes</li>
                                 </ol>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Formulario de registro para clientes nuevos</h5>
+                                    <h5>Formulario de edición para clientes nuevos</h5>
                                 </div>
                                 <div class="card-body">
                                     <form class="needs-validation" novalidate="" accept-charset="UTF-8" enctype="multipart/form-data">
@@ -59,12 +59,12 @@
                                         <div class="row g-3">
                                             <div class="col-md-4">
                                                 <label class="form-label">Nombres</label>
-                                                <input class="form-control" id="nombres" type="text">
+                                                <input class="form-control" id="nombres" value="{{$customer['name']}}"  type="text">
                                                 <span class="msg_error_form" id="error_nombres"></span>
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="form-label">Apellidos</label>
-                                                <input class="form-control" id="apellidos" type="text">
+                                                <input class="form-control" id="apellidos" value="{{$customer['last_name']}}"  type="text">
                                                 <span class="msg_error_form" id="error_apellidos"></span>
                                             </div>
                                         </div>
@@ -83,7 +83,7 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Número de documento</label>
-                                                <input class="form-control" id="numero_documento" type="text">
+                                                <input class="form-control" id="numero_documento" value="{{$customer['document_number']}}" type="text">
                                                 <span class="msg_error_form" id="error_numero_documento"></span>
                                             </div>
 
@@ -92,13 +92,13 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Correo eléctronico</label>
-                                                <input onblur="validarSintaxisCorreo(this)" class="form-control" id="correo" type="email">
+                                                <input onblur="validarSintaxisCorreo(this)" class="form-control" value="{{$customer['email']}}"  id="correo" type="email">
                                                 <span class="msg_error_form" id="error_correo"></span>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Teléfono</label>
-                                                <input class="form-control" id="telefono" type="text">
+                                                <input class="form-control" id="telefono" value="{{$customer['phone']}}"  type="text">
                                                 <span class="msg_error_form" id="error_telefono"></span>
                                             </div>
 
@@ -107,7 +107,7 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Archivo documento identidad</label>
-                                                <input class="form-control" id="archivo_documento" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                <input class="form-control" id="archivo_documento" value="{{$customer['file_document']}}"  accept=".pdf, .png, .jpg, .jpeg" type="file">
                                                 <span class="msg_error_form" id="error_archivo_documento"></span>
                                             </div>
 
@@ -128,7 +128,7 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Departamento</label>
-                                                <input class="form-control" id="departamento" type="text">
+                                                <input class="form-control" id="departamento" value="{{$customer['department']}}"  type="text">
                                                 <span class="msg_error_form" id="error_departamento"></span>
                                             </div>
                                           
@@ -138,13 +138,13 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Ciudad</label>
-                                                <input class="form-control" id="ciudad" type="text">
+                                                <input class="form-control" id="ciudad" value="{{$customer['city']}}"  type="text">
                                                 <span class="msg_error_form" id="error_ciudad"></span>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Dirección</label>
-                                                <input class="form-control" id="direccion" type="text">
+                                                <input class="form-control" id="direccion" value="{{$customer['address']}}"  type="text">
                                                 <span class="msg_error_form" id="error_direccion"></span>
                                             </div>                                        
 
@@ -172,13 +172,13 @@
 
                                                 <div class="col-md-6">
                                                     <label class="form-label">Descripción</label>
-                                                    <textarea class="form-control" id="descripcion_independiente" rows="3"></textarea>
+                                                    <textarea class="form-control" id="descripcion_independiente" value="{{$customer['description_ind']}}"  rows="3"></textarea>
                                                     <span class="msg_error_form" id="error_descripcion_independiente"></span>
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <label class="form-label">RUT</label>
-                                                    <input class="form-control" id="archivo_rut" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                    <input class="form-control" id="archivo_rut"  value="{{$customer['file_rut']}}" accept=".pdf, .png, .jpg, .jpeg" type="file">
                                                 </div>
 
                                             </div>
@@ -188,7 +188,7 @@
 
                                                 <div class="col-md-8">
                                                     <label class="form-label">Empresa</label>
-                                                    <input class="form-control" id="empresa" type="text">
+                                                    <input class="form-control"  value="{{$customer['business']}}" id="empresa" type="text">
                                                     <span class="msg_error_form" id="error_empresa"></span>
                                                 </div>
 
@@ -197,12 +197,12 @@
 
                                                 <div class="col-md-4">
                                                     <label class="form-label">Cargo</label>
-                                                    <input class="form-control" id="cargo" type="text">
+                                                    <input class="form-control" id="cargo"  value="{{$customer['position_business']}}" type="text">
                                                     <span class="msg_error_form" id="error_cargo"></span>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label class="form-label">Antigüedad</label>
-                                                    <input class="form-control" id="antiguedad" type="text">
+                                                    <input class="form-control" id="antiguedad" value="{{$customer['antique_bussiness']}}" type="text">
                                                     <span class="msg_error_form" id="error_antiguedad"></span>
                                                 </div>
 
@@ -222,7 +222,7 @@
 
                                                 <div class="col-md-4">
                                                     <label class="form-label">Certificado laboral</label>
-                                                    <input class="form-control" id="certificado_laboral" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                    <input class="form-control" id="certificado_laboral" value="{{$customer['work_certificate']}}"  accept=".pdf, .png, .jpg, .jpeg" type="file">
                                                     <span class="msg_error_form" id="error_certificado_laboral"></span>
                                                 </div>
 
@@ -233,7 +233,7 @@
                                                 <div class="col-md-4">
 
                                                     <label class="form-label">Fondo de pensión</label>
-                                                    <input class="form-control" id="fondo_pension" type="text">
+                                                    <input class="form-control" id="fondo_pension" value="{{$customer['pension_fund']}}" type="text">
                                                     <span class="msg_error_form" id="error_fondo_pension"></span>
                                                 </div>
                                             </div>
@@ -243,7 +243,7 @@
                                                 <div class="col-md-4">
 
                                                     <label class="form-label">Especifique</label>
-                                                    <input class="form-control" id="otros_actividad" type="text">
+                                                    <input class="form-control" id="otros_actividad" value="{{$customer['especification_other']}}" type="text">
                                                     <span class="msg_error_form" id="error_otros_actividad"></span>
                                                 </div>
                                             </div>
@@ -272,7 +272,7 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Número de cuenta</label>
-                                                <input class="form-control" id="numero_cuenta" type="text">
+                                                <input class="form-control" id="numero_cuenta" value="{{$customer['account_number']}}" type="text">
                                                 <span class="msg_error_form" id="error_numero_cuenta"></span>
                                             </div>
                                             
@@ -292,20 +292,18 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Banco</label>
-                                                
                                                 <select class="form-select" id="nombre_banco">
                                                     <option value="">Seleccione---</option>
                                                     @foreach ($banks as $item)
                                                         <option value="{{ $item->name }}">{{ $item->name }}</option>
                                                     @endforeach
                                                 </select>
-                                               
                                                 <span class="msg_error_form" id="error_nombre_banco"></span>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Certificado de cuenta</label>
-                                                <input class="form-control" id="certificado_cuenta" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                <input class="form-control" id="certificado_cuenta" value="{{$customer['account_certificate']}}" accept=".pdf, .png, .jpg, .jpeg" type="file">
                                                 <span class="msg_error_form" id="error_certificado_cuenta"></span>
                                             </div>
 
@@ -315,20 +313,20 @@
 
                                             <div class="col-md-3">
                                                 <label class="form-label">Cédula</label>
-                                                <input class="form-control" id="cedula_tercero" type="text">
+                                                <input class="form-control" id="cedula_tercero" value="{{$customer['document_third']}}" type="text">
                                                 <span class="msg_error_form" id="error_cedula_tercero"></span>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <label class="form-label">Nombre</label>
-                                                <input class="form-control" id="nombre_tercero" type="text">
+                                                <input class="form-control" id="nombre_tercero" value="{{$customer['name_third']}}" type="text">
                                                 <span class="msg_error_form" id="error_nombre_tercero"></span>
                                                 
                                             </div>
 
                                             <div class="col-md-3">
                                                 <label class="form-label">Relación con el cliente</label>
-                                                <input class="form-control" id="parentesco" type="text">
+                                                <input class="form-control" id="parentesco" value="{{$customer['kinship_third']}}" type="text">
                                                 <span class="msg_error_form" id="error_parentesco"></span>
                                             </div>
 
@@ -338,32 +336,42 @@
 
                                             <div class="col-md-3">
                                                 <label class="form-label">Certificado bancario</label>
-                                                <input class="form-control" id="certificado_bancario_tercero" accept=".pdf, .png, .jpg, .jpeg"
+                                                <input class="form-control" id="certificado_bancario_tercero" value="{{$customer['account_certificate']}}" accept=".pdf, .png, .jpg, .jpeg"
                                                     type="file">
                                                 <span class="msg_error_form" id="error_certificado_bancario_tercero"></span>
                                             </div>
                                             <div class="col-md-3">
                                                 <label class="form-label">Carta de autorización</label>
-                                                <input class="form-control" id="carta_tercero" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                <input class="form-control" id="carta_tercero" value="{{$customer['letter_authorization_third']}}" accept=".pdf, .png, .jpg, .jpeg" type="file">
                                                 <span class="msg_error_form" id="error_carta_tercero"></span>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <label class="form-label">RUT</label>
-                                                <input class="form-control" id="rut_tercero" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                <input class="form-control" id="rut_tercero" value="{{$customer['rut_third']}}" accept=".pdf, .png, .jpg, .jpeg" type="file">
                                                 <span class="msg_error_form" id="error_rut_tercero"></span>
                                             </div>
                                         </div>
-                     
+
                                         <br><br>
                                         <div class="mb-4">
-                                            <button class="btn btn-primary" id="btn_crear_cliente" type="button" onclick="crearCliente()">Crear Cliente</button>
+                                            <button class="btn btn-primary" id="btn_actualizar_cliente" type="button" onclick="actualizarCliente()">Actualizar Cliente</button>
                                         </div>
                                         <br>
                                 </div>
                               
 
                             </div>
+
+                            <!-- <div class="mb-3">
+                                <div class="form-check">
+                                    <div class="checkbox p-0">
+                                        <input class="form-check-input" id="invalidCheck" type="checkbox" >
+                                        <label class="form-check-label" for="invalidCheck"></label>
+                                    </div>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div> -->
                            
                             </form>
 

@@ -66,7 +66,7 @@
                                 <div class="card-body">
                                   
                                     <div class="table-responsive">
-                                        <table class="display tablesorter" id="basic-6">
+                                        <table class="tablesorter" id="basic-6">
                                             <thead>
                                                 <tr>
                                                     <th rowspan="2">Nombres</th>
@@ -90,8 +90,8 @@
                                                                         class="rounded-circle img-30 me-3"
                                                                         src="{{ asset('images/profile.jpg') }}" alt="" />
                                                                     <div class="media-body align-self-center">
-                                                                        <div>{{ $item['name'] }}
-                                                                            {{ $item['last_name'] }}</div>
+                                                                        <div><a href="{{url('editar_cliente/'.$item['id'])}}">{{ $item['name'] }}
+                                                                            {{ $item['last_name'] }}</a></div>
                                                                     </div>
                                                                 </div>
                                                             </td>
