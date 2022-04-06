@@ -167,9 +167,30 @@
                                                 </select>
                                                 <span class="msg_error_form" id="error_actividad_economica"></span>
                                             </div>
+                                            <?php 
+                                                $display_independiente='display:none';
+                                                $display_empleado='display:none';
+                                                $display_pensionado='display:none';
+                                                $display_otro='display:none';
 
+                                                switch ($customer['id_economic_activity']) {
+                                                    case 1:
+                                                        $display_independiente='display:flex';
+                                                        break;
+                                                    case 2:
+                                                        $display_empleado='display:flex';
+                                                        break;
+                                                    case 3:
+                                                        $display_pensionado='display:flex';
+                                                        break;
+                                                    case 4:
+                                                        $display_otro='display:flex';
+                                                        break;
+                                                }
+
+                                            ?>
                                             <!-- CAMPOS CUANDO ES INDEPENDIENTE -->
-                                            <div style="display:none" id="div_independiente" class="row g-3">
+                                            <div style="{{$display_independiente}}" id="div_independiente" class="row g-3">
 
                                                 <div class="col-md-6">
                                                     <label class="form-label">Descripción</label>
@@ -185,7 +206,7 @@
                                             </div>
 
                                             <!-- CAMPOS CUANDO ES  EMPLEADO -->
-                                            <div style="display:none" id="div_empleado" class="row g-3">
+                                            <div style="{{$display_empleado}}" id="div_empleado" class="row g-3">
 
                                                 <div class="col-md-8">
                                                     <label class="form-label">Empresa</label>
@@ -194,7 +215,7 @@
                                                 </div>
 
                                             </div>
-                                            <div style="display:none" id="div_empleado_3" class="row g-3">
+                                            <div style="{{$display_empleado}}" id="div_empleado_3" class="row g-3">
 
                                                 <div class="col-md-4">
                                                     <label class="form-label">Cargo</label>
@@ -208,7 +229,7 @@
                                                 </div>
 
                                             </div>
-                                            <div style="display:none" id="div_empleado_2" class="row g-3">
+                                            <div style="{{$display_empleado}}" id="div_empleado_2" class="row g-3">
 
                                                 <div class="col-md-4">
                                                     <label class="form-label">Tipo de contrato</label>
@@ -229,7 +250,7 @@
 
                                             </div>
                                             <!-- CAMPOS CUANDO ES  PENSIONADO -->
-                                            <div style="display:none" id="div_pensionado" class="row g-3">
+                                            <div style="{{$display_pensionado}}" id="div_pensionado" class="row g-3">
 
                                                 <div class="col-md-4">
                                                     <label class="form-label">Fondo de pensión</label>
@@ -238,21 +259,33 @@
                                                 </div>
                                             </div>
                                             <!-- CAMPOS CUANDO TIENE OTRA ACTIVIDAD -->
-                                            <div style="display:none" id="div_otros" class="row g-3">
+                                            <div style="{{$display_otro}}" id="div_otros" class="row g-3">
 
                                                 <div class="col-md-4">
-
                                                     <label class="form-label">Especifique</label>
                                                     <input class="form-control" id="otros_actividad" value="{{$customer['especification_other']}}" type="text">
                                                     <span class="msg_error_form" id="error_otros_actividad"></span>
                                                 </div>
                                             </div>
-
                                         </div>
-
                                         <br>
-                                        <h5>Cuenta bancaria para desembolso</h5>
+                                        <?php 
+                                        $display_cuenta_personal='display:none';
+                                        $display_cuenta_tercero='display:none';
+                                      
+                                        switch ($customer['id_bank_account']) {
+                                            case 1:
+                                                $display_cuenta_personal='display:flex';
+                                                break;
+                                            case 2:
+                                                $display_cuenta_tercero='display:flex';
+                                                break;
+                                           
+                                        }
 
+                                        ?>
+
+                                        <h5>Cuenta bancaria para desembolso</h5>
                                         <div class="row g-3">
                                             <div class="col-md-3">
                                                 <label class="form-label">Cuenta bancaria</label>
@@ -267,8 +300,8 @@
                                             </div>
                                         </div>
                                         <br>
-
-                                        <div style="display:none" id="div_cuenta_personal" class="row g-3">
+                                      
+                                        <div style="{{$display_cuenta_personal}}" id="div_cuenta_personal" class="row g-3">
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Número de cuenta</label>
@@ -289,7 +322,7 @@
 
                                         </div>
 
-                                        <div style="display:none" id="div_cuenta_personal_2" class="row g-3">
+                                        <div style="{{$display_cuenta_personal}}" id="div_cuenta_personal_2" class="row g-3">
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Banco</label>
@@ -310,7 +343,7 @@
 
                                         </div>
 
-                                        <div style="display:none" id="div_cuenta_tercero" class="row g-3">
+                                        <div style="{{$display_cuenta_tercero}}" id="div_cuenta_tercero" class="row g-3">
 
                                             <div class="col-md-3">
                                                 <label class="form-label">Cédula</label>
@@ -333,7 +366,7 @@
 
                                         </div>
 
-                                        <div style="display:none" id="div_cuenta_tercero_2" class="row g-3">
+                                        <div style="{{$display_cuenta_personal}}" id="div_cuenta_tercero_2" class="row g-3">
 
                                             <div class="col-md-3">
                                                 <label class="form-label">Certificado bancario</label>
