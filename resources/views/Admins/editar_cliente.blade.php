@@ -389,7 +389,7 @@
 
                                         <br><br>
                                         <div class="mb-4">
-                                            <button class="btn btn-primary" id="btn_actualizar_cliente" type="button" onclick="actualizarCliente()">Actualizar Cliente</button>
+                                            <button class="btn btn-primary" id="btn_actualizar_cliente" type="button" onclick="actualizarCliente({{$customer['id']}})">Actualizar Cliente</button>
                                         </div>
                                         <br>
                                 </div>
