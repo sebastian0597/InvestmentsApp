@@ -107,7 +107,8 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Archivo documento identidad</label>
-                                                <input class="form-control" id="archivo_documento" value="{{$customer['file_document']}}"  accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                <input class="form-control" id="archivo_documento" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                <input type="hidden" id="archivo_documento_txt" value="{{$customer['file_document']}}" >
                                                 <span class="msg_error_form" id="error_archivo_documento"></span>
                                             </div>
 
@@ -200,7 +201,8 @@
 
                                                 <div class="col-md-4">
                                                     <label class="form-label">RUT</label>
-                                                    <input class="form-control" id="archivo_rut"  value="{{$customer['file_rut']}}" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                    <input class="form-control" id="archivo_rut" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                    <input type="hidden" id="file_rut_txt" value="{{$customer['file_rut']}}" >
                                                 </div>
 
                                             </div>
@@ -244,7 +246,8 @@
 
                                                 <div class="col-md-4">
                                                     <label class="form-label">Certificado laboral</label>
-                                                    <input class="form-control" id="certificado_laboral" value="{{$customer['work_certificate']}}"  accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                    <input class="form-control" id="certificado_laboral"  accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                    <input type="hidden" id="certificado_laboral_txt" value="{{$customer['work_certificate']}}" >
                                                     <span class="msg_error_form" id="error_certificado_laboral"></span>
                                                 </div>
 
@@ -337,7 +340,8 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Certificado de cuenta</label>
-                                                <input class="form-control" id="certificado_cuenta" value="{{$customer['account_certificate']}}" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                <input class="form-control" id="certificado_cuenta" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                <input type="hidden" id="certificado_cuenta_txt" value="{{$customer['account_certificate']}}" >
                                                 <span class="msg_error_form" id="error_certificado_cuenta"></span>
                                             </div>
 
@@ -366,23 +370,26 @@
 
                                         </div>
 
-                                        <div style="{{$display_cuenta_personal}}" id="div_cuenta_tercero_2" class="row g-3">
+                                        <div style="{{$display_cuenta_tercero}}" id="div_cuenta_tercero_2" class="row g-3">
 
                                             <div class="col-md-3">
                                                 <label class="form-label">Certificado bancario</label>
-                                                <input class="form-control" id="certificado_bancario_tercero" value="{{$customer['account_certificate']}}" accept=".pdf, .png, .jpg, .jpeg"
+                                                <input class="form-control" id="certificado_bancario_tercero" accept=".pdf, .png, .jpg, .jpeg"
                                                     type="file">
+                                                <input type="hidden" id="certificado_bancario_tercero_txt" value="{{$customer['account_certificate']}}" >    
                                                 <span class="msg_error_form" id="error_certificado_bancario_tercero"></span>
                                             </div>
                                             <div class="col-md-3">
                                                 <label class="form-label">Carta de autorización</label>
-                                                <input class="form-control" id="carta_tercero" value="{{$customer['letter_authorization_third']}}" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                <input class="form-control" id="carta_tercero" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                <input type="hidden" id="carta_tercero_txt" value="{{$customer['letter_authorization_third']}}">    
                                                 <span class="msg_error_form" id="error_carta_tercero"></span>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <label class="form-label">RUT</label>
-                                                <input class="form-control" id="rut_tercero" value="{{$customer['rut_third']}}" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                <input class="form-control" id="rut_tercero" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                <input type="hidden" id="rut_tercero_txt" value="{{$customer['rut_third']}}"> 
                                                 <span class="msg_error_form" id="error_rut_tercero"></span>
                                             </div>
                                         </div>

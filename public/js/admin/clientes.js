@@ -571,7 +571,7 @@ const actualizarCliente = (id_cliente) =>{
 const validarFormularioActualizarCliente = () =>{
 
     let validador = true
-    
+
     if ($('#nombres').val().trim() == '') {
         agregarError('nombres')
         validador = false
@@ -593,7 +593,8 @@ const validarFormularioActualizarCliente = () =>{
         quitarError('telefono')
     }
 
-    if ($('#archivo_documento').val().trim() == '') {
+    if ($('#archivo_documento').val().trim() == '' 
+        && $('#archivo_documento_txt').val().trim() == '') {
         agregarError('archivo_documento')
         validador = false
     } else {
@@ -663,6 +664,19 @@ const validarFormularioActualizarCliente = () =>{
     } else {
         quitarError('descripcion_independiente')
     }
+
+    if (
+        $('#archivo_rut').val().trim() == '' &&
+        $('#archivo_rut').is(':visible') &&
+        $('#file_rut_txt').val().trim() == ''
+    ) {
+        agregarError('descripcion_independiente')
+        validador = false
+    } else {
+        quitarError('descripcion_independiente')
+    }
+
+
     if ($('#empresa').val().trim() == '' && $('#empresa').is(':visible')) {
         agregarError('empresa')
         validador = false
@@ -694,7 +708,8 @@ const validarFormularioActualizarCliente = () =>{
 
     if (
         $('#certificado_laboral').val() == '' &&
-        $('#certificado_laboral').is(':visible')
+        $('#certificado_laboral').is(':visible') && 
+        $('#certificado_laboral_txt').val().trim() == ''
     ) {
         agregarError('certificado_laboral')
         validador = false
@@ -762,7 +777,8 @@ const validarFormularioActualizarCliente = () =>{
 
     if (
         $('#certificado_cuenta').val().trim() == '' &&
-        $('#certificado_cuenta').is(':visible')
+        $('#certificado_cuenta').is(':visible') &&
+        $('#certificado_cuenta_txt').val().trim() == ''
     ) {
         agregarError('certificado_cuenta')
         validador = false
@@ -804,7 +820,8 @@ const validarFormularioActualizarCliente = () =>{
 
     if (
         $('#certificado_bancario_tercero').val().trim() == '' &&
-        $('#certificado_bancario_tercero').is(':visible')
+        $('#certificado_bancario_tercero').is(':visible') &&
+        $('#certificado_bancario_tercero_txt').val().trim() == ''
     ) {
         agregarError('certificado_bancario_tercero')
         validador = false
@@ -812,9 +829,11 @@ const validarFormularioActualizarCliente = () =>{
         quitarError('certificado_bancario_tercero')
     }
 
+
     if (
         $('#carta_tercero').val().trim() == '' &&
-        $('#carta_tercero').is(':visible')
+        $('#carta_tercero').is(':visible') &&
+        $('#carta_tercero_txt').val().trim() == ''
     ) {
         agregarError('carta_tercero')
         validador = false
@@ -822,6 +841,16 @@ const validarFormularioActualizarCliente = () =>{
         quitarError('carta_tercero')
     }
 
+    if (
+        $('#rut_tercero').val().trim() == '' &&
+        $('#rut_tercero').is(':visible') &&
+        $('#rut_tercero_txt').val().trim() == ''
+    ) {
+        agregarError('rut_tercero')
+        validador = false
+    } else {
+        quitarError('rut_tercero')
+    }
 
     return validador
 }
