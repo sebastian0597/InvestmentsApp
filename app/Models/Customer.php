@@ -86,7 +86,7 @@ class Customer extends Model
 
     public function bank(){
 
-        return $this->hasOne(Bank::class, 'id','id_bank_account',);
+        return $this->hasOne(BankAccount::class, 'id','id_bank_account',);
     }
 
     public function customerType(){

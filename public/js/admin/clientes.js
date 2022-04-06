@@ -171,7 +171,7 @@ const crearCliente = () => {
 
         let nombre_banco = ''
         if ($('#nombre_banco').is(':visible')) {
-            nombre_banco = $('#nombre_banco').val().trim()
+            nombre_banco = $('#nombre_banco').val()
         }
 
         let certificado_cuenta = ''

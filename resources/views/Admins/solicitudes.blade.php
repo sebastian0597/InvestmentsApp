@@ -81,7 +81,7 @@
                                             <div id="card_body" class="card-body pt-0">
                                                 <?php $aux=0; ?>
                                                 @foreach ($request as $item)
-                                                    <div class="media">
+                                                    <div class="media card-box">
                                                         <div class="media-body">
                                                             <p>{{ $item['date'] }} <span>{{ $item['hour'] }}</span><span
                                                                     class="badge badge-secondary">{{ $item['status'] }}</span>
@@ -130,6 +130,7 @@
                                                                             </div>
                                         
                                                                             <div class="mb-3 col-md-12 my-0">
+                                                                                <h6>Respuesta</h6>
                                                                                 <textarea class="form-control" id="respuesta_solicitud_<?= $aux ?>" autocomplete="off"></textarea>
                                                                             </div>
                                                                             </div>

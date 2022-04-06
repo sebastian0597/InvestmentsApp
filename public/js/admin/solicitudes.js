@@ -66,16 +66,27 @@ const continuarBuscarSolicitudesFecha = (response) => {
         requests.forEach(function (request) {
             btn_responder = ``
             class_status = ``
+            answer = ``
+            btn_enviar =``
+
             if(request.id_status == 1){
                 btn_responder = `<button class='btn btn-primary btn-block btn-mail w-100' type='button' data-bs-toggle='modal' data-bs-target='.modalRquests_${aux}'>Responder</button>`
                 class_status = `badge-secondary`
-            }else if(request.id_status == 2){
+                answer = `<textarea  class='form-control' id='respuesta_solicitud_${aux}' autocomplete='off'></textarea>`
+                btn_enviar = `<button class='btn btn-secondary' id='btn_responder' onclick='responderSolicitud(${request.id}, ${aux})' type='button'>Enviar</button>`
+               
+
+            }else if(request.id_status != 1){
                 class_status = `badge-primary`
+                btn_responder = `<button class='btn btn-primary btn-block btn-mail w-100' type='button' data-bs-toggle='modal' data-bs-target='.modalRquests_${aux}'>Ver</button>`
+                answer = `<label>${request.answer}</label>`
+               
             }
-           
+            console.log(request.answer)
+ 
             html +=
             ` 
-                <div class='media'>
+                <div class='media card-box'>
                     <div class='media-body'>
                         <p>${request.date} <span>${request.hour}</span><span
                             class='badge ${class_status}'>${request.status}</span>
@@ -93,10 +104,8 @@ const continuarBuscarSolicitudesFecha = (response) => {
                                 <div class='modal-dialog modal-lg' role='document'>
                                 <div class='modal-content'>
                                     <div class='modal-header'>
-                                    <!-- titulo de solicitud para responder-->
-                                    <h5 class='modal-title' id='exampleModalLabel'>${request.request_type}</h5>
-                                    <!-- boton de cerrar-->
-                                    <button class='btn-close' type='button' data-bs-dismiss='modal' aria-label='Close'> </button>
+                                        <h5 class='modal-title' id='exampleModalLabel'>${request.request_type}</h5>
+                                        <button class='btn-close' type='button' data-bs-dismiss='modal' aria-label='Close'> </button>
                                     </div>
 
                                     <div class='modal-body'>
@@ -117,19 +126,18 @@ const continuarBuscarSolicitudesFecha = (response) => {
                                             <div  class='mb-3 mt-0 col-md-12'>
                                                 
                                                 <h5>Asunto de la solicitud</h5>
-                                
-                                                <span>${request.description}
-                                                </span>
+                                                <span>${request.description}</span>
                             
                                             </div>
 
                                             <div class='mb-3 col-md-12 my-0'>
-                                                <textarea class='form-control' id='respuesta_solicitud_${aux}' autocomplete='off'></textarea>
+                                                <h6>Respuesta</h6>
+                                                `+answer+`  
                                             </div>
                                         </div>
-                                        <input id='index_var' type='hidden' value='6'>
-                                        <button class='btn btn-secondary' id='btn_responder' onclick='responderSolicitud(${request.id}, ${aux})' type='button'>Enviar</button>
+                                        `+ btn_enviar +`
                                         <button class='btn btn-primary' type='button' data-bs-dismiss='modal'>Cancel</button>
+
                                     </form>
                                     </div>
                                 </div>

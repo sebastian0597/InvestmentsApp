@@ -117,7 +117,12 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">País</label>
-                                                <input class="form-control" id="pais" type="text">
+                                                <select class="form-select" id="pais">
+                                                    <option value="">Seleccione---</option>
+                                                    @foreach ($countries as $item)
+                                                        <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                                    @endforeach
+                                                </select>
                                                 <span class="msg_error_form" id="error_pais"></span>
                                             </div>
 
@@ -288,10 +293,10 @@
                                             <div class="col-md-4">
                                                 <label class="form-label">Banco</label>
                                                 
-                                                <select class="form-select" onchange="convertirMoneda();" id="banco">
+                                                <select class="form-select" id="nombre_banco">
                                                     <option value="">Seleccione---</option>
                                                     @foreach ($banks as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        <option value="{{ $item->name }}">{{ $item->name }}</option>
                                                     @endforeach
                                                 </select>
                                                

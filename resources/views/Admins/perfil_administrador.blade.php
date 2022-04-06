@@ -67,42 +67,46 @@
                                     </div> 
                                 </div>
                                 <div class="card-body">
-                                    <form class="needs-validation" id="form-admin">
+                                    <div class="col-sm-12 shadow-box">
+                                        <form class="needs-validation" id="form-admin">
                                       
-                                        <h5>Datos</h5>
-
-                                        <div class="row g-3">
-                                            <div class="col-md-8">
-                                                <label class="form-label" >Nombre completo</label>
-                                                <input class="form-control" id="nombres" type="text" value="">
+                                            <h5>Datos</h5>
+    
+                                            <div class="row g-3">
+                                                <div class="col-md-10">
+                                                    <label class="form-label" >Nombre completo</label>
+                                                    <input class="form-control" id="nombres" type="text" value="">
+                                                </div>
+    
                                             </div>
-
-                                        </div>
-                                        <div class="row g-3">
-                                            <div class="col-md-4">
-                                                <label class="form-label">Correo</label>
-                                                <input onblur="validarSintaxisCorreo(this)" class="form-control" id="correo" type="email" value="">
-                                                <span class="msg_error_form" id="error_correo"></span>
+                                            <div class="row g-3">
+                                                <div class="col-md-5">
+                                                    <label class="form-label">Correo</label>
+                                                    <input onblur="validarSintaxisCorreo(this)" class="form-control" id="correo" type="email" value="">
+                                                    <span class="msg_error_form" id="error_correo"></span>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <label class="form-label">Rol</label>
+                                                    <select class="form-select" id="rol">
+                                                        <option value="">Seleccione---</option>
+                                                      @foreach ($roles as $item)
+                                                        <option value="{{$item['id']}}">{{$item['rol']}}</option>
+                                                      @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <label class="form-label">Rol</label>
-                                                <select class="form-select" id="rol">
-                                                    <option value="">Seleccione---</option>
-                                                  @foreach ($roles as $item)
-                                                    <option value="{{$item['id']}}">{{$item['rol']}}</option>
-                                                  @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
+    
+                                            <br>
+                                            <button id="btn_crear_admin" onclick="crearAdmin()" class="btn btn-primary" type="button">Crear administrador</button>
+                                            <br><br><br>
+                                        </form>
 
-                                        <br>
-                                        <button id="btn_crear_admin" onclick="crearAdmin()" class="btn btn-primary" type="button">Crear administrador</button>
-                                        <br><br><br>
-                                    </form>
-
-                                    <div id="content-users" class="col-sm-8">
+                                        <div id="content-users">
                             
+                                        </div>
                                     </div>
+                                    
+                                    
                                 </div>
                             </div>
 

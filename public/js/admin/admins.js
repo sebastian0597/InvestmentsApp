@@ -162,9 +162,9 @@ const continuarConsultarUsuariosAdmin = (response) => {
                     <td>
                         <ul class='nav main-menu' role='tablist'>
                             <li class='nav-item'>
-                                <button class='btn btn-primary btn-block btn-mail w-100' type='button' data-bs-toggle='modal' data-bs-target='.modalRquests_${aux}'>Editar</button>
+                                <button class='btn btn-primary btn-block btn-mail w-100' type='button' data-bs-toggle='modal' data-bs-target='.modalRequests_${aux}'>Editar</button>
 
-                                <div class='modal fade modal-bookmark modalRquests_${aux}' id='exampleModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                                <div class='modal fade modal-bookmark modalRequests_${aux}' id='exampleModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                                         <div class='modal-dialog modal-lg' role='document'>
                                             <div class='modal-content'>
                                                 <div class='modal-header'>
