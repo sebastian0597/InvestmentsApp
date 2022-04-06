@@ -196,9 +196,11 @@ class CustomerController extends Controller
     }
 
     
-    public function edit(Customer $customer)
+    public function edit($customer)
     {
-        //
+        $customer = new CustomerResource(Customer::find($id_customer));
+        return Util::setJSONResponseUniqueData($customer);
+    
     }
 
    

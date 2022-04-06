@@ -75,7 +75,7 @@
                                                 <label class="form-label">Tipo de documento</label>
                                                 <select class="form-select" id="tipo_documento" >
                                                     @foreach ($documents_types as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        <option value="{{ $item->id }}" {{ $item->id == $customer['id_document_type'] ? 'selected' : '' }}>{{ $item->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 <span class="msg_error_form" id="error_tipo_documento"></span>
@@ -120,7 +120,8 @@
                                                 <select class="form-select" id="pais">
                                                     <option value="">Seleccione---</option>
                                                     @foreach ($countries as $item)
-                                                        <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                                        <option value="{{ $item->name }}" {{ $item->name == $customer['country'] ? 'selected' : '' }}>{{ $item->name }}</option>
+                                                        
                                                     @endforeach
                                                 </select>
                                                 <span class="msg_error_form" id="error_pais"></span>
@@ -160,7 +161,7 @@
                                                     id="actividad_economica" >
                                                     <option value="">Seleccione---</option>
                                                     @foreach ($economics_activities as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        <option value="{{ $item->id }}" {{ $item->id == $customer['id_economic_activity'] ? 'selected' : '' }}>{{ $item->name }}</option>    
                                                     @endforeach
 
                                                 </select>
@@ -211,10 +212,10 @@
 
                                                 <div class="col-md-4">
                                                     <label class="form-label">Tipo de contrato</label>
-                                                    <select class="form-select" id="tipo_contrato">
-                                                        <option value="Indefinido">Indefinido</option>
-                                                        <option value="Termino Fijo">Término Fijo</option>
-                                                        <option value="Prestacion de servicios">Prestación de servicios
+                                                    <select class="form-select" id="tipo_contrato"> 
+                                                        <option value="Indefinido" {{$customer['type_contract'] == "Indefinido" ? 'selected' : '' }}>Indefinido</option>
+                                                        <option value="Termino Fijo" {{$customer['type_contract'] == "Termino Fijo" ? 'selected' : '' }}>Término Fijo</option>
+                                                        <option value="Prestacion de servicios"  {{$customer['type_contract'] == "Prestacion de servicios" ? 'selected' : '' }}>Prestación de servicios
                                                         </option>
                                                     </select>
                                                     <span class="msg_error_form" id="error_tipo_contrato"></span>
@@ -231,7 +232,6 @@
                                             <div style="display:none" id="div_pensionado" class="row g-3">
 
                                                 <div class="col-md-4">
-
                                                     <label class="form-label">Fondo de pensión</label>
                                                     <input class="form-control" id="fondo_pension" value="{{$customer['pension_fund']}}" type="text">
                                                     <span class="msg_error_form" id="error_fondo_pension"></span>
@@ -260,7 +260,7 @@
                                                     id="cuenta_bancaria" >
                                                     <option value="">Seleccione---</option>
                                                     @foreach ($banks_accounts as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        <option value="{{ $item->id }}" {{ $item->id == $customer['id_bank_account'] ? 'selected' : '' }}>{{ $item->name }}</option>    
                                                     @endforeach
                                                 </select>
                                                 <span class="msg_error_form" id="error_cuenta_bancaria"></span>
@@ -280,8 +280,9 @@
                                             <div class="col-md-4">
                                                 <label class="form-label">Tipo de cuenta</label>
                                                 <select class="form-select" id="tipo_cuenta">
-                                                    <option value="Cuenta corriente">Cuenta corriente</option>
-                                                    <option value="Cuenta de ahorros">Cuenta de ahorros</option>
+                                                    <option value="">Seleccione---</option>
+                                                    <option value="Cuenta corriente" {{$customer['account_type'] == "Cuenta corriente" ? 'selected' : '' }}>Cuenta corriente</option>
+                                                    <option value="Cuenta de ahorros" {{$customer['account_type'] == "Cuenta de ahorros" ? 'selected' : '' }}>Cuenta de ahorros</option>
                                                 </select>
                                                 <span class="msg_error_form" id="error_tipo_cuenta"></span>
                                             </div>
@@ -295,7 +296,7 @@
                                                 <select class="form-select" id="nombre_banco">
                                                     <option value="">Seleccione---</option>
                                                     @foreach ($banks as $item)
-                                                        <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                                        <option value="{{ $item->name }}" {{$item->name == $customer['bank_name'] ? 'selected' : '' }}>{{ $item->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 <span class="msg_error_form" id="error_nombre_banco"></span>
