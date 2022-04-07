@@ -100,7 +100,7 @@ function formatNumber(num) {
 }
 
 
-const setResponseMessage = (response) =>{
+const setResponseMessage = (response, url_redireccionamiento='') =>{
 
     switch (response.status) {
         case 200:
@@ -114,6 +114,9 @@ const setResponseMessage = (response) =>{
                 allowEscapeKey: false,
                 allowOutsideClick: false,
             })
+            if(url_redireccionamiento!=''){
+                location.href = document.location.origin+url_redireccionamiento;
+            }
           
             break
 
@@ -135,6 +138,14 @@ const setResponseMessage = (response) =>{
 
             break
         case 404:
+            Swal.fire({
+                icon: 'warning',
+                confirmButtonColor: '#6610f2',
+                confirmButtonText: 'Aceptar',
+                text: 'Not found response',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+            })
             break
 
         case 500:

@@ -55,7 +55,7 @@
                                     <form class="needs-validation" novalidate="" accept-charset="UTF-8" enctype="multipart/form-data">
 
                                         <h5>Datos de inicio</h5>
-
+                                        <input type="hidden" id="id_usuario_cliente" value="{{$customer['id_user']}}">
                                         <div class="row g-3">
                                             <div class="col-md-4">
                                                 <label class="form-label">Nombres</label>
@@ -195,7 +195,7 @@
 
                                                 <div class="col-md-6">
                                                     <label class="form-label">Descripción</label>
-                                                    <textarea class="form-control" id="descripcion_independiente" value="{{$customer['description_ind']}}"  rows="3"></textarea>
+                                                    <textarea class="form-control" id="descripcion_independiente" placeholder="{{$customer['description_ind']}}" value="{{$customer['description_ind']}}"  rows="3"></textarea>
                                                     <span class="msg_error_form" id="error_descripcion_independiente"></span>
                                                 </div>
 
@@ -393,6 +393,21 @@
                                                 <span class="msg_error_form" id="error_rut_tercero"></span>
                                             </div>
                                         </div>
+                                        <div class="row g-3">
+
+                                            <div class="col-md-4">
+                                                <label class="form-label">Estado</label>
+                                                
+                                                <select class="form-select" id="estado_cliente">
+                                                    <option value="0" {{$customer['status'] == 'Inactivo' ? 'selected' : '' }}>Inactivo</option>
+                                                    <option value="1" {{$customer['status'] == 'Activo' ? 'selected' : '' }}>Activo</option>
+                                                </select>
+                                               
+                                                <span class="msg_error_form" id="error_nombre_banco"></span>
+                                            </div>
+
+                                        </div>
+                     
 
                                         <br><br>
                                         <div class="mb-4">

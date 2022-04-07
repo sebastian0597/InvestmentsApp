@@ -86,14 +86,16 @@
                                                        
                                                         <tr>
                                                             <td>
-                                                                <div class="media"><img
-                                                                        class="rounded-circle img-30 me-3"
-                                                                        src="{{ asset('images/profile.jpg') }}" alt="" />
-                                                                    <div class="media-body align-self-center">
-                                                                        <div><a href="{{url('editar_cliente/'.$item['id'])}}">{{ $item['name'] }}
-                                                                            {{ $item['last_name'] }}</a></div>
+                                                                <a href="{{url('editar_cliente/'.$item['id'])}}">
+                                                                    <div class="media"><img
+                                                                            class="rounded-circle img-30 me-3"
+                                                                            src="{{ asset('images/profile.jpg') }}" alt="" />
+                                                                        <div class="media-body align-self-center">
+                                                                            <div>{{ $item['name'] }}
+                                                                                {{ $item['last_name'] }}</div>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
+                                                                </a>
                                                             </td>
                                                             <td>{{ $item['customer_type'] }}</td>
                                                             <td>{{ $item['phone'] }}</td>

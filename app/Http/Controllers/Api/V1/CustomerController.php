@@ -176,6 +176,7 @@ class CustomerController extends Controller
                 $dataCustomer["title"] = "Te damos la bienvenida a VIP World Trading";
                 $dataCustomer["code"] = $personal_code; 
                 $dataCustomer["password"] = $password;
+                $dataCustomer["name"] = $fields["name"]." ".$fields["last_name"];
                 
                 //Se envían las credenciales del cliente al correo
                 Util::sendCredentialsEmail($dataCustomer);
@@ -206,59 +207,132 @@ class CustomerController extends Controller
    
     public function update(Request $request, $customer)
     {   
+        $customer_response = DB::transaction(function () use($request, $customer){
+                $fields = $request->validate([
+                    'name' => 'required|string',
+                    'last_name' => 'required|string',
+                    'phone' => 'required|numeric',
+                    'address' => 'required|string',
+                    'city' => 'required|string',
+                    'department' => 'required|string',
+                    'country' => 'required|string',
+                    'document_type' => 'required|numeric',
+                    'document_number' => 'required|numeric',
+                    'file_document' => 'required',
+                    'email' => 'required|email',
+                    /*'id_rol' => 'required|numeric',*/
+                    /*'updated_by' => 'required|numeric',*/
+                ]);
 
-        $fields = $request->validate([
-            'name' => 'required|string',
-            'last_name' => 'required|string',
-            'phone' => 'required|numeric',
-            'address' => 'required|string',
-            'city' => 'required|string',
-            'department' => 'required|string',
-            'country' => 'required|string',
-            'document_number' => 'required|numeric|unique:customers',
-            'file_document' => 'required',
-            'email' => 'required|email|unique:users,email',
-            /*'id_rol' => 'required|numeric',*/
-            /*'updated_by' => 'required|numeric',*/
-        ]);
 
-        $customer = Customer::find($customer);
-        $customer->name ='';
-        $customer->last_name=''; 
-        $customer->id_document_type='';
-        $customer->document_number='';
-        $customer->phone='';
-        $customer->address='';
-        $customer->city='';
-        $customer->department='';
-        $customer->country='';
-        $customer->file_document='';
-        $customer->description_ind='';
-        $customer->file_rut='';
-        $customer->business='';
-        $customer->position_business='';
-        $customer->antique_bussiness='';
-        $customer->type_contract='';
-        $customer->work_certificate='';
-        $customer->pension_fund='';
-        $customer->especification_other='';
-        $customer->status='';
-        $customer->account_number='';
-        $customer->account_type='';
-        $customer->bank_name='';
-        $customer->account_certificate='';
-        $customer->document_third='';
-        $customer->name_third='';
-        $customer->letter_authorization_third='';
-        $customer->kinship_third='';
-        $customer->rut_third='';
-        $customer->id_customer_type='';
-        $customer->photo='';
-        /*$customer->registered_by='';*/
-        $customer->id_economic_activity='';
-        $customer->id_bank_account='';
-        $customer->update();
-        
+                $file_document=$fields['file_document'];
+                if($request->hasFile("file_document")){
+                    $file=$request->file("file_document");
+                    
+                    $file_document = "documento_".$fields["document_number"].".".$file->guessExtension();
+                    $ruta = public_path("archivos/documentos_identidad/".$file_document);
+                    copy($file, $ruta);
+                }
+                
+                $work_certificate=$request->work_certificate;
+                if($request->hasFile("work_certificate")){
+                    $file=$request->file("work_certificate");
+                    
+                    $work_certificate = "certificado_laboral_".$fields["document_number"].".".$file->guessExtension();
+                    $ruta = public_path("archivos/certificados_laborales/".$work_certificate);
+                    copy($file, $ruta);
+                }
+
+                $account_certificate=$request->account_certificate;
+                if($request->hasFile("account_certificate")){
+                    $file= $request->file("account_certificate");
+                    
+                    $account_certificate = "certificado_cuenta_".$fields["document_number"].".".$file->guessExtension();
+                    $ruta = public_path("archivos/certificados_cuenta/".$account_certificate);
+                    copy($file, $ruta);
+                }
+                $account_certificate_third=$request->account_certificate_third;
+                if($request->hasFile("account_certificate_third")){
+                    $file= $request->file("account_certificate_third");
+                    
+                    $account_certificate = "certificado_cuenta_".$fields["document_number"].".".$file->guessExtension();
+                    $ruta = public_path("archivos/certificados_cuenta/".$account_certificate);
+                    copy($file, $ruta);
+                }
+                
+                $account_certificate = is_null($account_certificate) || empty($account_certificate) ? $account_certificate_third : $account_certificate;
+
+                $letter_authorization_third=$request->letter_authorization_third;
+                if($request->hasFile("letter_authorization_third")){
+                    $file=$request->file("letter_authorization_third");
+                    
+                    $letter_authorization_third = "carta_autorizacion_".$fields["document_number"].".".$file->guessExtension();
+                    $ruta = public_path("archivos/certificados_cuenta/".$letter_authorization_third);
+                    copy($file, $ruta);
+                }
+
+                $file_rut=$request->file_rut;
+                if($request->hasFile("file_rut")){
+                    $file=$request->file("file_rut");
+                    
+                    $file_rut = "rut_".$fields["document_number"].".".$file->guessExtension();
+                    $ruta = public_path("archivos/rut/".$file_rut);
+                    copy($file, $ruta);
+                }
+
+                $rut_third=$request->rut_third;
+                if($request->hasFile("rut_third")){
+                    $file=$request->file("rut_third");
+                    
+                    $rut_third = "rut_".$fields["document_number"].".".$file->guessExtension();
+                    $ruta = public_path("archivos/rut_terceros/".$rut_third);
+                    copy($file, $ruta);
+                }
+
+                $user = User::find($request->id_user);
+                $user->email=$request->email;
+                $user->status=$request->status;
+                $user->save();
+
+                $customer = Customer::find($customer);
+                $customer->name = $fields['name'];
+                $customer->last_name=  $fields['last_name'];
+                $customer->id_document_type= $fields['document_type'];
+                $customer->document_number=$fields['document_number'];
+                $customer->phone=$fields['phone'];
+                $customer->address=$fields['address'];
+                $customer->city=$fields['city'];
+                $customer->department=$fields['department'];
+                $customer->country=$fields['country'];
+                $customer->file_document=$file_document;
+                $customer->description_ind=$request->description_ind;
+                $customer->file_rut=$file_rut;
+                $customer->business=$request->business;
+                $customer->position_business=$request->position_business;
+                $customer->antique_bussiness=$request->antique_bussiness;
+                $customer->type_contract=$request->type_contract;
+                $customer->work_certificate=$request->work_certificate;
+                $customer->pension_fund=$request->pension_fund;
+                $customer->especification_other=$request->especification_other;
+                $customer->status=$request->status;
+                $customer->account_number=$request->account_number;
+                $customer->account_type=$request->account_type;
+                $customer->bank_name=$request->bank_name;
+                $customer->account_certificate=$account_certificate;
+                $customer->document_third=$request->document_third;
+                $customer->name_third=$request->name_third;
+                $customer->letter_authorization_third=$letter_authorization_third;
+                $customer->kinship_third=$request->kinship_third;
+                $customer->rut_third=$rut_third;
+                $customer->id_economic_activity=$request->economic_activity;
+                $customer->id_bank_account=$request->bank_account;
+                $customer->update();
+
+                return $customer;
+                
+            }, 3); 
+            
+            return Util::setResponseJson(201, 'Se ha actualizado el cliente exitosamente.');
 
     }
 

@@ -354,6 +354,55 @@
                                                 <span class="msg_error_form" id="error_rut_tercero"></span>
                                             </div>
                                         </div>
+
+                                        <h4>Inversión</h4>
+                                        <div class="row g-3">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Tipo de moneda</label>
+                                                <select class="form-select" onchange="convertirMoneda();" id="tipo_moneda">
+                                                    <option value="">Seleccione---</option>
+                                                    @foreach ($currencies as $item)
+                                                        <option value="{{ $item->code }}">{{ $item->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <span class="msg_error_form" id="error_tipo_moneda"></span>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <label class="form-label">Método de pago</label>
+                                                <select class="form-select" id="metodo_pago" >
+                                                    @foreach ($payment_methods as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <span class="msg_error_form" id="error_metodo_pago"></span>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                               
+                                                <label>Monto de inversión</label>
+                                                <input id="base_monto_inversion" onblur="validarMontoMinimo()" class="form-control" type="text">
+                                                <span class="msg_error_form" id="error_base_monto_inversion"></span>
+                                            
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <label>Inversión en pesos</label>
+                                                <input disabled id="monto_inversion" class="form-control" type="text">
+                                                <span class="msg_error_form" id="error_monto_inversion"></span>
+                                                
+                                            </div>
+                                        </div>
+
+                                        <div class="row g-3">
+                                           
+                                            <div class="col-md-3">
+                                                <label>Documento de consignación</label>
+                                                <input class="form-control" id="archivo_consignacion" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                <span class="msg_error_form" id="error_archivo_consignacion"></span>
+                                                
+                                            </div>
+                                        </div>
                      
                                         <br><br>
                                         <div class="mb-4">

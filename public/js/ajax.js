@@ -19,7 +19,7 @@ function enviarPeticion(url,method, data, funcion=""){
                 processData: false,
                 success: function (result) {
                     
-                    if (funcion != "" && result.status === 200 || result.status === 201) {
+                    if (funcion != "" || result.status === 200 || result.status === 201) {
                        
                         eval(funcion + "(" + JSON.stringify(result) + ")");
         
@@ -97,6 +97,7 @@ function enviarPeticion(url,method, data, funcion=""){
                 url: url,
                 type: method,
                 data:data,
+                
                 success: function(result){
                  
                     if (funcion != "" && result.status === 200 || result.status === 201) {
