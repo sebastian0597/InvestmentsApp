@@ -264,30 +264,33 @@ const crearCliente = () => {
 
         let url = document.location.origin + "/api/v1/customer/";
         let method = "POST";
-        let txt_numero_cuenta = numero_cuenta != '' ? `El número de cuenta es: <b>${numero_cuenta}</b> <br> ` : ''
-        let txt_banco = nombre_banco != '' ? `El banco es: <b>${nombre_banco}</b> <br>` : ''
-        
+        let txt_numero_cuenta =
+            numero_cuenta != ""
+                ? `El número de cuenta es: <b>${numero_cuenta}</b> <br> `
+                : "";
+        let txt_banco =
+            nombre_banco != ""
+                ? `El banco es: <b>${nombre_banco}</b> <br>`
+                : "";
+
         Swal.fire({
-            icon: 'warning',
-            title: 'Asegurese que los datos ingresados sean los correctos.',
+            icon: "warning",
+            title: "Asegurese que los datos ingresados sean los correctos.",
             html: `Por favor, que revise el número de cuenta, el banco seleccionado sean los correctos <br/><br/>
                     El monto a invertir es: <b>$${monto_inversion}</b><br> 
                     El correo del cliente es: <b>${correo}</b><br>
                     El numero de documento es: <b>${numero_documento}</b><br> 
                     ${txt_numero_cuenta + txt_banco}
                    `,
-                  
+
             showDenyButton: false,
             showCancelButton: true,
-            confirmButtonText: 'Aceptar',
-            
-          }).then((result) => {
-           
+            confirmButtonText: "Aceptar",
+        }).then((result) => {
             if (result.isConfirmed) {
                 enviarPeticion(url, method, form_data, "continuarCrearCliente");
             }
-          })
-        
+        });
     }
 };
 
@@ -295,7 +298,7 @@ const continuarCrearCliente = (response) => {
     $("#btn_crear_cliente").text("Crear cliente");
     $("#btn_crear_cliente").prop("disabled", false);
 
-    setResponseMessage(response);
+    setResponseMessage(response, "/crear_cliente");
     //location.reload()
 };
 
@@ -582,9 +585,7 @@ const validarFormularioCliente = () => {
 };
 
 const actualizarCliente = (id_cliente) => {
-   
     if (validarFormularioActualizarCliente()) {
-
         $("#btn_actualizar_cliente").text("Actualizando cliente...");
         $("#btn_actualizar_cliente").prop("disabled", true);
 
@@ -600,130 +601,137 @@ const actualizarCliente = (id_cliente) => {
         let ciudad = $("#ciudad").val().trim();
         let direccion = $("#direccion").val().trim();
         let correo = $("#correo").val().trim();
-        
+
         let archivo_documento =
             document.getElementById("archivo_documento").files[0] == undefined
                 ? $("#archivo_documento_txt").val()
                 : document.getElementById("archivo_documento").files[0];
 
-        let descripcion_independiente = ''
-        if ($('#descripcion_independiente').is(':visible')) {
-            descripcion_independiente = $('#descripcion_independiente').val().trim()
-        }
-        
-        let archivo_rut = ''
-        if ($('#archivo_rut').is(':visible')) {
-            archivo_rut = document.getElementById('archivo_rut').files[0] == undefined
-            ? $("#archivo_rut_txt").val()
-            : document.getElementById("archivo_rut").files[0];
-        }
-        
-        let empresa = ''
-        if ($('#empresa').is(':visible')) {
-            empresa = $('#empresa').val().trim()
+        let descripcion_independiente = "";
+        if ($("#descripcion_independiente").is(":visible")) {
+            descripcion_independiente =
+                $("#descripcion_independiente").val().trim() == ""
+                    ? $("#descripcion_independiente_txt").val().trim()
+                    : $("#descripcion_independiente").val().trim();
         }
 
-        let cargo = ''
-        if ($('#cargo').is(':visible')) {
-            cargo = $('#cargo').val().trim()
+        let archivo_rut = "";
+        if ($("#archivo_rut").is(":visible")) {
+            archivo_rut =
+                document.getElementById("archivo_rut").files[0] == undefined
+                    ? $("#archivo_rut_txt").val()
+                    : document.getElementById("archivo_rut").files[0];
         }
 
-        let antiguedad = ''
-        if ($('#antiguedad').is(':visible')) {
-            antiguedad = $('#antiguedad').val().trim()
+        let empresa = "";
+        if ($("#empresa").is(":visible")) {
+            empresa = $("#empresa").val().trim();
         }
 
-        let tipo_contrato = ''
-        if ($('#tipo_contrato').is(':visible')) {
-            tipo_contrato = $('#tipo_contrato').val().trim()
-        }
-        
-        
-        let certificado_laboral = ''
-        if ($('#certificado_laboral').is(':visible')) {
-            certificado_laboral = document.getElementById('certificado_laboral').files[0] == undefined
-            ? $("#certificado_laboral_txt").val()
-            : document.getElementById("certificado_laboral").files[0];
-               
-        }
-        
-        let fondo_pension = ''
-        if ($('#fondo_pension').is(':visible')) {
-            fondo_pension = $('#fondo_pension').val().trim()
+        let cargo = "";
+        if ($("#cargo").is(":visible")) {
+            cargo = $("#cargo").val().trim();
         }
 
-        let otros_actividad = ''
-        if ($('#otros_actividad').is(':visible')) {
-            otros_actividad = $('#otros_actividad').val().trim()
-        }
-        
-        let numero_cuenta = ''
-        if ($('#numero_cuenta').is(':visible')) {
-            numero_cuenta = $('#numero_cuenta').val().trim()
+        let antiguedad = "";
+        if ($("#antiguedad").is(":visible")) {
+            antiguedad = $("#antiguedad").val().trim();
         }
 
-        let tipo_cuenta = ''
-        if ($('#tipo_cuenta').is(':visible')) {
-            tipo_cuenta = $('#tipo_cuenta').val().trim()
+        let tipo_contrato = "";
+        if ($("#tipo_contrato").is(":visible")) {
+            tipo_contrato = $("#tipo_contrato").val().trim();
         }
 
-        let nombre_banco = ''
-        if ($('#nombre_banco').is(':visible')) {
-            nombre_banco = $('#nombre_banco').val()
+        let certificado_laboral = "";
+        if ($("#certificado_laboral").is(":visible")) {
+            certificado_laboral =
+                document.getElementById("certificado_laboral").files[0] ==
+                undefined
+                    ? $("#certificado_laboral_txt").val()
+                    : document.getElementById("certificado_laboral").files[0];
         }
 
-        
-        let certificado_cuenta = ''
-        if ($('#certificado_cuenta').is(':visible')) {
+        let fondo_pension = "";
+        if ($("#fondo_pension").is(":visible")) {
+            fondo_pension = $("#fondo_pension").val().trim();
+        }
+
+        let otros_actividad = "";
+        if ($("#otros_actividad").is(":visible")) {
+            otros_actividad = $("#otros_actividad").val().trim();
+        }
+
+        let numero_cuenta = "";
+        if ($("#numero_cuenta").is(":visible")) {
+            numero_cuenta = $("#numero_cuenta").val().trim();
+        }
+
+        let tipo_cuenta = "";
+        if ($("#tipo_cuenta").is(":visible")) {
+            tipo_cuenta = $("#tipo_cuenta").val().trim();
+        }
+
+        let nombre_banco = "";
+        if ($("#nombre_banco").is(":visible")) {
+            nombre_banco = $("#nombre_banco").val();
+        }
+
+        let certificado_cuenta = "";
+        if ($("#certificado_cuenta").is(":visible")) {
             certificado_cuenta =
-                document.getElementById('certificado_cuenta').files[0] == undefined
-                ? $("#certificado_cuenta_txt").val()
-                : document.getElementById("certificado_cuenta").files[0];
+                document.getElementById("certificado_cuenta").files[0] ==
+                undefined
+                    ? $("#certificado_cuenta_txt").val()
+                    : document.getElementById("certificado_cuenta").files[0];
         }
 
-      
-        let cedula_tercero = ''
-        if ($('#cedula_tercero').is(':visible')) {
-            cedula_tercero = $('#cedula_tercero').val().trim()
+        let cedula_tercero = "";
+        if ($("#cedula_tercero").is(":visible")) {
+            cedula_tercero = $("#cedula_tercero").val().trim();
         }
 
-        let nombre_tercero = ''
-        if ($('#nombre_tercero').is(':visible')) {
-            nombre_tercero = $('#nombre_tercero').val().trim()
+        let nombre_tercero = "";
+        if ($("#nombre_tercero").is(":visible")) {
+            nombre_tercero = $("#nombre_tercero").val().trim();
         }
 
-        let parentesco = ''
-        if ($('#parentesco').is(':visible')) {
-            parentesco = $('#parentesco').val().trim()
-        }
-        
-       
-        let certificado_bancario_tercero = ''
-        if ($('#certificado_bancario_tercero').is(':visible')) {
-            certificado_bancario_tercero = document.getElementById('certificado_bancario_tercero').files[0] == undefined
-            ? $("#certificado_bancario_tercero_txt").val()
-            : document.getElementById("certificado_bancario_tercero").files[0];
+        let parentesco = "";
+        if ($("#parentesco").is(":visible")) {
+            parentesco = $("#parentesco").val().trim();
         }
 
-        
-        let carta_tercero = ''
-        if ($('#carta_tercero').is(':visible')) {
-            carta_tercero = document.getElementById('carta_tercero').files[0] == undefined
-            ? $("#carta_tercero_txt").val()
-            : document.getElementById("carta_tercero").files[0];
+        let certificado_bancario_tercero = "";
+        if ($("#certificado_bancario_tercero").is(":visible")) {
+            certificado_bancario_tercero =
+                document.getElementById("certificado_bancario_tercero")
+                    .files[0] == undefined
+                    ? $("#certificado_bancario_tercero_txt").val()
+                    : document.getElementById("certificado_bancario_tercero")
+                          .files[0];
         }
 
-        let rut_tercero = ''
-        if ($('#rut_tercero').is(':visible')) {
-            rut_tercero = document.getElementById('rut_tercero').files[0] == undefined
-            ? $("#rut_tercero_txt").val()
-            : document.getElementById("rut_tercero").files[0];
+        let carta_tercero = "";
+        if ($("#carta_tercero").is(":visible")) {
+            carta_tercero =
+                document.getElementById("carta_tercero").files[0] == undefined
+                    ? $("#carta_tercero_txt").val()
+                    : document.getElementById("carta_tercero").files[0];
         }
-        let estado = $('#estado_cliente').val().trim()
-        let id_usuario = $('#id_usuario_cliente').val()
 
-        let url = document.location.origin + `/api/v1/customer/update/${id_cliente}` 
-        let method = 'POST'
+        let rut_tercero = "";
+        if ($("#rut_tercero").is(":visible")) {
+            rut_tercero =
+                document.getElementById("rut_tercero").files[0] == undefined
+                    ? $("#rut_tercero_txt").val()
+                    : document.getElementById("rut_tercero").files[0];
+        }
+        let estado = $("#estado_cliente").val().trim();
+        let id_usuario = $("#id_usuario_cliente").val();
+
+        let url =
+            document.location.origin + `/api/v1/customer/update/${id_cliente}`;
+        let method = "POST";
 
         let form_data = new FormData();
         form_data.append("name", nombres);
@@ -753,7 +761,10 @@ const actualizarCliente = (id_cliente) => {
         form_data.append("account_certificate", certificado_cuenta);
         form_data.append("document_third", cedula_tercero);
         form_data.append("name_third", nombre_tercero);
-        form_data.append("account_certificate_third", certificado_bancario_tercero);
+        form_data.append(
+            "account_certificate_third",
+            certificado_bancario_tercero
+        );
         form_data.append("letter_authorization_third", carta_tercero);
         form_data.append("kinship_third", parentesco);
         form_data.append("rut_third", rut_tercero);
@@ -762,16 +773,15 @@ const actualizarCliente = (id_cliente) => {
         form_data.append("bank_account", cuenta_bancaria);
         form_data.append("registered_by", 1);
 
-        enviarPeticion(url, method, form_data, 'continuarActualizarCliente')
+        enviarPeticion(url, method, form_data, "continuarActualizarCliente");
     }
 };
 
-const continuarActualizarCliente = (response) =>{
+const continuarActualizarCliente = (response) => {
     $("#btn_actualizar_cliente").text("Actualizar cliente");
     $("#btn_actualizar_cliente").prop("disabled", false);
-    setResponseMessage(response, '/clientes');
-}
-
+    setResponseMessage(response, "/clientes");
+};
 
 const validarFormularioActualizarCliente = () => {
     let validador = true;
@@ -779,14 +789,14 @@ const validarFormularioActualizarCliente = () => {
     if ($("#nombres").val().trim() == "") {
         agregarError("nombres");
         validador = false;
-        console.log(1)
+        console.log(1);
     } else {
         quitarError("nombres");
     }
     if ($("#apellidos").val().trim() == "") {
         agregarError("apellidos");
         validador = false;
-        console.log(2)
+        console.log(2);
     } else {
         quitarError("apellidos");
     }
@@ -794,7 +804,7 @@ const validarFormularioActualizarCliente = () => {
     if ($("#correo").val().trim() == "") {
         agregarError("correo");
         validador = false;
-        console.log(3)
+        console.log(3);
     } else {
         quitarError("correo");
     }
@@ -802,7 +812,7 @@ const validarFormularioActualizarCliente = () => {
     if ($("#telefono").val().trim() == "") {
         agregarError("telefono");
         validador = false;
-        console.log(4)
+        console.log(4);
     } else {
         quitarError("telefono");
     }
@@ -813,7 +823,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError("archivo_documento");
         validador = false;
-        console.log(5)
+        console.log(5);
     } else {
         quitarError("archivo_documento");
     }
@@ -821,7 +831,7 @@ const validarFormularioActualizarCliente = () => {
     if ($("#pais").val().trim() == "") {
         agregarError("pais");
         validador = false;
-        console.log(6)
+        console.log(6);
     } else {
         quitarError("pais");
     }
@@ -829,7 +839,7 @@ const validarFormularioActualizarCliente = () => {
     if ($("#departamento").val().trim() == "") {
         agregarError("departamento");
         validador = false;
-        console.log(7)
+        console.log(7);
     } else {
         quitarError("departamento");
     }
@@ -837,7 +847,7 @@ const validarFormularioActualizarCliente = () => {
     if ($("#ciudad").val().trim() == "") {
         agregarError("ciudad");
         validador = false;
-        console.log(8)
+        console.log(8);
     } else {
         quitarError("ciudad");
     }
@@ -845,7 +855,7 @@ const validarFormularioActualizarCliente = () => {
     if ($("#direccion").val().trim() == "") {
         agregarError("direccion");
         validador = false;
-        console.log(9)
+        console.log(9);
     } else {
         quitarError("direccion");
     }
@@ -853,21 +863,21 @@ const validarFormularioActualizarCliente = () => {
     if ($("#apellidos").val().trim() == "") {
         agregarError("apellidos");
         validador = false;
-        console.log(10)
+        console.log(10);
     } else {
         quitarError("apellidos");
     }
     if ($("#tipo_documento").val() == "") {
         agregarError("tipo_documento");
         validador = false;
-        console.log(11)
+        console.log(11);
     } else {
         quitarError("tipo_documento");
     }
     if ($("#numero_documento").val().trim() == "") {
         agregarError("numero_documento");
         validador = false;
-        console.log(12)
+        console.log(12);
     } else {
         quitarError("numero_documento");
     }
@@ -876,18 +886,19 @@ const validarFormularioActualizarCliente = () => {
     if ($("#actividad_economica").val() == "") {
         agregarError("actividad_economica");
         validador = false;
-        console.log(13)
+        console.log(13);
     } else {
         quitarError("actividad_economica");
     }
-    console.log($("#descripcion_independiente").html());
+
     if (
         $("#descripcion_independiente").val().trim() == "" &&
+        $("#descripcion_independiente_txt").val().trim() == "" &&
         $("#descripcion_independiente").is(":visible")
     ) {
         agregarError("descripcion_independiente");
         validador = false;
-        console.log(14)
+        console.log(14);
     } else {
         quitarError("descripcion_independiente");
     }
@@ -896,12 +907,10 @@ const validarFormularioActualizarCliente = () => {
         $("#archivo_rut").val().trim() == "" &&
         $("#archivo_rut").is(":visible") &&
         $("#file_rut_txt").val().trim() == ""
-        
     ) {
-        
         agregarError("descripcion_independiente");
         validador = false;
-        console.log(15)
+        console.log(15);
     } else {
         quitarError("descripcion_independiente");
     }
@@ -909,14 +918,14 @@ const validarFormularioActualizarCliente = () => {
     if ($("#empresa").val().trim() == "" && $("#empresa").is(":visible")) {
         agregarError("empresa");
         validador = false;
-        console.log(16)
+        console.log(16);
     } else {
         quitarError("empresa");
     }
     if ($("#cargo").val().trim() == "" && $("#cargo").is(":visible")) {
         agregarError("cargo");
         validador = false;
-        console.log(17)
+        console.log(17);
     } else {
         quitarError("cargo");
     }
@@ -926,7 +935,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError("antiguedad");
         validador = false;
-        console.log(18)
+        console.log(18);
     } else {
         quitarError("antiguedad");
     }
@@ -934,7 +943,7 @@ const validarFormularioActualizarCliente = () => {
     if ($("#tipo_contrato").val() == "" && $("#tipo_contrato").is(":visible")) {
         agregarError("tipo_contrato");
         validador = false;
-        console.log(19)
+        console.log(19);
     } else {
         quitarError("tipo_contrato");
     }
@@ -946,7 +955,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError("certificado_laboral");
         validador = false;
-        console.log(20)
+        console.log(20);
     } else {
         quitarError("certificado_laboral");
     }
@@ -956,7 +965,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError("fondo_pension");
         validador = false;
-        console.log(21)
+        console.log(21);
     } else {
         quitarError("fondo_pension");
     }
@@ -967,7 +976,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError("otros_actividad");
         validador = false;
-        console.log(22)
+        console.log(22);
     } else {
         quitarError("otros_actividad");
     }
@@ -975,7 +984,7 @@ const validarFormularioActualizarCliente = () => {
     if ($("#cuenta_bancaria").val() == "") {
         agregarError("cuenta_bancaria");
         validador = false;
-        console.log(23)
+        console.log(23);
     } else {
         quitarError("cuenta_bancaria");
     }
@@ -988,7 +997,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError("numero_cuenta");
         validador = false;
-        console.log(24)
+        console.log(24);
     } else {
         quitarError("numero_cuenta");
     }
@@ -999,7 +1008,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError("tipo_cuenta");
         validador = false;
-        console.log(25)
+        console.log(25);
     } else {
         quitarError("tipo_cuenta");
     }
@@ -1010,7 +1019,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError("nombre_banco");
         validador = false;
-        console.log(26)
+        console.log(26);
     } else {
         quitarError("nombre_banco");
     }
@@ -1022,7 +1031,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError("certificado_cuenta");
         validador = false;
-        console.log(27)
+        console.log(27);
     } else {
         quitarError("certificado_cuenta");
     }
@@ -1035,7 +1044,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError("cedula_tercero");
         validador = false;
-        console.log(28)
+        console.log(28);
     } else {
         quitarError("cedula_tercero");
     }
@@ -1046,7 +1055,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError("nombre_tercero");
         validador = false;
-        console.log(29)
+        console.log(29);
     } else {
         quitarError("nombre_tercero");
     }
@@ -1057,7 +1066,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError("parentesco");
         validador = false;
-        console.log(30)
+        console.log(30);
     } else {
         quitarError("parentesco");
     }
@@ -1069,7 +1078,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError("certificado_bancario_tercero");
         validador = false;
-        console.log(31)
+        console.log(31);
     } else {
         quitarError("certificado_bancario_tercero");
     }
@@ -1081,7 +1090,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError("carta_tercero");
         validador = false;
-        console.log(32)
+        console.log(32);
     } else {
         quitarError("carta_tercero");
     }
@@ -1093,7 +1102,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError("rut_tercero");
         validador = false;
-        console.log(33)
+        console.log(33);
     } else {
         quitarError("rut_tercero");
     }

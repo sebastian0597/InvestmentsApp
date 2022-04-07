@@ -195,7 +195,8 @@
 
                                                 <div class="col-md-6">
                                                     <label class="form-label">Descripción</label>
-                                                    <textarea class="form-control" id="descripcion_independiente" placeholder="{{$customer['description_ind']}}" value="{{$customer['description_ind']}}"  rows="3"></textarea>
+                                                    <textarea class="form-control" id="descripcion_independiente" placeholder="{{$customer['description_ind']}}"  rows="3"></textarea>
+                                                    <input type="hidden" class="form-control" id="descripcion_independiente_txt" value="{{$customer['description_ind']}}"/>
                                                     <span class="msg_error_form" id="error_descripcion_independiente"></span>
                                                 </div>
 
