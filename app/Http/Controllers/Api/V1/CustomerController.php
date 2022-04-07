@@ -198,21 +198,74 @@ class CustomerController extends Controller
     
     public function edit($customer)
     {
-        $customer = new CustomerResource(Customer::find($id_customer));
+        $customer = new CustomerResource(Customer::find($customer));
         return Util::setJSONResponseUniqueData($customer);
     
     }
 
    
-    public function update(Request $request, Customer $customer)
-    {
-        //
+    public function update(Request $request, $customer)
+    {   
+
+        $fields = $request->validate([
+            'name' => 'required|string',
+            'last_name' => 'required|string',
+            'phone' => 'required|numeric',
+            'address' => 'required|string',
+            'city' => 'required|string',
+            'department' => 'required|string',
+            'country' => 'required|string',
+            'document_number' => 'required|numeric|unique:customers',
+            'file_document' => 'required',
+            'email' => 'required|email|unique:users,email',
+            /*'id_rol' => 'required|numeric',*/
+            /*'updated_by' => 'required|numeric',*/
+        ]);
+
+        $customer = Customer::find($customer);
+        $customer->name ='';
+        $customer->last_name=''; 
+        $customer->id_document_type='';
+        $customer->document_number='';
+        $customer->phone='';
+        $customer->address='';
+        $customer->city='';
+        $customer->department='';
+        $customer->country='';
+        $customer->file_document='';
+        $customer->description_ind='';
+        $customer->file_rut='';
+        $customer->business='';
+        $customer->position_business='';
+        $customer->antique_bussiness='';
+        $customer->type_contract='';
+        $customer->work_certificate='';
+        $customer->pension_fund='';
+        $customer->especification_other='';
+        $customer->status='';
+        $customer->account_number='';
+        $customer->account_type='';
+        $customer->bank_name='';
+        $customer->account_certificate='';
+        $customer->document_third='';
+        $customer->name_third='';
+        $customer->letter_authorization_third='';
+        $customer->kinship_third='';
+        $customer->rut_third='';
+        $customer->id_customer_type='';
+        $customer->photo='';
+        /*$customer->registered_by='';*/
+        $customer->id_economic_activity='';
+        $customer->id_bank_account='';
+        $customer->update();
+        
+
     }
 
    
     public function destroy(Customer $customer)
     {
-        //
+       
     }
 
     

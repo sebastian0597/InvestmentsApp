@@ -690,8 +690,8 @@ const actualizarCliente = (id_cliente) => {
             : document.getElementById("rut_tercero").files[0];
         }
 
-        /*let url = document.location.origin + `/api/v1/admin/${id_usuario}` 
-        let method = 'PUT'
+        let url = document.location.origin + `/api/v1/admin/${id_usuario}` 
+        /*let method = 'PUT'
         form_data = { name: nombres, email:correo, rol:rol, status:estado, '_method':'PUT'}
         enviarPeticion(url, method, form_data, 'continuarActualizarAdmin')*/
     }
