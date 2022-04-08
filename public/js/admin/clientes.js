@@ -287,8 +287,13 @@ const crearCliente = () => {
             showCancelButton: true,
             confirmButtonText: "Aceptar",
         }).then((result) => {
+           
             if (result.isConfirmed) {
                 enviarPeticion(url, method, form_data, "continuarCrearCliente");
+            }
+            if (result.isDismissed) {
+                $("#btn_crear_cliente").text("Crear cliente");
+                $("#btn_crear_cliente").prop("disabled", false);
             }
         });
     }

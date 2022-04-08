@@ -15,7 +15,6 @@
             </div>
         </form>
         <div class="header-logo-wrapper col-auto p-0">
-            <!-- <div class="logo-wrapper"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo.png" alt=""></a></div> -->
             <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle"
                     data-feather="align-center"></i></div>
         </div>
@@ -24,7 +23,7 @@
         </div>
         <div class="nav-right col-8 pull-right right-header p-0">
             <ul class="nav-menus">
-                <li><span class="header-search"><i data-feather="search"></i></span></li>
+               
                 <li class="onhover-dropdown">
                     <div class="notification-box"><i data-feather="bell"> </i><span
                             class="badge rounded-pill badge-secondary">4</span></div>
