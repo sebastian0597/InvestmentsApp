@@ -30,9 +30,10 @@
                <span class="msg_error_login" id="error_contrasena"></span>
             </div>
             <div class="link-contraseña" >
-               <a href="#" class="decoracion">
-               Olvidaste la contraseña?
-               </a>
+               <span class="decoracion">
+                  ¿Olvidaste la contraseña?, <a class="decoracion" href="{{url('reestablecer_contrasena')}}"><b>restablecela aquí</b></a>
+               </span>
+     
             </div>
             <div class="link-contraseña">  
                <button type="button" onclick="login();" class="neon">INGRESAR</button>

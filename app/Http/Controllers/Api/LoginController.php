@@ -146,6 +146,7 @@ class LoginController extends Controller
            $data["title"] = "Reestablecimiento de contraseña";
            $data["code"] = $user->personal_code; 
            $data["password"] = $password;
+           $data["name"] = $user->name;
            
            $mail = new CredentialsMailable($data);
            Mail::to($data["email"])->send($mail);

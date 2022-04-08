@@ -114,8 +114,17 @@ const setResponseMessage = (response, url_redireccionamiento = "") => {
         case 400:
         case 401:
         case 402:
-            console.log(response);
+            Swal.fire({
+                icon: "warning",
+                confirmButtonColor: "#6610f2",
+                confirmButtonText: "Aceptar",
+                text: response.message,
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+            });
+          
             break;
+          
 
         case 422:
             Swal.fire({
