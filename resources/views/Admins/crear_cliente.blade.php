@@ -359,7 +359,7 @@
                                         <div class="row g-3">
                                             <div class="col-md-3">
                                                 <label class="form-label">Tipo de moneda</label>
-                                                <select class="form-select" onchange="convertirMoneda();" id="tipo_moneda">
+                                                <select class="form-select" onchange="validarMontoMinimo();" id="tipo_moneda">
                                                     <option value="">Seleccione---</option>
                                                     @foreach ($currencies as $item)
                                                         <option value="{{ $item->code }}">{{ $item->name }}</option>
@@ -381,7 +381,7 @@
                                             <div class="col-md-3">
                                                
                                                 <label>Monto de inversión</label>
-                                                <input id="base_monto_inversion" onblur="validarMontoMinimo()" class="form-control" type="text">
+                                                <input id="base_monto_inversion" onblur="validarMontoMinimo()" onkeyup="convertirAformatoMoneda(this)"  class="form-control" type="text">
                                                 <span class="msg_error_form" id="error_base_monto_inversion"></span>
                                             
                                             </div>

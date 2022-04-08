@@ -79,13 +79,29 @@ $("#cedula_tercero").on("input", function () {
 });
 
 const validarMontoMinimo = () => {
+    let validador = true;
     convertirMoneda();
-    if (parseFloat($("#monto_inversion").val().trim()) < 1000000) {
-        alert("El monto no puede ser menor a 1000000");
+    $("#error_base_monto_inversion").empty();
+    if (quitarformatNumber($("#monto_inversion").val().trim()) < 1000000) {
+        agregarError("base_monto_inversion");
+        validador = false;
+        $("#error_base_monto_inversion").append(
+            "El monto no puede ser menor a " + formatNumber(1000000)
+        );
+    } else {
+        quitarError("base_monto_inversion");
     }
+    return validador;
+};
+
+const convertirAformatoMoneda = (element) => {
+    let valor = $("#" + element.id).val();
+    valor = formatNumber(valor);
+    $("#" + element.id).val(valor);
 };
 
 const crearCliente = () => {
+   
     if (validarFormularioCliente()) {
         $("#btn_crear_cliente").text("Creando cliente...");
         $("#btn_crear_cliente").prop("disabled", true);
@@ -98,8 +114,13 @@ const crearCliente = () => {
         let cuenta_bancaria = $("#cuenta_bancaria").val().trim();
         let tipo_moneda = $("#tipo_moneda").val().trim();
         let metodo_pago = $("#metodo_pago").val().trim();
-        let base_monto_inversion = $("#base_monto_inversion").val().trim();
-        let monto_inversion = $("#monto_inversion").val().trim();
+        let base_monto_inversion = quitarformatNumber(
+            $("#base_monto_inversion").val().trim()
+        );
+        let monto_inversion = quitarformatNumber(
+            $("#monto_inversion").val().trim()
+        );
+     
         let correo = $("#correo").val().trim();
         let telefono = $("#telefono").val().trim();
 
@@ -277,7 +298,9 @@ const crearCliente = () => {
             icon: "warning",
             title: "Asegurese que los datos ingresados sean los correctos.",
             html: `Por favor, que revise el número de cuenta, el banco seleccionado sean los correctos <br/><br/>
-                    El monto a invertir es: <b>$${monto_inversion}</b><br> 
+                    El monto a invertir es: <b>$${formatNumber(
+                        monto_inversion
+                    )}</b><br> 
                     El correo del cliente es: <b>${correo}</b><br>
                     El numero de documento es: <b>${numero_documento}</b><br> 
                     ${txt_numero_cuenta + txt_banco}
@@ -286,12 +309,10 @@ const crearCliente = () => {
             showDenyButton: false,
             showCancelButton: true,
             confirmButtonText: "Aceptar",
-            allowEscapeKey : false,
+            allowEscapeKey: false,
             allowOutsideClick: false,
         }).then((result) => {
-           
             if (result.isConfirmed) {
-                
                 enviarPeticion(url, method, form_data, "continuarCrearCliente");
             }
             if (result.isDismissed) {
@@ -588,6 +609,15 @@ const validarFormularioCliente = () => {
     } else {
         quitarError("archivo_consignacion");
     }
+    if (!validarMontoMinimo()) {
+        validador = false;
+    }
+    /*if(!validarSintaxisCorreo('<input onblur="validarSintaxisCorreo(this)" class="form-control" id="correo" type="email" data-bs-original-title="" title="">')){
+        validador = false;
+        agregarError('correo')
+    }else{
+        quitarError('correo')
+    }*/
 
     return validador;
 };

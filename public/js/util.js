@@ -49,7 +49,7 @@ const validarSintaxisCorreo = (element) => {
 async function consultarAPIDivisas(moneda = "COP") {
     let opciones = { method: "GET", headers: { Accept: "application/json" } };
     const response = await fetch(
-        `https://api.fastforex.io/fetch-multi?from=${moneda}&to=COP&api_key=73306c96fe-5a91bbb373-r8ylp0`,
+        `https://api.fastforex.io/fetch-multi?from=${moneda}&to=COP&api_key=be7477277f-af25417b5d-ra1gga`,
         opciones
     );
     const monedas = await response.json();
@@ -58,37 +58,29 @@ async function consultarAPIDivisas(moneda = "COP") {
 }
 
 const convertirMoneda = () => {
-    //let divisa = $("#tipo_moneda").val()
+    let divisa = $("#tipo_moneda").val()
     let base_amount = $("#base_monto_inversion").val().trim();
-    $("#monto_inversion").val(base_amount /*.toFixed(2)*/);
-    /*if(divisa!="" && base_amount!==""){
+   
+    if(divisa!="" && base_amount!==""){
         consultarAPIDivisas(divisa).then(moneda => {
-            //let amount = moneda * base_amount
-            $("#monto_inversion").val(base_amount.toFixed(2));
+            let amount = parseInt(moneda) * quitarformatNumber(base_amount)
+        
+            $("#monto_inversion").val(formatNumber(amount));
         });
-    } */
+    } 
 };
 
 function isObjEmpty(obj) {
     return Object.keys(obj).length === 0;
 }
 
-function formatNumber(num) {
-    if (!num || num == "NaN") return "-";
-    if (num == "Infinity") return "&#x221e;";
-    num = num.toString().replace(/\$|\,/g, "");
-    if (isNaN(num)) num = "0";
-    sign = num == (num = Math.abs(num));
-    num = Math.floor(num * 100 + 0.50000000001);
-    cents = num % 100;
-    num = Math.floor(num / 100).toString();
-    if (cents < 10) cents = "0" + cents;
-    for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
-        num =
-            num.substring(0, num.length - (4 * i + 3)) +
-            "." +
-            num.substring(num.length - (4 * i + 3));
-    return (sign ? "" : "-") + num + "," + cents;
+function formatNumber (n) {
+	n = String(n).replace(/\D/g, "");
+  return n === '' ? n : Number(n).toLocaleString();
+}
+
+function quitarformatNumber(num){
+    return num.replace(/[$.]/g,'')
 }
 
 const setResponseMessage = (response, url_redireccionamiento = "") => {
