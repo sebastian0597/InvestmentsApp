@@ -286,9 +286,12 @@ const crearCliente = () => {
             showDenyButton: false,
             showCancelButton: true,
             confirmButtonText: "Aceptar",
+            allowEscapeKey : false,
+            allowOutsideClick: false,
         }).then((result) => {
            
             if (result.isConfirmed) {
+                
                 enviarPeticion(url, method, form_data, "continuarCrearCliente");
             }
             if (result.isDismissed) {
