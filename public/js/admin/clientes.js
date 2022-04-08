@@ -767,6 +767,7 @@ const actualizarCliente = (id_cliente) => {
         let estado = $("#estado_cliente").val().trim();
         let id_usuario = $("#id_usuario_cliente").val();
 
+        console.log(carta_tercero)
         let url =
             document.location.origin + `/api/v1/customer/update/${id_cliente}`;
         let method = "POST";
@@ -803,6 +804,7 @@ const actualizarCliente = (id_cliente) => {
             "account_certificate_third",
             certificado_bancario_tercero
         );
+
         form_data.append("letter_authorization_third", carta_tercero);
         form_data.append("kinship_third", parentesco);
         form_data.append("rut_third", rut_tercero);
@@ -941,17 +943,17 @@ const validarFormularioActualizarCliente = () => {
         quitarError("descripcion_independiente");
     }
 
-    if (
+    /*if (
         $("#archivo_rut").val().trim() == "" &&
         $("#archivo_rut").is(":visible") &&
         $("#file_rut_txt").val().trim() == ""
     ) {
-        agregarError("descripcion_independiente");
+        agregarError("archivo_rut");
         validador = false;
         console.log(15);
     } else {
-        quitarError("descripcion_independiente");
-    }
+        quitarError("archivo_rut");
+    }*/
 
     if ($("#empresa").val().trim() == "" && $("#empresa").is(":visible")) {
         agregarError("empresa");
