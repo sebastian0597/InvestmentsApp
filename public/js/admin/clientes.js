@@ -761,13 +761,13 @@ const actualizarCliente = (id_cliente) => {
         if ($("#rut_tercero").is(":visible")) {
             rut_tercero =
                 document.getElementById("rut_tercero").files[0] == undefined
-                    ? $("#rut_tercero_txt").val()
+                    ? $("#rut_tercero_txt").val().trim()
                     : document.getElementById("rut_tercero").files[0];
         }
         let estado = $("#estado_cliente").val().trim();
         let id_usuario = $("#id_usuario_cliente").val();
 
-        console.log(carta_tercero)
+
         let url =
             document.location.origin + `/api/v1/customer/update/${id_cliente}`;
         let method = "POST";

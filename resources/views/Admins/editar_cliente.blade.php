@@ -203,7 +203,7 @@
                                                 <div class="col-md-4">
                                                     <label class="form-label">RUT</label>
                                                     <input class="form-control" id="archivo_rut" accept=".pdf, .png, .jpg, .jpeg" type="file">
-                                                    <input type="hidden" id="file_rut_txt" value="{{$customer['file_rut']}}" >
+                                                    <input type="hidden" id="archivo_rut_txt" value="{{$customer['file_rut']}}" >
                                                 </div>
 
                                             </div>
