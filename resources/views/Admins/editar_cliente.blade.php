@@ -98,7 +98,7 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Teléfono</label>
-                                                <input class="form-control" id="telefono" value="{{$customer['phone']}}"  type="text">
+                                                <input class="form-control" id="telefono" onkeyup="validarTelefono(this)" value="{{$customer['phone']}}"  type="text">
                                                 <span class="msg_error_form" id="error_telefono"></span>
                                             </div>
 
