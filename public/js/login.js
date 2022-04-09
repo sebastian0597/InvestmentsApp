@@ -15,8 +15,9 @@ const login = () =>{
 }
 
 const continuarLogin = (response) =>{
-    console.log(response)
-    location.href='/'
+   
+    setResponseMessage(response, "/clientes");
+    //location.href='/'
 }
 
 const validarLogin = () =>{

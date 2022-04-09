@@ -122,7 +122,7 @@ class LoginController extends Controller
                 auth()->loginUsingId($user->id);
                 //auth()->login($user);
                 $token = $user->createToken('myapptoken')->plainTextToken;
-                return Util::setResponseJson(200, auth()->user(), $token);
+                return Util::setResponseJson(200, "", $token);
            
             }
         }

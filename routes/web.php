@@ -16,6 +16,10 @@ Route::get('reestablecer_contrasena', function () {
     return view('reestablecer_contrasena');
 })->name('reestablecer_contrasena');
 
+Route::get('logout', function () {
+    return view('login');
+})->name('logout');
+
 //Route::group(['middleware' => ['admin']], function () {
     Route::get('crear_cliente', [CustomerController::class, 'create'] )->name('crear_cliente');
     Route::get('editar_cliente/{id_cliente}', [CustomerController::class, 'edit'] )->name('editar_cliente');

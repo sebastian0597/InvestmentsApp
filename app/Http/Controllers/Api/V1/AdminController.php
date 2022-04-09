@@ -53,6 +53,7 @@ class AdminController extends Controller
             $token = $user->createToken('myapptoken')->plainTextToken;
 
             $dataAdmin["email"] =  $fields['email'];
+            $dataAdmin["name"] =  $fields['name'];
             $dataAdmin["title"] = "Te damos la bienvenida a VIP World Trading";
             $dataAdmin["code"] = $personal_code; 
             $dataAdmin["password"] = $password;
