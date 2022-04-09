@@ -98,7 +98,7 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Teléfono</label>
-                                                <input class="form-control" id="telefono" type="text">
+                                                <input class="form-control" onkeyup="validarTelefono(this)" id="telefono" type="text">
                                                 <span class="msg_error_form" id="error_telefono"></span>
                                             </div>
 
