@@ -104,16 +104,21 @@
 
                                         </div>
                                         <div class="row g-3">
-
                                             <div class="col-md-4">
                                                 <label class="form-label">Archivo documento identidad</label>
-                                                <input class="form-control" id="archivo_documento" accept=".pdf, .png, .jpg, .jpeg" type="file">
-                                                <input type="hidden" id="archivo_documento_txt" value="{{$customer['file_document']}}" >
-                                                <span class="msg_error_form" id="error_archivo_documento"></span>
+                                                <div class="input-group mb-2">
+                                                   
+                                                    <input class="form-control" id="archivo_documento" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                    <input type="hidden" id="archivo_documento_txt" value="{{$customer['file_document']}}" >
+                                                    <span class="msg_error_form" id="error_archivo_documento"></span>
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <span class="material-icons-outlined">image</span></div>
+                                                    </div>
+                                                </div>
                                             </div>
-
                                         </div>
-                                       
+                                                                       
                                         <div class="row g-3">
 
                                             <div class="col-md-4">
@@ -200,12 +205,20 @@
                                                     <span class="msg_error_form" id="error_descripcion_independiente"></span>
                                                 </div>
 
+                                               
                                                 <div class="col-md-4">
                                                     <label class="form-label">RUT</label>
-                                                    <input class="form-control" id="archivo_rut" accept=".pdf, .png, .jpg, .jpeg" type="file">
-                                                    <input type="hidden" id="archivo_rut_txt" value="{{$customer['file_rut']}}" >
-                                                </div>
+                                                    <div class="input-group mb-2">
 
+                                                        <input class="form-control" id="archivo_rut" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                        <input type="hidden" id="archivo_rut_txt" value="{{$customer['file_rut']}}" >
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">
+                                                                <span class="material-icons-outlined">image</span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        
                                             </div>
 
                                             <!-- CAMPOS CUANDO ES  EMPLEADO -->
@@ -247,9 +260,17 @@
 
                                                 <div class="col-md-4">
                                                     <label class="form-label">Certificado laboral</label>
-                                                    <input class="form-control" id="certificado_laboral"  accept=".pdf, .png, .jpg, .jpeg" type="file">
-                                                    <input type="hidden" id="certificado_laboral_txt" value="{{$customer['work_certificate']}}" >
-                                                    <span class="msg_error_form" id="error_certificado_laboral"></span>
+                                                    <div class="input-group mb-2">
+
+                                                        <input class="form-control" id="certificado_laboral"  accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                        <input type="hidden" id="certificado_laboral_txt" value="{{$customer['work_certificate']}}" >
+                                                        <span class="msg_error_form" id="error_certificado_laboral"></span>
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">
+                                                                <span class="material-icons-outlined">image</span><
+                                                            /div>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -338,12 +359,19 @@
                                                 </select>
                                                 <span class="msg_error_form" id="error_nombre_banco"></span>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <label class="form-label">Certificado de cuenta</label>
-                                                <input class="form-control" id="certificado_cuenta" accept=".pdf, .png, .jpg, .jpeg" type="file">
-                                                <input type="hidden" id="certificado_cuenta_txt" value="{{$customer['account_certificate']}}" >
-                                                <span class="msg_error_form" id="error_certificado_cuenta"></span>
+                                                <div class="input-group mb-2">
+                                                    <input class="form-control" id="certificado_cuenta" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                    <input type="hidden" id="certificado_cuenta_txt" value="{{$customer['account_certificate']}}" >
+                                                    <span class="msg_error_form" id="error_certificado_cuenta"></span>
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <span class="material-icons-outlined">image</span>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                         </div>
@@ -375,24 +403,47 @@
 
                                             <div class="col-md-3">
                                                 <label class="form-label">Certificado bancario</label>
-                                                <input class="form-control" id="certificado_bancario_tercero" accept=".pdf, .png, .jpg, .jpeg"
-                                                    type="file">
-                                                <input type="hidden" id="certificado_bancario_tercero_txt" value="{{$customer['account_certificate']}}" >    
-                                                <span class="msg_error_form" id="error_certificado_bancario_tercero"></span>
+                                                <div class="input-group mb-2"> 
+                                                    <input class="form-control" id="certificado_bancario_tercero" accept=".pdf, .png, .jpg, .jpeg"
+                                                        type="file">
+                                                    <input type="hidden" id="certificado_bancario_tercero_txt" value="{{$customer['account_certificate']}}" >    
+                                                    <span class="msg_error_form" id="error_certificado_bancario_tercero"></span>
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <span class="material-icons-outlined">image</span></div>
+                                                    </div>
+                                                </div>
+
                                             </div>
+
                                             <div class="col-md-3">
                                                 <label class="form-label">Carta de autorización</label>
-                                                <input class="form-control" id="carta_tercero" accept=".pdf, .png, .jpg, .jpeg" type="file">
-                                                <input type="hidden" id="carta_tercero_txt" value="{{$customer['letter_authorization_third']}}">    
-                                                <span class="msg_error_form" id="error_carta_tercero"></span>
+                                                <div class="input-group mb-2"> 
+                                                    <input class="form-control" id="carta_tercero" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                    <input type="hidden" id="carta_tercero_txt" value="{{$customer['letter_authorization_third']}}">    
+                                                    <span class="msg_error_form" id="error_carta_tercero"></span>
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <span class="material-icons-outlined">image</span></div>
+                                                    </div>
+                                                </div>
+                                                
                                             </div>
 
                                             <div class="col-md-3">
                                                 <label class="form-label">RUT</label>
-                                                <input class="form-control" id="rut_tercero" accept=".pdf, .png, .jpg, .jpeg" type="file">
-                                                <input type="hidden" id="rut_tercero_txt" value="{{$customer['rut_third']}}"> 
-                                                <span class="msg_error_form" id="error_rut_tercero"></span>
+                                                <div class="input-group mb-2"> 
+                                                    <input class="form-control" id="rut_tercero" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                    <input type="hidden" id="rut_tercero_txt" value="{{$customer['rut_third']}}"> 
+                                                    <span class="msg_error_form" id="error_rut_tercero"></span>
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <span class="material-icons-outlined">image</span></div>
+                                                    </div>
+                                                </div>
+                                                
                                             </div>
+
                                         </div>
                                         <div class="row g-3">
 
