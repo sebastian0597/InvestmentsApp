@@ -319,36 +319,41 @@
                                                 <span class="msg_error_form" id="error_cedula_tercero"></span>
                                             </div>
 
-                                            <div class="col-md-3">
+                                            <div class="col-md-6">
                                                 <label class="form-label">Nombre</label>
                                                 <input class="form-control" id="nombre_tercero" type="text">
                                                 <span class="msg_error_form" id="error_nombre_tercero"></span>
                                                 
                                             </div>
 
-                                            <div class="col-md-3">
+                                           
+                                        </div>
+
+                                        <div style="display:none" id="div_cuenta_tercero_3" class="row g-3">
+
+                                            <div class="col-md-5">
                                                 <label class="form-label">Relación con el cliente</label>
                                                 <input class="form-control" id="parentesco" type="text">
                                                 <span class="msg_error_form" id="error_parentesco"></span>
                                             </div>
 
-                                        </div>
-
-                                        <div style="display:none" id="div_cuenta_tercero_2" class="row g-3">
-
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <label class="form-label">Certificado bancario</label>
                                                 <input class="form-control" id="certificado_bancario_tercero" accept=".pdf, .png, .jpg, .jpeg"
                                                     type="file">
                                                 <span class="msg_error_form" id="error_certificado_bancario_tercero"></span>
                                             </div>
-                                            <div class="col-md-3">
+                                            
+                                        </div>
+                                        <div style="display:none" id="div_cuenta_tercero_2" class="row g-3">
+
+                                            <div class="col-md-5">
                                                 <label class="form-label">Carta de autorización</label>
                                                 <input class="form-control" id="carta_tercero" accept=".pdf, .png, .jpg, .jpeg" type="file">
                                                 <span class="msg_error_form" id="error_carta_tercero"></span>
                                             </div>
 
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <label class="form-label">RUT</label>
                                                 <input class="form-control" id="rut_tercero" accept=".pdf, .png, .jpg, .jpeg" type="file">
                                                 <span class="msg_error_form" id="error_rut_tercero"></span>

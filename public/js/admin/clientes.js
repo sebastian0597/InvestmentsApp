@@ -39,6 +39,7 @@ const seleccionarCuentaBancaria = () => {
     $("#div_cuenta_personal_2").css("display", "none");
     $("#div_cuenta_tercero").css("display", "none");
     $("#div_cuenta_tercero_2").css("display", "none");
+    $("#div_cuenta_tercero_3").css("display", "none");
 
     switch ($("#cuenta_bancaria").val()) {
         case "1":
@@ -50,6 +51,7 @@ const seleccionarCuentaBancaria = () => {
         case "2":
             $("#div_cuenta_tercero").css("display", "flex");
             $("#div_cuenta_tercero_2").css("display", "flex");
+            $("#div_cuenta_tercero_3").css("display", "flex");
 
             break;
 
