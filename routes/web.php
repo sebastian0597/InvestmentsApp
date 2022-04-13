@@ -36,7 +36,8 @@ Route::get('contrato', function () {
     return view('Pdfs.bank_promissor_note', compact('params'));
 })->name('contrato');
 
-//Route::group(['middleware' => ['admin']], function () {
+
+//Route::group(['middleware' => ['auth']], function () {
     Route::get('crear_cliente', [CustomerController::class, 'create'] )->name('crear_cliente');
     Route::get('editar_cliente/{id_cliente}', [CustomerController::class, 'edit'] )->name('editar_cliente');
     Route::get('clientes', [CustomerController::class, 'index'] )->name('clientes');

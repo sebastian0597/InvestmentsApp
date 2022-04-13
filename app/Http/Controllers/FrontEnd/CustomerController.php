@@ -12,6 +12,8 @@ use App\Models\Currency;
 use App\Models\PaymentMethod;
 use App\Models\Customer;
 use App\Models\Country;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Resources\V1\CustomerResource;
 use App\Http\Resources\V1\CustomerCollection;
@@ -21,8 +23,24 @@ use App\Utils\Util;
 class CustomerController extends Controller
 {   
 
-    public function create(){
-       
+    protected $user;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+
+            $this->user = Auth::user();    
+            return $next($request);
+        });
+    }
+
+    public function create(Request $request){
+
         $documents_types = DocumentType::getByStatus(1);
         $economics_activities = EconomicActivity::getByStatus(1);
         $banks_accounts = BankAccount::getByStatus(1);
@@ -30,7 +48,7 @@ class CustomerController extends Controller
         $payment_methods = PaymentMethod::getByStatus(1);
         $banks = Bank::getByStatus(1);
         $countries = Country::getByStatus(1);
-              
+          
         return view('Admins.crear_cliente', compact('documents_types', 'economics_activities','banks_accounts','currencies','payment_methods', 'banks', 'countries'));
     }
 

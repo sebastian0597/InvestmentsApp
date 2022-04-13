@@ -16,8 +16,6 @@ class LoginController extends Controller
 {
     public function login(Request $request){
 
-       
-        $auth = false;
         $email = $request->email;
         $password = $request->password;
         $personal_code = $request->personal_code;
@@ -111,18 +109,22 @@ class LoginController extends Controller
             
             }else{
 
-                $user->ind_banned=NULL;
-                $user->ind_blocked=NULL;
-                $user->time_blocked=NULL;
-                $user->blocked_date=NULL;
-                $user->banned_date=NULL;
-                $user->failed_login_attempts=NULL;
-                $user->save();
-               
-                auth()->loginUsingId($user->id);
-                //auth()->login($user);
-                $token = $user->createToken('myapptoken')->plainTextToken;
-                return Util::setResponseJson(200, "", $token);
+                if (Auth::attempt(['email' => $fields['email'], 'password' => $fields['password'], 'status' => 1])) {
+
+                    /*$user->ind_banned=NULL;
+                    $user->ind_blocked=NULL;
+                    $user->time_blocked=NULL;
+                    $user->blocked_date=NULL;
+                    $user->banned_date=NULL;
+                    $user->failed_login_attempts=NULL;
+                    $user->save();*/
+                    
+                    //auth()->loginUsingId($user->id);
+                    //request()->session()->regenerate();
+                    //auth()->login($user);
+                    $token = $user->createToken('myapptoken')->plainTextToken;
+                    return Util::setResponseJson(200, auth()->user() , $token);
+                }
            
             }
         }
@@ -137,7 +139,7 @@ class LoginController extends Controller
 
         $user = User::where('personal_code', $fields['personal_code'])->first();
 
-        if(!is_null($user)){
+        if(!is_null($user) && $user->status ==1){
            $password = Util::generatePassword();
            $user->password =bcrypt($password);
            $user->save();
@@ -153,8 +155,11 @@ class LoginController extends Controller
 
            return Util::setResponseJson(200,"Se ha reestablecido la contraseña, por favor revise su correo.");
            
-        }else{
+        }else if(!is_null($user) && $user->status <> 1){
 
+            return Util::setResponseJson(401,"El usuario al que se intenta reestablecer la contraseña se encuentra inactivo.");
+
+        }else{
             return Util::setResponseJson(401,"El código ingresado no se encuentra registrado en el sistema.");
         }
 

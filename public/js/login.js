@@ -15,9 +15,10 @@ const login = () =>{
 }
 
 const continuarLogin = (response) =>{
-   
-    setResponseMessage(response, "/clientes");
-    //location.href='/'
+    //console.log(response)
+    console.log(JSON.stringify(response))
+    setResponseMessage(response, "/");
+  
 }
 
 const validarLogin = () =>{
