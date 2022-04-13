@@ -20,6 +20,22 @@ Route::get('logout', function () {
     return view('login');
 })->name('logout');
 
+Route::get('contrato', function () {
+    
+
+    $customer_fullname = "Omar Yesid Ibanez Ortiz";
+    $params["email"] = "Oibanez@unab.edu.co";
+    $params["title"] = "Pagaré del cliente 1098796215 ".$customer_fullname;
+    $params["amount"] = 50000;
+    $params["investment_date"] = date('d/m/Y');
+    $params["bank_promissor_number"] = 5258;
+    $params["document_number"] = 1098796215;
+    $params["customer_name"] = $customer_fullname;
+    $params["document_name"] = "Pagare_1098796215_".$customer_fullname;
+
+    return view('Pdfs.bank_promissor_note', compact('params'));
+})->name('contrato');
+
 //Route::group(['middleware' => ['admin']], function () {
     Route::get('crear_cliente', [CustomerController::class, 'create'] )->name('crear_cliente');
     Route::get('editar_cliente/{id_cliente}', [CustomerController::class, 'edit'] )->name('editar_cliente');

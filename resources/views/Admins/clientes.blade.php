@@ -72,6 +72,7 @@
                                                     <th rowspan="2">Nombres</th>
                                                 </tr>
                                                 <tr>
+                                                    <th>N° Documento</th>
                                                     <th>Tipo cliente</th>
                                                     <th>Teléfono</th>
                                                     <th>Ubicación</th>
@@ -97,6 +98,7 @@
                                                                     </div>
                                                                 </a>
                                                             </td>
+                                                            <td>{{ $item['document_number'] }}</td>
                                                             <td>{{ $item['customer_type'] }}</td>
                                                             <td>{{ $item['phone'] }}</td>
                                                             <td>{{ $item['city'] }} - {{ $item['country'] }}</td>

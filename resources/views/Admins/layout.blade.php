@@ -13,12 +13,11 @@
         rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/material-icons.css') }}" rel="stylesheet">
-    
     <link href="{{ asset('css/admin/icofont.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/themify.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/scrollbar.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/style.css') }}" rel="stylesheet">
     <!--<link id="color" rel="stylesheet" href="{{ asset('css/admin/color-1.css') }}" media="screen"> -->
     <link href="{{ asset('css/admin/responsive.css') }}" rel="stylesheet">

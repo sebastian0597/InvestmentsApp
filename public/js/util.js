@@ -3,6 +3,7 @@ const agregarError = (element) => {
     let mensaje = 'El campo '+ element + ' no puede estar vacío.'
     $('#error_'+element).append(mensaje)*/
     $('#' + element).addClass('error_border');
+    $('#' + element).addClass('is-invalid');
     $('#' + element)
         .prev()
         .addClass('error_text');
@@ -11,6 +12,7 @@ const agregarError = (element) => {
 const quitarError = (element) => {
     //$('#error_'+element).empty()
     $('#' + element).removeClass('error_border');
+    $('#' + element).removeClass('is-invalid');
     $('#' + element)
         .prev()
         .removeClass('error_text');

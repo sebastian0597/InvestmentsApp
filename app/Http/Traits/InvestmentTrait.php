@@ -80,12 +80,21 @@ trait InvestmentTrait
             $dataAdmin["email"] = $adminLogged->email;
             $dataAdmin["title"] = "Pagaré del cliente ".$customer->document_number." ".$customer_fullname;
             $dataAdmin["amount"] = $fields['amount'];
+            $dataAdmin["investment_date"] = date('d/m/Y');
             $dataAdmin["bank_promissor_number"] = $investment->id;
             $dataAdmin["document_number"] = $customer->document_number;
             $dataAdmin["customer_name"] = $customer_fullname;
             $dataAdmin["document_name"] = "Pagare_".$customer->document_number."_".$customer_fullname;
-            
-            Util::sendEmailWithPDFFile('Pdfs.bank_promissor_note', $dataAdmin);
+
+            if($customer_type == 1 || $customer_type == 2){//Standard o VIP
+
+                Util::sendEmailWithPDFFile('Pdfs.bank_promissor_note', $dataAdmin);
+
+            }else if($customer_type == 3){//Premium
+
+                Util::sendEmailWithPDFFile('Pdfs.bank_promissor_note', $dataAdmin);
+            }
+           
         }
 
         return $investment;

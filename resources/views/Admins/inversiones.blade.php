@@ -103,8 +103,8 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>Nombre</th>
-                                                                <th>Numero de identificación</th>
-                                                                <th>Tipo de cliente</th>
+                                                                <th>N° Documento</th>
+                                                                <th>Tipo cliente</th>
                                                                 <th>Telefono</th>
                                                                 <th>Correo</th>
                                                                 <th>Inversion</th>

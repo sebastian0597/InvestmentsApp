@@ -410,7 +410,7 @@
                                         </div>
                      
                                         <br><br>
-                                        <div class="mb-4">
+                                        <div class="mb-4 placeholder-glow">
                                             <button class="btn btn-primary" id="btn_crear_cliente" type="button" onclick="crearCliente()">Crear Cliente</button>
                                         </div>
                                         <br>
