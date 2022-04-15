@@ -45,7 +45,8 @@ Route::get('contrato', function () {
     Route::get('extractos', [ExtractController::class, 'index'] )->name('extractos');
     Route::get('solicitudes',  [RequestController::class, 'index'] )->name('solicitudes');
     Route::get('crear_administrador',  [AdminController::class, 'index'] )->name('crear_administrador');
-    Route::get('investments',  [InvestmentController::class, 'index'] )->name('investments');
+    Route::get('inversiones',  [InvestmentController::class, 'index'] )->name('inversiones');
+    Route::get('crear_inversion/{id_cliente}',  [InvestmentController::class, 'create'] )->name('crear_inversion');
     
     //Route::get('clientes', function () { return view('Admins.clientes'); })->name('clientes');
     //Route::get('crear_cliente', function () { return view('Admins.crear_cliente'); });

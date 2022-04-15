@@ -109,7 +109,7 @@
 
                                                 $icon_documento = "<div class='input-group-prepend'>
                                                         <div class='input-group-text'>
-                                                            <span class='material-icons-outlined'>image</span></div>
+                                                            <span style='color:#7366ff' class='material-icons-outlined'>image</span></div>
                                                 </div>";
                                             }
 
@@ -219,7 +219,7 @@
         
                                                         $icon_rut = "<div class='input-group-prepend'>
                                                                 <div class='input-group-text'>
-                                                                    <span class='material-icons-outlined'>image</span></div>
+                                                                    <span style='color:#7366ff' class='material-icons-outlined'>image</span></div>
                                                         </div>";
                                                     }
     
@@ -279,7 +279,7 @@
         
                                                         $icon_certificado = "<div class='input-group-prepend'>
                                                                 <div class='input-group-text'>
-                                                                    <span class='material-icons-outlined'>image</span></div>
+                                                                    <span style='color:#7366ff' class='material-icons-outlined'>image</span></div>
                                                         </div>";
                                                     }
 
@@ -389,7 +389,7 @@
 
                                                     $icon_cuenta = "<div class='input-group-prepend'>
                                                             <div class='input-group-text'>
-                                                                <span class='material-icons-outlined'>image</span></div>
+                                                                <span style='color:#7366ff' class='material-icons-outlined'>image</span></div>
                                                     </div>";
                                                 }
 
@@ -439,7 +439,7 @@
 
                                                     $icon_cuenta_tercero = "<div class='input-group-prepend'>
                                                             <div class='input-group-text'>
-                                                                <span class='material-icons-outlined'>image</span></div>
+                                                                <span style='color:#7366ff' class='material-icons-outlined'>image</span></div>
                                                     </div>";
                                                 }
 
@@ -464,7 +464,7 @@
 
                                                     $icon_carta_tercero = "<div class='input-group-prepend'>
                                                             <div class='input-group-text'>
-                                                                <span class='material-icons-outlined'>image</span></div>
+                                                                <span style='color:#7366ff' class='material-icons-outlined'>image</span></div>
                                                     </div>";
                                                 }
 
@@ -487,7 +487,7 @@
 
                                                     $icon_rut_tercero = "<div class='input-group-prepend'>
                                                             <div class='input-group-text'>
-                                                                <span class='material-icons-outlined'>image</span></div>
+                                                                <span style='color:#7366ff' class='material-icons-outlined'>image</span></div>
                                                     </div>";
                                                 }
 

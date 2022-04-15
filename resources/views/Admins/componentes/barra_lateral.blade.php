@@ -27,7 +27,7 @@
                     <!--<li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('crear_cliente')}}"><i
                                 data-feather="file-text"></i><span>CREAR
                                 CLIENTE</span></a></li> -->
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('investments')}}"><i
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('inversiones')}}"><i
                                 data-feather="check-square"></i><span>MÓDULO INVERSIONES</span></a>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('extractos')}}"><i

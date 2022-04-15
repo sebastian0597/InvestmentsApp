@@ -54,7 +54,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card">
-                                    <div class="card-header">
+                                    <!--<div class="card-header">
                                         <h4>Módulo de Inversiones </h4>
                                         <br>
                                         <div class="box">
@@ -66,38 +66,26 @@
 
                                         <a class="btn btn-primary btn-sm" href="javascript:void(0)">
                                             <i class="fa fa-pencil"></i>Exportar informe total</a>
+                                    </div>-->
+                                    <div style="display:flex; align-items:center; padding-right: 0px;" class="card-header">
+                                        <div style="width:100%" class="row">
+                                            <div class="col-6">
+                                                <h5>Clientes vinculados</h5>
+                                            </div>
+                                            <div class="col-6">
+                                                <ol style="float:right;" class="breadcrumb">
+                                                    <b style="float: right">Total clientes: {{count($customers)}}</b>
+                                                </ol>
+                                            </div>
+                                        </div> 
                                     </div>
 
                                     <div class="card-body">
 
                                         <div class="col-md-12">
                                             <div class="card">
-                                                <div style="display:flex; align-items:center; padding-right: 0px; width:100%" class="card-header">
-                                                    <h5 class="card-title mb-0">Listado de clientes</h5>
-                                                    <!--<div class="card-options"><a class="card-options-collapse" href="#"
-                                                            data-bs-toggle="card-collapse"><i
-                                                                class="fe fe-chevron-up"></i></a><a
-                                                            class="card-options-remove" href="#"
-                                                            data-bs-toggle="card-remove"><i class="fe fe-x"></i></a>
-                                                    </div>-->
-                                                    <b style="float: right">Total clientes: {{count($customers)}}</b>
-
-                                                </div>
                                                 
-                                                <!--<div style="display:flex; align-items:center; padding-right: 0px;" class="card-header">
-                                                    <div style="width:100%" class="row">
-                                                        <div class="col-6">
-                                                            <h4 class="card-title mb-0">Listado de clientes</h4>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <ol style="float:right;" class="breadcrumb">
-                                                                <a class="btn btn-primary" href="{{ url('crear_cliente') }}">Crear
-                                                                    cliente</a>
-                                                            </ol>
-                                                        </div>
-                                                    </div> 
-                                                </div> -->  
-                                                
+                                                                                               
                                                 <div class="table-responsive add-project">
                                                     <table class="display tablesorter" id="basic-6">
                                                         <thead>
@@ -108,20 +96,20 @@
                                                                 <th>Telefono</th>
                                                                 <th>Correo</th>
                                                                 <th>Inversion</th>
-                                                                <th></th>
+                                                                <!--<th></th>-->
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             @foreach ($customers as $item)
-                                                           
+                                                          
                                                                 <tr>
-                                                                    <td><a class="text-inherit" href="#">{{$item["name"]}} {{$item["last_name"]}}</a></td>
+                                                                    <td><a class="text-inherit" href="{{url('crear_inversion/'.$item['id'])}}">{{$item["name"]}} {{$item["last_name"]}}</a></td>
                                                                     <td>{{$item["document_number"]}}</td>
                                                                     <td><span class="status-icon bg-success"></span>{{$item["customer_type"]}}</td>
                                                                     <td>{{$item["phone"]}}</td>
                                                                     <td>{{$item["email"]}}</td>
                                                                     <td>{{'$'.$item['total_investments']}}</td>
-                                                                    <td class="text-end">
+                                                                    <!--<td class="text-end">
                                                                     
                                                                         <a class="btn btn-success btn-sm"
                                                                             href="javascript:void(0)">
@@ -130,7 +118,7 @@
                                                                         <a class="btn btn-primary btn-sm"
                                                                             href="javascript:void(0)">
                                                                             Editar</a>
-                                                                    </td>
+                                                                    </td> -->
                                                                 </tr>
                                                             @endforeach
                                                            

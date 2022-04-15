@@ -97,7 +97,7 @@ trait InvestmentTrait
            
         }
 
-        return $investment;
+        return "Se ha creado la inversión correctamente.";
     }
 
     public function setPercentage($percentage, $id_customer){

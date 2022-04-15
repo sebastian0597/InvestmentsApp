@@ -56,6 +56,19 @@ class CustomerController extends Controller
                     /*'id_rol' => 'required|numeric',*/
                     'registered_by' => 'required|numeric',
                 ]);
+
+                /*$rules = [
+                    'student' => 'required|max:20',
+                    'score' => 'required|numeric|min:1|max:10',
+                ];
+                $messages = [
+                    'student.required' => 'Agrega el nombre del estudiante.',
+                    'student.max' =>'El nombre del estudiante no puede ser mayor a :max caracteres.',
+                    'score.required' => 'Agrega la puntuación al estudiante.',
+                    'score.numeric' => 'La puntuación debe ser un número',
+                    'score.between' => 'La puntuación debe estar entre :min y :max'
+                ];
+                $this->validate($request, $rules, $messages);*/
                 
                                
                 //Se calcula la clasificación del cliente dependiendo del monto de la inversión.
