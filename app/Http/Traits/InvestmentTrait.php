@@ -20,6 +20,7 @@ trait InvestmentTrait
         $fields = $request->validate([
 
             'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'base_amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'consignment_file' => 'required|file',
             'code_currency' => 'required|string',
             'id_payment_method' => 'required|numeric',
@@ -47,7 +48,7 @@ trait InvestmentTrait
         //Se crea la inversión.
         $investment = Investment::create([
             'id_customer' =>  $id_customer,
-            'base_amount' => $fields['amount'],
+            'base_amount' => $fields['base_amount'],
             'amount' => $fields['amount'],
             'consignment_file' => $consignment_file,
             'code_currency' => $fields['code_currency'],

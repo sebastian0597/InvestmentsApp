@@ -29,6 +29,7 @@ class CreateInvestmentsTable extends Migration
             $table->date('investment_date');
             $table->date('profitability_start_date')->nullable(true);
             $table->unsignedBigInteger('registered_by');
+            $table->unsignedBigInteger('updated_by')->nullable(true);
             $table->tinyinteger('status')->default(1)->nullable(true);
             $table->timestamps();
 
@@ -38,6 +39,8 @@ class CreateInvestmentsTable extends Migration
             $table->foreign('id_payment_method')->references('id')->on('payment_methods');
             $table->foreign('id_investment_type')->references('id')->on('investments_types');
             $table->foreign('registered_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
+
         });
     }
 
