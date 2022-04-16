@@ -111,3 +111,22 @@ const validarCrearInversion = ()=>{
    
 
 }
+
+const buscarInversionesPorParametros = () => {
+    quitarError('busqueda_inversiones');
+    if($('#busqueda_inversiones').val().trim() != ''){
+    
+        form_data = {}
+        let param = $('#busqueda_inversiones').val().trim();
+        let url = document.location.origin + `/api/v1/investment/${param}`;
+        let method = 'GET';
+        enviarPeticion(url, method, form_data, 'continuarBuscarInversionesPorParametros');
+        
+    }else{
+        agregarError('busqueda_inversiones');
+    }
+}
+
+const continuarBuscarInversionesPorParametros = (response) => {
+    console.log(response);
+}

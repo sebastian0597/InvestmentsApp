@@ -63,7 +63,7 @@ const validarTelefono = (element) =>{
 async function consultarAPIDivisas(moneda = 'COP') {
     let opciones = { method: 'GET', headers: { Accept: 'application/json' } };
     const response = await fetch(
-        `https://api.fastforex.io/fetch-multi?from=${moneda}&to=COP&api_key=be7477277f-af25417b5d-ra1gga`,
+        `https://api.fastforex.io/fetch-multi?from=${moneda}&to=COP&api_key=d56d5418c9-64a152c5ee-rage6i`,
         opciones
     );
     const monedas = await response.json();
