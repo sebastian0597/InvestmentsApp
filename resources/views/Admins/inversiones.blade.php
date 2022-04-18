@@ -104,6 +104,9 @@
                                                                         </div>
                                                                     </div>
                                                                 </form>
+                                                                <div id="investments_container">
+
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

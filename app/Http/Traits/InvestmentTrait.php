@@ -41,7 +41,7 @@ trait InvestmentTrait
         if($request->hasFile("consignment_file")){
             $file=$request->file("consignment_file");
             
-            $consignment_file = "rut_".$request->document_number.".".$file->guessExtension();
+            $consignment_file = "consignment_file_".$request->document_number.".".$file->guessExtension();
             $ruta = public_path("archivos/consiganciones/".$consignment_file);
             copy($file, $ruta);
         }

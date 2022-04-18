@@ -41,7 +41,15 @@ class Investment extends Model
 
     }
 
+    public static function getInvestmentsByParam($param){
 
+        //return Investment::where('status', '1')->where('id',$param)->orWhere()->get();
+
+        return Investment::select('investments.*')->join('customers', 'investments.id_customer', '=', 'customers.id')
+                ->where('investments.status', '1')->where('investments.id',$param)->orWhere('customers.document_number', $param)
+                ->get();
+
+    }
 
 
     //RELATIONS ELOQUENT

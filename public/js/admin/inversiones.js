@@ -76,35 +76,42 @@ const continuarCrearInversion = (response) => {
 
 const validarCrearInversion = ()=>{
     let validador = true;
-
-    if ($('#tipo_moneda').val() == '') {
+   
+    if ($('#tipo_moneda').val() == '' && $('#tipo_moneda').is(':visible')) {
         agregarError('tipo_moneda');
         validador = false;
     } else {
         quitarError('tipo_moneda');
     }
 
-    if ($('#metodo_pago').val() == '') {
+    if ($('#metodo_pago').val() == '' && $('#metodo_pago').is(':visible')) {
         agregarError('metodo_pago');
         validador = false;
     } else {
         quitarError('metodo_pago');
     }
-    if ($('#base_monto_inversion').val() == '') {
+    if ($('#base_monto_inversion').val() == '' && $('#base_monto_inversion').is(':visible')) {
         agregarError('base_monto_inversion');
         validador = false;
     } else {
         quitarError('base_monto_inversion');
     }
 
-    if ($('#archivo_consignacion').val().trim() == '') {
+    if ($('#archivo_consignacion').val().trim() == '' && $('#archivo_consignacion').is(':visible')) {
         agregarError('archivo_consignacion');
         validador = false;
     } else {
         quitarError('archivo_consignacion');
     }
-    if (!validarMontoMinimo()) {
+    if (!validarMontoMinimo() && $('#monto_inversion').is(':visible')) {
         validador = false;
+    }
+    
+    if($('#tipo_inversion').val() == ''){
+        agregarError('tipo_inversion');
+        validador = false;
+    } else {
+        quitarError('tipo_inversion');
     }
 
     return validador;
@@ -118,7 +125,7 @@ const buscarInversionesPorParametros = () => {
     
         form_data = {}
         let param = $('#busqueda_inversiones').val().trim();
-        let url = document.location.origin + `/api/v1/investment/${param}`;
+        let url = document.location.origin + `/api/v1/investments_by_param/${param}`;
         let method = 'GET';
         enviarPeticion(url, method, form_data, 'continuarBuscarInversionesPorParametros');
         
@@ -128,5 +135,53 @@ const buscarInversionesPorParametros = () => {
 }
 
 const continuarBuscarInversionesPorParametros = (response) => {
-    console.log(response);
+    let inversiones = response.data
+   
+    $('#investments_container').empty()
+    let html=''
+    if(inversiones.length>0){
+        let tr_inversiones=''
+
+        inversiones.forEach(function (inversion) {
+            tr_inversiones +=`
+            <tr>
+                <th scope="row"><a href="editar_inversion/${inversion.id}">${inversion.id}</a></th>
+                <td><a href="editar_inversion/${inversion.id}">${inversion.amount}</a></td>
+                <td><a href="editar_inversion/${inversion.id}">${inversion.investment_date}</a></td>
+                <td><a href="editar_inversion/${inversion.id}">${inversion.customer.name} ${inversion.customer.lastname}</a></td>
+            </tr>`
+        })
+
+        html+=`<table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Monto</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Cliente</th>
+          </tr>
+        </thead>
+        <tbody>
+        `+ tr_inversiones +`
+        </tbody>
+      </table>`
+
+    }else{
+        html+=`<span>No se han encontrado inversiones para los parámetros ingresados.</span>` 
+    }
+    
+    $('#investments_container').append(html)
+}
+
+const seleccionarTipoInversion = () =>{
+
+    $('#div_inversion').css('display', 'none');
+    $('#div_inversion_2').css('display', 'none');
+
+    if($('#tipo_inversion').val() != '' && $('#tipo_inversion').val()=='2'){
+
+        $('#div_inversion').css('display', 'flex');
+        $('#div_inversion_2').css('display', 'flex');
+    }
+
 }

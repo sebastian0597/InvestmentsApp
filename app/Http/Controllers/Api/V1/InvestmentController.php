@@ -52,6 +52,12 @@ class InvestmentController extends Controller
 
     }
 
+    public function showByParams($param)
+    {
+        return new InvestmentCollection(Investment::getInvestmentsByParam($param));
+
+    }
+
     
     public function update(Request $request, $id)
     {

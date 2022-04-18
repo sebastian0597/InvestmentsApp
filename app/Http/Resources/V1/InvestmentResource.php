@@ -16,16 +16,20 @@ class InvestmentResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'base_amount' => $this->base_amount,
-            'amount' => $this->amount,
+            'base_amount' => number_format($this->base_amount, 0,',',"."),
+            'amount' =>  number_format($this->amount, 0,',',"."),
             'currency' => $this->code_currency,
+            'percentage_investment' => $this->percentage_investment,
             'customer' => [
                 'name' => $this->customer->name,
                 'lastname' => $this->customer->last_name,
             ],
+            'id_payment_method' => $this->id_payment_method,
             'payment_method' => $this->paymentMethod->name,
+            'id_investment_type' => $this->id_investment_type,
             'investment_type' => $this->investmentType->name,
             'investment_date' => $this->investment_date,
+            'consignment_file' => $this->consignment_file,
             'registered_by' => $this->registeredBy->name,
             'status' => $this->status_text
         ];
