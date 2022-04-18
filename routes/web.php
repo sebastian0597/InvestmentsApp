@@ -34,6 +34,7 @@ Route::get('contrato', function () {
     $params["document_name"] = "Pagare_1098796215_".$customer_fullname;
 
     return view('Pdfs.bank_promissor_note', compact('params'));
+    
 })->name('contrato');
 
 
