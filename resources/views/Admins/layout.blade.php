@@ -23,18 +23,17 @@
     <link href="{{ asset('css/admin/responsive.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/admin.css') }}" rel="stylesheet">   
     <link href="{{ asset('css/admin/tables.css') }}" rel="stylesheet">   
-
+   
     <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery-ui.structure.css') }}" rel="stylesheet">   
     <link href="{{ asset('css/jquery-ui.theme.css') }}" rel="stylesheet">   
+    <link href="{{ asset('css/date-picker.css') }}" rel="stylesheet">
 
     <!--<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
      <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">-->
-
-   
 
 </head>
 
@@ -74,6 +73,8 @@
     <script src="{{ asset('js/admin/datatable/datatables/jquery.tablesorter.widgets.js') }}" defer></script>
     <script src="{{ asset('js/admin/datatable/datatables/jquery.tablesorter.pager.js') }}" defer></script>
     <script src="{{ asset('js/tables.js') }}" defer></script> 
+    <script src="{{ asset('js/datepicker.js') }}" defer></script> 
+    <script src="{{ asset('js/datepicker.en.js') }}" defer></script> 
     
 </body>
 

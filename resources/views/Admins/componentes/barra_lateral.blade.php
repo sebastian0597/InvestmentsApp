@@ -37,11 +37,11 @@
                                 data-feather="dollar-sign"></i><span>MÓDULO DESEMBOLSOS</span></a></li>
 
 
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('kpis')}}"><i
                                 data-feather="file"></i><span>MÓDULO KPI'S</span></a></li>
 
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
-        </nav> aqui va la modificada-->
+        </nav>
     </div>
 </div>

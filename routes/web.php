@@ -50,7 +50,7 @@ Route::get('contrato', function () {
     Route::get('crear_inversion/{id_cliente}',  [InvestmentController::class, 'create'] )->name('crear_inversion');
     Route::get('editar_inversion/{id_inversion}',  [InvestmentController::class, 'edit'] )->name('editar_inversion');
     
-    //Route::get('clientes', function () { return view('Admins.clientes'); })->name('clientes');
+    Route::get('kpis', function () { return view('Admins.kpis'); })->name('kpis');
     //Route::get('crear_cliente', function () { return view('Admins.crear_cliente'); });
   
 //});

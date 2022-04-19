@@ -120,24 +120,9 @@ const continuarBuscarClientePorParametros = (response) => {
               
             </div>
            
-            <div style='margin-top:20px'>
-                <h5>Datos de inversiones</h5>
-                
-                <div class='row'>
-                    <div class='col'>
-                        <label>Total Desembolsado</label>
-                        <input type='text' disabled class='form-control' placeholder='0'>
-                    </div>
-                    <div class='col'>
-                        <label>Gran Total Invertido</label>
-                        <input type='text' disabled class='form-control' placeholder='$${cliente.total_investments}'>
-                    </div>
-                </div>
-            
-            </div>
          `
     } else {
-        html = `<span>No hay datos para los parámetros ingresados</span>`
+        html = `<span>No hay datos para los parámetros ingresados.</span>`
     }
     $('#content-clientes').append(html)
 }
