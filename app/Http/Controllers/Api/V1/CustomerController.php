@@ -381,7 +381,6 @@ class CustomerController extends Controller
         $fields = $request->validate([
             'param' => 'required|string',
             'id_customer_type' => 'required|numeric',
-
         ]); 
 
         $customer = Customer::searchCustomerByParamsAndCustomerType($fields['param'], 3);
