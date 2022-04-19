@@ -53,7 +53,7 @@
 
                                 <div class="card-body">
 
-                                    <div class="mb-3">
+                                    <div class="col-md-6 mb-3">
                                         <div class="input-group mb-3">
                                             <input type="text" class="form-control"
                                                 placeholder="Nombre o número de documento del cliente"
@@ -73,34 +73,60 @@
                                         <p class="doc-intro ng-binding"> </p>
                                         <div id="content-clientes"></div>
                                     </div>
+                                    <br><br>
                                     <div class='row'>
                                         <h4 class="ng-binding">Porcentaje de rentabilidad</h4>
-                                        <div class='col-6'>
+                                        <div class='col-md-4'>
                                             <label class="form-label">Tipo de cliente</label>
                                             <select onchange="seleccionarTipoCliente()" class="form-select" id="tipo_cliente">
-                                                <option selected>Seleccione---</option>
+                                                <option value="" selected>Seleccione---</option>
                                                 @foreach ($customer_types as $item)
                                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div id="div_cliente_premium" style="display: none" class='col-6'>
-                                           
-                                            <label>Nombre o documento del cliente</label>
+
+                                        <div id="div_porcentaje" class='col-md-3'>
+                                            <label class="form-label">Porcentaje</label>
                                             <div class="input-group mb-3">
-                                                <input type="text" class="form-control"
-                                                    placeholder="Nombre o número de documento del cliente Premium"
-                                                    id="busqueda_cliente_premium_extractos">
-                                                <button onclick="buscarClientePremiumPorDocumento()"
-                                                    style="display: flex; align-items: center"
-                                                    class="btn btn-outline-primary" type="button"><span
-                                                        class="material-icons-outlined">
-                                                        search
-                                                    </span>
-                                                </button>
+                                                <input type="text" class="form-control" id="porcentaje">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">%</span>
+                                                </div>
                                             </div>
                                         </div>
+                                        
                                     </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div id="div_cliente_premium" style="display: none">
+                                           
+                                                <label>Nombre o documento del cliente</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Número de documento del cliente premium"
+                                                        id="busqueda_cliente_premium_extractos">
+                                                    <button onclick="buscarClientePremiumPorDocumento()"
+                                                        style="display: flex; align-items: center"
+                                                        class="btn btn-outline-primary" type="button"><span
+                                                            class="material-icons-outlined">
+                                                            search
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div id="div_premium_form"></div>
+                                    <br>
+                                    <div class="row">
+                                        <div class='col-sm'>
+                                            <button type="button" onclick="guardarPorcentajeRentabilidad()" class="btn btn-primary">Guardar % rentabilidad</button>
+                                        </div>
+                                    </div>
+
                                 </div> 
                             </div>
                         </div>

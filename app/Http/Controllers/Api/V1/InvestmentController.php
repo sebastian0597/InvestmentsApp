@@ -21,7 +21,7 @@ class InvestmentController extends Controller
     
     public function index()
     {
-    
+        return new InvestmentCollection(Investment::all());
 
     }
 
@@ -57,7 +57,6 @@ class InvestmentController extends Controller
         return new InvestmentCollection(Investment::getInvestmentsByParam($param));
 
     }
-
     
     public function update(Request $request, $id)
     {

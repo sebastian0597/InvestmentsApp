@@ -18,6 +18,7 @@ Route::apiResource('v1/customer', CustomerController::class)->only(['store','sho
 Route::post('v1/customer/update/{param}', [CustomerController::class, 'update']);
 Route::get('v1/get_customers_param/{param}', [CustomerController::class, 'getCustomers']);
 Route::post('v1/get_customers_by_customer_type', [CustomerController::class, 'getCustomersbyCustomerType']);
+Route::post('v1/get_customers_by_customer_premium', [CustomerController::class, 'getCustomersbyCustomerPremium']);
 
 
 Route::apiResource('v1/investment', InvestmentController::class)->only(['store','index', 'show']);

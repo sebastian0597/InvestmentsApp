@@ -17,6 +17,9 @@ use App\Utils\ProfitabilityDate;
 use App\Http\Traits\InvestmentTrait;
 use App\Http\Traits\ExtractTrait;
 
+use App\Http\Resources\V1\CustomerResource;
+use App\Http\Resources\V1\CustomerCollection;
+
 class ExtractController extends Controller
 {
     use InvestmentTrait; use ExtractTrait;
@@ -105,12 +108,13 @@ class ExtractController extends Controller
                 'document_number' => 'required|string',
                 'percentage' => 'required|numeric',
             ]);
-            
+        
             //Se consultan los clientes premium
             $customer = Customer::searchCustomerByParamsAndCustomerType($fields['document_number'], 3);
-
+            
+            
             if($customer){
-
+                
                 //Se usa la función de Investment Trait
                 $this->setPercentage($fields['percentage'], $customer->id);
 
@@ -124,10 +128,11 @@ class ExtractController extends Controller
                 $arr_extract['grand_total_invested'] = $total_invested;
                 $arr_extract['registered_by'] = 1;
                 $arr_extract['month'] = date("m");
-
+               
+                
                 //Se usa la función de Extract Trait
                 $extract = $this->storeExtract($arr_extract);
-                                
+                              
                 $investments = Investment::getInvestmentsByIdCustomer($customer->id);
                 $total_investment_return=0;
 
@@ -163,7 +168,7 @@ class ExtractController extends Controller
 
             }else{
 
-                return array(404, 'No se han encontrado inversiones para este cliente.');
+                return array(404, 'No se han encontrado inversiones para este cliente o el cliente no pertenece a la categoria premium.');
                
             }
            
