@@ -383,18 +383,10 @@ class CustomerController extends Controller
             'id_customer_type' => 'required|numeric',
 
         ]); 
+
         $customer = Customer::searchCustomerByParamsAndCustomerType($fields['param'], 3);
         
-        if($customer){
-
-            return $customer;
-
-        }else{
-
-            return array(); 
-        }
+        if($customer){  return $customer;  } else {  return array();  }
         
-       
-
     }
 }
