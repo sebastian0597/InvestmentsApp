@@ -67,7 +67,7 @@ class InvestmentController extends Controller
 
                 'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
                 'base_amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-                'consignment_file' => 'required|string',
+                'consignment_file' => 'required',
                 'code_currency' => 'required|string',
                 'id_payment_method' => 'required|numeric',
                 'status' => 'required|numeric',

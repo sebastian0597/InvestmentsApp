@@ -15,11 +15,13 @@ use App\Http\Controllers\Api\V1\ExtractController;
 Route::apiResource('v1/admin', AdminController::class)->only(['store', 'index', 'update']);
 
 Route::apiResource('v1/customer', CustomerController::class)->only(['store','show','index','edit']);
+Route::post('v1/customer/update/{param}', [CustomerController::class, 'update']);
 Route::get('v1/get_customers_param/{param}', [CustomerController::class, 'getCustomers']);
 Route::post('v1/get_customers_by_customer_type', [CustomerController::class, 'getCustomersbyCustomerType']);
-Route::post('v1/customer/update/{param}', [CustomerController::class, 'update']);
 
-Route::apiResource('v1/investment', InvestmentController::class)->only(['store','index', 'show', 'update']);
+
+Route::apiResource('v1/investment', InvestmentController::class)->only(['store','index', 'show']);
+Route::post('v1/investment/update/{param}', [InvestmentController::class, 'update']);
 Route::get('v1/get_investments_by_customer/{param}', [InvestmentController::class, 'showByCustomer']);
 Route::post('v1/set_percentaje_by_customer_type', [InvestmentController::class, 'setPercentajeByCustomerType']);
 Route::get('v1/investments_by_param/{param}', [InvestmentController::class, 'showByParams']);

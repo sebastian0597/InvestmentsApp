@@ -83,7 +83,7 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Número de documento</label>
-                                                <input class="form-control" value="{{$customer['document_number']}}" disabled>
+                                                <input class="form-control" id="numero_documento" value="{{$customer['document_number']}}" disabled>
                                                 <span class="msg_error_form" id="error_numero_documento"></span>
                                             </div>
 

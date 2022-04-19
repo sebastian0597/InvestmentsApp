@@ -48,9 +48,25 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h5>Formulario para editar inversión</h5>
+                                <div style="display:flex; align-items:center; padding-right: 0px;" class="card-header">
+                                    <div style="width:100%" class="row">
+                                        <div class="col-6">
+                                            <h5>Formulario para editar inversión</h5>
+                                        </div>
+                                        <div class="col-6">
+                                        
+                                            <ol style="float:right;" class="breadcrumb">
+                                                @include(
+                                                    'Admins/componentes/modal_busqueda_inversiones'
+                                                )
+        
+                                                    
+                                            </ol>
+
+                                        </div>
+                                    </div> 
                                 </div>
+                             
                                 <div class="card-body">
                                     
                                     <form class="needs-validation" novalidate="" accept-charset="UTF-8" enctype="multipart/form-data">
@@ -58,6 +74,7 @@
                                         <input type="hidden" id="id_cliente" value="{{$customer['id']}}">
                                         <input type="hidden" id="nombre_cliente" value="{{$customer['name']}} {{$customer['last_name']}}">
                                         <input type="hidden" id="email_cliente" value="{{$customer['email']}}">
+                                        <input type="hidden" id="id_inversion" value="{{$investment['id']}}">
                                         <h4>Datos del cliente</h4>
 
                                         <div class="row g-3">
@@ -83,7 +100,7 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Número de documento</label>
-                                                <input class="form-control" value="{{$customer['document_number']}}" disabled>
+                                                <input class="form-control" id="numero_documento" value="{{$customer['document_number']}}" disabled>
                                                 <span class="msg_error_form" id="error_numero_documento"></span>
                                             </div>
 
@@ -197,7 +214,7 @@
                                         
                                         <br><br>
                                         <div class="mb-4 placeholder-glow">
-                                            <button class="btn btn-primary" id="btn_crear_inversion" type="button" onclick="actualizarInversion()">Actualizar Inversión</button>
+                                            <button class="btn btn-primary" id="btn_editar_inversion" type="button" onclick="actualizarInversion()">Actualizar Inversión</button>
                                         </div>
                                         <br>
                                 </div>
