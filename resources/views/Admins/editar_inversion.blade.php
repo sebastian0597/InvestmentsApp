@@ -37,7 +37,7 @@
                             <div class="col-6">
                                 <ol class="breadcrumb">
                                     @include('Admins/componentes/enlance_navegacion')
-                                    <li class="breadcrumb-item active">Crear inversion</li>
+                                    <li class="breadcrumb-item active">Editar inversion</li>
                                 </ol>
                             </div>
                         </div>
@@ -48,9 +48,25 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h5>Formulario para crear inversión</h5>
+                                <div style="display:flex; align-items:center; padding-right: 0px;" class="card-header">
+                                    <div style="width:100%" class="row">
+                                        <div class="col-6">
+                                            <h5>Formulario para editar inversión</h5>
+                                        </div>
+                                        <div class="col-6">
+                                        
+                                            <ol style="float:right;" class="breadcrumb">
+                                                @include(
+                                                    'Admins/componentes/modal_busqueda_inversiones'
+                                                )
+        
+                                                    
+                                            </ol>
+
+                                        </div>
+                                    </div> 
                                 </div>
+                             
                                 <div class="card-body">
                                     
                                     <form class="needs-validation" novalidate="" accept-charset="UTF-8" enctype="multipart/form-data">
@@ -58,6 +74,7 @@
                                         <input type="hidden" id="id_cliente" value="{{$customer['id']}}">
                                         <input type="hidden" id="nombre_cliente" value="{{$customer['name']}} {{$customer['last_name']}}">
                                         <input type="hidden" id="email_cliente" value="{{$customer['email']}}">
+                                        <input type="hidden" id="id_inversion" value="{{$investment['id']}}">
                                         <h4>Datos del cliente</h4>
 
                                         <div class="row g-3">
@@ -107,19 +124,19 @@
 
                                             <div class="col-md-3">
                                                 <label class="form-label">Fecha inversión</label>
-                                                <input class="form-control" value="{{$customer['investments'][0]['investment_date']}}" disabled>
+                                                <input class="form-control" value="{{$investment['investment_date']}}" disabled>
                                                 <span class="msg_error_form" id="error_correo"></span>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <label class="form-label">Valor inversión</label>
-                                                <input class="form-control" value="{{$customer['total_investments']}}" disabled>
+                                                <input class="form-control" value="{{$investment['amount']}}" disabled>
                                                 <span class="msg_error_form" id="error_telefono"></span>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <label class="form-label">Porcentaje rentabilidad</label>
-                                                <input class="form-control" value="{{$customer['investments'][0]['percentage_investment']}}" disabled>
+                                                <input class="form-control" value="{{$investment['percentage_investment']}}" disabled>
                                                 <span class="msg_error_form" id="error_telefono"></span>
                                             </div>
 
@@ -136,20 +153,24 @@
                                                 <select onclick="seleccionarTipoInversion()" class="form-select" id="tipo_inversion" >
                                                     <option value="">Seleccione--</option>
                                                     @foreach ($investments_types as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        <option value="{{ $item->id }}" {{ $item->id == $investment['id_investment_type'] ? 'selected' : '' }}>{{ $item->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 <span class="msg_error_form" id="error_tipo_inversion"></span>
                                                 
                                             </div>
                                         </div>
-                                        <div style="display: none" id="div_inversion" class="row g-3">
+                                        <?php 
+                                            $display_nueva_inversion = $investment['id_investment_type'] == 2 ? 'display: flex' : 'display: none';
+                                        
+                                        ?>
+                                        <div style="{{$display_nueva_inversion}}" id="div_inversion" class="row g-3">
                                             <div class="col-md-3">
                                                 <label class="form-label">Tipo de moneda</label>
                                                 <select class="form-select" onchange="validarMontoMinimo();" id="tipo_moneda">
                                                     <option value="">Seleccione---</option>
                                                     @foreach ($currencies as $item)
-                                                        <option value="{{ $item->code }}">{{ $item->name }}</option>
+                                                        <option value="{{ $item->code }}" {{ $item->code == $investment['currency'] ? 'selected' : '' }}>{{ $item->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 <span class="msg_error_form" id="error_tipo_moneda"></span>
@@ -159,7 +180,7 @@
                                                 <label class="form-label">Método de pago</label>
                                                 <select class="form-select" id="metodo_pago" >
                                                     @foreach ($payment_methods as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        <option value="{{ $item->id }}" {{ $item->id == $investment['id_payment_method'] ? 'selected' : '' }}>{{ $item->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 <span class="msg_error_form" id="error_metodo_pago"></span>
@@ -168,36 +189,32 @@
                                             <div class="col-md-3">
                                                
                                                 <label>Monto de inversión</label>
-                                                <input id="base_monto_inversion" onblur="validarMontoMinimo()" onkeyup="convertirAformatoMoneda(this)"  class="form-control" type="text">
+                                                <input id="base_monto_inversion" onblur="validarMontoMinimo()" onkeyup="convertirAformatoMoneda(this)" value="{{$investment['base_amount']}}"  class="form-control" type="text">
                                                 <span class="msg_error_form" id="error_base_monto_inversion"></span>
                                             
                                             </div>
 
                                             <div class="col-md-3">
                                                 <label>Inversión en pesos</label>
-                                                <input disabled id="monto_inversion" class="form-control" type="text">
+                                                <input disabled id="monto_inversion" class="form-control" type="text" value="{{$investment['amount']}}">
                                                 <span class="msg_error_form" id="error_monto_inversion"></span>
                                                 
                                             </div>
                                         </div>
 
-                                        <div style="display: none" class="row g-3" id="div_inversion_2">
+                                        <div style="{{$display_nueva_inversion}}" class="row g-3" id="div_inversion_2">
                                       
                                             <div class="col-md-4">
                                                 <label>Documento de consignación</label>
                                                 <input class="form-control" id="archivo_consignacion" accept=".pdf, .png, .jpg, .jpeg" type="file">
                                                 <span class="msg_error_form" id="error_archivo_consignacion"></span>
-                                                
+                                                <input type="hidden" id="archivo_consignacion_txt" value="{{$investment['consignment_file']}}" >
                                             </div>
                                         </div>
                                         
                                         <br><br>
                                         <div class="mb-4 placeholder-glow">
-<<<<<<< HEAD
-                                            <button class="btn btn-primary" id="btn_crear_inversion" type="button" onclick="crearInversion()">Crear inversión</button>
-=======
-                                            <button class="btn btn-primary" id="btn_crear_inversion" type="button" onclick="crearInversion()">Crear Inversión</button>
->>>>>>> 4ce41ed4940e46ae8a2585c836e5e24267a78fa8
+                                            <button class="btn btn-primary" id="btn_editar_inversion" type="button" onclick="actualizarInversion()">Actualizar Inversión</button>
                                         </div>
                                         <br>
                                 </div>

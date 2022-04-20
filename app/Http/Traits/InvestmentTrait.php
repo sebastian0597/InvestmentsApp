@@ -25,6 +25,7 @@ trait InvestmentTrait
             'code_currency' => 'required|string',
             'id_payment_method' => 'required|numeric',
             'registered_by' => 'required|numeric',
+            'document_number' => 'required'
  
         ]);
 
@@ -41,7 +42,7 @@ trait InvestmentTrait
         if($request->hasFile("consignment_file")){
             $file=$request->file("consignment_file");
             
-            $consignment_file = "rut_".$request->document_number.".".$file->guessExtension();
+            $consignment_file = "consignment_file_".$fields['document_number'].".".$file->guessExtension();
             $ruta = public_path("archivos/consiganciones/".$consignment_file);
             copy($file, $ruta);
         }

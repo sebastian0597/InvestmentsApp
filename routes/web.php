@@ -34,6 +34,7 @@ Route::get('contrato', function () {
     $params["document_name"] = "Pagare_1098796215_".$customer_fullname;
 
     return view('Pdfs.bank_promissor_note', compact('params'));
+    
 })->name('contrato');
 
 
@@ -47,6 +48,7 @@ Route::get('contrato', function () {
     Route::get('crear_administrador',  [AdminController::class, 'index'] )->name('crear_administrador');
     Route::get('inversiones',  [InvestmentController::class, 'index'] )->name('inversiones');
     Route::get('crear_inversion/{id_cliente}',  [InvestmentController::class, 'create'] )->name('crear_inversion');
+    Route::get('editar_inversion/{id_inversion}',  [InvestmentController::class, 'edit'] )->name('editar_inversion');
     
     Route::get('kpis', function () { return view('Admins.kpis'); })->name('kpis');
     //Route::get('crear_cliente', function () { return view('Admins.crear_cliente'); });

@@ -240,7 +240,7 @@ const crearCliente = () => {
             'archivo_consignacion'
         ).files[0];
 
-        var form_data = new FormData();
+        let form_data = new FormData();
         form_data.append('name', nombres);
         form_data.append('last_name', apellidos);
         form_data.append('email', correo);
@@ -314,6 +314,7 @@ const crearCliente = () => {
             confirmButtonText: 'Aceptar',
             allowEscapeKey: false,
             allowOutsideClick: false,
+
         }).then((result) => {
             if (result.isConfirmed) {
                 enviarPeticion(url, method, form_data, 'continuarCrearCliente');

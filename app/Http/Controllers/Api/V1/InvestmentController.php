@@ -21,7 +21,7 @@ class InvestmentController extends Controller
     
     public function index()
     {
-    
+        return new InvestmentCollection(Investment::all());
 
     }
 
@@ -52,6 +52,11 @@ class InvestmentController extends Controller
 
     }
 
+    public function showByParams($param)
+    {
+        return new InvestmentCollection(Investment::getInvestmentsByParam($param));
+
+    }
     
     public function update(Request $request, $id)
     {
@@ -61,7 +66,7 @@ class InvestmentController extends Controller
 
                 'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
                 'base_amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-                'consignment_file' => 'required|string',
+                'consignment_file' => 'required',
                 'code_currency' => 'required|string',
                 'id_payment_method' => 'required|numeric',
                 'status' => 'required|numeric',

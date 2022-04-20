@@ -375,4 +375,17 @@ class CustomerController extends Controller
         );
 
     }
+
+    public function getCustomersbyCustomerPremium(Request $request){
+       
+        $fields = $request->validate([
+            'param' => 'required|string',
+            'id_customer_type' => 'required|numeric',
+        ]); 
+
+        $customer = Customer::searchCustomerByParamsAndCustomerType($fields['param'], 3);
+        
+        if($customer){  return $customer;  } else {  return array();  }
+        
+    }
 }
