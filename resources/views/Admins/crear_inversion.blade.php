@@ -118,7 +118,7 @@
                      
                                         <br><br>
                                         <div class="mb-4 placeholder-glow">
-                                            <button class="btn btn-primary" id="btn_crear_inversion" type="button" onclick="crearInversion()">Crear Cliente</button>
+                                            <button class="btn btn-primary" id="btn_crear_inversion" type="button" onclick="crearInversion()">Crear inversión</button>
                                         </div>
                                         <br>
                                 </div>
