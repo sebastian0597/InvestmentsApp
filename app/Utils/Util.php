@@ -108,7 +108,7 @@ class Util
             $result = $days-$investmentDays;
         }
 
-        return $result;
+        return $result+1;//Se le suma 1 dia para que tome tambien el ultimo dia de la inversion
 
    }
 
@@ -150,7 +150,7 @@ class Util
     }
 
     public static function validateDaysNumberByMonth($month){
-
+        //Se validan que todos los meses tengam 30 dias de rentabilidad, excepto marzo.
         $days = 30;
         if($month == "02"){
             $days=28;
