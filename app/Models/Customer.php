@@ -65,6 +65,12 @@ class Customer extends Model
         return $customer;
     }
 
+    public static function getCustomersByType($id_customer_type) {
+
+        return Customer::where('id_customer_type', $id_customer_type)->where('status', 1)->get();
+        
+    }
+
     //VIRTUAL attributes
     public function getStatusTextAttribute(){
         

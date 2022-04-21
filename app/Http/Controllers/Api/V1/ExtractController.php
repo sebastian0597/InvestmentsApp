@@ -188,25 +188,14 @@ class ExtractController extends Controller
                 'percentage' => 'required|numeric',
             ]);
 
-            $customers = Customer::where('id_customer_type', $fields['id_customer_type'])->where('status', 1)->get();
+            $customers = Customer::getCustomersByType($fields['id_customer_type']);
 
             if($customers){
-
-                return array(404, $customers);
-
-
+            
                     foreach($customers as $customer){
-
-                       
+          
                         //Se usa la función de Investment Trait
                         $this->setPercentage($fields['percentage'], $customer->id);
-
-                        /*DB::statement("UPDATE investments I 
-                        INNER JOIN customers C ON C.id = I.id_customer 
-                        SET I.percentage_investment=?
-                        WHERE C.id_customer_type=? AND I.status=1",
-
-                        [$fields['percentage'],$fields['id_customer_type']]);*/
 
                         $total_reinvested = Investment::getTotalInvestmentCustomerByInvestmentType($customer->id, 1);
                         $total_invested = Investment::getTotalInvestmentCustomer($customer->id);
@@ -219,23 +208,12 @@ class ExtractController extends Controller
                         $arr_extract['registered_by'] = 1;
                         $arr_extract['month'] = date("m");
 
+                        //Se deben borrar los extractos que pertenezcan al mismo cliente y son del mismo mes.
+                        
+
+
                         //Se usa la función de Extract Trait
                         $extract = $this->storeExtract($arr_extract);
-
-                        /*$extract = Extract::create([
-                            'id_customer' => $customer->id,
-                            'total_disbursed' => 0,
-                            'total_reinvested' => $total_reinvested,
-                            'profitability_percentage' => $fields['percentage'],
-                            'grand_total_invested' => $total_invested,
-                            'registered_by' => 1,
-                            'month' => date("m")
-                        ]);*/
-
-                        /*DB::statement("INSERT INTO extracts_details (id_extract, id_investment, created_at)
-                        SELECT ?, id, NOW() FROM investments I
-                        WHERE I.id_customer = ? AND I.status = 1
-                        ",[$extract->id,$customer->id]);*/
                         
                         $investments = Investment::getInvestmentsByIdCustomer($customer->id);
                         $total_investment_return=0;
