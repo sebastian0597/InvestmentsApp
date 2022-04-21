@@ -227,13 +227,15 @@ const guardarPorcentajeRentabilidad = () =>{
         switch (parseInt(tipo_cliente)) {
             case 1:
             case 2:
-                
+                url = url+`/api/v1/extracts_by_customer_type`
+                form_data.append('id_customer_type', tipo_cliente);
+                form_data.append('percentage', porcentaje);
                 
 
                 break;
             case 3:
                 let numero_documento = $('#numero_documento').val() 
-                console.log(numero_documento)
+               
                 url = url+`/api/v1/extracts_customer_premium`
 
                 form_data.append('document_number', numero_documento);

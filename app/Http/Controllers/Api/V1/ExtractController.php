@@ -128,7 +128,8 @@ class ExtractController extends Controller
                 $arr_extract['grand_total_invested'] = $total_invested;
                 $arr_extract['registered_by'] = 1;
                 $arr_extract['month'] = date("m");
-               
+                
+                Util::deleteExtracts($customer->id, $arr_extract['month']);
                 
                 //Se usa la función de Extract Trait
                 $extract = $this->storeExtract($arr_extract);
@@ -209,8 +210,9 @@ class ExtractController extends Controller
                         $arr_extract['month'] = date("m");
 
                         //Se deben borrar los extractos que pertenezcan al mismo cliente y son del mismo mes.
-                        
-
+                            //1. Buscar los extractos, sacar el id y buscar los extractos detalles.
+                            //2. Eliminar los extractos detalles por medio del id y luego eliminar los extractos.
+                            Util::deleteExtracts($customer->id, $arr_extract['month']); 
 
                         //Se usa la función de Extract Trait
                         $extract = $this->storeExtract($arr_extract);

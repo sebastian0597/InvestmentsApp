@@ -6,6 +6,9 @@ use App\Mail\CredentialsMailable;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Mail;
 
+use App\Models\Extract;
+use App\Models\ExtractDetail;
+
 class Util 
 {
     public static function generatePassword()
@@ -182,6 +185,18 @@ class Util
        
     }
 
+    public static function deleteExtracts($id_customer, $month){
+
+        $older_extracts = Extract::getExtractByCustomerAndMonth($id_customer, $month);
+        foreach($older_extracts as $item){
+            
+            $id_extract = $item->id;
+            
+            ExtractDetail::where('id_extract', $id_extract )->delete();
+            Extract::where('id', $id_extract)->delete();
+        }   
+
+    }
 
     /*public function compressImage($source, $destination, $quality) { 
         // Obtenemos la información de la imagen
