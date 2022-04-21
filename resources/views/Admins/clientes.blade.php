@@ -77,6 +77,7 @@
                                                     <th>Teléfono</th>
                                                     <th>Ubicación</th>
                                                     <th>Correo</th>
+                                                    <th>Estado</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -103,6 +104,7 @@
                                                             <td>{{ $item['phone'] }}</td>
                                                             <td>{{ $item['city'] }} - {{ $item['country'] }}</td>
                                                             <td>{{ $item['email'] }}</td>
+                                                            <td>{{ $item['status'] }}</td>
                                                         </tr>
                                                        
                                                     @endforeach

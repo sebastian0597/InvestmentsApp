@@ -44,11 +44,6 @@ const continuarBuscarClientePorParametros = (response) => {
                             ? 0
                             : inversion.percentage_investment
                     }</td>
-                    <td>${
-                        inversion.percentage_investment == null
-                            ? 0
-                            : inversion.percentage_investment
-                    }</td>
                     <td>$${amount == null ? 0 : amount}</td>
                 </tr>
                 `
@@ -91,8 +86,7 @@ const continuarBuscarClientePorParametros = (response) => {
                             <tr>
                                 <th scope='col'>Fecha</th>
                                 <th scope='col'>Valor</th>
-                                <th scope='col'>Consolidado de Inversiones</th>
-                                <th scope='col'>% Rentabilidad</th>
+                                <th scope='col'>% Rentabilidad mensual</th>
                                 <th scope='col'>Total invertido</th>
                             </tr>
                         </thead>
@@ -171,11 +165,10 @@ const buscarClientePremiumPorDocumento = () => {
 const continuarBuscarClientePremiumPorDocumento = (response) =>{
     $('#div_premium_form').empty()
     $('#content-clientes').empty()
-   
-    let cliente = response
-    cliente = cliente.id == undefined || null ? {} : cliente
+
+    cliente = response.data == undefined || null ? {} : response.data
     let html = ''
-  
+    
     if(!isObjEmpty(cliente)){
 
         html+=` <div style='margin-top:20px; margin-bottom:20px;    '>
@@ -230,11 +223,13 @@ const guardarPorcentajeRentabilidad = () =>{
         let url = document.location.origin
         let form_data = new FormData();
         let method = 'POST'
-        console.log(tipo_cliente)
+      
         switch (parseInt(tipo_cliente)) {
             case 1:
             case 2:
                 
+                
+
                 break;
             case 3:
                 let numero_documento = $('#numero_documento').val() 
