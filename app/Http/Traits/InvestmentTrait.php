@@ -102,7 +102,7 @@ trait InvestmentTrait
            
         }
 
-        return "Se ha creado la inversión correctamente.";
+        return "Se ha creado la reinversión correctamente.";
     }
 
     public function storeReinvestment($request, $customer_id="")

@@ -61,7 +61,7 @@ const crearReinversion = () =>{
             allowOutsideClick: false,
         }).then((result) => {
             if (result.isConfirmed) {
-                enviarPeticion(url, method, form_data, 'continuarCrearInversion');
+                enviarPeticion(url, method, form_data, 'continuarCrearReinversion');
             }
             if (result.isDismissed) {
                 $('#btn_crear_inversion').text('Crear inversión');
@@ -70,9 +70,17 @@ const crearReinversion = () =>{
             }
         });
 
-
-
     }
+}
+
+const continuarCrearReinversion = (response) =>{
+
+
+    setResponseMessage(response);
+    $('#btn_crear_inversion').text('Crear Inversion');
+    $('#btn_crear_inversion').prop('disabled', false);
+    $('#btn_crear_inversion').removeClass('placeholder'); 
+
 }
 
 
@@ -226,6 +234,9 @@ const continuarBuscarInversionesPorParametros = (response) => {
         let tr_inversiones=''
        
         inversiones.forEach(function (inversion) {
+
+            console.log(inversion)
+
             let url = document.location.origin + `/editar_inversion/${inversion.id}`
             tr_inversiones +=`
             <tr>
@@ -233,6 +244,9 @@ const continuarBuscarInversionesPorParametros = (response) => {
                 <td><a href="${url}">${inversion.amount}</a></td>
                 <td><a href="${url}">${inversion.investment_date}</a></td>
                 <td><a href="${url}">${inversion.customer.name} ${inversion.customer.lastname}</a></td>
+                <td><a href="${url}">${inversion.investment_type}</a></td>
+
+                
             </tr>`
         })
 
@@ -243,6 +257,7 @@ const continuarBuscarInversionesPorParametros = (response) => {
             <th scope="col">Monto</th>
             <th scope="col">Fecha</th>
             <th scope="col">Cliente</th>
+            <th scope="col">Tipo inversion</th>
           </tr>
         </thead>
         <tbody>
