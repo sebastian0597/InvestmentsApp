@@ -143,6 +143,18 @@
                                                 
                                             </div>
                                         </div>
+                                        <br>
+                                        <div style="display: none" id="div_reinversion" class="row g-3">
+                                            <div class="col-md-3" id="content_reinversion">
+                                               
+                                                <label>Monto reinversión</label>
+                                                <input id="monto_reinversion" disabled class="form-control" type="text">
+                                                <span class="msg_error_form" id="error_monto_reinversion"></span>
+                                            
+                                            </div>
+                                           
+                                        </div>
+
                                         <div style="display: none" id="div_inversion" class="row g-3">
                                             <div class="col-md-3">
                                                 <label class="form-label">Tipo de moneda</label>
@@ -193,12 +205,9 @@
                                         
                                         <br><br>
                                         <div class="mb-4 placeholder-glow">
-<<<<<<< HEAD
+
                                             <button class="btn btn-primary" id="btn_crear_inversion" type="button" onclick="crearInversion()">Crear inversión</button>
-=======
-                                            <button class="btn btn-primary" id="btn_crear_inversion" type="button" onclick="crearInversion()">Crear Inversión</button>
->>>>>>> 4ce41ed4940e46ae8a2585c836e5e24267a78fa8
-                                        </div>
+
                                         <br>
                                 </div>
                               

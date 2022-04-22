@@ -22,6 +22,7 @@ class CreateExtractsDetailsTable extends Migration
             $table->double('investment_amount',20,2);
             $table->double('real_profitability_percentage',4,2);
             $table->double('investment_return',20,2);
+            $table->tinyinteger('status')->default(1)->nullable(true);
             
             
             $table->timestamps();

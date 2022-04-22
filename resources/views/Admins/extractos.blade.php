@@ -86,7 +86,7 @@
                                             </select>
                                         </div>
 
-                                        <div id="div_porcentaje" class='col-md-3'>
+                                        <div style="display: none" id="div_porcentaje" class='col-md-3'>
                                             <label class="form-label">Porcentaje</label>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" id="porcentaje">
@@ -123,7 +123,7 @@
                                     <br>
                                     <div class="row">
                                         <div class='col-sm'>
-                                            <button type="button" onclick="guardarPorcentajeRentabilidad()" class="btn btn-primary">Guardar % rentabilidad</button>
+                                            <button type="button" id="btn_guardar_porcentaje" style="display:none" onclick="guardarPorcentajeRentabilidad()" class="btn btn-primary">Guardar % rentabilidad</button>
                                         </div>
                                     </div>
 

@@ -19,6 +19,9 @@ use App\Http\Traits\ExtractTrait;
 
 use App\Http\Resources\V1\CustomerResource;
 use App\Http\Resources\V1\CustomerCollection;
+use App\Http\Resources\V1\ExtractResource;
+use App\Http\Resources\V1\ExtractCollection;
+
 
 class ExtractController extends Controller
 {
@@ -60,9 +63,9 @@ class ExtractController extends Controller
      * @param  \App\Models\Extract  $extract
      * @return \Illuminate\Http\Response
      */
-    public function show(Extract $extract)
+    public function show($id_customer)
     {
-        //
+        return new ExtractCollection(Extract::getExtractByCustomerAndStatus($id_customer));
     }
 
     /**
@@ -73,7 +76,7 @@ class ExtractController extends Controller
      */
     public function edit(Extract $extract)
     {
-        //
+        
     }
 
     /**

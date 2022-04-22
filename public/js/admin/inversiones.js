@@ -1,5 +1,34 @@
 const crearInversion = ()=>{
+    let tipo_inversion = $('#tipo_inversion').val()
+    
+    if(tipo_inversion!=''){
+        switch (tipo_inversion) {
+            
+            case '1'://reinversion
+                    crearReinversion()
+                break;
+            case '2'://Nueva inversion
+                    crearNuevaInversion()
+                break;
+        
+            default:
+                break;
+        }
+    }
+      
+}
 
+const crearReinversion = () =>{
+    
+    if($('#monto_reinversion').val() != '' && $('#monto_reinversion').is(':visible')){
+
+        
+    }
+}
+
+const crearNuevaInversion = ()=>{
+    
+    
     if(validarCrearInversion()){
 
         $('#btn_crear_inversion').text('Creando inversion...');
@@ -66,7 +95,6 @@ const crearInversion = ()=>{
             }
         });
     }
-      
 }
 
 const continuarCrearInversion = (response) => {
@@ -139,10 +167,10 @@ const buscarInversionesPorParametros = () => {
 
 const continuarBuscarInversionesPorParametros = (response) => {
     let inversiones = response.data
-   
+    inversiones = inversiones == undefined || null ? {} : inversiones
     $('#investments_container').empty()
     let html=''
-    if(inversiones.length>0){
+    if(!isObjEmpty(inversiones)){
         let tr_inversiones=''
        
         inversiones.forEach(function (inversion) {
@@ -181,11 +209,51 @@ const seleccionarTipoInversion = () =>{
 
     $('#div_inversion').css('display', 'none');
     $('#div_inversion_2').css('display', 'none');
+    $('#div_reinversion').css('display', 'none');
+    $('#btn_crear_inversion').prop('disabled', false);
+    
 
     if($('#tipo_inversion').val() != '' && $('#tipo_inversion').val()=='2'){
 
         $('#div_inversion').css('display', 'flex');
         $('#div_inversion_2').css('display', 'flex');
+
+    }else if($('#tipo_inversion').val()=='1'){
+        $('#content_reinversion').removeClass('col-md-12');
+        $('#div_reinversion').css('display', 'block');
+        consultarExtractos()
+
+    }
+
+}
+
+const consultarExtractos = ()=>{
+    form_data = {}
+    let param = $('#id_cliente').val().trim();
+    let url = document.location.origin + `/api/v1/extracts/${param}`;
+    let method = 'GET';
+    enviarPeticion(url, method, form_data, 'continuarConsultarExtractos');
+}
+
+const continuarConsultarExtractos = (response)=>{
+    let extractos = response.data
+    extractos = extractos == undefined || null ? {} : extractos
+   
+    if(!isObjEmpty(extractos)){
+
+        extractos.forEach(function (extracto) {
+
+           let valor_reinversion = extracto.grand_total_invested + extracto.total_profitability
+           $('#monto_reinversion').val(formatNumber(valor_reinversion))
+          
+        })
+
+    }else{
+        $('#btn_crear_inversion').prop('disabled', true);
+        $('#content_reinversion').empty(); 
+        $('#content_reinversion').removeClass('col-md-3');
+        $('#content_reinversion').addClass('col-md-12');
+        $('#content_reinversion').append('<span>Este cliente no tiene montos disponibles para realizar reinversiones, por favor primero genere el extracto del mes.</span>');
     }
 
 }

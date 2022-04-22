@@ -10,6 +10,9 @@ use App\Models\User;
 use App\Models\InvestmentType;
 use App\Models\PaymentMethod;
 
+use App\Models\Extract;
+use App\Models\ExtractDetail;
+
 use Illuminate\Support\Facades\DB;
 
 trait InvestmentTrait
@@ -101,6 +104,106 @@ trait InvestmentTrait
 
         return "Se ha creado la inversión correctamente.";
     }
+
+    public function storeReinvestment($request, $customer_id="")
+    {
+        //Se validan los campos que son obligatorios para crear una inversón.
+        $fields = $request->validate([
+
+            'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'registered_by' => 'required|numeric',
+            'document_number' => 'required',
+            'id_customer' => 'required'
+ 
+        ]);
+
+        $id_customer = $customer_id == "" || is_null($customer_id) ?  $request->id_customer : $customer_id;
+        $investment_type = 1;// $request->id_investment_type == "" || is_null($request->id_investment_type) ? 2 : $request->id_investment_type;
+
+        //Se buscan las inversiones activas del cliente y se les coloca en estado 2.
+        $investments = Investment::getInvestmentsByIdCustomer($id_customer);
+        
+        foreach($investments as $investment){
+            $investment->status =2;
+            $investment->update();
+
+            $extractDetails = ExtractDetail::getExtractDetailsByIdInvestment($investment->id);
+            foreach($extractDetails as $extractDetail){
+                $extractDetail->status = 2;
+                $extractDetail->update();
+            }
+            
+        }
+
+        //Se buscan los extractos activos y se les coloca en estado 2.
+        $extracts = Extract::getExtractByCustomerAndStatus($id_customer);
+        
+        foreach($extracts as $extract){
+            $extract->status = 2;
+            $extract->update();
+        }
+       
+        //$payment_method = PaymentMethod::find($fields['id_payment_method']);
+        $date = ProfitabilityDate::create(date('Y'),date('m'),date('d'));
+        $date->addBussinessDays(1);
+        $profibality_date = $date->toDateString();
+
+        
+        //Se crea la inversión.
+        $investment = Investment::create([
+            'id_customer' =>  $id_customer,
+            'base_amount' => $fields['amount'],
+            'amount' => $fields['amount'],
+            'code_currency' => 'COP',
+            'investment_date' => date('Y-m-d h:i:s'),
+            'id_investment_type' => $investment_type,
+            'id_payment_method' => 1,
+            'profitability_start_date' => $profibality_date,
+            'registered_by' => $fields["registered_by"],
+        ]);
+
+        $investment->save();
+
+        //Se consultan todas las inversiones activas del cliente y se suman, para actualizar la clasificación del mismo.
+        $total_amount = Investment::getTotalInvestmentCustomer($id_customer);
+        $customer_type = Util::validateCustomerLevel($total_amount);
+        $customer = Customer::find($id_customer);
+        $customer->id_customer_type = $customer_type;
+        $customer->status = 1;
+        $customer->save();
+
+        /*//Se busca si es una reinversión o una nueva inversión
+        $investment_type = InvestmentType::find($investment_type);
+       
+        //Si es una nueva inversión se envía el pagaré al correo del administrador.
+        if($investment_type->ind_generate_bank_note == 1){
+
+            $adminLogged = User::find(1);
+            $customer_fullname = $customer->name." ".$customer->last_name;
+            $dataAdmin["email"] = $adminLogged->email;
+            $dataAdmin["title"] = "Pagaré del cliente ".$customer->document_number." ".$customer_fullname;
+            $dataAdmin["amount"] = $fields['amount'];
+            $dataAdmin["investment_date"] = date('d/m/Y');
+            $dataAdmin["bank_promissor_number"] = $investment->id;
+            $dataAdmin["document_number"] = $customer->document_number;
+            $dataAdmin["customer_name"] = $customer_fullname;
+            $dataAdmin["document_name"] = "Pagare_".$customer->document_number."_".$customer_fullname;
+
+            if($customer_type == 1 || $customer_type == 2){//Standard o VIP
+
+                Util::sendEmailWithPDFFile('Pdfs.bank_promissor_note', $dataAdmin);
+
+            }else if($customer_type == 3){//Premium
+
+                Util::sendEmailWithPDFFile('Pdfs.bank_promissor_note', $dataAdmin);
+            }
+           
+        }*/
+
+        return "Se ha creado la inversión correctamente.";
+    }
+
+
 
     public function setPercentage($percentage, $id_customer){
 

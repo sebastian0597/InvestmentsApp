@@ -22,10 +22,12 @@ Route::post('v1/get_customers_by_customer_premium', [CustomerController::class, 
 
 
 Route::apiResource('v1/investment', InvestmentController::class)->only(['store','index', 'show']);
+Route::post('v1/reinvestment', [InvestmentController::class, 'storeReinvest']);
 Route::post('v1/investment/update/{param}', [InvestmentController::class, 'update']);
 Route::get('v1/get_investments_by_customer/{param}', [InvestmentController::class, 'showByCustomer']);
 Route::get('v1/investments_by_param/{param}', [InvestmentController::class, 'showByParams']);
 
+Route::apiResource('v1/extracts', ExtractController::class)->only(['show']);
 Route::post('v1/extracts_customer_premium', [ExtractController::class, 'extractCustomerPremium']);
 Route::post('v1/extracts_by_customer_type', [ExtractController::class, 'extractByCustomerType']);
 

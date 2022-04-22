@@ -130,14 +130,27 @@ const continuarBuscarClientePorParametros = (response) => {
 
 const seleccionarTipoCliente = () => {
 
-    $('#div_cliente_premium').css('display', 'none')
-    $('#div_porcentaje').css('display', 'block')
-    $('#div_premium_form').empty()
-   
-    if ($('#tipo_cliente').val() == '3') {
-        $('#div_cliente_premium').css('display', 'block')
+    if($('#tipo_cliente').val() != ''){
+
+        $('#div_cliente_premium').css('display', 'none')
+        $('#div_porcentaje').css('display', 'block')
+        $('#div_premium_form').empty()
+        $("#btn_guardar_porcentaje").css('display', 'block')
+
+        if ($('#tipo_cliente').val() == '3') {
+
+            $('#div_cliente_premium').css('display', 'block')
+            $('#div_porcentaje').css('display', 'none')
+
+        }
+
+    }else{
+
+        $('#div_cliente_premium').css('display', 'none')
         $('#div_porcentaje').css('display', 'none')
+        $("#btn_guardar_porcentaje").css('display', 'none')
     }
+  
 }
 
 const buscarClientePremiumPorDocumento = () => {
