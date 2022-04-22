@@ -257,7 +257,7 @@ const continuarBuscarInversionesPorParametros = (response) => {
             <th scope="col">Monto</th>
             <th scope="col">Fecha</th>
             <th scope="col">Cliente</th>
-            <th scope="col">Tipo inversion</th>
+            <th scope="col">Inversión</th>
           </tr>
         </thead>
         <tbody>
