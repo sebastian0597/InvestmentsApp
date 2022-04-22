@@ -22,16 +22,68 @@ const crearReinversion = () =>{
     
     if($('#monto_reinversion').val() != '' && $('#monto_reinversion').is(':visible')){
 
+        $('#btn_crear_inversion').text('Creando Reinversión...');
+        $('#btn_crear_inversion').addClass('placeholder'); 
+        $('#btn_crear_inversion').prop('disabled', true);
+
+        let id_cliente = $('#id_cliente').val().trim();
+        let numero_documento = $('#numero_documento').val().trim()
+        let monto_inversion = quitarformatNumber(
+            $('#monto_reinversion').val().trim()
+        );
+    
+        var form_data = new FormData();
+        form_data.append('id_customer', id_cliente);
+        form_data.append('registered_by', 1);
+        form_data.append('amount', monto_inversion);
+        form_data.append('document_number', numero_documento);
         
+        
+        let url = document.location.origin + '/api/v1/reinvestment';
+        let method = 'POST';
+
+        Swal.fire({
+            icon: 'warning',
+            title: 'Asegurese que los datos ingresados sean los correctos.',
+            html: `Por favor, revise que los datos ingresados, como el monto de la reinversión coincida con lo generado en extractos
+            sean los correctos. <br/><br/>
+                    El monto a invertir es: <b>$${formatNumber(
+                        monto_inversion
+                    )}</b><br> 
+                    El cliente es: <b>${$('#nombre_cliente').val()}</b><br>
+                    El correo es: <b>${$('#email_cliente').val()}</b><br> 
+                   `,
+
+            showDenyButton: false,
+            showCancelButton: true,
+            confirmButtonText: 'Aceptar',
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                enviarPeticion(url, method, form_data, 'continuarCrearInversion');
+            }
+            if (result.isDismissed) {
+                $('#btn_crear_inversion').text('Crear inversión');
+                $('#btn_crear_inversion').prop('disabled', false);
+                $('#btn_crear_inversion').removeClass('placeholder'); 
+            }
+        });
+
+
+
     }
 }
+
+
+
 
 const crearNuevaInversion = ()=>{
     
     
     if(validarCrearInversion()){
 
-        $('#btn_crear_inversion').text('Creando inversion...');
+        $('#btn_crear_inversion').text('Creando inversión...');
         $('#btn_crear_inversion').addClass('placeholder'); 
         $('#btn_crear_inversion').prop('disabled', true);
 
