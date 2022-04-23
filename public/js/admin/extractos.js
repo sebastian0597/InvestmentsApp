@@ -172,10 +172,10 @@ const continuarBuscarClientePremiumPorDocumento = (response) =>{
     $('#div_premium_form').empty()
     $('#content-clientes').empty()
    
-    let cliente = response
-    cliente = cliente.id == undefined || null ? {} : cliente
+    let cliente = response.data
+    cliente = cliente == undefined || null ? {} : cliente
     let html = ''
-  
+
     if(!isObjEmpty(cliente)){
 
         html+=` <div style='margin-top:20px; margin-bottom:20px;    '>

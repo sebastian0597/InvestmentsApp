@@ -110,11 +110,11 @@
                                                           
                                                                 <tr>
                                                                     <td><a class="text-inherit" href="{{url('crear_inversion/'.$item['id'])}}">{{$item["name"]}} {{$item["last_name"]}}</a></td>
-                                                                    <td>{{$item["document_number"]}}</td>
-                                                                    <td><span class="status-icon bg-success"></span>{{$item["customer_type"]}}</td>
-                                                                    <td>{{$item["phone"]}}</td>
-                                                                    <td>{{$item["email"]}}</td>
-                                                                    <td>{{'$'.$item['total_investments']}}</td>
+                                                                    <td><a class="text-inherit" href="{{url('crear_inversion/'.$item['id'])}}">{{$item["document_number"]}}</a></td>
+                                                                    <td><a class="text-inherit" href="{{url('crear_inversion/'.$item['id'])}}">{{$item["customer_type"]}}</a></td>
+                                                                    <td><a class="text-inherit" href="{{url('crear_inversion/'.$item['id'])}}">{{$item["phone"]}}</a></td>
+                                                                    <td><a class="text-inherit" href="{{url('crear_inversion/'.$item['id'])}}">{{$item["email"]}}</a></td>
+                                                                    <td><a class="text-inherit" href="{{url('crear_inversion/'.$item['id'])}}">{{'$'.$item['total_investments']}}</a></td>
                                                                     <!--<td class="text-end">
                                                                     
                                                                         <a class="btn btn-success btn-sm"

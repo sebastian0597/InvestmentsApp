@@ -28,6 +28,7 @@
     <link href="{{ asset('css/jquery-ui.structure.css') }}" rel="stylesheet">   
     <link href="{{ asset('css/jquery-ui.theme.css') }}" rel="stylesheet">   
     <link href="{{ asset('css/date-picker.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!--<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -75,6 +76,7 @@
     <script src="{{ asset('js/tables.js') }}" defer></script> 
     <script src="{{ asset('js/datepicker.js') }}" defer></script> 
     <script src="{{ asset('js/datepicker.en.js') }}" defer></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
 </body>
 

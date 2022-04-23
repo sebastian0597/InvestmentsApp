@@ -385,7 +385,7 @@ class CustomerController extends Controller
 
         $customer = Customer::searchCustomerByParamsAndCustomerType($fields['param'], 3);
         
-        if($customer){  return $customer;  } else {  return array();  }
+        if($customer){  return new CustomerResource($customer);  } else {  return array();  }
         
     }
 }

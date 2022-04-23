@@ -102,7 +102,7 @@
                                         <div class="col-md-6">
                                             <div id="div_cliente_premium" style="display: none">
                                            
-                                                <label>Nombre o documento del cliente</label>
+                                                <label>Documento del cliente</label>
                                                 <div class="input-group mb-3">
                                                     <input type="text" class="form-control"
                                                         placeholder="Número de documento del cliente premium"

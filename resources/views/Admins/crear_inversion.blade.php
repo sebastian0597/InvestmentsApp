@@ -193,11 +193,8 @@
                                         
                                         <br><br>
                                         <div class="mb-4 placeholder-glow">
-<<<<<<< HEAD
+
                                             <button class="btn btn-primary" id="btn_crear_inversion" type="button" onclick="crearInversion()">Crear inversión</button>
-=======
-                                            <button class="btn btn-primary" id="btn_crear_inversion" type="button" onclick="crearInversion()">Crear Inversión</button>
->>>>>>> 4ce41ed4940e46ae8a2585c836e5e24267a78fa8
                                         </div>
                                         <br>
                                 </div>
