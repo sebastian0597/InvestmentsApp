@@ -20,6 +20,7 @@ const buscarClientePorParametros = () => {
 }
 
 const continuarBuscarClientePorParametros = (response) => {
+  
     let cliente = response.data[0]
     cliente = cliente == undefined || null ? {} : cliente
     $('#content-clientes').empty()
@@ -178,18 +179,12 @@ const buscarClientePremiumPorDocumento = () => {
 const continuarBuscarClientePremiumPorDocumento = (response) =>{
     $('#div_premium_form').empty()
     $('#content-clientes').empty()
-<<<<<<< HEAD
    
     let cliente = response.data
     cliente = cliente == undefined || null ? {} : cliente
     let html = ''
 
-=======
 
-    cliente = response.data == undefined || null ? {} : response.data
-    let html = ''
-    
->>>>>>> 9676b23964547b8963dbc6d9e458922cf58ebca9
     if(!isObjEmpty(cliente)){
 
         html+=` <div style='margin-top:20px; margin-bottom:20px;    '>

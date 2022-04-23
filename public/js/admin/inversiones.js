@@ -278,6 +278,8 @@ const seleccionarTipoInversion = () =>{
     $('#div_inversion_2').css('display', 'none');
     $('#div_reinversion').css('display', 'none');
     $('#btn_crear_inversion').prop('disabled', false);
+
+    $('#btn_editar_inversion').css('display', 'flex');
     
 
     if($('#tipo_inversion').val() != '' && $('#tipo_inversion').val()=='2'){
@@ -288,6 +290,9 @@ const seleccionarTipoInversion = () =>{
     }else if($('#tipo_inversion').val()=='1'){
         $('#content_reinversion').removeClass('col-md-12');
         $('#div_reinversion').css('display', 'block');
+        $('#btn_crear_inversion').prop('disabled', true);
+
+        $('#btn_editar_inversion').css('display', 'none');
         consultarExtractos()
 
     }

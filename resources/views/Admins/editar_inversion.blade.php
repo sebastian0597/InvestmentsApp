@@ -162,8 +162,21 @@
                                         </div>
                                         <?php 
                                             $display_nueva_inversion = $investment['id_investment_type'] == 2 ? 'display: flex' : 'display: none';
-                                        
+                                            $display_reinversion = $investment['id_investment_type'] == 1 ? 'display: flex' : 'display: none';
+                                            $display_btn = $investment['id_investment_type'] == 1 ? 'display: none' : '';
                                         ?>
+                                        <br>
+                                        <div style="{{$display_reinversion}}" id="div_reinversion" class="row g-3">
+                                            <div class="col-md-3" id="content_reinversion">
+                                               
+                                                <label>Monto reinversión</label>
+                                                <input id="monto_reinversion" disabled class="form-control" value="{{$investment['amount']}}" type="text">
+                                                <span class="msg_error_form" id="error_monto_reinversion"></span>
+                                            
+                                            </div>
+                                           
+                                        </div>
+
                                         <div style="{{$display_nueva_inversion}}" id="div_inversion" class="row g-3">
                                             <div class="col-md-3">
                                                 <label class="form-label">Tipo de moneda</label>
@@ -214,7 +227,7 @@
                                         
                                         <br><br>
                                         <div class="mb-4 placeholder-glow">
-                                            <button class="btn btn-primary" id="btn_editar_inversion" type="button" onclick="actualizarInversion()">Actualizar Inversión</button>
+                                            <button style="{{$display_btn}}" class="btn btn-primary" id="btn_editar_inversion" type="button" onclick="actualizarInversion()">Actualizar Inversión</button>
                                         </div>
                                         <br>
                                 </div>
