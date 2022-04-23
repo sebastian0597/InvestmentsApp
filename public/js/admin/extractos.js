@@ -44,11 +44,6 @@ const continuarBuscarClientePorParametros = (response) => {
                             ? 0
                             : inversion.percentage_investment
                     }</td>
-                    <td>${
-                        inversion.percentage_investment == null
-                            ? 0
-                            : inversion.percentage_investment
-                    }</td>
                     <td>$${amount == null ? 0 : amount}</td>
                 </tr>
                 `
@@ -91,8 +86,7 @@ const continuarBuscarClientePorParametros = (response) => {
                             <tr>
                                 <th scope='col'>Fecha</th>
                                 <th scope='col'>Valor</th>
-                                <th scope='col'>Consolidado de Inversiones</th>
-                                <th scope='col'>% Rentabilidad</th>
+                                <th scope='col'>% Rentabilidad mensual</th>
                                 <th scope='col'>Total invertido</th>
                             </tr>
                         </thead>
@@ -136,14 +130,27 @@ const continuarBuscarClientePorParametros = (response) => {
 
 const seleccionarTipoCliente = () => {
 
-    $('#div_cliente_premium').css('display', 'none')
-    $('#div_porcentaje').css('display', 'block')
-    $('#div_premium_form').empty()
-   
-    if ($('#tipo_cliente').val() == '3') {
-        $('#div_cliente_premium').css('display', 'block')
+    if($('#tipo_cliente').val() != ''){
+
+        $('#div_cliente_premium').css('display', 'none')
+        $('#div_porcentaje').css('display', 'block')
+        $('#div_premium_form').empty()
+        $("#btn_guardar_porcentaje").css('display', 'block')
+
+        if ($('#tipo_cliente').val() == '3') {
+
+            $('#div_cliente_premium').css('display', 'block')
+            $('#div_porcentaje').css('display', 'none')
+
+        }
+
+    }else{
+
+        $('#div_cliente_premium').css('display', 'none')
         $('#div_porcentaje').css('display', 'none')
+        $("#btn_guardar_porcentaje").css('display', 'none')
     }
+  
 }
 
 const buscarClientePremiumPorDocumento = () => {
@@ -171,11 +178,18 @@ const buscarClientePremiumPorDocumento = () => {
 const continuarBuscarClientePremiumPorDocumento = (response) =>{
     $('#div_premium_form').empty()
     $('#content-clientes').empty()
+<<<<<<< HEAD
    
     let cliente = response.data
     cliente = cliente == undefined || null ? {} : cliente
     let html = ''
 
+=======
+
+    cliente = response.data == undefined || null ? {} : response.data
+    let html = ''
+    
+>>>>>>> 9676b23964547b8963dbc6d9e458922cf58ebca9
     if(!isObjEmpty(cliente)){
 
         html+=` <div style='margin-top:20px; margin-bottom:20px;    '>
@@ -230,15 +244,19 @@ const guardarPorcentajeRentabilidad = () =>{
         let url = document.location.origin
         let form_data = new FormData();
         let method = 'POST'
-        console.log(tipo_cliente)
+      
         switch (parseInt(tipo_cliente)) {
             case 1:
             case 2:
+                url = url+`/api/v1/extracts_by_customer_type`
+                form_data.append('id_customer_type', tipo_cliente);
+                form_data.append('percentage', porcentaje);
                 
+
                 break;
             case 3:
                 let numero_documento = $('#numero_documento').val() 
-                console.log(numero_documento)
+               
                 url = url+`/api/v1/extracts_customer_premium`
 
                 form_data.append('document_number', numero_documento);

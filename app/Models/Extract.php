@@ -19,4 +19,26 @@ class Extract extends Model
         'registered_by',
         'month'
     ];
+
+    public static function getExtractByCustomerAndMonth($customer, $month) {
+
+        return Extract::where('id_customer', $customer)->where('month', $month)->get();
+
+    }
+
+    public static function getExtractByCustomerAndStatus($customer) {
+
+        return Extract::where('id_customer', $customer)->where('status', 1)->get();
+
+    }
+
+    public function extractDetail (){
+
+        return $this->hasMany(ExtractDetail::class, 'id_extract', 'id');
+    }
+
+    public function customer (){
+
+        return $this->belongsTo(Customer::class, 'id', 'id_customer');
+    }
 }

@@ -54,8 +54,10 @@ class CustomerController extends Controller
 
     public function index(){
         
-        $customers = new CustomerCollection(Customer::where('status',1)->get());
+        $customers = new CustomerCollection(Customer::all());
+       
         $customers = Util::setJSONResponse($customers);
+      
         return view('Admins.clientes',compact('customers'));
     }
 

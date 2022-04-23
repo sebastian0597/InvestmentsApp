@@ -21,6 +21,7 @@ class CreateExtractsTable extends Migration
             $table->double('profitability_percentage',4,2)->nullable(true);
             $table->double('grand_total_invested',20,2);
             $table->double('total_profitability',20,2)->nullable(true);
+            $table->tinyinteger('status')->default(1)->nullable(true);
             $table->unsignedBigInteger('registered_by');
             $table->string('month');
             

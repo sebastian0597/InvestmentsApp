@@ -6,6 +6,9 @@ use App\Mail\CredentialsMailable;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Mail;
 
+use App\Models\Extract;
+use App\Models\ExtractDetail;
+
 class Util 
 {
     public static function generatePassword()
@@ -108,7 +111,7 @@ class Util
             $result = $days-$investmentDays;
         }
 
-        return $result;
+        return $result+1;//Se le suma 1 dia para que tome tambien el ultimo dia de la inversion
 
    }
 
@@ -150,7 +153,7 @@ class Util
     }
 
     public static function validateDaysNumberByMonth($month){
-
+        //Se validan que todos los meses tengam 30 dias de rentabilidad, excepto marzo.
         $days = 30;
         if($month == "02"){
             $days=28;
@@ -182,6 +185,18 @@ class Util
        
     }
 
+    public static function deleteExtracts($id_customer, $month){
+
+        $older_extracts = Extract::getExtractByCustomerAndMonth($id_customer, $month);
+        foreach($older_extracts as $item){
+            
+            $id_extract = $item->id;
+            
+            ExtractDetail::where('id_extract', $id_extract )->delete();
+            Extract::where('id', $id_extract)->delete();
+        }   
+
+    }
 
     /*public function compressImage($source, $destination, $quality) { 
         // Obtenemos la información de la imagen

@@ -19,6 +19,9 @@ use App\Http\Traits\ExtractTrait;
 
 use App\Http\Resources\V1\CustomerResource;
 use App\Http\Resources\V1\CustomerCollection;
+use App\Http\Resources\V1\ExtractResource;
+use App\Http\Resources\V1\ExtractCollection;
+
 
 class ExtractController extends Controller
 {
@@ -60,9 +63,9 @@ class ExtractController extends Controller
      * @param  \App\Models\Extract  $extract
      * @return \Illuminate\Http\Response
      */
-    public function show(Extract $extract)
+    public function show($id_customer)
     {
-        //
+        return new ExtractCollection(Extract::getExtractByCustomerAndStatus($id_customer));
     }
 
     /**
@@ -73,7 +76,7 @@ class ExtractController extends Controller
      */
     public function edit(Extract $extract)
     {
-        //
+        
     }
 
     /**
@@ -128,7 +131,8 @@ class ExtractController extends Controller
                 $arr_extract['grand_total_invested'] = $total_invested;
                 $arr_extract['registered_by'] = 1;
                 $arr_extract['month'] = date("m");
-               
+                
+                Util::deleteExtracts($customer->id, $arr_extract['month']);
                 
                 //Se usa la función de Extract Trait
                 $extract = $this->storeExtract($arr_extract);
@@ -188,84 +192,67 @@ class ExtractController extends Controller
                 'percentage' => 'required|numeric',
             ]);
 
-            $customer = DB::table('customers')
-             ->select(DB::raw('id, status'))
-             ->where('id_customer_type', '=', $fields['id_customer_type'])
-             ->first();
+            $customers = Customer::getCustomersByType($fields['id_customer_type']);
 
-            if($customer){
+            if($customers){
+            
+                    foreach($customers as $customer){
+          
+                        //Se usa la función de Investment Trait
+                        $this->setPercentage($fields['percentage'], $customer->id);
 
-                 //Se usa la función de Investment Trait
-                 $this->setPercentage($fields['percentage'], $customer->id);
+                        $total_reinvested = Investment::getTotalInvestmentCustomerByInvestmentType($customer->id, 1);
+                        $total_invested = Investment::getTotalInvestmentCustomer($customer->id);
+                        
+                        $arr_extract['id_customer'] = $customer->id;
+                        $arr_extract['total_disbursed'] = 0;
+                        $arr_extract['total_reinvested'] = $total_reinvested;
+                        $arr_extract['profitability_percentage'] = $fields['percentage'];
+                        $arr_extract['grand_total_invested'] = $total_invested;
+                        $arr_extract['registered_by'] = 1;
+                        $arr_extract['month'] = date("m");
 
-                /*DB::statement("UPDATE investments I 
-                INNER JOIN customers C ON C.id = I.id_customer 
-                SET I.percentage_investment=?
-                WHERE C.id_customer_type=? AND I.status=1",
+                        //Se deben borrar los extractos que pertenezcan al mismo cliente y son del mismo mes.
+                            //1. Buscar los extractos, sacar el id y buscar los extractos detalles.
+                            //2. Eliminar los extractos detalles por medio del id y luego eliminar los extractos.
+                            Util::deleteExtracts($customer->id, $arr_extract['month']); 
 
-                [$fields['percentage'],$fields['id_customer_type']]);*/
+                        //Se usa la función de Extract Trait
+                        $extract = $this->storeExtract($arr_extract);
+                        
+                        $investments = Investment::getInvestmentsByIdCustomer($customer->id);
+                        $total_investment_return=0;
 
-                $total_reinvested = Investment::getTotalInvestmentCustomerByInvestmentType($customer->id, 1);
-                $total_invested = Investment::getTotalInvestmentCustomer($customer->id);
-                
-                $arr_extract['id_customer'] = $customer->id;
-                $arr_extract['total_disbursed'] = 0;
-                $arr_extract['total_reinvested'] = $total_reinvested;
-                $arr_extract['profitability_percentage'] = $fields['percentage'];
-                $arr_extract['grand_total_invested'] = $total_invested;
-                $arr_extract['registered_by'] = 1;
-                $arr_extract['month'] = date("m");
+                        foreach ($investments as $investment) {
+                        
+                            //Se valida si es febrero los días son 28, sin no, son 30.
+                            $days = Util::validateDaysNumberByMonth(date("m"));
+                            
+                            //Calcula los días de rentabilidad de la inversión, a partir de la fecha en la que empieza la inversion a ser rentable
+                            $profitability_days = Util::calculateProfitableDays($investment->profitability_start_date, $days);
 
-                //Se usa la función de Extract Trait
-                $extract = $this->storeExtract($arr_extract);
+                            $real_profitability_percentage = round((($fields['percentage']/$days)*$profitability_days), 2);
+                            $investment_return = (($investment->amount)*($real_profitability_percentage/100));
+                            
+                            $arr_extract_details['id_extract'] = $extract->id;
+                            $arr_extract_details['id_investment'] = $investment->id;
+                            $arr_extract_details['monthly_profitability_percentage'] = $fields['percentage'];
+                            $arr_extract_details['profitability_days'] = $profitability_days;
+                            $arr_extract_details['real_profitability_percentage'] = $real_profitability_percentage;
+                            $arr_extract_details['investment_amount'] = $investment->amount;
+                            $arr_extract_details['investment_return'] = $investment_return;
+                            
+                            //Se usa la función de Extract Trait
+                            $this->storeExtractDetail($arr_extract_details);
+                            
+                            $total_investment_return+=$investment_return;
+                        }
 
-                /*$extract = Extract::create([
-                    'id_customer' => $customer->id,
-                    'total_disbursed' => 0,
-                    'total_reinvested' => $total_reinvested,
-                    'profitability_percentage' => $fields['percentage'],
-                    'grand_total_invested' => $total_invested,
-                    'registered_by' => 1,
-                    'month' => date("m")
-                ]);*/
+                        $extract->total_profitability = $total_investment_return;
+                        $extract->save();
+                    }
 
-                /*DB::statement("INSERT INTO extracts_details (id_extract, id_investment, created_at)
-                SELECT ?, id, NOW() FROM investments I
-                WHERE I.id_customer = ? AND I.status = 1
-                ",[$extract->id,$customer->id]);*/
-                
-                $investments = Investment::getInvestmentsByIdCustomer($customer->id);
-                $total_investment_return=0;
-
-                foreach ($investments as $investment) {
-                   
-                    //Se valida si es febrero los días son 28, sin no, son 30.
-                    $days = Util::validateDaysNumberByMonth(date("m"));
-                    
-                    //Calcula los días de rentabilidad de la inversión, a partir de la fecha en la que empieza la inversion a ser rentable
-                    $profitability_days = Util::calculateProfitableDays($investment->profitability_start_date, $days);
-
-                    $real_profitability_percentage = round((($fields['percentage']/$days)*$profitability_days), 2);
-                    $investment_return = (($investment->amount)*($real_profitability_percentage/100));
-                    
-                    $arr_extract_details['id_extract'] = $extract->id;
-                    $arr_extract_details['id_investment'] = $investment->id;
-                    $arr_extract_details['monthly_profitability_percentage'] = $fields['percentage'];
-                    $arr_extract_details['profitability_days'] = $profitability_days;
-                    $arr_extract_details['real_profitability_percentage'] = $real_profitability_percentage;
-                    $arr_extract_details['investment_amount'] = $investment->amount;
-                    $arr_extract_details['investment_return'] = $investment_return;
-                    
-                    //Se usa la función de Extract Trait
-                    $this->storeExtractDetail($arr_extract_details);
-                    
-                    $total_investment_return+=$investment_return;
-                }
-
-                $extract->total_profitability = $total_investment_return;
-                $extract->save();
-
-                return array(201, 'Se ha registrado el porcentaje de rentabilidad correctamente.');
+                return array(201, 'Se han registrado los porcentajes de rentabilidad correctamente.');
 
             }else{
 

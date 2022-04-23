@@ -20,7 +20,7 @@ class CreateInvestmentsTable extends Migration
             $table->string('code_currency');
             $table->double('base_amount',20,2);
             $table->double('amount',20,2);
-            $table->string('consignment_file');
+            $table->string('consignment_file')->nullable(true);
             
             $table->string('other_currency')->nullable(true);
             $table->double('percentage_investment')->nullable(true);

@@ -38,6 +38,20 @@ class InvestmentController extends Controller
         return Util::setResponseJson(201, $investment);
 
     }
+    
+    public function storeReinvest(Request $request)
+    {
+
+        $investment = DB::transaction(function () use($request){
+
+             // Using Trait method
+            return $this->storeReinvestment($request);
+            
+        }, 3); 
+        
+        return Util::setResponseJson(201, $investment);
+
+    }
 
    
     public function show($id)

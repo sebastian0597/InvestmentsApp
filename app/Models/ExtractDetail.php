@@ -20,4 +20,10 @@ class ExtractDetail extends Model
         'investment_amount'
     ];
 
+
+    public static function getExtractDetailsByIdInvestment($id_investment) {
+
+        return ExtractDetail::where('id_investment', $id_investment)->where('status', 1)->get();
+
+    }
 }

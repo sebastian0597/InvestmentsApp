@@ -25,8 +25,7 @@ class CustomerController extends Controller
 
     public function index(){      
         
-
-        return new CustomerCollection(Customer::where('status',1)->get());
+        return new CustomerCollection(Customer::all());
         
     }
 
@@ -369,11 +368,14 @@ class CustomerController extends Controller
             'id_customer_type' => 'required|numeric',
 
         ]);
-        
-        return new CustomerCollection(
-            Customer::searchCustomerByParamsAndCustomerType($fields['param'], $fields['id_customer_type'])
-        );
 
+        $customers = Customer::searchCustomerByParamsAndCustomerType($fields['param'], $fields['id_customer_type']);
+
+        if($customers){  
+            return new CustomerCollection($customers);   
+        } else {  return array();  }
+
+       
     }
 
     public function getCustomersbyCustomerPremium(Request $request){
@@ -385,7 +387,15 @@ class CustomerController extends Controller
 
         $customer = Customer::searchCustomerByParamsAndCustomerType($fields['param'], 3);
         
+<<<<<<< HEAD
         if($customer){  return new CustomerResource($customer);  } else {  return array();  }
+=======
+        if($customer){  
+
+            return new CustomerResource($customer);  
+
+        } else {  return array();  }
+>>>>>>> 9676b23964547b8963dbc6d9e458922cf58ebca9
         
     }
 }
