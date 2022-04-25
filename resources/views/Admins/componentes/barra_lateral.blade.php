@@ -33,7 +33,7 @@
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('extractos')}}"><i
                                 data-feather="briefcase"></i><span>MÓDULO EXTRACTOS</span></a></li>
 
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('desembolsos')}}"><i
                                 data-feather="dollar-sign"></i><span>MÓDULO DESEMBOLSOS</span></a></li>
 
 
