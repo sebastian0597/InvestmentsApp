@@ -54,136 +54,22 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="mb-3 row g-3">
-                                        <label class="col-sm-3 col-form-label text-sm-end">GENERAR BUSQUEDA</label>
+                                        <label class="col-sm-3 col-form-label text-sm-end">Fecha</label>
                                         <div class="col-xl-5 col-sm-9">
                                             <div class="input-group">
-                                                <input name="fecha-de-busqueda"  type="month" />
-                                                <button class="btn btn-secondary" id="Bookmark" onclick="submitBookMark()" type="submit">Generar informe</button>
+                                                <input id="fecha_busqueda" type="month" />
+                                                <button class="btn btn-secondary" id="btn_generar_kpi" onclick="generarKPI()" type="button">Generar informe</button>
                                             </div>
                                         </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="card">
-                                        <div class="card-header">
-                                        <div class="card-options"><a class="card-options-collapse" href="#" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a class="card-options-remove" href="#" data-bs-toggle="card-remove"><i class="fe fe-x"></i></a></div>
-                                        <div class="table-responsive add-project">
-                                            <h4 class="card-title mb-0">Clientes Activos:</h4>
-                                            <br><br>
-                                            <table class="table card-table table-vcenter text-nowrap">
-                                                <thead>
-                                                    <tr>
-                                                    <th>N° CLIENTES</th>
-                                                    <th>TIPO DE CLIENTE</th>
-                                                    <th>TOTAL INVERSION</th>
-                                                    <th>TOTAL RENTABILIDAD</th>
-                                                    <th>TOTAL DESEMBOLSADO</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <!-- AQUI VAN LOS RESULTADOS DE LA BUSQUEDA-->
-                                                    <tr>
-                                                    <td>20</td>
-                                                    <td> Standar</td>
-                                                    <td>$5.000.000,00</td>
-                                                    <td>$9.000.000,00</td>
-                                                    <td>$7.000.000,00</td>
-                                                    </tr>
-                                                    <tr>
-                                                    <td>20</td>
-                                                    <td> Vip</td>
-                                                    <td>$5.000.000,00</td>
-                                                    <td>$9.000.000,00</td>
-                                                    <td>$7.000.000,00</td>
-                                                    </tr>
-                                                    <tr>
-                                                    <td>20</td>
-                                                    <td> Premiun</td>
-                                                    <td>$5.000.000,00</td>
-                                                    <td>$9.000.000,00</td>
-                                                    <td>$7.000.000,00</td>
-                                                    </tr>
-                                                <thead>
-                                                    <tr>
-                                                    <th>TOTAL</th>
-                                                    </tr>
-                                                </thead>
-                                                <thead>
-                                                    <tr>
-                                                    <th>60</th>
-                                                    <th></th>
-                                                    <th>$15.000.000,00</th>
-                                                    <th>$27.000.000,00</th>
-                                                    <th>$21.000.000,00</th>
-                                                    </tr>
-                                                </thead>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        </div>
-                                    </div>
+                                <div id='kpi_clientes_activos' class="col-md-12">
+                                    
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="card">
-                                        <div class="card-header">
-                                        <div class="card-options"><a class="card-options-collapse" href="#" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a class="card-options-remove" href="#" data-bs-toggle="card-remove"><i class="fe fe-x"></i></a></div>
-                                        <div class="table-responsive add-project">
-                                            <h4 class="card-title mb-0">Clientes Inativos:</h4>
-                                            <br><br>
-                                            <table class="table card-table table-vcenter text-nowrap">
-                                                <thead>
-                                                    <tr>
-                                                    <th>N° CLIENTES</th>
-                                                    <th>TIPO DE CLIENTE</th>
-                                                    <th>TOTAL INVERSION</th>
-                                                    <th>TOTAL RENTABILIDAD</th>
-                                                    <th>TOTAL DESEMBOLSADO</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <!-- AQUI VAN LOS RESULTADOS DE LA BUSQUEDA-->
-                                                    <tr>
-                                                    <td>20</td>
-                                                    <td> Standar</td>
-                                                    <td>$5.000.000,00</td>
-                                                    <td>$9.000.000,00</td>
-                                                    <td>$7.000.000,00</td>
-                                                    </tr>
-                                                    <tr>
-                                                    <td>20</td>
-                                                    <td> Vip</td>
-                                                    <td>$5.000.000,00</td>
-                                                    <td>$9.000.000,00</td>
-                                                    <td>$7.000.000,00</td>
-                                                    </tr>
-                                                    <tr>
-                                                    <td>20</td>
-                                                    <td> Premiun</td>
-                                                    <td>$5.000.000,00</td>
-                                                    <td>$9.000.000,00</td>
-                                                    <td>$7.000.000,00</td>
-                                                    </tr>
-                                                <thead>
-                                                    <tr>
-                                                    <th>TOTAL</th>
-                                                    </tr>
-                                                </thead>
-                                                <thead>
-                                                    <tr>
-                                                    <th>60</th>
-                                                    <th></th>
-                                                    <th>$15.000.000,00</th>
-                                                    <th>$27.000.000,00</th>
-                                                    <th>$21.000.000,00</th>
-                                                    </tr>
-                                                </thead>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div id='kpi_clientes_inactivos' class="col-md-12">
+                                    
+                                </div> 
                             </div>
                         </div>                                    
                     </div>

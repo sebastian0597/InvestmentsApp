@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use Illuminate\Support\Facades\DB;
+
+use App\Http\Resources\V1\KPIResource;
+use App\Http\Resources\V1\KPICollection;
 
 class KpiController extends Controller
 {
@@ -15,7 +19,9 @@ class KpiController extends Controller
      */
     public function index()
     {
-       return Customer::where
+
+      
+
     }
 
     /**
@@ -35,9 +41,19 @@ class KpiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($fecha)
+    {   
+        $customers=Customer::getKPICustomer($fecha);
+
+        if($customers){
+
+            return new KPICollection($customers);
+
+        }else{
+            
+           return array();
+        }
+        
     }
 
     /**

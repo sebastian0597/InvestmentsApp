@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Customer extends Model
 {
@@ -71,6 +72,25 @@ class Customer extends Model
         
     }
 
+    public static function getKPICustomer($date){
+        $mes = $date;
+        $mes = strtotime($mes);
+        $mes = date("m", $mes);
+      
+        return DB::table("customers")
+        ->select(DB::raw("COUNT(*) AS cantidad, status, id_customer_type, sum((SELECT SUM(amount) FROM investments 
+        WHERE (status=1 OR status=2) AND id_customer = customers.id AND investment_date LIKE '%$date%')) 
+        AS inversiones, sum((SELECT SUM(total_profitability) FROM extracts WHERE extracts.id_customer = customers.id 
+        AND extracts.month LIKE '$mes')) AS total_rentabilidad, sum((SELECT SUM(total_disbursed) FROM extracts WHERE extracts.id_customer = customers.id 
+        AND extracts.month LIKE '$mes')) AS total_disbursed"))
+        ->groupByRaw("customers.status, customers.id_customer_type")
+        ->get();
+
+
+
+    }
+
+    
     //VIRTUAL attributes
     public function getStatusTextAttribute(){
         
@@ -78,6 +98,7 @@ class Customer extends Model
         return $status;
 
     }
+
 
     //RELATIONS Eloquent
     public function documentType(){

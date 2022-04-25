@@ -10,7 +10,7 @@ use App\Http\Controllers\Api\V1\CustomerRequestController;
 use App\Http\Controllers\Api\V1\InvestmentController;
 use App\Http\Controllers\Api\V1\DisbursetmentController;
 use App\Http\Controllers\Api\V1\ExtractController;
-
+use App\Http\Controllers\Api\V1\KpiController;
 
 Route::apiResource('v1/admin', AdminController::class)->only(['store', 'index', 'update']);
 
@@ -35,6 +35,10 @@ Route::apiResource('v1/disbursetment', DisbursetmentController::class)->only(['s
 
 Route::apiResource('v1/request', CustomerRequestController::class)->only(['store', 'show','index','update']);
 Route::get('v1/get_request_by_date/{param}', [CustomerRequestController::class, 'getRequestByDate']);
+
+
+Route::apiResource('v1/kpi', KpiController::class)->only(['show']);
+
 
 Route::post('login', [LoginController::class, 'login']);
 Route::post('reset_password', [LoginController::class, 'resetPassword']);
