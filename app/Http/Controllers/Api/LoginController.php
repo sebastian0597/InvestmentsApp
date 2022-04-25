@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+//use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CredentialsMailable;
-
+use Auth;
 use App\Models\User;
 use App\Utils\Util;
 
@@ -109,8 +109,8 @@ class LoginController extends Controller
             
             }else{
 
-                if (Auth::attempt(['email' => $fields['email'], 'password' => $fields['password'], 'status' => 1])) {
-
+               // if (Auth::attempt(['email' => $fields['email'], 'password' => $fields['password'], 'status' => 1])) {
+                if (Auth::guard('web')->attempt(['email' => $fields['email'], 'password' => $fields['password'], 'status' => 1])) {
                     /*$user->ind_banned=NULL;
                     $user->ind_blocked=NULL;
                     $user->time_blocked=NULL;

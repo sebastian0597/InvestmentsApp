@@ -70,6 +70,9 @@
                                 <div id='kpi_clientes_inactivos' class="col-md-12">
                                     
                                 </div> 
+                                <div id='kpi_btn_exportar' class="col-md-12">
+                                    
+                                </div> 
                             </div>
                         </div>                                    
                     </div>
