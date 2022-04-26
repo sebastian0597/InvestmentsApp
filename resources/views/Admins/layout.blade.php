@@ -65,7 +65,7 @@
     <script src="{{ asset('js/admin/extractos.js') }}" defer></script>  
     <script src="{{ asset('js/admin/solicitudes.js') }}" defer></script>
     <script src="{{ asset('js/admin/inversiones.js') }}" defer></script>
-    <script src="{{ asset('js/admin/inversiones.js') }}" defer></script>
+    <script src="{{ asset('js/admin/desembolsos.js') }}" defer></script>
     <script src="{{ asset('js/admin/kpis.js') }}" defer></script>
     <script src="{{ asset('js/util.js') }}" defer></script> 
     <script src="{{ asset('js/ajax.js') }}" defer></script> 

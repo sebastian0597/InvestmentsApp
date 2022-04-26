@@ -50,14 +50,15 @@ class CustomerResource extends JsonResource
             'customer_type'=> $this->customerType->name,
             'id_economic_activity'=> $this->id_economic_activity,
             'id_bank_account'=> $this->id_bank_account,
+            'registered_at' => $this->registered_date,
             'created_at'=> $this->created_at,
             'updated_at'=> $this->updated_at,
             'document_type' => $this->documentType->name,
             'economic_activity' => $this->economicActivity->name,
             'name_bank_account' => $this->bank->name,
             'investments' => $this->investsments,
-            'total_investments' => number_format($this->investsments->sum('amount'), 2,',',".")//$this->when($this->investsments->status == 1, $this->investsments->sum('amount')),
-                        
+            'total_investments' => number_format($this->investsments->sum('amount'), 2,',',"."),
+            'extract' => $this->extract        
         ];
     }
 }

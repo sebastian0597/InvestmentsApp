@@ -356,7 +356,7 @@ class CustomerController extends Controller
 
     
     public function getCustomers($param){
-       
+        
         return new CustomerCollection(Customer::searchCustomerByParams($param));
 
     }

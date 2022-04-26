@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
+use App\Models\Extract;
 
 class Customer extends Model
 {
@@ -52,7 +55,8 @@ class Customer extends Model
         
         $customer = Customer::where('status',1)->where('name','LIKE','%'.$param.'%')
         ->orWhere('last_name','LIKE','%'.$param.'%')->orWhere('phone',$param)
-        ->orWhere('account_number',$param)->orWhere('document_number', $param)->get();
+        ->orWhere('account_number',$param)->orWhere('document_number', $param)
+        ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ? ", ['%'.$param.'%'])->get();
         
         return $customer;
     }
@@ -99,8 +103,33 @@ class Customer extends Model
 
     }
 
+    public function getRegisteredDateAttribute(){
+        
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('d/m/Y');
+    
+
+    }
+
+    public function getInvestmentProfitabilityAttribute(){
+        $extract = Extract::getExtractByCustomerAndMonth($this->id, '05');
+
+        if($extract){
+            return $extract[0];
+        }else{
+            return array();
+        }
+    
+    }
+
+    
+
 
     //RELATIONS Eloquent
+    public function extract(){
+
+        return $this->hasOne(Extract::class, 'id_customer', 'id')->where('extracts.month', '=', date('m'));
+    }
+
     public function documentType(){
 
         return $this->hasOne(DocumentType::class, 'id','id_document_type');

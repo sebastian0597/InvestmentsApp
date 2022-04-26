@@ -6,7 +6,7 @@ use App\Http\Controllers\FrontEnd\ExtractController;
 use App\Http\Controllers\FrontEnd\RequestController;
 use App\Http\Controllers\FrontEnd\AdminController;
 use App\Http\Controllers\FrontEnd\InvestmentController;
-
+use App\Http\Controllers\FrontEnd\DisbursementController;
 
 Route::get('login', function () {
     return view('login');
@@ -51,7 +51,7 @@ Route::get('contrato', function () {
     Route::get('editar_inversion/{id_inversion}',  [InvestmentController::class, 'edit'] )->name('editar_inversion');
     
     Route::get('kpis', function () { return view('Admins.kpis'); })->name('kpis');
-    Route::get('desembolsos', function () { return view('Admins.desembolsos'); });
+    Route::get('desembolsos', [DisbursementController::class, 'index'])->name('desembolsos');
   
 //});
 

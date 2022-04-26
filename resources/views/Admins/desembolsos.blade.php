@@ -13,15 +13,15 @@
             </filter>
         </svg>
     </div>
- 
+
     <div class="tap-top"><i data-feather="chevrons-up"></i></div>
 
     <div class="page-wrapper compact-wrapper" id="pageWrapper">
-    
+
         @include('Admins.componentes.barra_superior')
-        
+
         <div class="page-body-wrapper">
-           
+
             @include('Admins/componentes/barra_lateral')
 
             <div class="page-body">
@@ -33,10 +33,10 @@
                             </div>
                             <div class="col-6">
                                 <ol class="breadcrumb">
-                                  @include(
-                                    'Admins/componentes/enlance_navegacion'
-                                )
-    
+                                    @include(
+                                        'Admins/componentes/enlance_navegacion'
+                                    )
+
                                     <li class="breadcrumb-item active">Módulo de desembolsos</li>
                                 </ol>
                             </div>
@@ -53,243 +53,78 @@
                                 </div>
                                 <div class="card-body">
 
-                                    <div class="mb-1 row g-1">
-                                        <label class="col-sm-3">GENERAR BUSQUEDA</label>
-                                        <div class="col-xl-5 col-sm-9">
-                                            <div class="input-group">
-                                                <input class="datepicker-here form-control digits" type="text"
-                                                    data-language="en" placeholder="N° Identificación">
+                                   
+                                    <br><br>
+                                    <!--<table class="table card-table table-vcenter text-nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th>Numero de identificación</th>
 
-                                                <button class="btn btn-secondary" id="Bookmark" onclick="submitBookMark()"
-                                                    type="submit">Buscar</button>
-                                            </div>
-                                        </div>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><a class="text-inherit" href="#">Sebastian Correa Delgado </a>
+                                                    </td>
+                                                    <td>1100970967</td>
 
+                                                    <td class="text-end">
 
+                                                    </td>
+                                                </tr>
 
-                                    </div>
-
-                                    <table class="table card-table table-vcenter text-nowrap">
-                                        <thead>
-                                            <tr>
-                                                <th>Nombre</th>
-                                                <th>Numero de identificación</th>
-
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><a class="text-inherit" href="#">Sebastian Correa Delgado </a>
-                                                </td>
-                                                <td>1100970967</td>
-
-                                                <td class="text-end">
-
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                    <br>
-                                    <br>
-                                    <form class="needs-validation" novalidate="">
-                                        <!-- nombre-->
-                                        <h5>Datos del cliente</h5>
-
-                                        <div class="row g-3">
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom01">Nombre de
-                                                    cliente</label>
-                                                <input class="form-control" id="validationCustom01" type="text" value=""
-                                                    required="">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom02">N°
-                                                    Identificación</label>
-                                                <input class="form-control" id="validationCustom02" type="text" value=""
-                                                    required="">
-                                            </div>
-                                        </div>
-
-                                        <!-- apellido  -->
-                                        <div class="row g-3">
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom01">Tipo de cliente
-                                                </label>
-                                                <input class="form-control" id="validationCustom01" type="text" value=""
-                                                    required="">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom01">Fecha ingreso
-                                                </label>
-                                                <input class="form-control" id="validationCustom01" type="text" value=""
-                                                    required="">
-                                            </div>
-                                        </div>
-                                        <div class="row g-3">
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom01">Banco </label>
-                                                <input class="form-control" id="validationCustom01" type="text" value=""
-                                                    required="">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom01">N° cuenta
-                                                </label>
-                                                <input class="form-control" id="validationCustom01" type="text" value=""
-                                                    required="">
-                                            </div>
-                                        </div>
-                                        <div class="row g-3">
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom01">Tipo de cuenta
-                                                </label>
-                                                <input class="form-control" id="validationCustom01" type="text" value=""
-                                                    required="">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom01">Valor a
-                                                    consignar </label>
-                                                <input class="form-control" id="validationCustom01" type="text" value=""
-                                                    required="">
-                                            </div>
-                                        </div>
-                                        <div class="row g-3">
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom01">Tipo de
-                                                    Desembolso </label>
-                                                <input class="form-control" id="validationCustom01" type="text" value=""
-                                                    required="">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="form-label" for="validationCustom01">Rentabilidad
-                                                    Mensual </label>
-                                                <input class="form-control" id="validationCustom01" type="text" value=""
-                                                    required="">
-                                            </div>
-                                        </div>
-                                        <br><br>
-
-                                        <h5>Tipo de Desembolso:</h5>
+                                            </tbody>
+                                        </table>
+                                        <br>
+                                        <br>-->
+                                    <div class="col-12">
+                     
+                                        <h5>Tipo de desembolso:</h5>
                                         <div>
 
                                             <div class="row g-3">
 
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
 
-                                                    <select onchange="seleccionarActividadEconomica()"
-                                                        class="form-select" id="actividad_economica">
+                                                    <select onchange="seleccionarTipoDesembolso()"
+                                                        class="form-select" id="tipo_desembolso">
+
                                                         <option value="" selected="">--- Seleccione ---</option>
-                                                        <option value="1">Rentabilidad Mensual</option>
-                                                        <option value="2">Capital Parcial</option>
-                                                        <option value="3">Capital Total</option>
+                                                        @foreach ($disbursement_types as $item)
+                                                            <option value="{{$item->id}}">{{$item->name}}</option>
+                                                        @endforeach
 
 
                                                     </select>
-                                                    <span class="msg_error_form" id="error_actividad_economica"></span>
+                                                    <span class="msg_error_form" id="error_tipo_desembolso"></span>
                                                 </div>
                                                 <!-- Rentabilidad Mensual -->
-                                                <div style="display: none;" id="div_independiente" class="row g-3">
+                                                <div style="display: none;" id="div_mensual" class="row g-3">
 
-                                                    <div class="col-md-2">
-                                                        <label class="form-label">Tipo de cliente:</label>
-
-                                                    </div>
-
+                                                    
                                                     <div class="col-md-4">
-                                                        <select onchange="seletipodecliente()" class="form-select"
-                                                            id="tipocliente01">
-                                                            <option value="" selected="">--- Seleccione ---</option>
-                                                            <option value="estandar">Estándar</option>
-                                                            <option value="vip">VIP</option>
-                                                            <option value="premium">Premium</option>
+                                                        <label class="form-label">Tipo de cliente:</label>
+                                                        <select onchange="seleccionarTipoClienteDesembolsos()" class="form-select"
+                                                            id="tipo_cliente">
+                                                            <option value="" selected="">Seleccione ---</option>
+                                                            @foreach ($customer_types as $item)
+                                                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                                            @endforeach
 
 
                                                         </select>
                                                     </div>
 
                                                 </div>
-                                                <div style="display: none;" id="div_estandar" class="row g-3">
-                                                    <h3>Cliente estandar</h3>
-                                                    <div class="row g-3">
+                                                <div id="div_mensual_desembolso"  class="row g-3"></div>
 
+                                                <div  id="div_parcial" class="mb-1 row g-1"></div>
 
-                                                        <div class="col-md-6">
-                                                            <button class="btn btn-primary btn-sm" id="Bookmark"
-                                                                onclick="submitBookMark()" type="submit">Generar informe
-                                                                de desembolso Capital Parcial</button>
+                                                <div  id="div_total" class="mb-1 row g-1"></div>
 
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-9">
-                                                        <input class="form-control" type="file">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <button class="btn btn-outline-success btn-lg" id="Bookmark"
-                                                            onclick="submitBookMark()" type="submit">Guardar
-                                                            informe</button>
-
-                                                    </div>
-
-                                                </div>
-
-
-
-
-
-                                                <div style="display: none;" id="div_vip" class="row g-3">
-                                                    <h3>Cliente Vip</h3>
-                                                    <div class="row g-3">
-
-
-                                                        <div class="col-md-6">
-                                                            <button class="btn btn-primary btn-sm" id="Bookmark"
-                                                                onclick="submitBookMark()" type="submit">Generar informe
-                                                                de desembolso Capital Parcial</button>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-9">
-                                                        <input class="form-control" type="file">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <button class="btn btn-outline-success btn-lg" id="Bookmark"
-                                                            onclick="submitBookMark()" type="submit">Guardar
-                                                            informe</button>
-
-                                                    </div>
-
-                                                </div>
-
-
-
-                                                <div style="display: none;" id="div_premium" class="row g-3">
-                                                    <h3>Cliente Premium</h3>
-                                                    <div class="row g-3">
-
-
-                                                        <div class="col-md-6">
-                                                            <button class="btn btn-primary btn-sm" id="Bookmark"
-                                                                onclick="submitBookMark()" type="submit">Generar informe
-                                                                de desembolso Capital Parcial</button>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-9">
-                                                        <input class="form-control" type="file">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <button class="btn btn-outline-success btn-lg" id="Bookmark"
-                                                            onclick="submitBookMark()" type="submit">Guardar
-                                                            informe</button>
-
-                                                    </div>
-
-                                                </div>
-
-
-
-
+                                                <div id="container_datos_cliente"></div>
 
                                                 <!-- CAMPOS CUANDO ES  EMPLEADO -->
                                                 <div style="display: none;" id="div_empleado" class="row g-3">
@@ -394,81 +229,81 @@
                                             </div>
                                         </div>
 
-                                    </form>
 
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header">
-
-                                    <div class="card-options"><a class="card-options-collapse" href="#"
-                                            data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a
-                                            class="card-options-remove" href="#" data-bs-toggle="card-remove"><i
-                                                class="fe fe-x"></i></a></div>
-
-                                    <div class="table-responsive add-project">
-
-                                        <h4 class="card-title mb-0">Histórico de Desembolsos:</h4><br><br>
-                                        <div class="input-group">
-
-                                            <input name="fecha-de-busqueda" type="month" />
-
-
-                                            <button class="btn btn-secondary" id="Bookmark" onclick="submitBookMark()"
-                                                type="submit">Generar Busqueda</button>
-                                        </div><br><br>
-                                        <table class="table card-table table-vcenter text-nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th>RENTABILIDAD MENSUAL</th>
-                                                    <th>TIPO DE DESEMBOLSOS</th>
-                                                    <th>CAPITAL PARCIAL</th>
-                                                    <th>CAPITAL TOTAL</th>
-
-
-
-
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-                                                <!-- AQUI VAN LOS RESULTADOS DE LA BUSQUEDA-->
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td> </td>
-                                                    <td></td>
-                                                    <td></td>
-
-                                                </tr>
-
-
-
-
-                                                <thead>
-
-                                                </thead>
-
-
-                                            </tbody>
-                                        </table>
-                                        <br><br>
-                                        <div class="col-md-6">
-                                            <button class="btn btn-outline-success btn-lg" id="Bookmark"
-                                                onclick="submitBookMark()" type="submit">MOSTRAR ARCHIVOS
-                                                SUBIDOS</button>
-
-                                        </div>
 
                                     </div>
                                 </div>
+                            </div>
 
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+
+                                        <div class="card-options"><a class="card-options-collapse" href="#"
+                                                data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a
+                                                class="card-options-remove" href="#" data-bs-toggle="card-remove"><i
+                                                    class="fe fe-x"></i></a></div>
+
+                                        <div class="table-responsive add-project">
+
+                                            <h4 class="card-title mb-0">Histórico de Desembolsos:</h4><br><br>
+                                            <div class="input-group">
+
+                                                <input name="fecha-de-busqueda" type="month" />
+
+
+                                                <button class="btn btn-secondary" id="Bookmark" onclick="submitBookMark()"
+                                                    type="submit">Generar Busqueda</button>
+                                            </div><br><br>
+                                            <table class="table card-table table-vcenter text-nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th>RENTABILIDAD MENSUAL</th>
+                                                        <th>TIPO DE DESEMBOLSOS</th>
+                                                        <th>CAPITAL PARCIAL</th>
+                                                        <th>CAPITAL TOTAL</th>
+
+
+
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <!-- AQUI VAN LOS RESULTADOS DE LA BUSQUEDA-->
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td> </td>
+                                                        <td></td>
+                                                        <td></td>
+
+                                                    </tr>
+
+
+
+
+                                                    <thead>
+
+                                                    </thead>
+
+
+                                                </tbody>
+                                            </table>
+                                            <br><br>
+                                            <div class="col-md-6">
+                                                <button class="btn btn-outline-success btn-lg" id="Bookmark"
+                                                    onclick="submitBookMark()" type="submit">MOSTRAR ARCHIVOS
+                                                    SUBIDOS</button>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>

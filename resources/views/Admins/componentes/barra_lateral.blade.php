@@ -3,7 +3,7 @@
         <div class="logo-wrapper"><a href="">VIP WORLD TRADING</a>
             <div class="back-btn"><i class="fa fa-angle-left"></i></div>
         </div>
-        <!--<div class="logo-icon-wrapper"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo-icon.png" alt=""></a></div> -->
+    
         <nav class="sidebar-main">
             <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
             <div id="sidebar-menu">
@@ -23,10 +23,6 @@
                                 data-feather="users"></i><span>MÓDULO CLIENTES</span></a>
                     </li>
 
-
-                    <!--<li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('crear_cliente')}}"><i
-                                data-feather="file-text"></i><span>CREAR
-                                CLIENTE</span></a></li> -->
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('inversiones')}}"><i
                                 data-feather="check-square"></i><span>MÓDULO INVERSIONES</span></a>
                     </li>
