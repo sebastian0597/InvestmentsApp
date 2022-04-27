@@ -143,7 +143,7 @@ const continuarBuscarClienteDesembolso = (response) => {
 
         html = `
         <h5>Datos del cliente</h5>
-
+        
         <div class="row g-3">
             <div class="col-md-4">
                 <label class="form-label">Nombre de
@@ -152,6 +152,7 @@ const continuarBuscarClienteDesembolso = (response) => {
                     cliente.name
                 } ${cliente.last_name}"
                     required="">
+                <input type="hidden" id="id_cliente" value="${cliente.id}">
             </div>
             <div class="col-md-4">
                 <label class="form-label">N°
@@ -262,14 +263,20 @@ const continuarBuscarClienteDesembolso = (response) => {
 
 const guardarRegistroDesembolso = (tipo_desembolso) => {
 
-    let valor_consignar = $('#valor_consignar').val().trim();
+    let valor_consignar = $('#valor_consignar').val().trim()
+    let id_cliente = $('#id_cliente').val().trim()
     quitarError('valor_consignar')
-
+    console.log(id_cliente)
     if(valor_consignar != ''){
 
         let url = window.location.origin+`/api/v1/disbursetment`
-        
-        
+
+        let form_data = new FormData();
+        form_data.append('id_disbursement_type', tipo_desembolso);
+        form_data.append('id_customer', id_cliente);
+        //form_data.append('email', correo);
+
+
     }else{
         agregarError('valor_consignar')
     }
