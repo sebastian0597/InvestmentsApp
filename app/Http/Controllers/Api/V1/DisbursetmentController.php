@@ -62,6 +62,8 @@ class DisbursetmentController extends Controller
                 case '3'://Capital Total
                    
                     $total_invested = Investment::getTotalInvestmentCustomer($fields['id_customer']);
+
+                    return array(404, $total_invested);
                     
                     $investment = DB::table('investments')
                     ->select(DB::raw('id, percentage_investment'))

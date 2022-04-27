@@ -119,7 +119,7 @@ const continuarBuscarClienteDesembolso = (response) => {
     let html = "";
 
     if (!isObjEmpty(cliente)) {
-        console.log(cliente);
+        let tipo_desembolso = $("#tipo_desembolso").val().trim()
         let total_rentabiidad =
             cliente.extract == null || undefined
                 ? 0
@@ -132,11 +132,11 @@ const continuarBuscarClienteDesembolso = (response) => {
 
         let input_valor = ''
 
-        if($("#tipo_desembolso").val() == '2'){
+        if(tipo_desembolso == '2'){
 
             input_valor = ` <input class="form-control" onkeyup="convertirAformatoMoneda(this)" id='valor_consignar' type="text" value="">`
 
-        }else if($("#tipo_desembolso").val() == '3'){
+        }else if(tipo_desembolso == '3'){
 
             input_valor = ` <input class="form-control" disabled id='valor_consignar' type="text" value="$${formatNumber(total_ganancia)}">`
         }
@@ -241,8 +241,16 @@ const continuarBuscarClienteDesembolso = (response) => {
                 }
                
             </div>
-
-    </div>
+          
+        </div>
+        <br>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <button type="button" onclick='guardarRegistroDesembolso(${tipo_desembolso})' class="btn btn-primary">Guardar registro</button>
+            </div>
+          
+        </div>
+        
         
         `;
     } else {
@@ -251,3 +259,19 @@ const continuarBuscarClienteDesembolso = (response) => {
 
     $("#container_datos_cliente").append(html);
 };
+
+const guardarRegistroDesembolso = (tipo_desembolso) => {
+
+    let valor_consignar = $('#valor_consignar').val().trim();
+    quitarError('valor_consignar')
+
+    if(valor_consignar != ''){
+
+        let url = window.location.origin+`/api/v1/disbursetment`
+        
+        
+    }else{
+        agregarError('valor_consignar')
+    }
+    
+}
