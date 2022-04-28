@@ -123,11 +123,13 @@ const continuarBuscarClienteDesembolso = (response) => {
         let total_rentabiidad =
             cliente.extract == null || undefined
                 ? 0
-                : cliente.extract.total_profitability;
+                : parseInt(cliente.extract.total_profitability);
+
         let grand_total_invested =
             cliente.extract == null || undefined
                 ? 0
-                : cliente.extract.grand_total_invested;
+                : parseInt(cliente.extract.grand_total_invested);
+
         let total_ganancia = total_rentabiidad + grand_total_invested;
 
         let input_valor = ''
