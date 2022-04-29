@@ -120,7 +120,9 @@ const continuarBuscarClienteDesembolso = (response) => {
 
     if (!isObjEmpty(cliente)) {
         
-        if(cliente.status != 'Inactivo'){
+        //SE DEBE CONSULTAR SI EL CLIENTE TIENE DESEMBOLSOS PENDIENTES POR REALIZAR.  
+
+        //if(cliente.status != 'Inactivo'){
 
             let tipo_desembolso = $("#tipo_desembolso").val().trim()
             let total_rentabilidad =
@@ -283,7 +285,7 @@ const continuarBuscarClienteDesembolso = (response) => {
                 </div>
             
             </div>`
-        }else{
+        /*}else{
 
             Swal.fire({
                 icon: 'warning',
@@ -292,7 +294,7 @@ const continuarBuscarClienteDesembolso = (response) => {
 
             }) 
 
-        }
+        }*/
 
     } else {
         html = `<span>No hay datos para los parámetros ingresados.</span>`;

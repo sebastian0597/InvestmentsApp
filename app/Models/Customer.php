@@ -90,8 +90,6 @@ class Customer extends Model
         ->groupByRaw("customers.status, customers.id_customer_type")
         ->get();
 
-
-
     }
 
     

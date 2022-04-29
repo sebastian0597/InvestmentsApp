@@ -18,4 +18,11 @@ class Disbursetment extends Model
         'ind_done',
         'disbursetment_file'
     ];
+
+    public static function getDisbursement(){
+
+        /*SELECT COUNT(*) AS cantidad, C.id_customer_type, SUM(D.value_consign) AS value_consign FROM disbursetments D
+        INNER JOIN customers C ON C.id = D.id_customer
+        GROUP BY C.id_customer_type*/
+    }
 }
