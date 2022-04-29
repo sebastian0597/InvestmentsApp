@@ -105,23 +105,43 @@
                                         </div>
                                         <div class="row g-3">
 
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <label class="form-label">Fecha inversión</label>
                                                 <input class="form-control" value="{{$customer['investments'][0]['investment_date']}}" disabled>
                                                 <span class="msg_error_form" id="error_correo"></span>
                                             </div>
+                                            
+                                            <div class="col-md-4">
 
-                                            <div class="col-md-3">
                                                 <label class="form-label">Valor inversión</label>
                                                 <input class="form-control" value="{{$customer['total_investments']}}" disabled>
                                                 <span class="msg_error_form" id="error_telefono"></span>
                                             </div>
 
-                                            <div class="col-md-3">
+                                           
+                                        </div>
+
+                                        <div class="row g-3">
+
+                                            <div class="col-md-4">
                                                 <label class="form-label">Porcentaje rentabilidad</label>
                                                 <input class="form-control" value="{{$customer['investments'][0]['percentage_investment']}}" disabled>
                                                 <span class="msg_error_form" id="error_telefono"></span>
                                             </div>
+
+                                            <div class="col-md-4">
+                                                <?php 
+                                                    $rentabilidad = 0;
+                                                    if(is_array($customer['extract'])){
+                                                        $rentabilidad = number_format($customer['extract']['total_profitability'], 0, ',', '.');
+                                                    }
+                                                    
+                                                ?>
+                                                <label class="form-label">Valor rentabilidad</label>
+                                                <input class="form-control" value="{{$rentabilidad}}" disabled>
+                                                <span class="msg_error_form" id="error_telefono"></span>
+                                            </div>
+
 
                                         </div>
                                         
@@ -133,7 +153,7 @@
                                             <div class="col-md-3">
                                                 <label>Tipo de inversión</label>
                                                 
-                                                <select onclick="seleccionarTipoInversion()" class="form-select" id="tipo_inversion" >
+                                                <select onchange="seleccionarTipoInversion()" class="form-select" id="tipo_inversion" >
                                                     <option value="">Seleccione--</option>
                                                     @foreach ($investments_types as $item)
                                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -144,14 +164,29 @@
                                             </div>
                                         </div>
                                         <br>
-                                        <div style="display: none" id="div_reinversion" class="row g-3">
-                                            <div class="col-md-3" id="content_reinversion">
-                                               
-                                                <label>Monto reinversión</label>
-                                                <input id="monto_reinversion" disabled class="form-control" type="text">
-                                                <span class="msg_error_form" id="error_monto_reinversion"></span>
-                                            
+                                        <div style="display: none" id="div_reinversion">
+                                            <div id="content_reinversion" class="row g-3">
+                                                <div class="col-md-3" >
+                                                    <label>Monto reinversión</label>
+                                                    <input id="monto_reinversion" disabled class="form-control" type="text">
+                                                    <span class="msg_error_form" id="error_monto_reinversion"></span>
+                                                
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Valor invertido</label>
+                                                    <input class="form-control" id="valor_invertido_reinversion" disabled>
+                                                    <span class="msg_error_form" id="error_telefono"></span>
+                                                </div>
+                                              
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Rentabilidad + Inversión</label>
+                                                    <input class="form-control" id="valor_rentabilidad_reinversion" disabled>
+                                                    <span class="msg_error_form" id="error_telefono"></span>
+                                                </div>
+
                                             </div>
+                                           
                                            
                                         </div>
 

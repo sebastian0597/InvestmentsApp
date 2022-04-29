@@ -770,7 +770,7 @@ const actualizarCliente = (id_cliente) => {
                     ? $('#rut_tercero_txt').val().trim()
                     : document.getElementById('rut_tercero').files[0];
         }
-        let estado = $('#estado_cliente').val().trim();
+        //let estado = $('#estado_cliente').val().trim();
         let id_usuario = $('#id_usuario_cliente').val();
 
 
@@ -796,7 +796,7 @@ const actualizarCliente = (id_cliente) => {
         form_data.append('position_business', cargo);
         form_data.append('antique_bussiness', antiguedad);
         form_data.append('type_contract', tipo_contrato);
-        form_data.append('status', estado);
+        /*form_data.append('status', estado);*/
         form_data.append('work_certificate', certificado_laboral);
         form_data.append('pension_fund', fondo_pension);
         form_data.append('especification_other', otros_actividad);

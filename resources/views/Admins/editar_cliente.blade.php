@@ -505,7 +505,7 @@
                                             </div>
 
                                         </div>
-                                        <div class="row g-3">
+                                        <!--<div class="row g-3">
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Estado</label>
@@ -518,7 +518,7 @@
                                                 <span class="msg_error_form" id="error_nombre_banco"></span>
                                             </div>
 
-                                        </div>
+                                        </div> -->
                      
 
                                         <br><br>

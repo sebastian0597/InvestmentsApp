@@ -28,14 +28,17 @@ const crearReinversion = () =>{
 
         let id_cliente = $('#id_cliente').val().trim();
         let numero_documento = $('#numero_documento').val().trim()
-        let monto_inversion = quitarformatNumber(
+        let monto_rentabilidad = quitarformatNumber(
             $('#monto_reinversion').val().trim()
+        );
+        let monto = quitarformatNumber(
+            $('#valor_rentabilidad_reinversion').val().trim()
         );
     
         var form_data = new FormData();
         form_data.append('id_customer', id_cliente);
         form_data.append('registered_by', 1);
-        form_data.append('amount', monto_inversion);
+        form_data.append('amount', monto);
         form_data.append('document_number', numero_documento);
         
         
@@ -47,8 +50,8 @@ const crearReinversion = () =>{
             title: 'Asegurese que los datos ingresados sean los correctos.',
             html: `Por favor, revise que los datos ingresados, como el monto de la reinversión coincida con lo generado en extractos
             sean los correctos. <br/><br/>
-                    El monto a invertir es: <b>$${formatNumber(
-                        monto_inversion
+                    El monto a reinvertir es: <b>$${formatNumber(
+                        monto_rentabilidad
                     )}</b><br> 
                     El cliente es: <b>${$('#nombre_cliente').val()}</b><br>
                     El correo es: <b>${$('#email_cliente').val()}</b><br> 
@@ -279,20 +282,16 @@ const seleccionarTipoInversion = () =>{
     $('#div_reinversion').css('display', 'none');
     $('#btn_crear_inversion').prop('disabled', false);
 
-    $('#btn_editar_inversion').css('display', 'flex');
-    
-
     if($('#tipo_inversion').val() != '' && $('#tipo_inversion').val()=='2'){
 
         $('#div_inversion').css('display', 'flex');
         $('#div_inversion_2').css('display', 'flex');
+        $('#btn_crear_inversion').html("Crear inversión");
 
     }else if($('#tipo_inversion').val()=='1'){
         $('#content_reinversion').removeClass('col-md-12');
         $('#div_reinversion').css('display', 'block');
-        $('#btn_crear_inversion').prop('disabled', true);
-
-        $('#btn_editar_inversion').css('display', 'none');
+        $('#btn_crear_inversion').html("Crear reinversión");
         consultarExtractos()
 
     }
@@ -315,8 +314,10 @@ const continuarConsultarExtractos = (response)=>{
 
         extractos.forEach(function (extracto) {
 
-           let valor_reinversion = extracto.grand_total_invested + extracto.total_profitability
-           $('#monto_reinversion').val(formatNumber(valor_reinversion))
+           let valor_rentabilidad = parseInt(extracto.grand_total_invested) + parseInt(extracto.total_profitability)
+           $('#monto_reinversion').val(formatNumber(parseInt(extracto.total_profitability)))
+           $('#valor_invertido_reinversion').val(formatNumber(parseInt(extracto.grand_total_invested)))
+           $('#valor_rentabilidad_reinversion').val(formatNumber(valor_rentabilidad))
           
         })
 
@@ -325,7 +326,13 @@ const continuarConsultarExtractos = (response)=>{
         $('#content_reinversion').empty(); 
         $('#content_reinversion').removeClass('col-md-3');
         $('#content_reinversion').addClass('col-md-12');
-        $('#content_reinversion').append('<span>Este cliente no tiene montos disponibles para realizar reinversiones, por favor primero genere el extracto del mes.</span>');
+
+        Swal.fire({
+            icon: 'warning',
+            text: 'Este cliente no tiene montos disponibles para realizar reinversiones, por favor genere el extracto del mes.',
+            confirmButtonText: 'Aceptar',
+          })
+        //$('#content_reinversion').append('<></span>');
     }
 
 }

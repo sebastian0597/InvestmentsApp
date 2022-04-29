@@ -303,7 +303,7 @@ class CustomerController extends Controller
 
                 $user = User::find($request->id_user);
                 $user->email=$request->email;
-                $user->status=$request->status;
+                /*$user->status=$request->status;*/
                 $user->save();
 
                 $customer = Customer::find($customer);
@@ -326,7 +326,7 @@ class CustomerController extends Controller
                 $customer->work_certificate=$request->work_certificate;
                 $customer->pension_fund=$request->pension_fund;
                 $customer->especification_other=$request->especification_other;
-                $customer->status=$request->status;
+                /*$customer->status=$request->status;*/
                 $customer->account_number=$request->account_number;
                 $customer->account_type=$request->account_type;
                 $customer->bank_name=$request->bank_name;

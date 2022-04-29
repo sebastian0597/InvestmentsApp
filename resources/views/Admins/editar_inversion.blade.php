@@ -150,7 +150,7 @@
                                             <div class="col-md-3">
                                                 <label>Tipo de inversión</label>
                                                 
-                                                <select onclick="seleccionarTipoInversion()" class="form-select" id="tipo_inversion" >
+                                                <select onchange="seleccionarTipoInversion()" class="form-select" id="tipo_inversion" >
                                                     <option value="">Seleccione--</option>
                                                     @foreach ($investments_types as $item)
                                                         <option value="{{ $item->id }}" {{ $item->id == $investment['id_investment_type'] ? 'selected' : '' }}>{{ $item->name }}</option>

@@ -127,7 +127,7 @@ class Customer extends Model
     //RELATIONS Eloquent
     public function extract(){
 
-        return $this->hasOne(Extract::class, 'id_customer', 'id')->where('extracts.month', '=', date('m'));
+        return $this->hasOne(Extract::class, 'id_customer', 'id')->where('extracts.month', '=', date('m'))->where('status',1);
     }
 
     public function documentType(){

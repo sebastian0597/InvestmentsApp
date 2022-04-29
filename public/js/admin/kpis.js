@@ -228,7 +228,7 @@ const continuarGenerarKPI = (response) => {
             <div class="card-header">
             <div class="card-options"><a class="card-options-collapse" href="#" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a class="card-options-remove" href="#" data-bs-toggle="card-remove"><i class="fe fe-x"></i></a></div>
             <div class="table-responsive add-project">
-                <h4 class="card-title mb-0">Clientes Inativos:</h4>
+                <h4 class="card-title mb-0">Clientes Inactivos:</h4>
                 <br><br>
                 <table class="table card-table table-vcenter text-nowrap">
                     <thead>

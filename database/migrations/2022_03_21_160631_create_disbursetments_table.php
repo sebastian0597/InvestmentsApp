@@ -19,6 +19,7 @@ class CreateDisbursetmentsTable extends Migration
             $table->unsignedBigInteger('id_disbursement_type');
             $table->double('value_consign',20,2);
             $table->string('disbursetment_file')->nullable(true);
+            $table->string('month',4);
             $table->double('monthly_return',20,2);
             $table->tinyinteger('ind_done')->nullable(true);
             $table->timestamps();

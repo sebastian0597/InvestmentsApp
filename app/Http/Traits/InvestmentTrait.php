@@ -24,7 +24,7 @@ trait InvestmentTrait
 
             'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'base_amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            'consignment_file' => 'required|file',
+            'consignment_file' => '',
             'code_currency' => 'required|string',
             'id_payment_method' => 'required|numeric',
             'registered_by' => 'required|numeric',
@@ -68,7 +68,9 @@ trait InvestmentTrait
 
         //Se consultan todas las inversiones activas del cliente y se suman, para actualizar la clasificación del mismo.
         $total_amount = Investment::getTotalInvestmentCustomer($id_customer);
+       
         $customer_type = Util::validateCustomerLevel($total_amount);
+
         $customer = Customer::find($id_customer);
         $customer->id_customer_type = $customer_type;
         $customer->status = 1;
@@ -102,7 +104,7 @@ trait InvestmentTrait
            
         }
 
-        return "Se ha creado la reinversión correctamente.";
+        return "Se ha creado la inversión correctamente.";
     }
 
     public function storeReinvestment($request, $customer_id="")
@@ -200,7 +202,7 @@ trait InvestmentTrait
            
         }*/
 
-        return "Se ha creado la inversión correctamente.";
+        return "Se ha creado la reinversión correctamente.";
     }
 
 

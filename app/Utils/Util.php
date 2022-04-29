@@ -225,4 +225,43 @@ class Util
         // Devolvemos la imagen comprimida
         return $destination; 
     } */
+
+    public function inactivateInvestments($investments){
+
+        if(count($investments)>0){
+
+            foreach($investments as $investment){
+
+                $investment->status = 2;
+
+                if(!is_null($investment->consignment_file)){
+
+                    $consignment_file = $investment->consignment_file;
+                }
+
+                $investment->update();  
+            }
+           
+        }else{
+
+            return array(404, 'No se han encontrado inversiones activas para este cliente.' );
+        }
+    }
+
+    public function inactivateExtracts($extracts){
+
+        if(count($extracts)>0){
+
+            foreach($extracts as $extract){
+
+                $extract->status = 2;
+                $extract->update();
+                
+            }
+           
+        }else{
+
+            return array(404, 'No se han encontrado extractos activos para este cliente.'  );
+        }
+    }
 }

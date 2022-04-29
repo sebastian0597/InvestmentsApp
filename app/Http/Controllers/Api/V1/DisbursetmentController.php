@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\Disbursetment;
 use App\Models\Investment;
 use App\Models\Customer;
+use App\Models\User;
+use App\Models\Extract;
+
+
+use App\Http\Traits\DisbursetmentTrait;
+use App\Http\Traits\InvestmentTrait;
 
 
 use Illuminate\Support\Facades\DB;
@@ -14,6 +20,9 @@ use App\Utils\Util;
 
 class DisbursetmentController extends Controller
 {
+
+    use DisbursetmentTrait;
+    use InvestmentTrait;
     /**
      * Display a listing of the resource.
      *
@@ -38,15 +47,17 @@ class DisbursetmentController extends Controller
             $fields = $request->validate([
                 'id_disbursement_type' => 'required|numeric',
                 'id_customer' => 'required|numeric',
-                //'value_consign' => 'required|numeric',
-                //'monthtly_return' => 'required|numeric'
+                'disbursement_amount' => 'required|numeric',
+                'profibality_amount' => 'required|numeric'
 
             ]);
+            
 
             switch ($fields['id_disbursement_type']){//Tipos de desembolso
                 
                 case '1'://Rentabilidad Mensual
 
+                   
                     //generar informe de desembolso
                     //cargar informe de desembolso 
                     
@@ -54,6 +65,42 @@ class DisbursetmentController extends Controller
                     break;
                 case '2'://Capital Parcial
 
+                        $amount_profibality_month = $fields['profibality_amount'];
+                        
+                        //Consulto las inversiones activas del cliente
+                        $investments = Investment::getInvestmentsByIdCustomer($fields['id_customer']);
+                        $customer = Customer::find($fields['id_customer']);
+                        $consignment_file = NULL;
+
+                        //Se consultan los extractos activos y se les coloca el estado 2, que significa desembolsado.
+                        $extracts = Extract::getExtractByCustomerAndStatus($fields['id_customer']);
+
+
+                        Util::inactivateInvestments($investments);
+                        Util::inactivateExtracts($extracts);
+
+                        $amount = ($amount_profibality_month-$fields['disbursement_amount']);
+                        
+                        //Se serializa el Request para crear la nueva inversión.
+                        $request->request->add(['amount' => $amount]); 
+                        $request->request->add(['base_amount' => $amount]);
+                        $request->request->add(['consignment_file' => $consignment_file]);
+                        $request->request->add(['code_currency' => 'COP']);
+                        $request->request->add(['id_payment_method' => 1]);
+                        $request->request->add(['registered_by' => 1]);
+                        $request->request->add(['document_number' =>  $customer->document_number]); //add request
+                       
+                        $investment = $this->storeInvestment($request, $fields['id_customer']);
+                        $disbursement = $this->storeDisbursetment($request);
+                        
+                        if($disbursement){
+
+                            return array(201, 'Se ha creado el desembolso correctamente para el cliente '.$customer->name.' '.$customer->last_name);
+
+                        }else{
+                            return array(501, 'Ha ocurrido un error al momento de crear el desembolso, por favor intente nuevamente '.$customer->name.' '.$customer->last_name);
+                        }
+                        
                         //Generar informe de desembolso Capital Parcial
                         //valor a consignar y demás datos
 
@@ -61,57 +108,38 @@ class DisbursetmentController extends Controller
                 
                 case '3'://Capital Total
                    
-                    $total_invested = Investment::getTotalInvestmentCustomer($fields['id_customer']);
+                    $investments = Investment::getInvestmentsByIdCustomer($fields['id_customer']);
+                    $extracts = Extract::getExtractByCustomerAndStatus($fields['id_customer']);
+                    $customer = Customer::find($fields['id_customer']);
 
-                    return array(404, $total_invested);
+                    Util::inactivateInvestments($investments);
+                    Util::inactivateExtracts($extracts);
                     
-                    $investment = DB::table('investments')
-                    ->select(DB::raw('id, percentage_investment'))
-                    ->where('id_customer',$fields['id_customer'])
-                    ->where('status',1)
-                    ->first();
+                    //Se crea el desembolso
+                    $disbursement = $this->storeDisbursetment($request);
+                    
+                    //Se inactiva el cliente
+                    $customer = Customer::find($fields['id_customer']);
+                    $customer->status=0;
+                    $customer->save();
 
-                    if($investment){
+                    $user = User::find($customer->id_user);
+                    $user->status=0;
+                    $user->save();
 
-                         //Se crea el extracto
-                        $requestModel = Disbursetment::create([
+                    //Util::downloadPDF();
 
-                            'id_customer' => $fields['id_customer'],
-                            'id_disbursement_type' => $fields['id_disbursement_type'],
-                            'value_consign' =>  $total_invested,
-                            'monthly_return' => $investment->percentage_investment,
-                
-                        ]);
-                        
-                        //Se coloca el estado 2(desembolsadas) las inversiones activas del cliente.
-                        DB::statement(" UPDATE investments I 
-                        INNER JOIN customers C ON C.id = I.id_customer 
-                        SET I.status=2
-                        WHERE C.id=? AND I.status=1",
-        
-                        [$fields['id_customer']]);
-
-                        //Se inactiva el cliente
-                        $customer = Customer::find($fields['id_customer']);
-                        $customer->status = 0;
-                        $customer->save();
-
-                        //Se genera el PDF.
-
-                        Util::downloadPDF();
-
-                        if($customer->save()){
-                            return array(201, 'Se ha creado el desembolso de manera correcta.');
-
-                        }else{
-                            return array(501, 'Ha ocurrido un error al intentar realizar el proceso de desembolso.');
-                        }
-                    }else{
-                        return array(401, 'No se han encontrado inversiones activas para este cliente.');
+                    if(!$disbursement){
+                        return array(501, 'Ha ocurrido un error al intentar crear el desembolso.');
                     }
-                   
 
-                    
+                    if($customer->save()){
+                        return array(201, 'Se ha creado el desembolso de manera correcta.');
+
+                    }else{
+                        return array(501, 'Ha ocurrido un error al intentar desactivar cliente.');
+                    }
+                            
                     break;
             }
 

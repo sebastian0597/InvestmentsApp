@@ -46,7 +46,7 @@ class Investment extends Model
         //return Investment::where('status', '1')->where('id',$param)->orWhere()->get();
 
         return Investment::select('investments.*')->join('customers', 'investments.id_customer', '=', 'customers.id')
-                ->where('investments.status', '1')->where('investments.id',$param)->orWhere('customers.document_number', $param)
+                ->where('investments.status', 1)/*->where('investments.id',$param)*/->where('customers.document_number', $param)
                 ->get();
 
     }

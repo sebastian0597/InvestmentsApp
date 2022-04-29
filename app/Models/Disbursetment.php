@@ -14,6 +14,7 @@ class Disbursetment extends Model
         'id_customer',
         'value_consign',
         'monthly_return',
+        'month',
         'ind_done',
         'disbursetment_file'
     ];
