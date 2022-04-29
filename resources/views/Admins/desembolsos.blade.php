@@ -258,13 +258,10 @@
                                             <table class="table card-table table-vcenter text-nowrap">
                                                 <thead>
                                                     <tr>
-                                                        <th>RENTABILIDAD MENSUAL</th>
-                                                        <th>TIPO DE DESEMBOLSOS</th>
-                                                        <th>CAPITAL PARCIAL</th>
-                                                        <th>CAPITAL TOTAL</th>
-
-
-
+                                                        <th>Rentabilidad mensual</th>
+                                                        <th>Tipo desembolso</th>
+                                                        <th>Capital parcial</th>
+                                                        <th>Capital total</th>
 
                                                     </tr>
                                                 </thead>
@@ -292,8 +289,7 @@
                                             <br><br>
                                             <div class="col-md-6">
                                                 <button class="btn btn-outline-success btn-lg" id="Bookmark"
-                                                    onclick="submitBookMark()" type="submit">MOSTRAR ARCHIVOS
-                                                    SUBIDOS</button>
+                                                    onclick="submitBookMark()" type="submit">Mostrar archivos</button>
 
                                             </div>
 

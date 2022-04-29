@@ -109,7 +109,7 @@ $(function() {
   });
 
   
-  $("table").tablesorter({
+  $(".tablesorter").tablesorter({
 
     theme : 'jui',
 
