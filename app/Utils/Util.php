@@ -65,6 +65,10 @@ class Util
         else if($amount >= 100000000){
 
             $customer_level = 3; 
+            
+        }else{
+
+            $customer_level = 1;   
         }
 
         return $customer_level;

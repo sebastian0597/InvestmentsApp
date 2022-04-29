@@ -170,7 +170,7 @@ const continuarBuscarClienteDesembolso = (response) => {
                 }) 
 
             }else{
-                button_guardar_desembolso = ` <button type="button" id="btn-guardar-desembolso" onclick='guardarRegistroDesembolso(${tipo_desembolso})' class="btn btn-primary">Guardar registro</button>`
+                button_guardar_desembolso = ` <button type="button" id="btn_guardar_desembolso" onclick='guardarRegistroDesembolso(${tipo_desembolso})' class="btn btn-primary">Guardar registro</button>`
             }
 
             html = `
@@ -180,7 +180,7 @@ const continuarBuscarClienteDesembolso = (response) => {
                 <div class="col-md-4">
                     <label class="form-label">Nombre de
                         cliente</label>
-                    <input class="form-control" disabled type="text" value="${
+                    <input class="form-control" id="nombre_cliente" disabled type="text" value="${
                         cliente.name
                     } ${cliente.last_name}"
                         required="">
@@ -303,16 +303,21 @@ const continuarBuscarClienteDesembolso = (response) => {
 
 const guardarRegistroDesembolso = (tipo_desembolso) => {
 
-    let valor_consignar = parseInt(quitarformatNumber($('#valor_consignar').val().trim()))
+    let valor_consignar = quitarformatNumber($('#valor_consignar').val().trim())
     let valor_rentabilidad = parseInt(quitarformatNumber($('#total_rentabilidad_desembolso').val().trim()))
     
     /*let porcentaje_mensual = parseInt(quitarformatNumber($('#total_rentabilidad_desembolso').val().trim()))*/
     let id_cliente = $('#id_cliente').val().trim()
     quitarError('valor_consignar')
-  
-    if(valor_consignar != ''){
 
-        if(valor_consignar < valor_rentabilidad && tipo_desembolso=='2' || tipo_desembolso=='3'){
+    if(valor_consignar != '' ){
+         
+        if(parseInt(valor_consignar) < valor_rentabilidad && tipo_desembolso=='2' || tipo_desembolso=='3'){
+
+            $('#btn_guardar_desembolso').text('Creando registro...');
+            $('#btn_guardar_desembolso').prop('disabled', false);
+            $('#btn_guardar_desembolso').removeClass('placeholder'); 
+
             let url = window.location.origin+`/api/v1/disbursetment`
 
             let form_data = new FormData();
@@ -323,13 +328,39 @@ const guardarRegistroDesembolso = (tipo_desembolso) => {
             /*form_data.append('monthly_return', valor_consignar);*/
     
             let method = "POST";
+
+            Swal.fire({
+                icon: 'warning',
+                title: 'Asegurese que los datos ingresados sean los correctos.',
+                html: `Por favor, revise que el monto del desembolso sea el correcto.<br/><br/>
+                        El monto a desembolsar es: <b>$${formatNumber(
+                            valor_consignar
+                        )}</b><br> 
+                        El cliente es: <b>${$('#nombre_cliente').val()}</b><br>
+                    `,
     
-            enviarPeticion(
-                url,
-                method,
-                form_data,
-                "continuarGuardarRegistroDesembolso"
-            );
+                showDenyButton: false,
+                showCancelButton: true,
+                confirmButtonText: 'Aceptar',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    enviarPeticion(
+                        url,
+                        method,
+                        form_data,
+                        "continuarGuardarRegistroDesembolso"
+                    );
+                }
+                if (result.isDismissed) {
+                    $('#btn_guardar_desembolso').text('Crear registro');
+                    $('#btn_guardar_desembolso').prop('disabled', false);
+                    $('#btn_guardar_desembolso').removeClass('placeholder'); 
+                }
+            });
+    
+           
     
         }else{
 
@@ -348,7 +379,10 @@ const guardarRegistroDesembolso = (tipo_desembolso) => {
     
 }
 
-const continuarGuardarRegistroDesembolso = (respuesta) =>{
+const continuarGuardarRegistroDesembolso = (response) =>{
 
-    console.log(respuesta)
+    $('#btn_guardar_desembolso').text('Crear registro');
+    $('#btn_guardar_desembolso').prop('disabled', false);
+    $('#btn_guardar_desembolso').removeClass('placeholder'); 
+    setResponseMessage(response, '/desembolsos');
 }

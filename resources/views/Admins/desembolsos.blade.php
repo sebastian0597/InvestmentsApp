@@ -246,14 +246,14 @@
 
                                         <div class="table-responsive add-project">
 
-                                            <h4 class="card-title mb-0">Histórico de Desembolsos:</h4><br><br>
+                                            <h4 class="card-title mb-0">Histórico de desembolsos:</h4><br><br>
                                             <div class="input-group">
 
                                                 <input name="fecha-de-busqueda" type="month" />
 
 
                                                 <button class="btn btn-secondary" id="Bookmark" onclick="submitBookMark()"
-                                                    type="submit">Generar Busqueda</button>
+                                                    type="submit">Buscar</button>
                                             </div><br><br>
                                             <table class="table card-table table-vcenter text-nowrap">
                                                 <thead>

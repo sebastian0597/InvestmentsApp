@@ -74,7 +74,7 @@ trait InvestmentTrait
         $customer = Customer::find($id_customer);
         $customer->id_customer_type = $customer_type;
         $customer->status = 1;
-        $customer->save();
+        $customer->update();
 
         //Se busca si es una reinversión o una nueva inversión
         $investment_type = InvestmentType::find($investment_type);
