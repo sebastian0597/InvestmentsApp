@@ -239,6 +239,10 @@ const guardarPorcentajeRentabilidad = () =>{
         let url = document.location.origin
         let form_data = new FormData();
         let method = 'POST'
+
+        $('#btn_guardar_porcentaje').text('Guardando % rentabilidad...');
+        $('#btn_guardar_porcentaje').prop('disabled', true);
+        $('#btn_guardar_porcentaje').removeClass('placeholder'); 
       
         switch (parseInt(tipo_cliente)) {
             case 1:
@@ -263,13 +267,37 @@ const guardarPorcentajeRentabilidad = () =>{
                 break;
         }
 
+        Swal.fire({
+            
+            icon: 'warning',
+            title: 'Asegurese que los datos ingresados sean los correctos.',
+            html: `Por favor, revise que el porcentaje de rentabilidad sea el correcto.<br/><br/>
+                    El porcentaje de rentabilidad para este mes es: <b>${porcentaje}%</b><br>
+                `,
+
+            showDenyButton: false,
+            showCancelButton: true,
+            confirmButtonText: 'Aceptar',
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                enviarPeticion(
+                    url,
+                    method,
+                    form_data,
+                    'continuarGuardarPorcentajeRentabilidad'
+                )
+            }
+            if (result.isDismissed) {
+                $('#btn_guardar_porcentaje').text('Guardar % rentabilidad');
+                $('#btn_guardar_porcentaje').prop('disabled', false);
+                $('#btn_guardar_porcentaje').removeClass('placeholder'); 
+            }
+        });
+
          
-        enviarPeticion(
-            url,
-            method,
-            form_data,
-            'continuarGuardarPorcentajeRentabilidad'
-        )
+       
        
     }
 }
@@ -277,6 +305,9 @@ const guardarPorcentajeRentabilidad = () =>{
 const continuarGuardarPorcentajeRentabilidad = (response) =>{
   
     setResponseMessage(response);
+    $('#btn_guardar_porcentaje').text('Guardar % rentabilidad');
+    $('#btn_guardar_porcentaje').prop('disabled', false);
+    $('#btn_guardar_porcentaje').removeClass('placeholder'); 
 }
 
 const validarPorcentajeRentabilidad = () =>{

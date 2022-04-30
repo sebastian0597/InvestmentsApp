@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Disbursetment extends Model
 {
     use HasFactory;
+    protected $table = 'disbursetments';
 
     protected $fillable = [
         'id_disbursement_type',
@@ -19,10 +21,18 @@ class Disbursetment extends Model
         'disbursetment_file'
     ];
 
-    public static function getDisbursement(){
+    public static function getDisbursement($date){
 
-        /*SELECT COUNT(*) AS cantidad, C.id_customer_type, SUM(D.value_consign) AS value_consign FROM disbursetments D
-        INNER JOIN customers C ON C.id = D.id_customer
-        GROUP BY C.id_customer_type*/
+       // $date =  "'$date'";
+      
+        return DB::table('disbursetments')
+            ->join('customers', 'customers.id', '=', 'disbursetments.id_customer')
+            ->select(DB::raw('count(*) as cantidad, customers.id_customer_type, sum(disbursetments.value_consign) AS value_consign, SUBSTRING(disbursetments.created_at, 1,7) AS fecha'))
+            //->where(DB::raw('SUBSTRING(disbursetments.created_at, 1,7)','=', '2022-04'))
+            ->groupBy('customers.id_customer_type')
+            ->get();
+        
+        
+
     }
 }

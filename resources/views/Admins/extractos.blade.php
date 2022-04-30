@@ -122,7 +122,7 @@
                                     <div id="div_premium_form"></div>
                                     <br>
                                     <div class="row">
-                                        <div class='col-sm'>
+                                        <div class='col-sm placeholder-glow'>
                                             <button type="button" id="btn_guardar_porcentaje" style="display:none" onclick="guardarPorcentajeRentabilidad()" class="btn btn-primary">Guardar % rentabilidad</button>
                                         </div>
                                     </div>

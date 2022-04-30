@@ -31,7 +31,7 @@ Route::apiResource('v1/extracts', ExtractController::class)->only(['show']);
 Route::post('v1/extracts_customer_premium', [ExtractController::class, 'extractCustomerPremium']);
 Route::post('v1/extracts_by_customer_type', [ExtractController::class, 'extractByCustomerType']);
 
-Route::apiResource('v1/disbursetment', DisbursetmentController::class)->only(['store']);
+Route::apiResource('v1/disbursetment', DisbursetmentController::class)->only(['show','store']);
 
 Route::apiResource('v1/request', CustomerRequestController::class)->only(['store', 'show','index','update']);
 Route::get('v1/get_request_by_date/{param}', [CustomerRequestController::class, 'getRequestByDate']);

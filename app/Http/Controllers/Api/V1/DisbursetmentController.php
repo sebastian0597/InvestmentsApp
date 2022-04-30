@@ -10,9 +10,11 @@ use App\Models\Customer;
 use App\Models\User;
 use App\Models\Extract;
 
-
 use App\Http\Traits\DisbursetmentTrait;
 use App\Http\Traits\InvestmentTrait;
+
+use App\Http\Resources\V1\DisbursementResource;
+use App\Http\Resources\V1\DisbursementCollection;
 
 
 use Illuminate\Support\Facades\DB;
@@ -155,9 +157,15 @@ class DisbursetmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($date)
+    {   
+        $disbursement = Disbursetment::getDisbursement($date);
+
+        if($disbursement){
+            return new DisbursementCollection($disbursement);
+        }else{
+            return array();
+        }
     }
 
     /**
