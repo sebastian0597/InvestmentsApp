@@ -15,12 +15,25 @@ class DisbursementResource extends JsonResource
     public function toArray($request)
     {
         return [
-
-            'cantidad' => $this->cantidad = null ? 0 : $this->cantidad,
+            
+            'id' => $this->id,
+            'id_customer' => $this->id_customer,
+            'id_disbursement_type' => $this->id_disbursement_type,
+            'disbursement_type' => $this->disbursementType->name,
+            'month' => $this->month,
+            'quantity' => $this->quantity = null ? 0 : $this->quantity,
+            'ind_done' => $this->ind_done,
             'id_customer_type' => $this->id_customer_type,
             'value_consign' => $this->value_consign == null  ? 0 : $this->value_consign,
-            'fecha' => $this->fecha  == null ? 0 : $this->fecha,
-         
+            'date' => $this->fecha  == null ? 0 : $this->fecha,
+            'created_at' => $this->created_at->format('Y/m/d'),
+            'disbursetment_file' => $this->disbursetment_file,
+            'customer' => [
+                'fullname' => $this->customer->name.' '.$this->customer->last_name,
+                'document_number' => $this->customer->document_number,
+            ],
+            'status' => $this->done,
+
         ];
     }
 }

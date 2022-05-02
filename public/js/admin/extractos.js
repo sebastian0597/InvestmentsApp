@@ -107,11 +107,15 @@ const continuarBuscarClientePorParametros = (response) => {
                 
                 <div class='row'>
                     <div class='col-sm'>
-                        <label>Total Desembolsado</label>
+                        <label>Total desembolsado</label>
                         <input type='text' disabled class='form-control' placeholder='$${cliente.total_disbursements}'>
                     </div>
                     <div class='col-sm'>
-                        <label>Gran Total Invertido</label>
+                        <label>Total inversiones activas</label>
+                        <input type='text' disabled class='form-control' placeholder='$${cliente.total_investments_actives}'>
+                    </div>
+                    <div class='col-sm'>
+                        <label>Gran total invertido</label>
                         <input type='text' disabled class='form-control' placeholder='$${cliente.total_investments}'>
                     </div>
                 </div>

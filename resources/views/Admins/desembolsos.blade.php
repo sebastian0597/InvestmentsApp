@@ -48,8 +48,20 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h5>Gestionar desembolso</h5>
+                            
+                                <div style="display:flex; align-items:center; padding-right: 0px;" class="card-header">
+                                    <div style="width:100%" class="row">
+                                        <div class="col-6">
+                                            <h5>Gestionar desembolso</h5>
+                                        </div>
+                                        <div class="col-6">
+                                            <ol style="float:right;" class="breadcrumb">
+                                                @include(
+                                                        'Admins/componentes/modal_busqueda_desembolsos'
+                                                    ) 
+                                            </ol>
+                                        </div>
+                                    </div> 
                                 </div>
                                 <div class="card-body">
 

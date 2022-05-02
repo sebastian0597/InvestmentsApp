@@ -64,7 +64,7 @@
                                 </div>
                                
                                 <div class="card-body">
-                                    {{var_dump(auth()->user())}}
+                                   
                                     <div class="table-responsive">
                                         <table class="tablesorter" id="basic-6">
                                             <thead>

@@ -78,9 +78,7 @@
                                                     <!--<b style="float: right">Total clientes: {{count($customers)}}</b> -->
                                                     @include(
                                                         'Admins/componentes/modal_busqueda_inversiones'
-                                                    )
-            
-                                                        
+                                                    )   
                                                 </ol>
 
                                             </div>

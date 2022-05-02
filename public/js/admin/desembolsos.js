@@ -18,20 +18,17 @@ const seleccionarTipoDesembolso = () => {
                     </div>
                 </div>`;
 
-
     switch ($("#tipo_desembolso").val()) {
         case "1":
             $("#div_mensual").css("display", "flex");
             $("#div_mensual_reportes").css("display", "flex");
-            
+
             break;
         case "2":
-          
             $("#div_parcial").append(html);
 
             break;
         case "3":
-
             $("#div_total").append(html);
 
             break;
@@ -119,63 +116,61 @@ const continuarBuscarClienteDesembolso = (response) => {
     let html = "";
 
     if (!isObjEmpty(cliente)) {
-        
-        //SE DEBE CONSULTAR SI EL CLIENTE TIENE DESEMBOLSOS PENDIENTES POR REALIZAR.  
+        //SE DEBE CONSULTAR SI EL CLIENTE TIENE DESEMBOLSOS PENDIENTES POR REALIZAR.
 
         //if(cliente.status != 'Inactivo'){
 
-            let tipo_desembolso = $("#tipo_desembolso").val().trim()
-            let total_rentabilidad =
-                cliente.extract == null || undefined
-                    ? 0
-                    : parseInt(cliente.extract.total_profitability);
-            
+        let tipo_desembolso = $("#tipo_desembolso").val().trim();
+        let total_rentabilidad =
+            cliente.extract == null || undefined
+                ? 0
+                : parseInt(cliente.extract.total_profitability);
 
-            let grand_total_invested =
-                cliente.extract == null || undefined
-                    ? 0
-                    : parseInt(cliente.extract.grand_total_invested);
+        let grand_total_invested =
+            cliente.extract == null || undefined
+                ? 0
+                : parseInt(cliente.extract.grand_total_invested);
 
-            let total_ganancia = (total_rentabilidad) + grand_total_invested;
+        let total_ganancia = total_rentabilidad + grand_total_invested;
 
-            let class_color_ganacia = ''
-            let simbolo =''
+        let class_color_ganacia = "";
+        let simbolo = "";
 
-            if(Math.sign(total_rentabilidad) == -1){//Si la rentabilidad es negativa
-                class_color_ganacia = 'perdida'
-                simbolo ='-'
-            }else if(Math.sign(total_rentabilidad) == 1){
-                class_color_ganacia = 'ganancia'
-            }
-        
-            
-            let input_valor = ''
+        if (Math.sign(total_rentabilidad) == -1) {
+            //Si la rentabilidad es negativa
+            class_color_ganacia = "perdida";
+            simbolo = "-";
+        } else if (Math.sign(total_rentabilidad) == 1) {
+            class_color_ganacia = "ganancia";
+        }
 
-            if(tipo_desembolso == '2'){
+        let input_valor = "";
 
-                input_valor = ` <input class="form-control " onkeyup="convertirAformatoMoneda(this)" id='valor_consignar' type="text" value="">`
+        if (tipo_desembolso == "2") {
+            input_valor = ` <input class="form-control " onkeyup="convertirAformatoMoneda(this)" id='valor_consignar' type="text" value="">`;
+        } else if (tipo_desembolso == "3") {
+            input_valor = ` <input class="form-control " disabled id='valor_consignar' type="text" value="$${formatNumber(
+                total_ganancia
+            )}">`;
+        }
 
-            }else if(tipo_desembolso == '3'){
+        let button_guardar_desembolso = "";
 
-                input_valor = ` <input class="form-control " disabled id='valor_consignar' type="text" value="$${formatNumber(total_ganancia)}">`
-            }
+        if (total_rentabilidad == 0) {
+            Swal.fire({
+                icon: "warning",
+                text:
+                    "Para realizar un desembolso, primero genere el extracto del mes para el cliente " +
+                    cliente.name +
+                    " " +
+                    cliente.last_name,
+                confirmButtonText: "Aceptar",
+            });
+        } else {
+            button_guardar_desembolso = ` <button type="button" id="btn_guardar_desembolso" onclick='guardarRegistroDesembolso(${tipo_desembolso})' class="btn btn-primary">Guardar registro</button>`;
+        }
 
-            let button_guardar_desembolso = ''
-
-            if(total_rentabilidad == 0){
-
-                Swal.fire({
-                    icon: 'warning',
-                    text: 'Para realizar un desembolso, primero genere el extracto del mes para el cliente ' + cliente.name + ' '+ cliente.last_name,
-                    confirmButtonText: 'Aceptar',
-
-                }) 
-
-            }else{
-                button_guardar_desembolso = ` <button type="button" id="btn_guardar_desembolso" onclick='guardarRegistroDesembolso(${tipo_desembolso})' class="btn btn-primary">Guardar registro</button>`
-            }
-
-            html = `
+        html = `
             <h5>Datos del cliente</h5>
             
             <div class="row g-3">
@@ -254,8 +249,8 @@ const continuarBuscarClienteDesembolso = (response) => {
                 <div class="col-md-4">
                     <label class="form-label" >Rentabilidad mensual </label>
                     <input class="form-control ${class_color_ganacia}" disabled type="text" value="$${simbolo}${formatNumber(
-                        total_rentabilidad
-                    )}"
+            total_rentabilidad
+        )}"
                         required="">
                 </div>
 
@@ -271,9 +266,7 @@ const continuarBuscarClienteDesembolso = (response) => {
             <div class="row g-3">
                 <div class="col-md-4">
                     <label class="form-label" >Valor a consignar</label>
-                    ${
-                    input_valor
-                    }
+                    ${input_valor}
                 
                 </div>
             
@@ -284,7 +277,7 @@ const continuarBuscarClienteDesembolso = (response) => {
                 ${button_guardar_desembolso}
                 </div>
             
-            </div>`
+            </div>`;
         /*}else{
 
             Swal.fire({
@@ -295,7 +288,6 @@ const continuarBuscarClienteDesembolso = (response) => {
             }) 
 
         }*/
-
     } else {
         html = `<span>No hay datos para los parámetros ingresados.</span>`;
     }
@@ -304,46 +296,51 @@ const continuarBuscarClienteDesembolso = (response) => {
 };
 
 const guardarRegistroDesembolso = (tipo_desembolso) => {
+    let valor_consignar = quitarformatNumber(
+        $("#valor_consignar").val().trim()
+    );
+    let valor_rentabilidad = parseInt(
+        quitarformatNumber($("#total_rentabilidad_desembolso").val().trim())
+    );
 
-    let valor_consignar = quitarformatNumber($('#valor_consignar').val().trim())
-    let valor_rentabilidad = parseInt(quitarformatNumber($('#total_rentabilidad_desembolso').val().trim()))
-    
     /*let porcentaje_mensual = parseInt(quitarformatNumber($('#total_rentabilidad_desembolso').val().trim()))*/
-    let id_cliente = $('#id_cliente').val().trim()
-    quitarError('valor_consignar')
+    let id_cliente = $("#id_cliente").val().trim();
+    quitarError("valor_consignar");
 
-    if(valor_consignar != '' ){
-         
-        if(parseInt(valor_consignar) < valor_rentabilidad && tipo_desembolso=='2' || tipo_desembolso=='3'){
+    if (valor_consignar != "") {
+        if (
+            (parseInt(valor_consignar) < valor_rentabilidad &&
+                tipo_desembolso == "2") ||
+            tipo_desembolso == "3"
+        ) {
+            $("#btn_guardar_desembolso").text("Creando registro...");
+            $("#btn_guardar_desembolso").prop("disabled", false);
+            $("#btn_guardar_desembolso").removeClass("placeholder");
 
-            $('#btn_guardar_desembolso').text('Creando registro...');
-            $('#btn_guardar_desembolso').prop('disabled', false);
-            $('#btn_guardar_desembolso').removeClass('placeholder'); 
-
-            let url = window.location.origin+`/api/v1/disbursetment`
+            let url = window.location.origin + `/api/v1/disbursetment`;
 
             let form_data = new FormData();
-            form_data.append('id_disbursement_type', tipo_desembolso);
-            form_data.append('id_customer', id_cliente);
-            form_data.append('disbursement_amount', valor_consignar);
-            form_data.append('profibality_amount', valor_rentabilidad);
+            form_data.append("id_disbursement_type", tipo_desembolso);
+            form_data.append("id_customer", id_cliente);
+            form_data.append("disbursement_amount", valor_consignar);
+            form_data.append("profibality_amount", valor_rentabilidad);
             /*form_data.append('monthly_return', valor_consignar);*/
-    
+
             let method = "POST";
 
             Swal.fire({
-                icon: 'warning',
-                title: 'Asegurese que los datos ingresados sean los correctos.',
+                icon: "warning",
+                title: "Asegurese que los datos ingresados sean los correctos.",
                 html: `Por favor, revise que el monto del desembolso sea el correcto.<br/><br/>
                         El monto a desembolsar es: <b>$${formatNumber(
                             valor_consignar
                         )}</b><br> 
-                        El cliente es: <b>${$('#nombre_cliente').val()}</b><br>
+                        El cliente es: <b>${$("#nombre_cliente").val()}</b><br>
                     `,
-    
+
                 showDenyButton: false,
                 showCancelButton: true,
-                confirmButtonText: 'Aceptar',
+                confirmButtonText: "Aceptar",
                 allowEscapeKey: false,
                 allowOutsideClick: false,
             }).then((result) => {
@@ -356,37 +353,138 @@ const guardarRegistroDesembolso = (tipo_desembolso) => {
                     );
                 }
                 if (result.isDismissed) {
-                    $('#btn_guardar_desembolso').text('Crear registro');
-                    $('#btn_guardar_desembolso').prop('disabled', false);
-                    $('#btn_guardar_desembolso').removeClass('placeholder'); 
+                    $("#btn_guardar_desembolso").text("Crear registro");
+                    $("#btn_guardar_desembolso").prop("disabled", false);
+                    $("#btn_guardar_desembolso").removeClass("placeholder");
                 }
             });
-    
-           
-    
-        }else{
-
+        } else {
             Swal.fire({
-                icon: 'warning',
-                text: 'El monto a desembolsar no puede ser mayor o igual al valor total de la rentabilidad',
-                confirmButtonText: 'Aceptar',
-
-              }) 
-
+                icon: "warning",
+                text: "El monto a desembolsar no puede ser mayor o igual al valor total de la rentabilidad",
+                confirmButtonText: "Aceptar",
+            });
         }
-      
-    }else{
-        agregarError('valor_consignar')
+    } else {
+        agregarError("valor_consignar");
     }
-    
-}
+};
 
-const continuarGuardarRegistroDesembolso = (response) =>{
+const continuarGuardarRegistroDesembolso = (response) => {
+    $("#btn_guardar_desembolso").text("Crear registro");
+    $("#btn_guardar_desembolso").prop("disabled", false);
+    $("#btn_guardar_desembolso").removeClass("placeholder");
+    setResponseMessage(response, "/desembolsos");
+};
 
-    $('#btn_guardar_desembolso').text('Crear registro');
-    $('#btn_guardar_desembolso').prop('disabled', false);
-    $('#btn_guardar_desembolso').removeClass('placeholder'); 
-    setResponseMessage(response, '/desembolsos');
-}
+const buscarDesembolsosPorParametros = () => {
+    quitarError("busqueda_desembolsos");
+
+    let param = $("#busqueda_desembolsos").val().trim();
+    let form_data = {};
+    if (param != "") {
+        let url =
+            window.location.origin +
+            `/api/v1/get_disbursetments_by_params/${param}`;
+        let method = "GET";
+
+        enviarPeticion(
+            url,
+            method,
+            form_data,
+            "continuarBuscarDesembolsosPorParametros"
+        );
+    } else {
+        agregarError("busqueda_desembolsos");
+    }
+};
+
+const continuarBuscarDesembolsosPorParametros = (response) => {
+    let desembolsos = response.data;
+    desembolsos = desembolsos == undefined || null ? {} : desembolsos;
+
+    $("#disbursements_container").empty();
+    let html = "";
+    if (!isObjEmpty(desembolsos)) {
+        let tr_desembolsos = "";
+
+        desembolsos.forEach(function (desembolso) {
+     
+            let url = document.location.origin + `/editar_desembolso/${desembolso.id}`;
+               
+            tr_desembolsos += `
+            <tr>
+                <th scope="row"><a href="${url}">${desembolso.id}</a></th>
+                <td><a href="${url}">$${formatNumber(desembolso.value_consign)}</a></td>
+                <td><a href="${url}">${desembolso.created_at}</a></td>
+                <td><a href="${url}">${desembolso.disbursement_type}</a></td>
+                <td><a href="${url}">${desembolso.status}</a></td>
+                <td><a href="${url}">${desembolso.customer.fullname}</a></td>
+
+            </tr>`;
+        });
+
+        html +=
+            `<table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Cliente</th>
+                    </tr>
+                </thead>
+                <tbody>` + 
+                    tr_desembolsos +
+                `</tbody>
+            </table>`;
+            
+    } else {
+
+        html += `<span>No se han encontrado desembolsos para los parámetros ingresados.</span>`;
+    }
+
+    $("#disbursements_container").append(html);
+};
 
 // /api/v1/disbursetment/
+
+const actualizarDesembolso = () => {
+    quitarError("archivo_desembolso");
+
+    if (
+        $("#archivo_desembolso").val().trim() != "" ||
+        $("#archivo_desembolso_txt").val().trim() != ""
+    ) {
+        let id_desembolso = $("#id_desembolso").val().trim();
+
+        let archivo_desembolso =
+            document.getElementById("archivo_desembolso").files[0] == undefined
+                ? $("#archivo_desembolso_txt").val().trim()
+                : document.getElementById("archivo_desembolso").files[0];
+
+        
+        let ind_desembolsado =
+            $("#check_done").prop("checked") == true ? 1 : "";
+        let url =
+            window.location.origin +
+            `/api/v1/disbursetment/update/${id_desembolso}`;
+
+        let method = "POST";
+        let form_data = new FormData();
+
+        form_data.append("disbursement_file", archivo_desembolso);
+        form_data.append("ind_desembolsado", ind_desembolsado);
+
+        enviarPeticion(url, method, form_data, 'continuarActualizarDesembolso')
+    } else {
+        agregarError("archivo_desembolso");
+    }
+};
+
+const continuarActualizarDesembolso = (response) => {
+  
+    setResponseMessage(response, '/desembolsos');
+};

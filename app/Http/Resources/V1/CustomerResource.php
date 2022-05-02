@@ -15,6 +15,7 @@ class CustomerResource extends JsonResource
     public function toArray($request)
     {
         return [
+
             'id' =>  $this->id,
             'id_user'=> $this->id_user,
             'name'=> $this->name,
@@ -57,9 +58,11 @@ class CustomerResource extends JsonResource
             'economic_activity' => $this->economicActivity->name,
             'name_bank_account' => $this->bank->name,
             'investments' => $this->investsments,
-            'total_investments' => number_format($this->investsmentsActive->sum('amount'), 0,',',"."),
+            'total_investments' => number_format($this->investsments->sum('amount'), 0,',',"."),
+            'total_investments_actives' => number_format($this->investsmentsActive->sum('amount'), 0,',',"."),
             'total_disbursements' => number_format($this->disbursements->sum('value_consign'), 0,',',"."),
-            'extract' => $this->extract        
+            'extract' => $this->extract  
+                  
         ];
     }
 }
