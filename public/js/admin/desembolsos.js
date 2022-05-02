@@ -126,6 +126,7 @@ const continuarBuscarClienteDesembolso = (response) => {
                 ? 0
                 : parseInt(cliente.extract.total_profitability);
 
+        
         let grand_total_invested =
             cliente.extract == null || undefined
                 ? 0
@@ -240,7 +241,7 @@ const continuarBuscarClienteDesembolso = (response) => {
                 <div class="col-md-4">
                     <label class="form-label" >Valor invertido</label>
                     <input class="form-control" disabled type="text" value="$${
-                        cliente.total_investments
+                        cliente.total_investments_actives
                     }">
                 </div>
             
@@ -440,7 +441,7 @@ const continuarBuscarDesembolsosPorParametros = (response) => {
                     tr_desembolsos +
                 `</tbody>
             </table>`;
-            
+
     } else {
 
         html += `<span>No se han encontrado desembolsos para los parámetros ingresados.</span>`;
