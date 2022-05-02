@@ -388,3 +388,5 @@ const continuarGuardarRegistroDesembolso = (response) =>{
     $('#btn_guardar_desembolso').removeClass('placeholder'); 
     setResponseMessage(response, '/desembolsos');
 }
+
+// /api/v1/disbursetment/
