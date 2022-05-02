@@ -31,7 +31,7 @@ const continuarBuscarClientePorParametros = (response) => {
         cliente.investments.forEach(function (inversion) {
             let amount = formatNumber(inversion.amount)
 
-            if (inversion.status == 1) {
+            //if (inversion.status == 1) {
                 trInversiones += `
                 <tr>
                     <td>${
@@ -40,15 +40,16 @@ const continuarBuscarClientePorParametros = (response) => {
                             : inversion.investment_date
                     }</td>
                     <td>$${amount == null ? 0 : amount}</td>
-                    <td>${
+                    <td style='text-align: center; vertical-align: middle;'>${
                         inversion.percentage_investment == null
                             ? 0
                             : inversion.percentage_investment
                     }</td>
                     <td>$${amount == null ? 0 : amount}</td>
+                    <td>${inversion.status == 1 ? 'Activa' : 'Inactiva'}</td>
                 </tr>
                 `
-            }
+            //}
         })
 
         html =
@@ -87,8 +88,9 @@ const continuarBuscarClientePorParametros = (response) => {
                             <tr>
                                 <th scope='col'>Fecha</th>
                                 <th scope='col'>Valor</th>
-                                <th scope='col'>% Rentabilidad mensual</th>
+                                <th scope='col'>% Rentabilidad</th>
                                 <th scope='col'>Total invertido</th>
+                                <th scope='col'>Estado</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -106,7 +108,7 @@ const continuarBuscarClientePorParametros = (response) => {
                 <div class='row'>
                     <div class='col-sm'>
                         <label>Total Desembolsado</label>
-                        <input type='text' disabled class='form-control' placeholder='0'>
+                        <input type='text' disabled class='form-control' placeholder='$${cliente.total_disbursements}'>
                     </div>
                     <div class='col-sm'>
                         <label>Gran Total Invertido</label>
