@@ -108,6 +108,61 @@ const buscarClienteDesembolso = () => {
     }
 };
 
+const buscarClienteDesembolsoTabla = () => {
+
+    let param = $("#param_desembolso_tabla").val().trim();
+    let form_data = {};
+    quitarError("param_desembolso_tabla");
+
+    if (param != "") {
+        let url =
+            window.location.origin + `/api/v1/get_customers_param/${param}`;
+        let method = "GET";
+
+        enviarPeticion(
+            url,
+            method,
+            form_data,
+            "continuarbuscarClienteDesembolsoTabla"
+        );
+    } else {
+        agregarError("param_desembolso_tabla");
+    }
+
+}
+
+const continuarbuscarClienteDesembolsoTabla = (response) =>{
+    
+    console.log(response)
+
+    let html = `<!--<table class="table card-table table-vcenter text-nowrap">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Numero de identificación</th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a class="text-inherit" href="#">Sebastian Correa Delgado </a>
+            </td>
+            <td>1100970967</td>
+
+            <td class="text-end">
+
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+<br>
+<br>-->`
+
+
+}
+
 const continuarBuscarClienteDesembolso = (response) => {
     let cliente = response.data[0];
     cliente = cliente == undefined || null ? {} : cliente;

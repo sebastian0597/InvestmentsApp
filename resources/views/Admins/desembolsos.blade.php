@@ -64,33 +64,19 @@
                                     </div> 
                                 </div>
                                 <div class="card-body">
-
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input class="form-control" id="param_desembolso_tabla" type="text"
+                                                placeholder="N° Identificación">
+                    
+                                            <button class="btn btn-secondary" id="btn_buscar_cliente"
+                                                onclick="buscarClienteDesembolsoTabla()" type="submit">Buscar</button>
+                                        </div>
+                                    </div>
                                    
                                     <br><br>
-                                    <!--<table class="table card-table table-vcenter text-nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nombre</th>
-                                                    <th>Numero de identificación</th>
+                                    <div id="content_clientes_tabla"></div>
 
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><a class="text-inherit" href="#">Sebastian Correa Delgado </a>
-                                                    </td>
-                                                    <td>1100970967</td>
-
-                                                    <td class="text-end">
-
-                                                    </td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                        <br>
-                                        <br>-->
                                     <div class="col-12">
                      
                                         <h5>Tipo de desembolso:</h5>
