@@ -489,3 +489,30 @@ const continuarActualizarDesembolso = (response) => {
   
     setResponseMessage(response, '/desembolsos');
 };
+
+
+const consultarHistoricoDesembolsos = () =>{
+
+    quitarError('fecha_busqueda')
+    let param = $('#fecha_busqueda').val().trim()
+
+    if(param != ''){
+
+        let method = "GET";
+        let form_data = {}
+
+       let url =  window.location.origin+`/api/v1/disbursetment/${param}`
+       enviarPeticion(url, method, form_data, 'continuarConsultarHistoricoDesembolsos')
+
+    }else{
+
+        agregarError('fecha_busqueda')
+    }
+
+}
+
+const continuarConsultarHistoricoDesembolsos = (response) => {
+
+    console.log(response)
+
+}

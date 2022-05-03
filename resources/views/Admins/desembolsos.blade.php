@@ -261,43 +261,50 @@
                                             <h4 class="card-title mb-0">Histórico de desembolsos:</h4><br><br>
                                             <div class="input-group">
 
-                                                <input name="fecha-de-busqueda" type="month" />
+                                                <input id="fecha_busqueda" type="month" />
 
-
-                                                <button class="btn btn-secondary" id="Bookmark" onclick="submitBookMark()"
-                                                    type="submit">Buscar</button>
+                                                <button class="btn btn-secondary" id="btn_historico_desembolsos" onclick="consultarHistoricoDesembolsos()"
+                                                    type="button">Buscar</button>
                                             </div><br><br>
                                             <table class="table card-table table-vcenter text-nowrap">
                                                 <thead>
-                                                    <tr>
-                                                        <th>Rentabilidad mensual</th>
-                                                        <th>Tipo desembolso</th>
-                                                        <th>Capital parcial</th>
-                                                        <th>Capital total</th>
-
-                                                    </tr>
+                                                  <tr>
+                                                    <th>TIPO DE DESEMBOLSOS </th>
+                                                    <th> RENTABILIDAD MENSUAL</th>
+                                                    <th>CAPITAL PARCIAL</th>
+                                                    <th>CAPITAL TOTAL</th>
+                                                    
+                        
+                                                    
+                                                   
+                                                  </tr>
                                                 </thead>
                                                 <tbody>
-
-                                                    <!-- AQUI VAN LOS RESULTADOS DE LA BUSQUEDA-->
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td> </td>
-                                                        <td></td>
-                                                        <td></td>
-
-                                                    </tr>
-
-
-
-
-                                                    <thead>
-
-                                                    </thead>
-
-
+                        
+                                                  <!-- AQUI VAN LOS RESULTADOS DE LA BUSQUEDA-->
+                                                  <tr> 
+                                                    <td>N° Clientes</td>
+                                                    <td>$</td>
+                                                    <td>$</td>
+                                                    <td>$</td>
+                                                  
+                                                  </tr>
+                                                  <tr> 
+                                                    <td>Valor Desembolso</td>
+                                                    <td>$</td>
+                                                    <td>$</td>
+                                                    <td>$</td>
+                                                  
+                                                  </tr>
+                        
+                                                  
+                                                  
+                                                   <thead>
+                                                  
+                                                </thead>
+           
                                                 </tbody>
-                                            </table>
+                                              </table>
                                             <br><br>
                                             <div class="col-md-6">
                                                 <button class="btn btn-outline-success btn-lg" id="Bookmark"

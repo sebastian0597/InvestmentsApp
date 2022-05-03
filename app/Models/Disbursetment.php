@@ -27,9 +27,9 @@ class Disbursetment extends Model
       
         return DB::table('disbursetments')
             ->join('customers', 'customers.id', '=', 'disbursetments.id_customer')
-            ->select(DB::raw('count(*) as quantity, customers.id_customer_type, sum(disbursetments.value_consign) AS value_consign, SUBSTRING(disbursetments.created_at, 1,7) AS fecha'))
+            ->select(DB::raw('count(*) as quantity, count(customers.id) as customers, disbursetments.id_disbursement_type, sum(disbursetments.value_consign) AS value_consign, SUBSTRING(disbursetments.created_at, 1,7) AS fecha'))
             //->where(DB::raw('SUBSTRING(disbursetments.created_at, 1,7)','=', '2022-04'))
-            ->groupBy('customers.id_customer_type')
+            ->groupBy('disbursetments.id_disbursement_type')
             ->get();
         
     }

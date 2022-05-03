@@ -159,13 +159,13 @@ class DisbursetmentController extends Controller
      */
     public function show($date)
     {   
-        $disbursements = Disbursetment::getDisbursement($date);
+        return Disbursetment::getDisbursement($date);
 
-        if($disbursements){
+       /* if($disbursements){
             return new DisbursementCollection($disbursements);
         }else{
             return array();
-        }
+        }*/
     }
 
     /*public function show($id)
