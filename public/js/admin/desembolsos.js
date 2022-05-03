@@ -498,7 +498,7 @@ const consultarHistoricoDesembolsos = () =>{
 
     if(param != ''){
 
-        let method = "GET";
+        let method = 'GET'
         let form_data = {}
 
        let url =  window.location.origin+`/api/v1/disbursetment/${param}`
