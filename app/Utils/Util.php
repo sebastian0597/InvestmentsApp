@@ -230,7 +230,7 @@ class Util
         return $destination; 
     } */
 
-    public function inactivateInvestments($investments){
+    public static function inactivateInvestments($investments){
 
         if(count($investments)>0){
 
@@ -252,7 +252,7 @@ class Util
         }
     }
 
-    public function inactivateExtracts($extracts){
+    public static function inactivateExtracts($extracts){
 
         if(count($extracts)>0){
 

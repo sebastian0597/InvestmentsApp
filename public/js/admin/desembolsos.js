@@ -388,3 +388,31 @@ const continuarGuardarRegistroDesembolso = (response) =>{
     $('#btn_guardar_desembolso').removeClass('placeholder'); 
     setResponseMessage(response, '/desembolsos');
 }
+
+const buscarDesembolsosPorFecha = () =>{
+
+    quitarError('fecha_busqueda_desembolsos')
+    let fecha = $('#fecha_busqueda_desembolsos').val().trim()
+
+    if(fecha !=''){
+        let url = window.location.origin+`/api/v1/disbursetment/${fecha}`        
+        form_data = {}
+
+        let method = 'GET'
+
+        enviarPeticion(
+            url,
+            method,
+            form_data,
+            'continuarBuscarDesembolsosPorFecha'
+        )
+
+    }else{
+        agregarError('fecha_busqueda_desembolsos')
+    }
+} 
+
+const continuarBuscarDesembolsosPorFecha = (respuesta) => {
+
+    console.log(respuesta)
+}
