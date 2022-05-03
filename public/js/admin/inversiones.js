@@ -464,3 +464,4 @@ const validarActualizarInversion = ()=>{
 
     return validador;
 }
+

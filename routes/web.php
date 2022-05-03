@@ -39,6 +39,7 @@ Route::get('contrato', function () {
 
 
 //Route::group(['middleware' => ['auth']], function () {
+
     Route::get('crear_cliente', [CustomerController::class, 'create'] )->name('crear_cliente');
     Route::get('editar_cliente/{id_cliente}', [CustomerController::class, 'edit'] )->name('editar_cliente');
     Route::get('clientes', [CustomerController::class, 'index'] )->name('clientes');
@@ -54,7 +55,9 @@ Route::get('contrato', function () {
     Route::get('kpis', function () { return view('Admins.kpis'); })->name('kpis');
     Route::get('desembolsos', [DisbursementController::class, 'index'])->name('desembolsos');
     Route::get('editar_desembolso/{id_desembolso}',  [DisbursementController::class, 'edit'] )->name('editar_desembolso');
-  
+    
+    Route::get('cambiar_contrasena', function () { return view('Admins.cambiar_contrasena'); })->name('cambiar_contrasena');
+    
 //});
 
 //Route::get('clientes', [CustomerController::class, 'index'])->name('clientes');

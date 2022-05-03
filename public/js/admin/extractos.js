@@ -34,19 +34,19 @@ const continuarBuscarClientePorParametros = (response) => {
             //if (inversion.status == 1) {
                 trInversiones += `
                 <tr>
-                    <td>${
+                    <td style='text-align: center; vertical-align: middle;'>${
                         inversion.investment_date == null
                             ? ''
                             : inversion.investment_date
                     }</td>
-                    <td>$${amount == null ? 0 : amount}</td>
+                    <td style='text-align: center; vertical-align: middle;'>$${amount == null ? 0 : amount}</td>
                     <td style='text-align: center; vertical-align: middle;'>${
                         inversion.percentage_investment == null
                             ? 0
                             : inversion.percentage_investment
                     }</td>
-                    <td>$${amount == null ? 0 : amount}</td>
-                    <td>${inversion.status == 1 ? 'Activa' : 'Inactiva'}</td>
+                    <td style='text-align: center; vertical-align: middle;'>$${amount == null ? 0 : amount}</td>
+                    <td style='text-align: center; vertical-align: middle;'>${inversion.status == 1 ? 'Activa' : 'Inactiva'}</td>
                 </tr>
                 `
             //}
@@ -86,11 +86,11 @@ const continuarBuscarClientePorParametros = (response) => {
                     <table class='table card-table table-vcenter text-nowrap'>
                         <thead>
                             <tr>
-                                <th scope='col'>Fecha</th>
-                                <th scope='col'>Valor</th>
-                                <th scope='col'>% Rentabilidad</th>
-                                <th scope='col'>Total invertido</th>
-                                <th scope='col'>Estado</th>
+                                <th style='text-align: center; vertical-align: middle;' scope='col'>Fecha</th>
+                                <th style='text-align: center; vertical-align: middle;' scope='col'>Valor</th>
+                                <th style='text-align: center; vertical-align: middle;' scope='col'>% Rentabilidad</th>
+                                <th style='text-align: center; vertical-align: middle;' scope='col'>Total invertido</th>
+                                <th style='text-align: center; vertical-align: middle;' scope='col'>Estado</th>
                             </tr>
                         </thead>
                         <tbody>
