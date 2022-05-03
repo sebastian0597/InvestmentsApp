@@ -159,13 +159,33 @@ class DisbursetmentController extends Controller
      */
     public function show($date)
     {   
-        $disbursement = Disbursetment::getDisbursement($date);
+        return Disbursetment::getDisbursement($date);
 
-        if($disbursement){
-            return new DisbursementCollection($disbursement);
+       /* if($disbursements){
+            return new DisbursementCollection($disbursements);
+        }else{
+            return array();
+        }*/
+    }
+
+    /*public function show($id)
+    {
+        return new DisbursementResource(Disbursement::find($id));
+
+    }*/
+
+    public function showByParam($param)
+    {
+        $disbursements = Disbursetment::getDisbursementsByParams($param);
+
+        if($disbursements){
+            
+            return new DisbursementCollection($disbursements);
+            
         }else{
             return array();
         }
+      
     }
 
     /**
@@ -177,7 +197,36 @@ class DisbursetmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    
+        $request_answer = DB::transaction(function () use($request, $id){
+            
+            $fields = $request->validate([
+                'disbursement_file' => 'required',
+
+            ]);
+
+            $disbursement = Disbursetment::find($id);
+
+            $customer = Customer::find($disbursement->id_customer);
+
+            $file_document=$fields['disbursement_file'];
+
+            if($request->hasFile("disbursement_file")){
+                $file=$request->file("disbursement_file");
+                
+                $file_document = "documento_".$customer->document_number.".".$file->guessExtension();
+                $ruta = public_path("archivos/desembolsos/".$file_document);
+                copy($file, $ruta);
+            }
+
+            $disbursement->disbursetment_file = $file_document;
+            $disbursement->ind_done = $request->ind_desembolsado;
+            $disbursement->update();
+
+        }, 3); 
+        
+            return Util::setResponseJson(201, 'Se ha actualizado el desembolso correctamente.');
+
     }
 
     /**

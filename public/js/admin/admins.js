@@ -321,3 +321,44 @@ const validarFormularioActualizarAdmin = (aux) =>{
     return validador
 
 }
+
+
+const cambiarContrasena = () =>{
+
+    if(validarCambioContrasena()){
+        let contrasena_1 = $('#password_1').val().trim()
+        let contrasena_2 = $('#password_2').val().trim()
+
+        console.log(contrasena_1)
+
+        if(contrasena_1 === contrasena_2){
+
+
+        }else{
+            alert('Las contraseñas no coinciden')
+        }
+        
+    }
+  
+}
+
+const validarCambioContrasena = () =>{
+    let validador = true
+
+    if($('#password_1').val().trim() == ''){
+        agregarError('password_1')
+        validador=false
+    }else{
+        quitarError('password_1')
+    }
+
+    if($('#password_2').val().trim() == ''){
+        agregarError('password_2')
+        validador=false
+    }else{
+        quitarError('password_2')
+    }
+
+    return validador
+
+}

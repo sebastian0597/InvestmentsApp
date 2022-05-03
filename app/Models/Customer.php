@@ -109,7 +109,8 @@ class Customer extends Model
     }
 
     public function getInvestmentProfitabilityAttribute(){
-        $extract = Extract::getExtractByCustomerAndMonth($this->id, '05');
+
+        $extract = Extract::getExtractByCustomerAndMonth($this->id, date('m'));
 
         if($extract){
             return $extract[0];
@@ -156,7 +157,19 @@ class Customer extends Model
     public function investsments()
     {   
      
+        return $this->hasMany(Investment::class, 'id_customer', 'id');
+    }
+
+    public function investsmentsActive()
+    {   
+     
         return $this->hasMany(Investment::class, 'id_customer', 'id')->where('investments.status', '=', 1);
+    }
+
+    public function disbursements()
+    {   
+     
+        return $this->hasMany(Disbursetment::class, 'id_customer', 'id');
     }
 
 }

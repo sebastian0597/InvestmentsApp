@@ -31,24 +31,25 @@ const continuarBuscarClientePorParametros = (response) => {
         cliente.investments.forEach(function (inversion) {
             let amount = formatNumber(inversion.amount)
 
-            if (inversion.status == 1) {
+            //if (inversion.status == 1) {
                 trInversiones += `
                 <tr>
-                    <td>${
+                    <td style='text-align: center; vertical-align: middle;'>${
                         inversion.investment_date == null
                             ? ''
                             : inversion.investment_date
                     }</td>
-                    <td>$${amount == null ? 0 : amount}</td>
-                    <td>${
+                    <td style='text-align: center; vertical-align: middle;'>$${amount == null ? 0 : amount}</td>
+                    <td style='text-align: center; vertical-align: middle;'>${
                         inversion.percentage_investment == null
                             ? 0
                             : inversion.percentage_investment
                     }</td>
-                    <td>$${amount == null ? 0 : amount}</td>
+                    <td style='text-align: center; vertical-align: middle;'>$${amount == null ? 0 : amount}</td>
+                    <td style='text-align: center; vertical-align: middle;'>${inversion.status == 1 ? 'Activa' : 'Inactiva'}</td>
                 </tr>
                 `
-            }
+            //}
         })
 
         html =
@@ -85,10 +86,11 @@ const continuarBuscarClientePorParametros = (response) => {
                     <table class='table card-table table-vcenter text-nowrap'>
                         <thead>
                             <tr>
-                                <th scope='col'>Fecha</th>
-                                <th scope='col'>Valor</th>
-                                <th scope='col'>% Rentabilidad mensual</th>
-                                <th scope='col'>Total invertido</th>
+                                <th style='text-align: center; vertical-align: middle;' scope='col'>Fecha</th>
+                                <th style='text-align: center; vertical-align: middle;' scope='col'>Valor</th>
+                                <th style='text-align: center; vertical-align: middle;' scope='col'>% Rentabilidad</th>
+                                <th style='text-align: center; vertical-align: middle;' scope='col'>Total invertido</th>
+                                <th style='text-align: center; vertical-align: middle;' scope='col'>Estado</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -105,11 +107,15 @@ const continuarBuscarClientePorParametros = (response) => {
                 
                 <div class='row'>
                     <div class='col-sm'>
-                        <label>Total Desembolsado</label>
-                        <input type='text' disabled class='form-control' placeholder='0'>
+                        <label>Total desembolsado</label>
+                        <input type='text' disabled class='form-control' placeholder='$${cliente.total_disbursements}'>
                     </div>
                     <div class='col-sm'>
-                        <label>Gran Total Invertido</label>
+                        <label>Total inversiones activas</label>
+                        <input type='text' disabled class='form-control' placeholder='$${cliente.total_investments_actives}'>
+                    </div>
+                    <div class='col-sm'>
+                        <label>Gran total invertido</label>
                         <input type='text' disabled class='form-control' placeholder='$${cliente.total_investments}'>
                     </div>
                 </div>

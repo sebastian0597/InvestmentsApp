@@ -48,37 +48,35 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h5>Gestionar desembolso</h5>
+                            
+                                <div style="display:flex; align-items:center; padding-right: 0px;" class="card-header">
+                                    <div style="width:100%" class="row">
+                                        <div class="col-6">
+                                            <h5>Gestionar desembolso</h5>
+                                        </div>
+                                        <div class="col-6">
+                                            <ol style="float:right;" class="breadcrumb">
+                                                @include(
+                                                        'Admins/componentes/modal_busqueda_desembolsos'
+                                                    ) 
+                                            </ol>
+                                        </div>
+                                    </div> 
                                 </div>
                                 <div class="card-body">
-
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input class="form-control" id="param_desembolso_tabla" type="text"
+                                                placeholder="N° Identificación">
+                    
+                                            <button class="btn btn-secondary" id="btn_buscar_cliente"
+                                                onclick="buscarClienteDesembolsoTabla()" type="submit">Buscar</button>
+                                        </div>
+                                    </div>
                                    
                                     <br><br>
-                                    <!--<table class="table card-table table-vcenter text-nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nombre</th>
-                                                    <th>Numero de identificación</th>
+                                    <div id="content_clientes_tabla"></div>
 
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><a class="text-inherit" href="#">Sebastian Correa Delgado </a>
-                                                    </td>
-                                                    <td>1100970967</td>
-
-                                                    <td class="text-end">
-
-                                                    </td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                        <br>
-                                        <br>-->
                                     <div class="col-12">
                      
                                         <h5>Tipo de desembolso:</h5>
@@ -249,41 +247,56 @@
                                             <h4 class="card-title mb-0">Histórico de desembolsos:</h4><br><br>
                                             <div class="input-group">
 
+<<<<<<< HEAD
                                                 <input id="fecha_busqueda_desembolsos" type="month" />
                                                 <button class="btn btn-secondary" id="btn_buscar_desembolsos" onclick="buscarDesembolsosPorFecha()"
                                                     type="submit">Buscar</button>
+=======
+                                                <input id="fecha_busqueda" type="month" />
+
+                                                <button class="btn btn-secondary" id="btn_historico_desembolsos" onclick="consultarHistoricoDesembolsos()"
+                                                    type="button">Buscar</button>
+>>>>>>> f88bc639b09a94f414d89cf29d70042ffff54b0c
                                             </div><br><br>
                                             <table class="table card-table table-vcenter text-nowrap">
                                                 <thead>
-                                                    <tr>
-                                                        <th>Rentabilidad mensual</th>
-                                                        <th>Tipo desembolso</th>
-                                                        <th>Capital parcial</th>
-                                                        <th>Capital total</th>
-
-                                                    </tr>
+                                                  <tr>
+                                                    <th>TIPO DE DESEMBOLSOS </th>
+                                                    <th> RENTABILIDAD MENSUAL</th>
+                                                    <th>CAPITAL PARCIAL</th>
+                                                    <th>CAPITAL TOTAL</th>
+                                                    
+                        
+                                                    
+                                                   
+                                                  </tr>
                                                 </thead>
                                                 <tbody>
-
-                                                    <!-- AQUI VAN LOS RESULTADOS DE LA BUSQUEDA-->
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td> </td>
-                                                        <td></td>
-                                                        <td></td>
-
-                                                    </tr>
-
-
-
-
-                                                    <thead>
-
-                                                    </thead>
-
-
+                        
+                                                  <!-- AQUI VAN LOS RESULTADOS DE LA BUSQUEDA-->
+                                                  <tr> 
+                                                    <td>N° Clientes</td>
+                                                    <td>$</td>
+                                                    <td>$</td>
+                                                    <td>$</td>
+                                                  
+                                                  </tr>
+                                                  <tr> 
+                                                    <td>Valor Desembolso</td>
+                                                    <td>$</td>
+                                                    <td>$</td>
+                                                    <td>$</td>
+                                                  
+                                                  </tr>
+                        
+                                                  
+                                                  
+                                                   <thead>
+                                                  
+                                                </thead>
+           
                                                 </tbody>
-                                            </table>
+                                              </table>
                                             <br><br>
                                             <div class="col-md-6">
                                                 <button class="btn btn-outline-success btn-lg" id="Bookmark"
