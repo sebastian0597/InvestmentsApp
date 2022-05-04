@@ -310,8 +310,8 @@ const continuarBuscarClienteDesembolso = (response) => {
                         required="">
                 </div>
 
-                <div class="col-md-4">
-                    <label class="form-label" >Total rentabilidad </label>
+                <div class="col-md-6">
+                    <label class="form-label" ><b>Total capital</b> (inversión + rentabilidad mensual)</label>
                     <input id='total_rentabilidad_desembolso' class="form-control " disabled type="text" value="$${formatNumber(
                         total_ganancia
                     )}"

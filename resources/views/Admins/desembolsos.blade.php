@@ -247,16 +247,11 @@
                                             <h4 class="card-title mb-0">Histórico de desembolsos:</h4><br><br>
                                             <div class="input-group">
 
-<<<<<<< HEAD
-                                                <input id="fecha_busqueda_desembolsos" type="month" />
-                                                <button class="btn btn-secondary" id="btn_buscar_desembolsos" onclick="buscarDesembolsosPorFecha()"
-                                                    type="submit">Buscar</button>
-=======
                                                 <input id="fecha_busqueda" type="month" />
 
                                                 <button class="btn btn-secondary" id="btn_historico_desembolsos" onclick="consultarHistoricoDesembolsos()"
                                                     type="button">Buscar</button>
->>>>>>> f88bc639b09a94f414d89cf29d70042ffff54b0c
+
                                             </div><br><br>
                                             <table class="table card-table table-vcenter text-nowrap">
                                                 <thead>
