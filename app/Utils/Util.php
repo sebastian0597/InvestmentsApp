@@ -236,7 +236,7 @@ class Util
 
             foreach($investments as $investment){
 
-                $investment->status = 2;
+                $investment->status = 3;
 
                 if(!is_null($investment->consignment_file)){
 
@@ -258,7 +258,8 @@ class Util
 
             foreach($extracts as $extract){
 
-                $extract->status = 2;
+                
+                $extract->status = 3;
                 $extract->update();
                 
             }

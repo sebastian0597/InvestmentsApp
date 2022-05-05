@@ -109,7 +109,6 @@ const buscarClienteDesembolso = () => {
 };
 
 const buscarClienteDesembolsoTabla = () => {
-
     let param = $("#param_desembolso_tabla").val().trim();
     let form_data = {};
     quitarError("param_desembolso_tabla");
@@ -128,12 +127,10 @@ const buscarClienteDesembolsoTabla = () => {
     } else {
         agregarError("param_desembolso_tabla");
     }
+};
 
-}
-
-const continuarbuscarClienteDesembolsoTabla = (response) =>{
-    
-    console.log(response)
+const continuarbuscarClienteDesembolsoTabla = (response) => {
+    console.log(response);
 
     let html = `<!--<table class="table card-table table-vcenter text-nowrap">
     <thead>
@@ -158,13 +155,12 @@ const continuarbuscarClienteDesembolsoTabla = (response) =>{
     </tbody>
 </table>
 <br>
-<br>-->`
-
-
-}
+<br>-->`;
+};
 
 const continuarBuscarClienteDesembolso = (response) => {
     let cliente = response.data[0];
+
     cliente = cliente == undefined || null ? {} : cliente;
 
     $("#container_datos_cliente").empty();
@@ -176,16 +172,26 @@ const continuarBuscarClienteDesembolso = (response) => {
         //if(cliente.status != 'Inactivo'){
 
         let tipo_desembolso = $("#tipo_desembolso").val().trim();
-        let total_rentabilidad =
-            cliente.extract == null || undefined
-                ? 0
-                : parseInt(cliente.extract.total_profitability);
 
-        
-        let grand_total_invested =
-            cliente.extract == null || undefined
-                ? 0
-                : parseInt(cliente.extract.grand_total_invested);
+        let total_rentabilidad = 0;
+        let grand_total_invested = 0;
+
+        if (cliente.investments.length > 0) {
+            cliente.investments.forEach((investment) => {
+
+                total_rentabilidad +=
+                    investment.extract_detail == null || undefined
+                        ? 0
+                        : parseInt(investment.extract_detail.investment_return);
+
+                grand_total_invested +=
+                investment.extract_detail == null || undefined
+                    ? 0
+                    : parseInt(investment.extract_detail.investment_amount);
+            });
+
+           
+        }
 
         let total_ganancia = total_rentabilidad + grand_total_invested;
 
@@ -427,6 +433,8 @@ const guardarRegistroDesembolso = (tipo_desembolso) => {
 };
 
 const continuarGuardarRegistroDesembolso = (response) => {
+
+    console.log(response)
     $("#btn_guardar_desembolso").text("Crear registro");
     $("#btn_guardar_desembolso").prop("disabled", false);
     $("#btn_guardar_desembolso").removeClass("placeholder");
@@ -465,13 +473,16 @@ const continuarBuscarDesembolsosPorParametros = (response) => {
         let tr_desembolsos = "";
 
         desembolsos.forEach(function (desembolso) {
-     
-            let url = document.location.origin + `/editar_desembolso/${desembolso.id}`;
-               
+            let url =
+                document.location.origin +
+                `/editar_desembolso/${desembolso.id}`;
+
             tr_desembolsos += `
             <tr>
                 <th scope="row"><a href="${url}">${desembolso.id}</a></th>
-                <td><a href="${url}">$${formatNumber(desembolso.value_consign)}</a></td>
+                <td><a href="${url}">$${formatNumber(
+                desembolso.value_consign
+            )}</a></td>
                 <td><a href="${url}">${desembolso.created_at}</a></td>
                 <td><a href="${url}">${desembolso.disbursement_type}</a></td>
                 <td><a href="${url}">${desembolso.status}</a></td>
@@ -492,13 +503,11 @@ const continuarBuscarDesembolsosPorParametros = (response) => {
                         <th scope="col">Cliente</th>
                     </tr>
                 </thead>
-                <tbody>` + 
-                    tr_desembolsos +
-                `</tbody>
+                <tbody>` +
+            tr_desembolsos +
+            `</tbody>
             </table>`;
-
     } else {
-
         html += `<span>No se han encontrado desembolsos para los parámetros ingresados.</span>`;
     }
 
@@ -521,7 +530,6 @@ const actualizarDesembolso = () => {
                 ? $("#archivo_desembolso_txt").val().trim()
                 : document.getElementById("archivo_desembolso").files[0];
 
-        
         let ind_desembolsado =
             $("#check_done").prop("checked") == true ? 1 : "";
         let url =
@@ -534,74 +542,66 @@ const actualizarDesembolso = () => {
         form_data.append("disbursement_file", archivo_desembolso);
         form_data.append("ind_desembolsado", ind_desembolsado);
 
-        enviarPeticion(url, method, form_data, 'continuarActualizarDesembolso')
+        enviarPeticion(url, method, form_data, "continuarActualizarDesembolso");
     } else {
         agregarError("archivo_desembolso");
     }
 };
 
 const continuarActualizarDesembolso = (response) => {
-  
-    setResponseMessage(response, '/desembolsos');
+    setResponseMessage(response, "/desembolsos");
 };
 
+const consultarHistoricoDesembolsos = () => {
+    quitarError("fecha_busqueda");
+    let param = $("#fecha_busqueda").val().trim();
 
-const consultarHistoricoDesembolsos = () =>{
+    if (param != "") {
+        let method = "GET";
+        let form_data = {};
 
-    quitarError('fecha_busqueda')
-    let param = $('#fecha_busqueda').val().trim()
-
-    if(param != ''){
-
-        let method = 'GET'
-        let form_data = {}
-
-       let url =  window.location.origin+`/api/v1/disbursetment/${param}`
-       enviarPeticion(url, method, form_data, 'continuarConsultarHistoricoDesembolsos')
-
-    }else{
-
-        agregarError('fecha_busqueda')
+        let url = window.location.origin + `/api/v1/disbursetment/${param}`;
+        enviarPeticion(
+            url,
+            method,
+            form_data,
+            "continuarConsultarHistoricoDesembolsos"
+        );
+    } else {
+        agregarError("fecha_busqueda");
     }
-
-}
+};
 
 const continuarConsultarHistoricoDesembolsos = (response) => {
+    console.log(response);
 
-    console.log(response)
+    $("#btn_guardar_desembolso").text("Crear registro");
+    $("#btn_guardar_desembolso").prop("disabled", false);
+    $("#btn_guardar_desembolso").removeClass("placeholder");
+    setResponseMessage(response, "/desembolsos");
+};
 
+const buscarDesembolsosPorFecha = () => {
+    quitarError("fecha_busqueda_desembolsos");
+    let fecha = $("#fecha_busqueda_desembolsos").val().trim();
 
-    $('#btn_guardar_desembolso').text('Crear registro');
-    $('#btn_guardar_desembolso').prop('disabled', false);
-    $('#btn_guardar_desembolso').removeClass('placeholder'); 
-    setResponseMessage(response, '/desembolsos');
-}
+    if (fecha != "") {
+        let url = window.location.origin + `/api/v1/disbursetment/${fecha}`;
+        form_data = {};
 
-const buscarDesembolsosPorFecha = () =>{
-
-    quitarError('fecha_busqueda_desembolsos')
-    let fecha = $('#fecha_busqueda_desembolsos').val().trim()
-
-    if(fecha !=''){
-        let url = window.location.origin+`/api/v1/disbursetment/${fecha}`        
-        form_data = {}
-
-        let method = 'GET'
+        let method = "GET";
 
         enviarPeticion(
             url,
             method,
             form_data,
-            'continuarBuscarDesembolsosPorFecha'
-        )
-
-    }else{
-        agregarError('fecha_busqueda_desembolsos')
+            "continuarBuscarDesembolsosPorFecha"
+        );
+    } else {
+        agregarError("fecha_busqueda_desembolsos");
     }
-} 
+};
 
 const continuarBuscarDesembolsosPorFecha = (respuesta) => {
-
-    console.log(respuesta)
-
-}
+    console.log(respuesta);
+};

@@ -32,6 +32,9 @@ class InvestmentController extends Controller
 
         $customer = new CustomerResource(Customer::find($id_customer));
         $customer = Util::setJSONResponseUniqueData($customer);
+
+        //dd($customer);
+
         $investments_types = InvestmentType::getByStatus(1);
         $currencies = Currency::getByStatus(1);
         $payment_methods = PaymentMethod::getByStatus(1);

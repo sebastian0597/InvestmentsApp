@@ -9,6 +9,7 @@ use App\Models\Investment;
 use App\Models\Customer;
 use App\Models\User;
 use App\Models\Extract;
+use App\Models\ExtractDetail;
 
 use App\Http\Traits\DisbursetmentTrait;
 use App\Http\Traits\InvestmentTrait;
@@ -67,32 +68,53 @@ class DisbursetmentController extends Controller
                     break;
                 case '2'://Capital Parcial
 
-                        $amount_profibality_month = $fields['profibality_amount'];
-                        
-                        //Consulto las inversiones activas del cliente
+                        $total_amount = $fields['profibality_amount'];
+                        $disbursement_amount = intval($fields['disbursement_amount']);
+
+                        //Consulto las inversiones activas del cliente y actualizo los montos de las inversiones
                         $investments = Investment::getInvestmentsByIdCustomer($fields['id_customer']);
+                        $extracts = Extract::getExtractByCustomerAndStatus($fields['id_customer']);
+                        Util::inactivateExtracts($extracts);
+
+                        foreach ($investments as $key => $investment) {
+                            
+                            $extract_detail = ExtractDetail::where('id_investment',$investment->id)->where('status',1)->first();
+                            //Se actualizan los montos de las inversiones con los extractos generados
+                            $investment->amount = intval($investment->amount) + intval($extract_detail->investment_return);
+                            $investment->update();
+
+                            //Se actualiza los estados de los extractos detalle a estado 3, desembolsado.
+                            $extract_detail->status = 3;
+                            $extract_detail->update();
+
+                            $new_amount = ($investment->amount - $disbursement_amount);
+                            
+
+                            if($new_amount<0){
+                                $disbursement_amount = abs($new_amount);
+                                $investment->amount_disbursement=$investment->amount;
+                                $investment->status=3;
+                                $investment->update();
+
+                            }else{
+                                $investment->amount=$new_amount;
+                                $investment->amount_disbursement= intval($investment->amount_disbursement)+$disbursement_amount;
+                                $investment->update();
+                                break;
+                            }
+                            
+                      
+                        }
+
                         $customer = Customer::find($fields['id_customer']);
                         $consignment_file = NULL;
 
-                        //Se consultan los extractos activos y se les coloca el estado 2, que significa desembolsado.
-                        $extracts = Extract::getExtractByCustomerAndStatus($fields['id_customer']);
+                        $total_amount = Investment::getTotalInvestmentCustomer($fields['id_customer']);
+                        $customer_type = Util::validateCustomerLevel($total_amount);
 
+                        $customer->id_customer_type = $customer_type;
+                        $customer->update();
 
-                        Util::inactivateInvestments($investments);
-                        Util::inactivateExtracts($extracts);
-
-                        $amount = ($amount_profibality_month-$fields['disbursement_amount']);
-                        
-                        //Se serializa el Request para crear la nueva inversión.
-                        $request->request->add(['amount' => $amount]); 
-                        $request->request->add(['base_amount' => $amount]);
-                        $request->request->add(['consignment_file' => $consignment_file]);
-                        $request->request->add(['code_currency' => 'COP']);
-                        $request->request->add(['id_payment_method' => 1]);
-                        $request->request->add(['registered_by' => 1]);
-                        $request->request->add(['document_number' =>  $customer->document_number]); //add request
-                       
-                        $investment = $this->storeInvestment($request, $fields['id_customer']);
                         $disbursement = $this->storeDisbursetment($request);
                         
                         if($disbursement){
@@ -111,11 +133,25 @@ class DisbursetmentController extends Controller
                 case '3'://Capital Total
                    
                     $investments = Investment::getInvestmentsByIdCustomer($fields['id_customer']);
+
+                   
                     $extracts = Extract::getExtractByCustomerAndStatus($fields['id_customer']);
                     $customer = Customer::find($fields['id_customer']);
 
                     Util::inactivateInvestments($investments);
                     Util::inactivateExtracts($extracts);
+
+                    foreach ($extracts as $key => $extract) {
+                            $extract_details = ExtractDetail::where('id_extract',$extract->id)->where('status',1)->get();
+
+                            foreach ($extract_details as $key => $extract_detail) {
+                                
+                            //Se actualiza los estados de los extractos detalle a estado 3, desembolsado.
+                                $extract_detail->status = 3;
+                                $extract_detail->update();
+                            }
+                    
+                    }
                     
                     //Se crea el desembolso
                     $disbursement = $this->storeDisbursetment($request);

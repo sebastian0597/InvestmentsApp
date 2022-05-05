@@ -19,7 +19,8 @@ class Investment extends Model
         'id_investment_type',
         'profitability_start_date',
         'registered_by',
-        'base_amount'
+        'base_amount',
+        'initial_amount'
     ];
 
     public static function getTotalInvestmentCustomer($id_customer){
@@ -72,6 +73,11 @@ class Investment extends Model
     public function registeredBy(){
 
         return $this->hasOne(User::class,'id','registered_by');
+    }
+
+    public function extractDetails(){
+
+        return $this->hasOne(ExtractDetail::class,'id_investment','id')->where('month', date('m'))->where('status',1);
     }
 
     public function getStatusTextAttribute(){

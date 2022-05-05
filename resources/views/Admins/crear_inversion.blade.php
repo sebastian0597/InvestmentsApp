@@ -103,18 +103,17 @@
                                             </div>
 
                                         </div>
+                                            <?php
+                                                $cantidad_inversiones = count($customer['investments']);
+                                                $fecha_inversion = count($customer['investments'])>0 ? $customer['investments'][$cantidad_inversiones-1]['investment_date'] : '----'; 
+                                                $porcentaje = $cantidad_inversiones >0 ? $customer['investments'][$cantidad_inversiones-1]['percentage_investment'] : '--'; 
+                                            ?>
                                         <div class="row g-3">
-
-                                            <div class="col-md-4">
-                                                <label class="form-label">Fecha inversión</label>
-                                                <input class="form-control" value="{{$customer['investments'][0]['investment_date']}}" disabled>
-                                                <span class="msg_error_form" id="error_correo"></span>
-                                            </div>
-                                            
+                                                                                     
                                             <div class="col-md-4">
 
-                                                <label class="form-label">Valor inversión</label>
-                                                <input class="form-control" value="{{$customer['total_investments']}}" disabled>
+                                                <label class="form-label">Valor total inversiones</label>
+                                                <input class="form-control" value="${{$customer['total_investments_actives']}}" disabled>
                                                 <span class="msg_error_form" id="error_telefono"></span>
                                             </div>
 
@@ -124,25 +123,74 @@
                                         <div class="row g-3">
 
                                             <div class="col-md-4">
-                                                <label class="form-label">Porcentaje rentabilidad</label>
-                                                <input class="form-control" value="{{$customer['investments'][0]['percentage_investment']}}" disabled>
+                                                <label class="form-label">Porcentaje rentabilidad mensuales</label>
+                                                <input class="form-control" value="{{$porcentaje}}" disabled>
                                                 <span class="msg_error_form" id="error_telefono"></span>
                                             </div>
 
                                             <div class="col-md-4">
-                                                <?php 
-                                                    $rentabilidad = 0;
-                                                    if(is_array($customer['extract'])){
-                                                        $rentabilidad = number_format($customer['extract']['total_profitability'], 0, ',', '.');
-                                                    }
+                                              
+                                                <?php $sum_rentabilidad=0; ?>
+                                                @foreach ($customer['investments_active'] as  $key=>$item)
+                                                    <?php 
+                                                        $sum_rentabilidad += intval($item['extract_detail']['investment_return']);
+                                                    ?>
+                                                @endforeach
                                                     
-                                                ?>
-                                                <label class="form-label">Valor rentabilidad</label>
-                                                <input class="form-control" value="{{$rentabilidad}}" disabled>
+                                              
+                                                <label class="form-label">Valor total de la rentabilidad</label>
+                                                <input class="form-control" value="${{number_format($sum_rentabilidad,0,'','.')}}" disabled>
                                                 <span class="msg_error_form" id="error_telefono"></span>
                                             </div>
 
 
+                                        </div>
+                                        <br>
+                                        <h4>Inversiones</h4>
+                                        <div class="table-responsive"> 
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">Id</th>
+                                                    <th scope="col">Valor inicial</th>
+                                                    <th scope="col">Valor actual</th>
+                                                    <th scope="col">% rentabilidad</th>
+                                                    <th scope="col">Rentabilidad</th>
+                                                    <th scope="col">Fecha inversión</th>
+                                                    <th scope="col">Fecha rentabilidad</th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    @foreach ($customer['investments_active'] as  $key=>$item)
+                                                        <tr>
+                                                            <?php 
+                                                                $rentabilidad = number_format($item['extract_detail']['investment_return'],0,'','.') ;    
+                                                            ?>
+
+                                                            <input type="hidden" id="id_inversion_{{$key}}" value="{{$item['id']}}">
+                                                            <th scope="row">{{$item['id']}}</th>
+                                                            <td>${{$item['initial_amount']}}</td>
+                                                            <td>${{$item['amount']}}</td>
+                                                            <td>{{$item['extract_detail']['real_profitability_percentage']}}%</td>
+                                                            <td>${{$rentabilidad}}</td>
+                                                            <td>{{$item['investment_date']}}</td>
+                                                            <td>{{$item['profitability_start_date']}}</td>
+                                                            <td>
+                                                                <?php if($rentabilidad>0){ ?>
+                                                                    <input type="hidden" id="valor_reinversion_{{$item['id']}}" value="{{$rentabilidad}}">
+                                                                    <button onclick="crearReinversion({{$item['id']}})" id="btn_crear_reinversion_{{$item['id']}}}}" type="button" class="btn btn-primary btn-sm">Reinvertir</button>
+
+                                                                <?php } ?>
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                
+                                                
+                                                </tbody>
+                                            </table>
                                         </div>
                                         
                                         <br>

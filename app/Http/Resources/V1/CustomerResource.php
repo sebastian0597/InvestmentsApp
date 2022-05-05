@@ -3,6 +3,7 @@
 namespace App\Http\Resources\V1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\V1\InvestmentResource;
 
 class CustomerResource extends JsonResource
 {
@@ -57,8 +58,8 @@ class CustomerResource extends JsonResource
             'document_type' => $this->documentType->name,
             'economic_activity' => $this->economicActivity->name,
             'name_bank_account' => $this->bank->name,
-            'investments' => $this->investsments,
-            'investments_active' => $this->investsmentsActive,
+            'investments' => InvestmentResource::collection($this->investsments),
+            'investments_active' => InvestmentResource::collection($this->investsmentsActive),
             'total_investments' => number_format($this->investsments->sum('amount'), 0,',',"."),
             'total_investments_actives' => number_format($this->investsmentsActive->sum('amount'), 0,',',"."),
             'total_disbursements' => number_format($this->disbursements->sum('value_consign'), 0,',',"."),

@@ -18,6 +18,8 @@ class InvestmentResource extends JsonResource
             'id' => $this->id,
             'base_amount' => number_format($this->base_amount, 0,',',"."),
             'amount' =>  number_format($this->amount, 0,',',"."),
+            'disbursement_amount' =>  number_format($this->amount_disbursement, 0,',',"."),
+            'initial_amount' =>  number_format($this->initial_amount, 0,',',"."),
             'currency' => $this->code_currency,
             'percentage_investment' => $this->percentage_investment,
             'customer' => [
@@ -29,9 +31,12 @@ class InvestmentResource extends JsonResource
             'id_investment_type' => $this->id_investment_type,
             'investment_type' => $this->investmentType->name,
             'investment_date' => $this->investment_date,
+            'profitability_start_date' => $this->profitability_start_date,
             'consignment_file' => $this->consignment_file,
             'registered_by' => $this->registeredBy->name,
-            'status' => $this->status_text
+            'status' => $this->status_text,
+            'extract_detail' => $this->extractDetails,
+       
         ];
     }
 }

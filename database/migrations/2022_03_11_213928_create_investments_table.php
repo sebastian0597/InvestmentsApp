@@ -19,7 +19,9 @@ class CreateInvestmentsTable extends Migration
             //$table->unsignedBigInteger('id_currency');
             $table->string('code_currency');
             $table->double('base_amount',20,2);
+            $table->double('initial_amount',20,2);
             $table->double('amount',20,2);
+            $table->double('amount_disbursement',20,2)->nullable(true);
             $table->string('consignment_file')->nullable(true);
             
             $table->string('other_currency')->nullable(true);

@@ -14,10 +14,12 @@ class ExtractDetail extends Model
         'id_extract',
         'id_investment',
         'monthly_profitability_percentage',
+        'month',
         'profitability_days',
         'real_profitability_percentage',
         'investment_return',
         'investment_amount'
+       
     ];
 
 
@@ -26,4 +28,6 @@ class ExtractDetail extends Model
         return ExtractDetail::where('id_investment', $id_investment)->where('status', 1)->get();
 
     }
+
+    
 }

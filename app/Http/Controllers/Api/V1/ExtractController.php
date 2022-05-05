@@ -118,10 +118,10 @@ class ExtractController extends Controller
             
             if($customer){
                 
-                //Se usa la función de Investment Trait
                 $this->setPercentage($fields['percentage'], $customer->id);
+                $investments = Investment::getInvestmentsByIdCustomer($customer->id);
 
-                $total_reinvested = Investment::getTotalInvestmentCustomerByInvestmentType($customer->id, 1);
+                $total_reinvested = 0;// Investment::getTotalInvestmentCustomerByInvestmentType($customer->id, 1);
                 $total_invested = Investment::getTotalInvestmentCustomer($customer->id);
                 
                 $arr_extract['id_customer'] = $customer->id;
@@ -137,7 +137,7 @@ class ExtractController extends Controller
                 //Se usa la función de Extract Trait
                 $extract = $this->storeExtract($arr_extract);
                               
-                $investments = Investment::getInvestmentsByIdCustomer($customer->id);
+                
                 $total_investment_return=0;
 
                 foreach ($investments as $investment) {
@@ -158,6 +158,7 @@ class ExtractController extends Controller
                     $arr_extract_details['real_profitability_percentage'] = $real_profitability_percentage;
                     $arr_extract_details['investment_amount'] = $investment->amount;
                     $arr_extract_details['investment_return'] = $investment_return;
+                    $arr_extract_details['month'] = date('m');
                     
                     //Se usa la función de Extract Trait
                     $this->storeExtractDetail($arr_extract_details);
@@ -210,7 +211,7 @@ class ExtractController extends Controller
                         $arr_extract['profitability_percentage'] = $fields['percentage'];
                         $arr_extract['grand_total_invested'] = $total_invested;
                         $arr_extract['registered_by'] = 1;
-                        $arr_extract['month'] = date("m");
+                        $arr_extract['month'] = date('m');
 
                         //Se deben borrar los extractos que pertenezcan al mismo cliente y son del mismo mes.
                             //1. Buscar los extractos, sacar el id y buscar los extractos detalles.
@@ -241,6 +242,7 @@ class ExtractController extends Controller
                             $arr_extract_details['real_profitability_percentage'] = $real_profitability_percentage;
                             $arr_extract_details['investment_amount'] = $investment->amount;
                             $arr_extract_details['investment_return'] = $investment_return;
+                            $arr_extract_details['month'] = date('m');
                             
                             //Se usa la función de Extract Trait
                             $this->storeExtractDetail($arr_extract_details);

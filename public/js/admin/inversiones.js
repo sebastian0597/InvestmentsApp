@@ -5,7 +5,7 @@ const crearInversion = ()=>{
         switch (tipo_inversion) {
             
             case '1'://reinversion
-                    crearReinversion()
+                    //crearReinversion()
                 break;
             case '2'://Nueva inversion
                     crearNuevaInversion()
@@ -18,27 +18,25 @@ const crearInversion = ()=>{
       
 }
 
-const crearReinversion = () =>{
+const crearReinversion = (id_inversion) =>{
     
-    if($('#monto_reinversion').val() != '' && $('#monto_reinversion').is(':visible')){
+    //if($('#monto_reinversion').val() != '' && $('#monto_reinversion').is(':visible')){
 
-        $('#btn_crear_inversion').text('Creando Reinversión...');
-        $('#btn_crear_inversion').addClass('placeholder'); 
-        $('#btn_crear_inversion').prop('disabled', true);
+        $('#btn_crear_reinversion_'+id_inversion).text('Creando Reinversión...');
+        $('#btn_crear_reinversion_'+id_inversion).addClass('placeholder'); 
+        $('#btn_crear_reinversion_'+id_inversion).prop('disabled', true);
 
         let id_cliente = $('#id_cliente').val().trim();
         let numero_documento = $('#numero_documento').val().trim()
         let monto_rentabilidad = quitarformatNumber(
-            $('#monto_reinversion').val().trim()
-        );
-        let monto = quitarformatNumber(
-            $('#valor_rentabilidad_reinversion').val().trim()
+            $('#valor_reinversion_'+id_inversion).val().trim()
         );
     
         var form_data = new FormData();
         form_data.append('id_customer', id_cliente);
+        form_data.append('investment_id', id_inversion);
         form_data.append('registered_by', 1);
-        form_data.append('amount', monto);
+        form_data.append('amount', monto_rentabilidad);
         form_data.append('document_number', numero_documento);
         
         
@@ -67,22 +65,22 @@ const crearReinversion = () =>{
                 enviarPeticion(url, method, form_data, 'continuarCrearReinversion');
             }
             if (result.isDismissed) {
-                $('#btn_crear_inversion').text('Crear inversión');
-                $('#btn_crear_inversion').prop('disabled', false);
-                $('#btn_crear_inversion').removeClass('placeholder'); 
+                $('#btn_crear_reinversion_'+id_inversion).text('Crear inversión');
+                $('#btn_crear_reinversion_'+id_inversion).prop('disabled', false);
+                $('#btn_crear_reinversion_'+id_inversion).removeClass('placeholder'); 
             }
         });
 
-    }
+    //}
 }
 
 const continuarCrearReinversion = (response) =>{
 
-
+    console.log(response)
     setResponseMessage(response);
-    $('#btn_crear_inversion').text('Crear Inversion');
+    /*$('#btn_crear_inversion').text('Crear Inversion');
     $('#btn_crear_inversion').prop('disabled', false);
-    $('#btn_crear_inversion').removeClass('placeholder'); 
+    $('#btn_crear_inversion').removeClass('placeholder'); */
 
 }
 
