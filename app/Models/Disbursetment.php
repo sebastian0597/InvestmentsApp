@@ -17,22 +17,22 @@ class Disbursetment extends Model
         'value_consign',
         'monthly_return',
         'month',
+        'date_create',
         'ind_done',
         'disbursetment_file'
     ];
 
     public static function getDisbursement($date){
-
-       // $date =  "'$date'";
       
         return DB::table('disbursetments')
-            ->join('customers', 'customers.id', '=', 'disbursetments.id_customer')
-            ->select(DB::raw('count(*) as quantity, count(customers.id) as customers, disbursetments.id_disbursement_type, sum(disbursetments.value_consign) AS value_consign, SUBSTRING(disbursetments.created_at, 1,7) AS fecha'))
-            //->where(DB::raw('SUBSTRING(disbursetments.created_at, 1,7)','=', '2022-04'))
-            ->groupBy('disbursetments.id_disbursement_type')
+            ->select(DB::raw('count(*) as quantity, id_disbursement_type, sum(value_consign) AS value_consign, SUBSTRING(date_disbursement, 1,7)'))
+            ->where('ind_done', 1)
+            ->whereRaw("SUBSTRING(date_disbursement, 1,7) = '$date' ")
+            ->groupBy('id_disbursement_type')
             ->get();
         
     }
+
 
     public static function getDisbursementsByParams($param){
 
@@ -41,9 +41,7 @@ class Disbursetment extends Model
         ->get();
     }
 
-
-
-
+    
     public function getDoneAttribute(){
         
         return is_null($this->ind_done) == true ? 'Pendiente' :  'Desembolsado' ;

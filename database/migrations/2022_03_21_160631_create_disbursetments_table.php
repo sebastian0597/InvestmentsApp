@@ -22,6 +22,8 @@ class CreateDisbursetmentsTable extends Migration
             $table->string('month',4);
             $table->double('monthly_return',20,2);
             $table->tinyinteger('ind_done')->nullable(true);
+            $table->date('date_create');
+            $table->date('date_disbursement')->nullable(true);
             $table->timestamps();
 
             $table->foreign('id_customer')->references('id')->on('customers');

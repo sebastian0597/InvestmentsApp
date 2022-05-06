@@ -124,104 +124,6 @@
 
                                                 <div id="container_datos_cliente"></div>
 
-                                                <!-- CAMPOS CUANDO ES  EMPLEADO -->
-                                                <div style="display: none;" id="div_empleado" class="row g-3">
-
-                                                    <div class="row g-3">
-                                                        <div class="col-md-4">
-                                                            <label class="form-label" for="validationCustom01">Valor a
-                                                                consignar </label>
-                                                            <input class="form-control" id="validationCustom01"
-                                                                type="text" value="" required="">
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label class="form-label" for="validationCustom01">Tipo
-                                                                de Desembolso</label>
-                                                            <input class="form-control" id="validationCustom01"
-                                                                type="text" name="Capital Parcial"
-                                                                placeholder="Capital Parcial  " value="" required="">
-                                                        </div>
-                                                    </div>
-                                                    <div>
-
-                                                        <button class="btn btn-secondary " id="Bookmark"
-                                                            onclick="submitBookMark()" type="submit">Guardar
-                                                            registro</button>
-
-                                                    </div>
-                                                    <br>
-                                                    <hr>
-                                                    <div class="row g-3">
-
-
-                                                        <div class="col-md-6">
-                                                            <button class="btn btn-primary btn-sm" id="Bookmark"
-                                                                onclick="submitBookMark()" type="submit">Generar informe
-                                                                de desembolso Capital Parcial</button>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-9">
-                                                        <input class="form-control" type="file">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <button class="btn btn-outline-success btn-lg" id="Bookmark"
-                                                            onclick="submitBookMark()" type="submit">Guardar
-                                                            informe</button>
-
-                                                    </div>
-
-                                                </div>
-
-
-                                                <!-- CAMPOS CUANDO ES  PENSIONADO -->
-                                                <div style="display: none;" id="div_pensionado" class="row g-3">
-
-                                                    <div class="row g-3">
-                                                        <div class="col-md-4">
-                                                            <label class="form-label" for="validationCustom01">Valor a
-                                                                consignar </label>
-                                                            <input class="form-control" id="validationCustom01"
-                                                                type="text" value="" required="">
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label class="form-label" for="validationCustom01">Tipo
-                                                                de Desembolso</label>
-                                                            <input class="form-control" id="validationCustom01"
-                                                                type="text" name="Capital Parcial"
-                                                                placeholder="Capital Total  " value="" required="">
-                                                        </div>
-                                                    </div>
-                                                    <div>
-
-                                                        <button class="btn btn-secondary " id="Bookmark"
-                                                            onclick="submitBookMark()" type="submit">Guardar
-                                                            registro</button>
-
-                                                    </div>
-                                                    <br>
-                                                    <hr>
-                                                    <div class="row g-3">
-
-
-                                                        <div class="col-md-6">
-                                                            <button class="btn btn-primary btn-sm" id="Bookmark"
-                                                                onclick="submitBookMark()" type="submit">Generar informe
-                                                                de desembolso Capital Parcial</button>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-9">
-                                                        <input class="form-control" type="file">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <button class="btn btn-outline-success btn-lg" id="Bookmark"
-                                                            onclick="submitBookMark()" type="submit">Guardar
-                                                            informe</button>
-
-                                                    </div>
-
-                                                </div>
                                                 <!-- CAMPOS CUANDO TIENE OTRA ACTIVIDAD -->
 
                                             </div>
@@ -253,45 +155,9 @@
                                                     type="button">Buscar</button>
 
                                             </div><br><br>
-                                            <table class="table card-table table-vcenter text-nowrap">
-                                                <thead>
-                                                  <tr>
-                                                    <th>TIPO DE DESEMBOLSOS </th>
-                                                    <th> RENTABILIDAD MENSUAL</th>
-                                                    <th>CAPITAL PARCIAL</th>
-                                                    <th>CAPITAL TOTAL</th>
-                                                    
-                        
-                                                    
-                                                   
-                                                  </tr>
-                                                </thead>
-                                                <tbody>
-                        
-                                                  <!-- AQUI VAN LOS RESULTADOS DE LA BUSQUEDA-->
-                                                  <tr> 
-                                                    <td>N° Clientes</td>
-                                                    <td>$</td>
-                                                    <td>$</td>
-                                                    <td>$</td>
-                                                  
-                                                  </tr>
-                                                  <tr> 
-                                                    <td>Valor Desembolso</td>
-                                                    <td>$</td>
-                                                    <td>$</td>
-                                                    <td>$</td>
-                                                  
-                                                  </tr>
-                        
-                                                  
-                                                  
-                                                   <thead>
-                                                  
-                                                </thead>
-           
-                                                </tbody>
-                                              </table>
+                                            <div id="tabla_historico_desembolsos">
+
+                                            </div>
                                             <br><br>
                                             <div class="col-md-6">
                                                 <button class="btn btn-outline-success btn-lg" id="Bookmark"

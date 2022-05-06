@@ -11,15 +11,19 @@ use App\Models\User;
 use App\Models\Extract;
 use App\Models\ExtractDetail;
 
+
 use App\Http\Traits\DisbursetmentTrait;
 use App\Http\Traits\InvestmentTrait;
 
 use App\Http\Resources\V1\DisbursementResource;
 use App\Http\Resources\V1\DisbursementCollection;
 
-
 use Illuminate\Support\Facades\DB;
 use App\Utils\Util;
+
+use App\Exports\DisbursetmentExport;
+
+use Excel;
 
 class DisbursetmentController extends Controller
 {
@@ -54,18 +58,44 @@ class DisbursetmentController extends Controller
                 'profibality_amount' => 'required|numeric'
 
             ]);
-            
+           
 
             switch ($fields['id_disbursement_type']){//Tipos de desembolso
                 
                 case '1'://Rentabilidad Mensual
 
+                   $extracts = Extract::join('customers', 'customers.id', '=', 'extracts.id_customer')
+                    ->where('extracts.status', 1)
+                    ->where('customers.id_customer_type', $request->id_customer_type)->get();
+
                    
-                    //generar informe de desembolso
-                    //cargar informe de desembolso 
+                   
+
+                    //Util::inactivateExtracts($extracts);
+
+                    foreach ($extracts as $key => $extract) {
+                            $extract_details = ExtractDetail::where('id_extract',$extract->id)->where('status',1)->get();
+
+                            foreach ($extract_details as $key => $extract_detail) {
+                                
+                                //Se actualiza los estados de los extractos detalle a estado 3, desembolsado.
+                                $extract_detail->status = 3;
+                                //$extract_detail->update();
+                            }
                     
+                    }
+                    
+                    $myFile =  Excel::raw(new DisbursetmentExport($extracts), 'Xlsx');
+                    $response =  array(
+                        'name' => "extracts.xlsx",
+                        'file' => "data:application/vnd.ms-excel;base64,".base64_encode($myFile)
+                     );
+                    
+                    return array(201, $response);
+                    //generar informe de desembolso
 
                     break;
+
                 case '2'://Capital Parcial
 
                         $total_amount = $fields['profibality_amount'];
@@ -146,7 +176,7 @@ class DisbursetmentController extends Controller
 
                             foreach ($extract_details as $key => $extract_detail) {
                                 
-                            //Se actualiza los estados de los extractos detalle a estado 3, desembolsado.
+                                //Se actualiza los estados de los extractos detalle a estado 3, desembolsado.
                                 $extract_detail->status = 3;
                                 $extract_detail->update();
                             }
@@ -257,6 +287,7 @@ class DisbursetmentController extends Controller
 
             $disbursement->disbursetment_file = $file_document;
             $disbursement->ind_done = $request->ind_desembolsado;
+            $disbursement->date_disbursement = date('Y-m-d');
             $disbursement->update();
 
         }, 3); 
@@ -275,4 +306,5 @@ class DisbursetmentController extends Controller
     {
         //
     }
+
 }
