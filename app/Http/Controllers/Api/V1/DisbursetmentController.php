@@ -65,23 +65,21 @@ class DisbursetmentController extends Controller
                 case '1'://Rentabilidad Mensual
 
                    $extracts = Extract::join('customers', 'customers.id', '=', 'extracts.id_customer')
+                   ->select('customers.name', 'customers.last_name', 'customers.document_number', 'customers.phone', 'customers.account_number', 
+                   'customers.account_type', 'customers.bank_name', 'customers.id_customer_type', 'extracts.grand_total_invested', 'extracts.profitability_percentage',  
+                   'extracts.profitability_percentage', 'extracts.total_profitability')
                     ->where('extracts.status', 1)
                     ->where('customers.id_customer_type', $request->id_customer_type)->get();
 
-                   
-                   
-
-                    //Util::inactivateExtracts($extracts);
-
                     foreach ($extracts as $key => $extract) {
-                            $extract_details = ExtractDetail::where('id_extract',$extract->id)->where('status',1)->get();
 
-                            foreach ($extract_details as $key => $extract_detail) {
-                                
-                                //Se actualiza los estados de los extractos detalle a estado 3, desembolsado.
-                                $extract_detail->status = 3;
-                                //$extract_detail->update();
-                            }
+                        $extract_details = ExtractDetail::where('id_extract',$extract->id)->where('status',1)->get();
+                        foreach ($extract_details as $key => $extract_detail) {
+                            
+                            //Se actualiza los estados de los extractos detalle a estado 3, desembolsado.
+                            $extract_detail->status = 3;
+                            //$extract_detail->update();
+                        }
                     
                     }
                     
