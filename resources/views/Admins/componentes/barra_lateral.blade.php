@@ -19,17 +19,17 @@
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title  {{ Request::is('solicitudes') ? 'cambio' : '' }}" href="{{url('solicitudes')}}"><i
                                 data-feather="bell"></i><span>MÓDULO SOLICITUDES</span></a>
                     </li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ Request::is('clientes') ? 'cambio' : '' }}" href="{{url('clientes')}}"><i
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ Request::is('clientes', 'editar_cliente/*') ? 'cambio' : '' }}" href="{{url('clientes')}}"><i
                                 data-feather="users"></i><span>MÓDULO CLIENTES</span></a>
                     </li>
 
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ Request::is('inversiones') ? 'cambio' : '' }}" href="{{url('inversiones')}}"><i
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ Request::is('inversiones', 'crear_inversion/*', 'editar_inversion/*') ? 'cambio' : '' }}" href="{{url('inversiones')}}"><i
                                 data-feather="check-square"></i><span>MÓDULO INVERSIONES</span></a>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ Request::is('extractos') ? 'cambio' : '' }}" href="{{url('extractos')}}"><i
                                 data-feather="briefcase"></i><span>MÓDULO EXTRACTOS</span></a></li>
 
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ Request::is('desembolsos') ? 'cambio' : '' }}" href="{{url('desembolsos')}}"><i
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ Request::is('desembolsos', 'editar_desembolso/*') ? 'cambio' : '' }}" href="{{url('desembolsos')}}"><i
                                 data-feather="dollar-sign"></i><span>MÓDULO DESEMBOLSOS</span></a></li>
 
 

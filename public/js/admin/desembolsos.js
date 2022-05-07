@@ -8,7 +8,7 @@ const seleccionarTipoDesembolso = () => {
     $("#div_mensual_desembolso").empty()
     $("#container_datos_cliente").empty()
 
-    let html = `<div class="col-md-4">
+    let html = `<div class="col-md-6">
                     <div class="input-group">
                         <input class="form-control" id="param_desembolso" type="text"
                             placeholder="N° Identificación">

@@ -64,10 +64,10 @@
                                     </div> 
                                 </div>
                                 <div class="card-body">
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="input-group">
                                             <input class="form-control" id="param_desembolso_tabla" type="text"
-                                                placeholder="N° Identificación">
+                                                placeholder="Nombre o número identificación">
                     
                                             <button class="btn btn-secondary" id="btn_buscar_cliente"
                                                 onclick="buscarClienteDesembolsoTabla()" type="submit">Buscar</button>
@@ -147,6 +147,7 @@
                                         <div class="table-responsive add-project">
 
                                             <h4 class="card-title mb-0">Histórico de desembolsos:</h4><br><br>
+                                            
                                             <div class="input-group">
 
                                                 <input id="fecha_busqueda" type="month" />
@@ -154,7 +155,8 @@
                                                 <button class="btn btn-secondary" id="btn_historico_desembolsos" onclick="consultarHistoricoDesembolsos()"
                                                     type="button">Buscar</button>
 
-                                            </div><br><br>
+                                            </div>
+                                            <br><br>
                                             <div id="tabla_historico_desembolsos">
 
                                             </div>

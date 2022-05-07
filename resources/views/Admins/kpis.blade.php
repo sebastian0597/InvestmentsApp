@@ -54,8 +54,8 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="mb-3 row g-3">
-                                        <label class="col-sm-3 col-form-label text-sm-end">Fecha</label>
-                                        <div class="col-xl-5 col-sm-9">
+                                        <label class="col-sm-3 col-form-label text-sm-end"><b>Fecha</b></label>
+                                        <div class="col-sm-6">
                                             <div class="input-group">
                                                 <input id="fecha_busqueda" type="month" />
                                                 <button class="btn btn-secondary" id="btn_generar_kpi" onclick="generarKPI()" type="button">Generar informe</button>
