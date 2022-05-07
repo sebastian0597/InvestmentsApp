@@ -66,28 +66,67 @@ class DisbursetmentController extends Controller
 
                    $extracts = Extract::join('customers', 'customers.id', '=', 'extracts.id_customer')
                    ->select('customers.name', 'customers.last_name', 'customers.document_number', 'customers.phone', 'customers.account_number', 
-                   'customers.account_type', 'customers.bank_name', 'customers.id_customer_type', 'extracts.grand_total_invested', 'extracts.profitability_percentage',  
-                   'extracts.profitability_percentage', 'extracts.total_profitability')
+                   'customers.account_type', 'customers.bank_name', 'customers.id_customer_type',  'extracts.grand_total_invested', 'extracts.profitability_percentage',  
+                   'extracts.profitability_percentage', 'extracts.total_profitability','extracts.id','customers.id AS id_customer')
                     ->where('extracts.status', 1)
                     ->where('customers.id_customer_type', $request->id_customer_type)->get();
 
                     foreach ($extracts as $key => $extract) {
-
-                        $extract_details = ExtractDetail::where('id_extract',$extract->id)->where('status',1)->get();
-                        foreach ($extract_details as $key => $extract_detail) {
+                        
+                        $investments = Investment::getInvestmentsByIdCustomer($extract->id_customer);
+                    
+                        foreach ($investments as $key => $investment) {
+                            
+                            $extract_detail = ExtractDetail::where('id_investment',$investment->id)->where('status',1)->first();
+                            //Se actualizan los montos de las inversiones con los extractos generados
+                            $investment->amount = intval($investment->amount) + intval($extract_detail->investment_return);
+                            $investment->update();
+    
+                            $disbursement_amount = intval($extract_detail->investment_return);
                             
                             //Se actualiza los estados de los extractos detalle a estado 3, desembolsado.
                             $extract_detail->status = 3;
-                            //$extract_detail->update();
+                            $extract_detail->update();
+    
+                            $new_amount = ($investment->amount - $disbursement_amount);
+                            
+    
+                            if($new_amount<0){
+                                $disbursement_amount = abs($new_amount);
+                                $investment->amount_disbursement=$investment->amount;
+                                $investment->status=3;
+                                $investment->update();
+    
+                            }else{
+                                $investment->amount=$new_amount;
+                                $investment->amount_disbursement= intval($investment->amount_disbursement)+$disbursement_amount;
+                                $investment->update();
+                                break;
+                            }
+                            
                         }
-                    
+
+                        //return array(201, $extract->total_profitability);
+                        $request->request->set('id_customer', $extract->id_customer);
+                        $request->request->set('id_disbursement_type', 1);
+                        $request->request->set('disbursement_amount', $extract->total_profitability);
+                        $request->request->set('month',  date('m'));
+                        $request->request->set('date_create',  date('Y-m-d'));
+                        $request->request->set('ind_done',  '');
+                        $request->request->set('disbursetment_file',  '');
+                        
+                        $disbursement = $this->storeDisbursetment($request);
+                        
                     }
+
+                    Util::inactivateExtracts($extracts);
+
                     
                     $myFile =  Excel::raw(new DisbursetmentExport($extracts), 'Xlsx');
                     $response =  array(
                         'name' => "extracts.xlsx",
                         'file' => "data:application/vnd.ms-excel;base64,".base64_encode($myFile)
-                     );
+                    );
                     
                     return array(201, $response);
                     //generar informe de desembolso

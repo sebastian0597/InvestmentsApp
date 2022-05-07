@@ -517,13 +517,10 @@ const guardarRegistroDesembolso = (tipo_desembolso) => {
                           document.body.appendChild(a)
                           a.click()
                           a.remove()
-                          //$("#downloadExcel").show()
-                          //$("#ExcelDownloadLoader").hide()
+                        
                           },
                           error: function (ajaxContext) {
-                            //$("#downloadExcel").show()
-                            //$("#ExcelDownloadLoader").hide()
-                            //alert('Export error: '+ajaxContext.responseText)
+                      
                             console.log(ajaxContext.responseText)
                           }
                     }) 
