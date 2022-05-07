@@ -13,27 +13,27 @@
                                 data-feather="users"></i><span></span></a>
                     </li>
 
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('crear_administrador')}}"><i
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ Request::is('crear_administrador') ? 'cambio' : '' }}" href="{{url('crear_administrador')}}"><i
                         data-feather="user"></i><span>PERFIL ADMINISTRADOR</span></a>
                     </li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('solicitudes')}}"><i
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title  {{ Request::is('solicitudes') ? 'cambio' : '' }}" href="{{url('solicitudes')}}"><i
                                 data-feather="bell"></i><span>MÓDULO SOLICITUDES</span></a>
                     </li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('clientes')}}"><i
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ Request::is('clientes') ? 'cambio' : '' }}" href="{{url('clientes')}}"><i
                                 data-feather="users"></i><span>MÓDULO CLIENTES</span></a>
                     </li>
 
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('inversiones')}}"><i
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ Request::is('inversiones') ? 'cambio' : '' }}" href="{{url('inversiones')}}"><i
                                 data-feather="check-square"></i><span>MÓDULO INVERSIONES</span></a>
                     </li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('extractos')}}"><i
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ Request::is('extractos') ? 'cambio' : '' }}" href="{{url('extractos')}}"><i
                                 data-feather="briefcase"></i><span>MÓDULO EXTRACTOS</span></a></li>
 
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('desembolsos')}}"><i
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ Request::is('desembolsos') ? 'cambio' : '' }}" href="{{url('desembolsos')}}"><i
                                 data-feather="dollar-sign"></i><span>MÓDULO DESEMBOLSOS</span></a></li>
 
 
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{url('kpis')}}"><i
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ Request::is('kpis') ? 'cambio' : '' }}" href="{{url('kpis')}}"><i
                                 data-feather="file"></i><span>MÓDULO KPI'S</span></a></li>
 
             </div>

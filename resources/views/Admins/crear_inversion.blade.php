@@ -133,13 +133,19 @@
                                                 <?php $sum_rentabilidad=0; ?>
                                                 @foreach ($customer['investments_active'] as  $key=>$item)
                                                     <?php 
-                                                        $sum_rentabilidad += intval($item['extract_detail']['investment_return']);
+                                                      
+                                                        if(!is_null($item['extract_detail'])){
+
+                                                            $sum_rentabilidad += intval($item['extract_detail']['investment_return']);
+                                                        }
+                                                       
+
                                                     ?>
                                                 @endforeach
                                                     
                                               
                                                 <label class="form-label">Valor total de la rentabilidad</label>
-                                                <input class="form-control" value="${{number_format($sum_rentabilidad,0,'','.')}}" disabled>
+                                                <input class="form-control" value="${{ number_format($sum_rentabilidad,0,'','.')}}" disabled>
                                                 <span class="msg_error_form" id="error_telefono"></span>
                                             </div>
 
@@ -166,14 +172,22 @@
                                                     @foreach ($customer['investments_active'] as  $key=>$item)
                                                         <tr>
                                                             <?php 
-                                                                $rentabilidad = number_format($item['extract_detail']['investment_return'],0,'','.') ;    
+                                                              $porcentaje_rentabilidad=0;
+                                                              $rentabilidad=0;
+
+                                                                if(!is_null($item['extract_detail'])){
+                                                                    
+                                                                    $porcentaje_rentabilidad = $item['extract_detail']['real_profitability_percentage'];
+                                                                    $rentabilidad = number_format($item['extract_detail']['investment_return'],0,'','.');
+                                                                }
+                                                             
                                                             ?>
 
                                                             <input type="hidden" id="id_inversion_{{$key}}" value="{{$item['id']}}">
                                                             <th scope="row">{{$item['id']}}</th>
                                                             <td>${{$item['initial_amount']}}</td>
                                                             <td>${{$item['amount']}}</td>
-                                                            <td>{{$item['extract_detail']['real_profitability_percentage']}}%</td>
+                                                            <td>${{$porcentaje_rentabilidad}}</td>
                                                             <td>${{$rentabilidad}}</td>
                                                             <td>{{$item['investment_date']}}</td>
                                                             <td>{{$item['profitability_start_date']}}</td>
@@ -186,9 +200,8 @@
                                                                 
                                                             </td>
                                                         </tr>
-                                                    @endforeach
-                                                
-                                                
+                                                    @endforeach 
+                                                 
                                                 </tbody>
                                             </table>
                                         </div>

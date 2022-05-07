@@ -394,7 +394,7 @@ const guardarRegistroDesembolso = (tipo_desembolso) => {
 
         if (valor_consignar != "") {
 
-            if(parseInt(valor_consignar) < valor_rentabilidad){
+            if(parseInt(valor_consignar) < valor_rentabilidad && tipo_desembolso == "2" || tipo_desembolso == "3"){
                 $("#btn_guardar_desembolso").text("Creando registro...")
                 $("#btn_guardar_desembolso").prop("disabled", false)
                 $("#btn_guardar_desembolso").removeClass("placeholder")
