@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Utils\ProfitabilityDate;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Disbursetment;
@@ -90,6 +91,17 @@ class DisbursetmentController extends Controller
     
                             $new_amount = ($investment->amount - $disbursement_amount);
                             
+                            $next_month = 0;
+                            if(date('m')<12){
+                                $next_month = date('m')+1;
+                            }else{
+                                $next_month = intval('01');
+                            }
+                    
+                            $date = ProfitabilityDate::create(date('Y'),$next_month, intval('01')); 
+                            $date->addBussinessDays(0);
+                            $profibality_date = $date->toDateString();
+
     
                             if($new_amount<0){
                                 $disbursement_amount = abs($new_amount);
@@ -99,6 +111,7 @@ class DisbursetmentController extends Controller
     
                             }else{
                                 $investment->amount=$new_amount;
+                                $investment->profitability_start_date=$profibality_date;
                                 $investment->amount_disbursement= intval($investment->amount_disbursement)+$disbursement_amount;
                                 $investment->update();
                                 break;
@@ -155,7 +168,18 @@ class DisbursetmentController extends Controller
                             $extract_detail->update();
 
                             $new_amount = ($investment->amount - $disbursement_amount);
-                            
+                        
+                            $next_month = 0;
+                            if(date('m')<12){
+                                $next_month = date('m')+1;
+                            }else{
+                                $next_month = intval('01');
+                            }
+                    
+                            $date = ProfitabilityDate::create(date('Y'),$next_month, intval('01')); 
+                            $date->addBussinessDays(0);
+                            $profibality_date = $date->toDateString();
+
 
                             if($new_amount<0){
                                 $disbursement_amount = abs($new_amount);
@@ -165,6 +189,7 @@ class DisbursetmentController extends Controller
 
                             }else{
                                 $investment->amount=$new_amount;
+                                $investment->profitability_start_date=$profibality_date;
                                 $investment->amount_disbursement= intval($investment->amount_disbursement)+$disbursement_amount;
                                 $investment->update();
                                 break;
@@ -205,10 +230,10 @@ class DisbursetmentController extends Controller
                     $extracts = Extract::getExtractByCustomerAndStatus($fields['id_customer']);
                     $customer = Customer::find($fields['id_customer']);
 
-                    Util::inactivateInvestments($investments);
+                   // Util::inactivateInvestments($investments);
                     Util::inactivateExtracts($extracts);
 
-                    foreach ($extracts as $key => $extract) {
+                    /*foreach ($extracts as $key => $extract) {
                             $extract_details = ExtractDetail::where('id_extract',$extract->id)->where('status',1)->get();
 
                             foreach ($extract_details as $key => $extract_detail) {
@@ -218,6 +243,37 @@ class DisbursetmentController extends Controller
                                 $extract_detail->update();
                             }
                     
+                    }*/
+
+                    foreach ($investments as $key => $investment) {
+                            
+                        $extract_detail = ExtractDetail::where('id_investment',$investment->id)->where('status',1)->first();
+                        //Se actualizan los montos de las inversiones con los extractos generados
+                        //intval($investment->amount) + intval($extract_detail->investment_return);
+                        
+                        //Se actualiza los estados de los extractos detalle a estado 3, desembolsado.
+                        $extract_detail->status = 3;
+                        $extract_detail->update();
+
+                        $disbursement_amount = $investment->amount;
+                    
+                        $next_month = 0;
+                        if(date('m')<12){
+                            $next_month = date('m')+1;
+                        }else{
+                            $next_month = intval('01');
+                        }
+                
+                        $date = ProfitabilityDate::create(date('Y'),$next_month, intval('01')); 
+                        $date->addBussinessDays(0);
+                        $profibality_date = $date->toDateString();
+
+                        $investment->profitability_start_date=$profibality_date;
+                        $investment->amount_disbursement= intval($investment->amount_disbursement)+$disbursement_amount;
+                        $investment->status=3;
+                        $investment->amount = 0; 
+                        $investment->update();
+                                      
                     }
                     
                     //Se crea el desembolso

@@ -82,7 +82,7 @@ const continuarBuscarClientePorParametros = (response) => {
         
             </div>
             <div style='margin-top:20px'>
-                <h5>Datos inversiones</h5>
+                <h5>Inversiones</h5>
                 <div class='table-responsive add-project'>
                 
                     <table class='table card-table table-vcenter text-nowrap'>
