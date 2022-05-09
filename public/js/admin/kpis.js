@@ -53,6 +53,8 @@ const continuarGenerarKPI = (response) => {
     console.log(clientes)
     if (!isObjEmpty(clientes)) {
         clientes.forEach(function (cliente) {
+
+            console.log(cliente)
             
             if(cliente.status == 1){ //Clientes activos.
 
@@ -61,8 +63,8 @@ const continuarGenerarKPI = (response) => {
                         total_clientes_activos+=cliente.cantidad
                         total_inversiones_activos+=parseInt(cliente.inversiones)
                         total_total_rentabilidad_activos+=parseInt(Math.floor(cliente.total_rentabilidad))
-                        total_total_disbursed_activos+=parseInt(cliente.total_total_disbursed_activos)
-
+                        total_total_disbursed_activos+=parseInt(Math.floor(cliente.total_disbursed))
+                      
                         tr_standard=`
 
                             <tr>
@@ -70,7 +72,7 @@ const continuarGenerarKPI = (response) => {
                                 <td>Standard</td>
                                 <td>$${formatNumber(cliente.inversiones)}</td>
                                 <td>$${formatNumber(Math.floor(cliente.total_rentabilidad))}</td>
-                                <td>$${formatNumber(cliente.total_disbursed)}</td>
+                                <td>$${formatNumber(Math.floor(cliente.total_disbursed))}</td>
                             </tr>
                         
                         `
@@ -80,7 +82,7 @@ const continuarGenerarKPI = (response) => {
                         total_clientes_activos+=cliente.cantidad
                         total_inversiones_activos+=parseInt(cliente.inversiones)
                         total_total_rentabilidad_activos+=parseInt(Math.floor(cliente.total_rentabilidad))
-                        total_total_disbursed_activos+=parseInt(cliente.total_total_disbursed_activos)
+                        total_total_disbursed_activos+=parseInt(Math.floor(cliente.total_disbursed))
 
                         tr_vip=`
 
@@ -89,7 +91,7 @@ const continuarGenerarKPI = (response) => {
                                 <td>VIP</td>
                                 <td>$${formatNumber(cliente.inversiones)}</td>
                                 <td>$${formatNumber(Math.floor(cliente.total_rentabilidad))}</td>
-                                <td>$${formatNumber(cliente.total_disbursed)}</td>
+                                <td>$${formatNumber(Math.floor(cliente.total_disbursed))}</td>
                             </tr>
                         
                         `
@@ -100,7 +102,7 @@ const continuarGenerarKPI = (response) => {
                         total_clientes_activos+=cliente.cantidad    
                         total_inversiones_activos+=parseInt(cliente.inversiones)
                         total_total_rentabilidad_activos+=parseInt(Math.floor(cliente.total_rentabilidad))
-                        total_total_disbursed_activos+=parseInt(cliente.total_total_disbursed_activos)
+                        total_total_disbursed_activos+=parseInt(Math.floor(cliente.total_disbursed))
 
                         tr_premium=`
 
@@ -109,7 +111,7 @@ const continuarGenerarKPI = (response) => {
                                 <td>Premium</td>
                                 <td>$${formatNumber(cliente.inversiones)}</td>
                                 <td>$${formatNumber(Math.floor(cliente.total_rentabilidad))}</td>
-                                <td>$${formatNumber(cliente.total_disbursed)}</td>
+                                <td>$${formatNumber(Math.floor(cliente.total_disbursed))}</td>
                             </tr>
                         
                         `
@@ -123,7 +125,7 @@ const continuarGenerarKPI = (response) => {
                         total_clientes_inactivos+=cliente.cantidad
                         total_inversiones_inactivos+=parseInt(cliente.inversiones)
                         total_total_rentabilidad_inactivos+=parseInt(Math.floor(cliente.total_rentabilidad))
-                        total_total_disbursed_inactivos+=parseInt(cliente.total_total_disbursed_activos)
+                        total_total_disbursed_inactivos+=parseInt(Math.floor(cliente.total_disbursed))
 
                         tr_standard_inac=`
 
@@ -132,7 +134,7 @@ const continuarGenerarKPI = (response) => {
                                 <td>Standard</td>
                                 <td>$${formatNumber(cliente.inversiones)}</td>
                                 <td>$${formatNumber(Math.floor(cliente.total_rentabilidad))}</td>
-                                <td>$${formatNumber(cliente.total_disbursed)}</td>
+                                <td>$${formatNumber(Math.floor(cliente.total_disbursed))}</td>
                             </tr>
                         
                         `
@@ -142,7 +144,7 @@ const continuarGenerarKPI = (response) => {
                         total_clientes_inactivos+=cliente.cantidad
                         total_inversiones_inactivos+=parseInt(cliente.inversiones)
                         total_total_rentabilidad_inactivos+=parseInt(Math.floor(cliente.total_rentabilidad))
-                        total_total_disbursed_inactivos+=parseInt(cliente.total_total_disbursed_activos)
+                        total_total_disbursed_inactivos+=parseInt(Math.floor(cliente.total_disbursed))
 
                         tr_vip_inac=`
 
@@ -151,7 +153,7 @@ const continuarGenerarKPI = (response) => {
                                 <td>VIP</td>
                                 <td>$${formatNumber(cliente.inversiones)}</td>
                                 <td>$${formatNumber(Math.floor(cliente.total_rentabilidad))}</td>
-                                <td>$${formatNumber(cliente.total_disbursed)}</td>
+                                <td>$${formatNumber(Math.floor(cliente.total_disbursed))}</td>
                             </tr>
                         
                         `
@@ -162,7 +164,7 @@ const continuarGenerarKPI = (response) => {
                         total_clientes_inactivos+=cliente.cantidad    
                         total_inversiones_inactivos+=parseInt(cliente.inversiones)
                         total_total_rentabilidad_inactivos+=parseInt(Math.floor(cliente.total_rentabilidad))
-                        total_total_disbursed_inactivos+=parseInt(cliente.total_total_disbursed_activos)
+                        total_total_disbursed_inactivos+=parseInt(cliente.total_disbursed)
 
                         tr_premium_inac=`
 
@@ -171,7 +173,7 @@ const continuarGenerarKPI = (response) => {
                                 <td>Premium</td>
                                 <td>$${formatNumber(cliente.inversiones)}</td>
                                 <td>$${formatNumber(Math.floor(cliente.total_rentabilidad))}</td>
-                                <td>$${formatNumber(cliente.total_disbursed)}</td>
+                                <td>$${formatNumber(Math.floor(cliente.total_disbursed))}</td>
                             </tr>
                         
                         `
