@@ -109,21 +109,28 @@ class LoginController extends Controller
             
             }else{
 
-               // if (Auth::attempt(['email' => $fields['email'], 'password' => $fields['password'], 'status' => 1])) {
-                if (Auth::guard('web')->attempt(['email' => $fields['email'], 'password' => $fields['password'], 'status' => 1])) {
-                    /*$user->ind_banned=NULL;
+               if (Auth::attempt(['email' => $fields['email'], 'password' => $fields['password'], 'status' => 1])) {
+                
+                    $user->ind_banned=NULL;
                     $user->ind_blocked=NULL;
                     $user->time_blocked=NULL;
                     $user->blocked_date=NULL;
                     $user->banned_date=NULL;
                     $user->failed_login_attempts=NULL;
-                    $user->save();*/
-                    
-                    //auth()->loginUsingId($user->id);
-                    //request()->session()->regenerate();
-                    //auth()->login($user);
+                    $user->save();
+
+                    //return Auth::check();
                     $token = $user->createToken('myapptoken')->plainTextToken;
-                    return Util::setResponseJson(200, auth()->user() , $token);
+                    session([
+                        'api_token' => $token,
+                        'user' => auth()->user()
+                    ]);
+
+              
+                    return redirect()->intended(route('clientes'));
+
+                    //
+                    //return Util::setResponseJson(200, auth()->user() , $token);
                 }
            
             }

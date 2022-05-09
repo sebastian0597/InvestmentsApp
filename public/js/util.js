@@ -102,6 +102,7 @@ const setResponseMessage = (response, url_redireccionamiento = '') => {
         case 200:
         case 201:
         case 202:
+            console.log(response)
             Swal.fire({
                 icon: 'success',
                 confirmButtonColor: '#6610f2',

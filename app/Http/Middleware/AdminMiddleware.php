@@ -4,27 +4,29 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\AuthenticationException;
+use Session;
 
 class AdminMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
+ 
     public function handle(Request $request, Closure $next)
     {   
-        //dd(auth()->check());
 
-        //if(auth()->check()){
-
-       //if(auth()->check()){
+        if(session()->has('user')) {
             return $next($request);
-        //}else{
-           //return redirect()->route('login');
-        //}
-       
+        }
+    
+        throw new AuthenticationException(session()->has('user'));
+
     }
+
+    public function boot(){
+        view()->composer('*', function ($view) 
+        {
+            //this code will be executed when the view is composed, so session will be available
+            $view->with('key', \Session::get('user') );    
+        });  
+}
 }

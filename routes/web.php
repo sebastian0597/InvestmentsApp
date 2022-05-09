@@ -38,7 +38,7 @@ Route::get('contrato', function () {
 })->name('contrato');
 
 
-//Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['admin']], function () {
 
     Route::get('crear_cliente', [CustomerController::class, 'create'] )->name('crear_cliente');
     Route::get('editar_cliente/{id_cliente}', [CustomerController::class, 'edit'] )->name('editar_cliente');
@@ -58,7 +58,7 @@ Route::get('contrato', function () {
     
     Route::get('cambiar_contrasena', function () { return view('Admins.cambiar_contrasena'); })->name('cambiar_contrasena');
     
-//});
+});
 
 //Route::get('clientes', [CustomerController::class, 'index'])->name('clientes');
 
