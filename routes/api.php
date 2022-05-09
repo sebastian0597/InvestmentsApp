@@ -41,6 +41,7 @@ Route::post('v1/disbursetment/generate_report', [DisbursetmentController::class,
 
 Route::apiResource('v1/request', CustomerRequestController::class)->only(['store', 'show','index','update']);
 Route::get('v1/get_request_by_date/{param}', [CustomerRequestController::class, 'getRequestByDate']);
+Route::get('v1/get_last_active_request', [CustomerRequestController::class, 'getLastRequestActive']);
 
 
 Route::apiResource('v1/kpi', KpiController::class)->only(['show']);

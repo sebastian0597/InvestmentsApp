@@ -390,4 +390,6 @@ class CustomerController extends Controller
         if($customer){  return new CustomerResource($customer);  } else {  return array();  }
 
     }
+
+  
 }

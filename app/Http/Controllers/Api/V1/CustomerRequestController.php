@@ -103,4 +103,13 @@ class CustomerRequestController extends Controller
 
 
     }
+
+
+    public static function getLastRequestActive(){
+
+        return new RequestCollection(CustomerRequest::getLastActive());
+
+    }
+
+
 }

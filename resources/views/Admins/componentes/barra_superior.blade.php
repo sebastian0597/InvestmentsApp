@@ -23,28 +23,21 @@
         </div>
         <div class="nav-right col-8 pull-right right-header p-0">
             <ul class="nav-menus">
-               
+
+                <script>
+                    window.onload = function () {
+                        renderizarSolicitudes()
+                    }
+                </script>
+
                 <li class="onhover-dropdown">
                     <div class="notification-box"><i data-feather="bell"> </i><span
-                            class="badge rounded-pill badge-secondary">4</span></div>
+                            class="badge rounded-pill badge-secondary" id="span_cantidad">0</span></div>
                     <div class="onhover-show-div notification-dropdown">
-                        <h6 class="f-18 mb-0 dropdown-title">Notificaciones </h6>
-                        <ul>
-                            <li class="b-l-primary border-4">
-                                <p> <span class="font-danger"></span></p>
-                            </li>
-                            <li class="b-l-success border-4">
-                                <p><span class="font-success"></span></p>
-                            </li>
-                            <li class="b-l-info border-4">
-                                <p><span class="font-info"></span></p>
-                            </li>
-                            <li class="b-l-warning border-4">
-                                <p><span class="font-warning"></span></p>
-                            </li>
-                            <li><a class="f-w-700" href="{{url('solicitudes')}}">Ver todas las notificaciones
-                                </a></li>
-                        </ul>
+                        <h6 class="f-18 mb-0 dropdown-title">Notificaciones</h6>
+                
+                        <ul id="ultimas_solicitudes"></ul>
+                       
                     </div>
                 </li>
                 <li>
@@ -63,8 +56,9 @@
                         </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
-                        <li><a href="{{url('logout')}}"><i data-feather="log-in"> </i><span>Cerrar sesión</span></a></li>
                         <li><a href="{{url('cambiar_contrasena')}}"><i data-feather="password"> </i><span>Cambiar contrasena</span></a></li>
+                        <li><a href="{{url('logout')}}"><i data-feather="log-in"> </i><span>Cerrar sesión</span></a></li>
+                       
                     </ul>
                  
                 </li>

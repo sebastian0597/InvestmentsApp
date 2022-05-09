@@ -29,6 +29,12 @@ class CustomerRequest extends Model
         return CustomerRequest::whereBetween('request_date', [$from.' 00:00:00', $to.' 23:59:59'])->get();
     }
 
+    public static function getLastActive(){
+        
+        return CustomerRequest::where('status', '1')->orderBy('request_date','desc')->offset(0)->limit(5)->get();
+    }
+
+    
     /*ELOQUENT RELATIONS*/
     public function customer(){
         

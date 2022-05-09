@@ -127,3 +127,7 @@ h5 {
 .ganancia{
     background-color: #0cca4b5b !important;
 }
+
+.page-wrapper .page-header .header-wrapper .nav-right .profile-dropdown {
+    width: 300px;
+}
