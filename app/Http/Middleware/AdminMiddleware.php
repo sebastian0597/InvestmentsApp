@@ -18,7 +18,7 @@ class AdminMiddleware
             return $next($request);
         }
     
-        throw new AuthenticationException(session()->has('user'));
+        throw new AuthenticationException('Not authenticated.');
 
     }
 

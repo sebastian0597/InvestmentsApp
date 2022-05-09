@@ -126,7 +126,7 @@ class LoginController extends Controller
                         'user' => auth()->user()
                     ]);
 
-              
+                    
                     return redirect()->intended(route('clientes'));
 
                     //
