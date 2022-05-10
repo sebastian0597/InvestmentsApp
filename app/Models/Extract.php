@@ -17,6 +17,7 @@ class Extract extends Model
         'profitability_percentage',
         'grand_total_invested',
         'registered_by',
+        'status',
         'month'
     ];
 

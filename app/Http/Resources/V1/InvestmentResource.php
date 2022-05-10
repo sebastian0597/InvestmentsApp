@@ -36,6 +36,7 @@ class InvestmentResource extends JsonResource
             'registered_by' => $this->registeredBy->name,
             'status' => $this->status_text,
             'extract_detail' => $this->extractDetails,
+            'extract_detail_active' => $this->extractDetailsActive
        
         ];
     }

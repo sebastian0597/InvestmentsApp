@@ -77,7 +77,12 @@ class Investment extends Model
 
     public function extractDetails(){
 
-        return $this->hasOne(ExtractDetail::class,'id_investment','id')->where('month', date('m'))->where('status',1);
+        return $this->hasMany(ExtractDetail::class,'id_investment','id');/*->where('month', date('m'))/*->where('status',1)*/
+    }
+
+    public function extractDetailsActive(){
+
+        return $this->hasMany(ExtractDetail::class,'id_investment','id')->where('month', date('m'))->where('status',1);
     }
 
     public function getStatusTextAttribute(){

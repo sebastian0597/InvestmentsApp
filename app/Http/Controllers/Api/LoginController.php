@@ -29,112 +29,25 @@ class LoginController extends Controller
         $user = User::where('email', $fields['email'])
         ->where('personal_code', $fields['personal_code'])->first();
 
-        if(!$user || !Hash::check($fields['password'], $user->password)){
+
+        if (Auth::attempt(['email' => $fields['email'], 'password' => $fields['password'], 'status' => 1])) {
+                
+            $user->ind_banned=NULL;
+            $user->ind_blocked=NULL;
+            $user->time_blocked=NULL;
+            $user->blocked_date=NULL;
+            $user->banned_date=NULL;
+            $user->failed_login_attempts=NULL;
+            $user->save();
+
             
-            /*Como el usuario que intenta hacer login no ingresa los datos correctos
-            el sistema no encuentra el usuario, por lo tanto, se vuelve a buscar el usuario
-            con un or, para hacer la busqueda con el codigo personal o el correo. */
-            $user = User::where('email', $fields['email'])
-            ->orWhere('personal_code', $fields['personal_code'])->first();
-            
-            if(!is_null($user) && !is_null($user->blocked_date)){
+            //return Auth::user();
+            $token = $user->createToken('myapptoken')->plainTextToken;
+            return redirect()->intended(route('clientes'));
 
-                Util::validateBlockedTime($user->blocked_date, $user);
-               
-            }
-
-            if(!is_null($user)){
-
-                if($user->failed_login_attempts<3){
-                    /*En caso de que las credenciales sean invalidas, se va sumando al numero intentos fallidos
-                    un intento más*/
-                    $user->failed_login_attempts = intval($user->failed_login_attempts)+1;
-                    $user->save();
-                    return Util::setResponseJson(401,'Credenciales inválidas, revise que el correo, contraseña o que el código sea el correcto.');
-                    
-
-                }else if($user->failed_login_attempts==3 && is_null($user->time_blocked)){
-
-                    $user->ind_blocked = 1;
-                    $user->time_blocked = 30;
-                    $user->blocked_date = date('Y-m-d h:i:s');
-                    $user->save();
-                    return Util::setResponseJson(401,'El usuario se ha bloqueado por 30 minutos.');
-             
-                }else if($user->failed_login_attempts==3 && $user->time_blocked>0){
-
-                    return Util::setResponseJson(401,'El usuario se ha bloqueado temporalmente, intente más tarde.');
-
-                }else if($user->failed_login_attempts>=3 && $user->time_blocked==0){
-
-                    $user->failed_login_attempts = intval($user->failed_login_attempts)+1;
-                    $user->save();
-
-                    if($user->failed_login_attempts>=6){
-
-                        return Util::banningUser($user);
-
-                    }else{
-
-                        return Util::setResponseJson(401,'Credenciales inválidas, revise que el correo, contraseña o que el código sea el correcto.');
-                    }
-                    
-                }
-                
-            }else{
-                
-                return Util::setResponseJson(401,'El usuario no se encuentra registrado.');
-            }
-           
-
-        }else{
-
-            if(!is_null($user) && !is_null($user->blocked_date)){
-
-                Util::validateBlockedTime($user->blocked_date, $user);
-               
-            }
-
-            if($user->status <> 1){
-
-                return Util::setResponseJson(402,'El usuario se encuentra inactivo.');
-          
-            }else if($user->ind_blocked == 1 && !is_null($user->time_blocked)){
-
-                return Util::setResponseJson(402,'Usuario bloqueado temporalmente, por favor intente más tarde.');
-                
-            }else if($user->ind_banned == 1){
-
-                return Util::setResponseJson(402,'Usuario bloqueado por múltiples intentos fallidos, por favor comuníquese con un administrador.');
-            
-            }else{
-
-               if (Auth::attempt(['email' => $fields['email'], 'password' => $fields['password'], 'status' => 1])) {
-                
-                    $user->ind_banned=NULL;
-                    $user->ind_blocked=NULL;
-                    $user->time_blocked=NULL;
-                    $user->blocked_date=NULL;
-                    $user->banned_date=NULL;
-                    $user->failed_login_attempts=NULL;
-                    $user->save();
-
-                    //return Auth::check();
-                    $token = $user->createToken('myapptoken')->plainTextToken;
-                    session([
-                        'api_token' => $token,
-                        'user' => auth()->user()
-                    ]);
-
-                    
-                    return redirect()->intended(route('clientes'));
-
-                    //
-                    //return Util::setResponseJson(200, auth()->user() , $token);
-                }
-           
-            }
+            //return Util::setResponseJson(200, auth()->user() , $token);
         }
+   
        
     }
 

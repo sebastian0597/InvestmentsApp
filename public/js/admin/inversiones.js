@@ -76,11 +76,9 @@ const crearReinversion = (id_inversion) =>{
 
 const continuarCrearReinversion = (response) =>{
 
-    console.log(response)
-    setResponseMessage(response);
-    /*$('#btn_crear_inversion').text('Crear Inversion');
-    $('#btn_crear_inversion').prop('disabled', false);
-    $('#btn_crear_inversion').removeClass('placeholder'); */
+    let id_cliente = $('#id_cliente').val().trim();
+    setResponseMessage(response, `/crear_inversion/${id_cliente}`);
+
 
 }
 
@@ -159,7 +157,8 @@ const crearNuevaInversion = ()=>{
 }
 
 const continuarCrearInversion = (response) => {
-    setResponseMessage(response);
+    let id_cliente = $('#id_cliente').val().trim();
+    setResponseMessage(response, `/crear_inversion/${id_cliente}`);
     $('#btn_crear_inversion').text('Crear Inversion');
     $('#btn_crear_inversion').prop('disabled', false);
     $('#btn_crear_inversion').removeClass('placeholder'); 

@@ -14,6 +14,10 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next)
     {   
 
+        $user = Auth::user();
+
+        //dd($user);
+
         //if(session()->has('user')) {
             return $next($request);
         //}

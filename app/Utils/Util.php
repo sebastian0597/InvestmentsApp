@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\Extract;
 use App\Models\ExtractDetail;
 
+use App\Utils\ProfitabilityDate;
+
 class Util 
 {
     public static function generatePassword()
@@ -268,5 +270,18 @@ class Util
 
             return array(404, 'No se han encontrado extractos activos para este cliente.'  );
         }
+    }
+
+    public static function profitabilityDateNextMonth(){
+
+        $next_month = 0;
+        if(date('m')<12){
+            $next_month = date('m')+1;
+        }else{
+            $next_month = intval('01');
+        }
+        $date = ProfitabilityDate::create(date('Y'),$next_month, intval('01')); 
+        $date->addBussinessDays(0);
+        return $date->toDateString();
     }
 }

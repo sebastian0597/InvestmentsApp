@@ -133,12 +133,12 @@
                                                 <?php $sum_rentabilidad=0; ?>
                                                 @foreach ($customer['investments_active'] as  $key=>$item)
                                                     <?php 
-                                                      
                                                         if(!is_null($item['extract_detail'])){
 
-                                                            $sum_rentabilidad += intval($item['extract_detail']['investment_return']);
+                                                            foreach ($item['extract_detail'] as $key => $value) {
+                                                                $sum_rentabilidad += intval($value['investment_return']);
+                                                            }
                                                         }
-                                                       
 
                                                     ?>
                                                 @endforeach
@@ -172,14 +172,35 @@
                                                     @foreach ($customer['investments_active'] as  $key=>$item)
                                                         <tr>
                                                             <?php 
-                                                              $porcentaje_rentabilidad=0;
-                                                              $rentabilidad=0;
+                                                                $porcentaje_rentabilidad=0;
+                                                                $rentabilidad=0;
 
                                                                 if(!is_null($item['extract_detail'])){
+
+                                                                    foreach ($item['extract_detail'] as $key => $value) {
+
+                                                                        $porcentaje_rentabilidad = $value['real_profitability_percentage'];
+                                                                        $rentabilidad += intval($value['investment_return']);
+                                                                       
+                                                                    }      
                                                                     
-                                                                    $porcentaje_rentabilidad = $item['extract_detail']['real_profitability_percentage'];
-                                                                    $rentabilidad = number_format($item['extract_detail']['investment_return'],0,'','.');
                                                                 }
+
+                                                                $porcentaje_rentabilidad_activo=0;
+                                                                $rentabilidad_activa=0;
+                                                                
+                                                                if(!is_null($item['extract_detail_active'])){
+
+                                                                    foreach ($item['extract_detail_active'] as $key => $value) {
+
+                                                                        $porcentaje_rentabilidad_activo = $value['real_profitability_percentage'];
+                                                                        $rentabilidad_activa += intval($value['investment_return']);
+                                                                    
+                                                                    }      
+
+                                                                }
+
+                                                                
                                                              
                                                             ?>
 
@@ -188,12 +209,12 @@
                                                             <td>${{$item['initial_amount']}}</td>
                                                             <td>${{$item['amount']}}</td>
                                                             <td>${{$porcentaje_rentabilidad}}</td>
-                                                            <td>${{$rentabilidad}}</td>
+                                                            <td>${{number_format($rentabilidad,0,'','.')}}</td>
                                                             <td>{{$item['investment_date']}}</td>
                                                             <td>{{$item['profitability_start_date']}}</td>
                                                             <td>
-                                                                <?php if($rentabilidad>0){ ?>
-                                                                    <input type="hidden" id="valor_reinversion_{{$item['id']}}" value="{{$rentabilidad}}">
+                                                                <?php if($rentabilidad_activa>0){ ?>
+                                                                    <input type="hidden" id="valor_reinversion_{{$item['id']}}" value="{{ number_format($rentabilidad_activa,0,'','.')}}">
                                                                     <button onclick="crearReinversion({{$item['id']}})" id="btn_crear_reinversion_{{$item['id']}}}}" type="button" class="btn btn-primary btn-sm">Reinvertir</button>
 
                                                                 <?php } ?>

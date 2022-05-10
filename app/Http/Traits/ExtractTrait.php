@@ -39,7 +39,9 @@ trait ExtractTrait
             'real_profitability_percentage' => $request['real_profitability_percentage'],
             'investment_amount' => $request['investment_amount'],
             'investment_return' => $request['investment_return'],
+            'status' => $request['status'],
         ]);
+
 
         return $extract_details;
 

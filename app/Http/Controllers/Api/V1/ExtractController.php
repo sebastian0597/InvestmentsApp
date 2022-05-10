@@ -131,7 +131,7 @@ class ExtractController extends Controller
                 $arr_extract['grand_total_invested'] = $total_invested;
                 $arr_extract['registered_by'] = 1;
                 $arr_extract['month'] = date("m");
-                
+                 
                 Util::deleteExtracts($customer->id, $arr_extract['month']);
                 
                 //Se usa la función de Extract Trait
@@ -139,6 +139,9 @@ class ExtractController extends Controller
                               
                 
                 $total_investment_return=0;
+                $profibality_date = Util::profitabilityDateNextMonth();
+
+                $total_amount_invested = 0;
 
                 foreach ($investments as $investment) {
                    
@@ -158,15 +161,30 @@ class ExtractController extends Controller
                     $arr_extract_details['real_profitability_percentage'] = $real_profitability_percentage;
                     $arr_extract_details['investment_amount'] = $investment->amount;
                     $arr_extract_details['investment_return'] = $investment_return;
+                    $arr_extract_details['status'] = intval($investment_return)>0 ? 1 : 2 ;
                     $arr_extract_details['month'] = date('m');
                     
+                    if(intval($investment_return) <=0){
+
+                        $investment->amount = ($investment->amount-abs($investment_return));
+                        $investment->profitability_start_date = $profibality_date;
+                        $investment->save();
+   
+                    }
+
+                    $total_amount_invested+=$investment->amount;
                     //Se usa la función de Extract Trait
                     $this->storeExtractDetail($arr_extract_details);
                     
                     $total_investment_return+=$investment_return;
                 }
 
+                $customer_level = Util::validateCustomerLevel($total_amount_invested);
+                $customer->id_customer_type=$customer_level;
+                $customer->save();
+
                 $extract->total_profitability = $total_investment_return;
+                $extract->status = intval($total_investment_return)>0 ? 1 : 2;
                 $extract->save();
                 
                 return array(201, 'Se ha registrado el porcentaje de rentabilidad correctamente.');
@@ -216,13 +234,17 @@ class ExtractController extends Controller
                         //Se deben borrar los extractos que pertenezcan al mismo cliente y son del mismo mes.
                             //1. Buscar los extractos, sacar el id y buscar los extractos detalles.
                             //2. Eliminar los extractos detalles por medio del id y luego eliminar los extractos.
-                            Util::deleteExtracts($customer->id, $arr_extract['month']); 
+                        Util::deleteExtracts($customer->id, $arr_extract['month']); 
 
                         //Se usa la función de Extract Trait
                         $extract = $this->storeExtract($arr_extract);
                         
                         $investments = Investment::getInvestmentsByIdCustomer($customer->id);
                         $total_investment_return=0;
+
+                        $profibality_date = Util::profitabilityDateNextMonth();
+
+                        $total_amount_invested = 0;
 
                         foreach ($investments as $investment) {
                         
@@ -242,15 +264,34 @@ class ExtractController extends Controller
                             $arr_extract_details['real_profitability_percentage'] = $real_profitability_percentage;
                             $arr_extract_details['investment_amount'] = $investment->amount;
                             $arr_extract_details['investment_return'] = $investment_return;
+                            $arr_extract_details['status'] = intval($investment_return)>0 ? 1 : 2 ;
                             $arr_extract_details['month'] = date('m');
                             
-                            //Se usa la función de Extract Trait
-                            $this->storeExtractDetail($arr_extract_details);
-                            
-                            $total_investment_return+=$investment_return;
-                        }
 
+                            $total_investment_return+=$investment_return;
+
+                            if(intval($investment_return) <=0){
+
+                                $investment->amount = ($investment->amount-abs($investment_return));
+                                $investment->profitability_start_date = $profibality_date;
+                                $investment->save();
+
+                               
+                            }
+
+                            $total_amount_invested+=$investment->amount;
+
+                            //Se usa la función de Extract Trait.
+                            $this->storeExtractDetail($arr_extract_details);
+                        }
+                              
+                        $customer_level = Util::validateCustomerLevel($total_amount_invested);
+                        $customer->id_customer_type=$customer_level;
+                        $customer->save();
+
+                         //Se busca el extracto creado y se coloca en estado 2                         
                         $extract->total_profitability = $total_investment_return;
+                        $extract->status = intval($total_investment_return)>0 ? 1 : 2;
                         $extract->save();
                     }
 

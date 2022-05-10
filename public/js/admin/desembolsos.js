@@ -86,6 +86,8 @@ const seleccionarTipoClienteDesembolsos = () => {
         </div>`
 
     $("#div_mensual_desembolso").append(html)
+
+
 }
 
 const buscarClienteDesembolso = () => {
@@ -181,6 +183,8 @@ const continuarbuscarClienteDesembolsoTabla = (response) => {
 const continuarBuscarClienteDesembolso = (response) => {
     let cliente = response.data[0]
 
+   
+
     cliente = cliente == undefined || null ? {} : cliente
 
     $("#container_datos_cliente").empty()
@@ -189,27 +193,16 @@ const continuarBuscarClienteDesembolso = (response) => {
     if (!isObjEmpty(cliente)) {
         //SE DEBE CONSULTAR SI EL CLIENTE TIENE DESEMBOLSOS PENDIENTES POR REALIZAR.
 
-        //if(cliente.status != 'Inactivo'){
-
+    
         let tipo_desembolso = $("#tipo_desembolso").val().trim()
 
         let total_rentabilidad = 0
         let grand_total_invested = 0
 
-        if (cliente.investments.length > 0) {
-            cliente.investments.forEach((investment) => {
-
-                total_rentabilidad +=
-                    investment.extract_detail == null || undefined
-                        ? 0
-                        : parseInt(investment.extract_detail.investment_return)
-
-                grand_total_invested +=
-                investment.extract_detail == null || undefined
-                    ? 0
-                    : parseInt(investment.extract_detail.investment_amount)
-            })
-
+        if (cliente.extract) {
+      
+            total_rentabilidad = parseInt(cliente.extract.total_profitability)
+            grand_total_invested = parseInt(cliente.extract.grand_total_invested)
            
         }
 
@@ -360,16 +353,7 @@ const continuarBuscarClienteDesembolso = (response) => {
                 </div>
             
             </div>`
-        /*}else{
 
-            Swal.fire({
-                icon: 'warning',
-                text: 'El cliente ' + cliente.name + ' '+ cliente.last_name + ' se encuentra inactivo.',
-                confirmButtonText: 'Aceptar',
-
-            }) 
-
-        }*/
     } else {
         html = `<span>No hay datos para los parámetros ingresados.</span>`
     }
@@ -456,9 +440,9 @@ const guardarRegistroDesembolso = (tipo_desembolso) => {
 
     }else if(tipo_desembolso == "1"){
 
-            /*$("#btn_guardar_desembolso").text("Creando registro...")
+            $("#btn_guardar_desembolso").text("Creando registro...")
             $("#btn_guardar_desembolso").prop("disabled", false)
-            $("#btn_guardar_desembolso").removeClass("placeholder")*/
+            $("#btn_guardar_desembolso").removeClass("placeholder")
 
             let url = window.location.origin + `/api/v1/disbursetment`
 
@@ -509,15 +493,29 @@ const guardarRegistroDesembolso = (tipo_desembolso) => {
                         processData: false,
                         data: form_data,
                         success: function (response) {
-                          var a = document.createElement("a")
-                          response=response.message
-                          console.log(response)
-                          a.href = response.file 
-                          a.download = response.name
-                          document.body.appendChild(a)
-                          a.click()
-                          a.remove()
                         
+                        if(response.status == 201){
+                            response=response.message
+                            var a = document.createElement("a")
+                            a.href = response.file 
+                            a.download = response.name
+                            document.body.appendChild(a)
+                            a.click()
+                            a.remove()
+                        }else{
+                            console.log(response)
+                            Swal.fire({
+                                icon: 'warning',
+                                text: response.message
+                              })
+
+                        }
+                          
+                         
+                        
+                          $("#btn_guardar_desembolso").text("Crear registro")
+                          $("#btn_guardar_desembolso").prop("disabled", false)
+                          $("#btn_guardar_desembolso").removeClass("placeholder")
                           },
                           error: function (ajaxContext) {
                       
@@ -533,9 +531,9 @@ const guardarRegistroDesembolso = (tipo_desembolso) => {
                     )*/
                 }
                 if (result.isDismissed) {
-                    /*$("#btn_guardar_desembolso").text("Crear registro")
+                    $("#btn_guardar_desembolso").text("Crear registro")
                     $("#btn_guardar_desembolso").prop("disabled", false)
-                    $("#btn_guardar_desembolso").removeClass("placeholder")*/
+                    $("#btn_guardar_desembolso").removeClass("placeholder")
                 }
             })
 
@@ -546,7 +544,6 @@ const guardarRegistroDesembolso = (tipo_desembolso) => {
 
 const continuarGuardarRegistroDesembolso = (response) => {
 
-    console.log(response)
     $("#btn_guardar_desembolso").text("Crear registro")
     $("#btn_guardar_desembolso").prop("disabled", false)
     $("#btn_guardar_desembolso").removeClass("placeholder")
