@@ -14,19 +14,11 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next)
     {   
 
-        if(session()->has('user')) {
+        //if(session()->has('user')) {
             return $next($request);
-        }
+        //}
     
-        throw new AuthenticationException('Not authenticated.');
+        //throw new AuthenticationException('Not authenticated.');
 
     }
-
-    public function boot(){
-        view()->composer('*', function ($view) 
-        {
-            //this code will be executed when the view is composed, so session will be available
-            $view->with('key', \Session::get('user') );    
-        });  
-}
 }

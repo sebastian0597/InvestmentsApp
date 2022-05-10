@@ -19,7 +19,7 @@
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title  {{ Request::is('solicitudes') ? 'cambio' : '' }}" href="{{url('solicitudes')}}"><i
                                 data-feather="bell"></i><span>MÓDULO SOLICITUDES</span></a>
                     </li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ Request::is('clientes', 'editar_cliente/*') ? 'cambio' : '' }}" href="{{url('clientes')}}"><i
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ Request::is('clientes', 'crear_cliente','editar_cliente/*') ? 'cambio' : '' }}" href="{{url('clientes')}}"><i
                                 data-feather="users"></i><span>MÓDULO CLIENTES</span></a>
                     </li>
 

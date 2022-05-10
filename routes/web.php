@@ -20,9 +20,8 @@ Route::get('logout', function () {
     return view('login');
 })->name('logout');
 
-Route::get('contrato', function () {
+/*Route::get('contrato', function () {
     
-
     $customer_fullname = "Omar Yesid Ibanez Ortiz";
     $params["email"] = "Oibanez@unab.edu.co";
     $params["title"] = "Pagaré del cliente 1098796215 ".$customer_fullname;
@@ -35,10 +34,10 @@ Route::get('contrato', function () {
 
     return view('Pdfs.bank_promissor_note', compact('params'));
     
-})->name('contrato');
+})->name('contrato');*/
 
 
-Route::group(['middleware' => ['admin']], function () {
+//Route::group(['middleware' => ['auth']], function () {
 
     Route::get('crear_cliente', [CustomerController::class, 'create'] )->name('crear_cliente');
     Route::get('editar_cliente/{id_cliente}', [CustomerController::class, 'edit'] )->name('editar_cliente');
@@ -58,7 +57,7 @@ Route::group(['middleware' => ['admin']], function () {
     
     Route::get('cambiar_contrasena', function () { return view('Admins.cambiar_contrasena'); })->name('cambiar_contrasena');
     
-});
+//});
 
 //Route::get('clientes', [CustomerController::class, 'index'])->name('clientes');
 
