@@ -50,18 +50,18 @@ const continuarGenerarKPI = (response) => {
 
     $('#kpi_clientes_activos').empty();
     $('#kpi_clientes_inactivos').empty();
-    console.log(clientes)
+
     if (!isObjEmpty(clientes)) {
         clientes.forEach(function (cliente) {
-
-            console.log(cliente)
             
+            console.log(cliente)
+
             if(cliente.status == 1){ //Clientes activos.
 
                 if(cliente.id_customer_type == 1){ //Standards
                         
                         total_clientes_activos+=cliente.cantidad
-                        total_inversiones_activos+=parseInt(cliente.inversiones)
+                        total_inversiones_activos+=parseInt(Math.floor(cliente.inversiones))
                         total_total_rentabilidad_activos+=parseInt(Math.floor(cliente.total_rentabilidad))
                         total_total_disbursed_activos+=parseInt(Math.floor(cliente.total_disbursed))
                       
@@ -70,7 +70,7 @@ const continuarGenerarKPI = (response) => {
                             <tr>
                                 <td>${cliente.cantidad}</td>
                                 <td>Standard</td>
-                                <td>$${formatNumber(cliente.inversiones)}</td>
+                                <td>$${formatNumber(Math.floor(cliente.inversiones))}</td>
                                 <td>$${formatNumber(Math.floor(cliente.total_rentabilidad))}</td>
                                 <td>$${formatNumber(Math.floor(cliente.total_disbursed))}</td>
                             </tr>
@@ -80,7 +80,7 @@ const continuarGenerarKPI = (response) => {
                 if(cliente.id_customer_type == 2){ //Vips
                         
                         total_clientes_activos+=cliente.cantidad
-                        total_inversiones_activos+=parseInt(cliente.inversiones)
+                        total_inversiones_activos+=parseInt(Math.floor(cliente.inversiones))
                         total_total_rentabilidad_activos+=parseInt(Math.floor(cliente.total_rentabilidad))
                         total_total_disbursed_activos+=parseInt(Math.floor(cliente.total_disbursed))
 
@@ -89,7 +89,7 @@ const continuarGenerarKPI = (response) => {
                             <tr>
                                 <td>${cliente.cantidad}</td>
                                 <td>VIP</td>
-                                <td>$${formatNumber(cliente.inversiones)}</td>
+                                <td>$${formatNumber(Math.floor(cliente.inversiones))}</td>
                                 <td>$${formatNumber(Math.floor(cliente.total_rentabilidad))}</td>
                                 <td>$${formatNumber(Math.floor(cliente.total_disbursed))}</td>
                             </tr>
@@ -100,7 +100,7 @@ const continuarGenerarKPI = (response) => {
                 if(cliente.id_customer_type == 3){ //Premium
                         
                         total_clientes_activos+=cliente.cantidad    
-                        total_inversiones_activos+=parseInt(cliente.inversiones)
+                        total_inversiones_activos+=parseInt(Math.floor(cliente.inversiones))
                         total_total_rentabilidad_activos+=parseInt(Math.floor(cliente.total_rentabilidad))
                         total_total_disbursed_activos+=parseInt(Math.floor(cliente.total_disbursed))
 
@@ -109,7 +109,7 @@ const continuarGenerarKPI = (response) => {
                             <tr>
                                 <td>${cliente.cantidad == '' ? 0 : cliente.cantidad}</td>
                                 <td>Premium</td>
-                                <td>$${formatNumber(cliente.inversiones)}</td>
+                                <td>$${formatNumber(Math.floor(cliente.inversiones))}</td>
                                 <td>$${formatNumber(Math.floor(cliente.total_rentabilidad))}</td>
                                 <td>$${formatNumber(Math.floor(cliente.total_disbursed))}</td>
                             </tr>
@@ -123,7 +123,7 @@ const continuarGenerarKPI = (response) => {
                 if(cliente.id_customer_type == 1){ //Standards
                         
                         total_clientes_inactivos+=cliente.cantidad
-                        total_inversiones_inactivos+=parseInt(cliente.inversiones)
+                        total_inversiones_inactivos+=parseInt(Math.floor(cliente.inversiones))
                         total_total_rentabilidad_inactivos+=parseInt(Math.floor(cliente.total_rentabilidad))
                         total_total_disbursed_inactivos+=parseInt(Math.floor(cliente.total_disbursed))
 
@@ -132,7 +132,7 @@ const continuarGenerarKPI = (response) => {
                             <tr>
                                 <td>${cliente.cantidad}</td>
                                 <td>Standard</td>
-                                <td>$${formatNumber(cliente.inversiones)}</td>
+                                <td>$${formatNumber(Math.floor(cliente.inversiones))}</td>
                                 <td>$${formatNumber(Math.floor(cliente.total_rentabilidad))}</td>
                                 <td>$${formatNumber(Math.floor(cliente.total_disbursed))}</td>
                             </tr>
@@ -142,7 +142,7 @@ const continuarGenerarKPI = (response) => {
                 if(cliente.id_customer_type == 2){ //Vips
                         
                         total_clientes_inactivos+=cliente.cantidad
-                        total_inversiones_inactivos+=parseInt(cliente.inversiones)
+                        total_inversiones_inactivos+=parseInt(Math.floor(cliente.inversiones))
                         total_total_rentabilidad_inactivos+=parseInt(Math.floor(cliente.total_rentabilidad))
                         total_total_disbursed_inactivos+=parseInt(Math.floor(cliente.total_disbursed))
 
@@ -151,7 +151,7 @@ const continuarGenerarKPI = (response) => {
                             <tr>
                                 <td>${cliente.cantidad}</td>
                                 <td>VIP</td>
-                                <td>$${formatNumber(cliente.inversiones)}</td>
+                                <td>$${formatNumber(Math.floor(cliente.inversiones))}</td>
                                 <td>$${formatNumber(Math.floor(cliente.total_rentabilidad))}</td>
                                 <td>$${formatNumber(Math.floor(cliente.total_disbursed))}</td>
                             </tr>
@@ -162,7 +162,7 @@ const continuarGenerarKPI = (response) => {
                 if(cliente.id_customer_type == 3){ //Premium
                         
                         total_clientes_inactivos+=cliente.cantidad    
-                        total_inversiones_inactivos+=parseInt(cliente.inversiones)
+                        total_inversiones_inactivos+=parseInt(Math.floor(cliente.inversiones))
                         total_total_rentabilidad_inactivos+=parseInt(Math.floor(cliente.total_rentabilidad))
                         total_total_disbursed_inactivos+=parseInt(cliente.total_disbursed)
 
@@ -171,7 +171,7 @@ const continuarGenerarKPI = (response) => {
                             <tr>
                                 <td>${cliente.cantidad == '' ? 0 : cliente.cantidad}</td>
                                 <td>Premium</td>
-                                <td>$${formatNumber(cliente.inversiones)}</td>
+                                <td>$${formatNumber(Math.floor(cliente.inversiones))}</td>
                                 <td>$${formatNumber(Math.floor(cliente.total_rentabilidad))}</td>
                                 <td>$${formatNumber(Math.floor(cliente.total_disbursed))}</td>
                             </tr>

@@ -80,10 +80,9 @@ class DisbursetmentController extends Controller
                                 return array(402, "El porcentaje de rentabilidad de este mes ha sido negativo, por lo tanto no se puede generar desembolsos.");
     
                             }
-                            
+                           
                             $investments = Investment::getInvestmentsByIdCustomer($extract->id_customer);
                          
-    
                             foreach ($investments as $key => $investment) {
                                 
                                 $extract_detail = ExtractDetail::where('id_investment',$investment->id)->where('status',1)->first();
@@ -102,10 +101,10 @@ class DisbursetmentController extends Controller
                                 $profibality_date = Util::profitabilityDateNextMonth();
     
         
-                                if($new_amount<0){
+                                if(intval($extract->total_profitability)<0){
+
                                     $disbursement_amount = abs($new_amount);
-                                    $investment->amount_disbursement=$investment->amount;
-                                    $investment->status=3;
+                                    $investment->amount_disbursement=$investment->amount_disbursement;
                                     $investment->update();
         
                                 }else{

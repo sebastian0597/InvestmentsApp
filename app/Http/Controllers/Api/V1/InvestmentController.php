@@ -108,8 +108,8 @@ class InvestmentController extends Controller
             $investment->consignment_file = $consignment_file;
             $investment->id_payment_method = $fields['id_payment_method'];
             $investment->id_investment_type = $fields['id_investment_type'];
-            //$investment->profitability_start_date = '';
-            $investment->status = $fields['status'];
+            $investment->profitability_start_date = '';
+            $investment->initial_amount = $fields['amount'];
             //$investment->updated_by = $fields['updated_by'];
            
             $investment->update();

@@ -440,9 +440,9 @@ const guardarRegistroDesembolso = (tipo_desembolso) => {
 
     }else if(tipo_desembolso == "1"){
 
-            $("#btn_guardar_desembolso").text("Creando registro...")
-            $("#btn_guardar_desembolso").prop("disabled", false)
-            $("#btn_guardar_desembolso").removeClass("placeholder")
+            $("#btn_generar_informe_desembolso").text("Creando registro...")
+            $("#btn_generar_informe_desembolso").prop("disabled", false)
+            $("#btn_generar_informe_desembolso").removeClass("placeholder")
 
             let url = window.location.origin + `/api/v1/disbursetment`
 
@@ -513,9 +513,9 @@ const guardarRegistroDesembolso = (tipo_desembolso) => {
                           
                          
                         
-                          $("#btn_guardar_desembolso").text("Crear registro")
-                          $("#btn_guardar_desembolso").prop("disabled", false)
-                          $("#btn_guardar_desembolso").removeClass("placeholder")
+                          $("#btn_generar_informe_desembolso").text("Crear registro")
+                          $("#btn_generar_informe_desembolso").prop("disabled", false)
+                          $("#btn_generar_informe_desembolso").removeClass("placeholder")
                           },
                           error: function (ajaxContext) {
                       
@@ -531,9 +531,9 @@ const guardarRegistroDesembolso = (tipo_desembolso) => {
                     )*/
                 }
                 if (result.isDismissed) {
-                    $("#btn_guardar_desembolso").text("Crear registro")
-                    $("#btn_guardar_desembolso").prop("disabled", false)
-                    $("#btn_guardar_desembolso").removeClass("placeholder")
+                    $("#btn_generar_informe_desembolso").text("Crear registro")
+                    $("#btn_generar_informe_desembolso").prop("disabled", false)
+                    $("#btn_generar_informe_desembolso").removeClass("placeholder")
                 }
             })
 

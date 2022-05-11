@@ -115,7 +115,6 @@ class ExtractController extends Controller
             //Se consultan los clientes premium
             $customer = Customer::searchCustomerByParamsAndCustomerType($fields['document_number'], 3);
             
-            
             if($customer){
                 
                 $this->setPercentage($fields['percentage'], $customer->id);

@@ -106,7 +106,7 @@
                                             <?php
                                                 $cantidad_inversiones = count($customer['investments']);
                                                 $fecha_inversion = count($customer['investments'])>0 ? $customer['investments'][$cantidad_inversiones-1]['investment_date'] : '----'; 
-                                                $porcentaje = $cantidad_inversiones >0 ? $customer['investments'][$cantidad_inversiones-1]['percentage_investment'] : '--'; 
+                                                $porcentaje = $cantidad_inversiones >0 ? $customer['investments'][$cantidad_inversiones-1]['percentage_investment']."%" : '--'; 
                                             ?>
                                         <div class="row g-3">
                                                                                      
@@ -136,7 +136,10 @@
                                                         if(!is_null($item['extract_detail'])){
 
                                                             foreach ($item['extract_detail'] as $key => $value) {
-                                                                $sum_rentabilidad += intval($value['investment_return']);
+                                                                if(intval($value['investment_return'])>0){
+                                                                    $sum_rentabilidad += intval($value['investment_return']);
+                                                                }
+                                                               
                                                             }
                                                         }
 
@@ -161,7 +164,7 @@
                                                     <th scope="col">Valor inicial</th>
                                                     <th scope="col">Valor actual</th>
                                                     <th scope="col">% rentabilidad</th>
-                                                    <th scope="col">Rentabilidad</th>
+                                                    <th scope="col">Rentabilidad mes</th>
                                                     <th scope="col">Fecha inversión</th>
                                                     <th scope="col">Fecha rentabilidad</th>
                                                     <th scope="col"></th>
@@ -179,9 +182,12 @@
 
                                                                     foreach ($item['extract_detail'] as $key => $value) {
 
-                                                                        $porcentaje_rentabilidad = $value['real_profitability_percentage'];
-                                                                        $rentabilidad += intval($value['investment_return']);
-                                                                       
+                                                                        $porcentaje_rentabilidad = $value['real_profitability_percentage']."%";
+                                                                        
+                                                                        if(intval($value['investment_return'])>0){
+                                                                            $rentabilidad += intval($value['investment_return']);
+                                                                        }
+                                                                                                                                              
                                                                     }      
                                                                     
                                                                 }
@@ -199,8 +205,6 @@
                                                                     }      
 
                                                                 }
-
-                                                                
                                                              
                                                             ?>
 
@@ -208,8 +212,8 @@
                                                             <th scope="row">{{$item['id']}}</th>
                                                             <td>${{$item['initial_amount']}}</td>
                                                             <td>${{$item['amount']}}</td>
-                                                            <td>${{$porcentaje_rentabilidad}}</td>
-                                                            <td>${{number_format($rentabilidad,0,'','.')}}</td>
+                                                            <td>{{$porcentaje_rentabilidad}}</td>
+                                                            <td>${{number_format($rentabilidad_activa,0,'','.')}}</td>
                                                             <td>{{$item['investment_date']}}</td>
                                                             <td>{{$item['profitability_start_date']}}</td>
                                                             <td>
