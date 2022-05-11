@@ -68,6 +68,12 @@ class ExtractController extends Controller
         return new ExtractCollection(Extract::getExtractByCustomerAndStatus($id_customer));
     }
 
+    public function getByCustomer($id_customer)
+    {
+        return /*new ExtractCollection(*/Extract::getExtractByCustomer($id_customer);
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *

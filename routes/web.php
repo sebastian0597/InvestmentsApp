@@ -22,9 +22,9 @@ Route::get('logout', function () {
     return view('login');
 })->name('logout');
 
-/*Route::get('contrato', function () {
+Route::get('pdf_extracto', function () {
     
-    $customer_fullname = "Omar Yesid Ibanez Ortiz";
+    /*$customer_fullname = "Omar Yesid Ibanez Ortiz";
     $params["email"] = "Oibanez@unab.edu.co";
     $params["title"] = "Pagaré del cliente 1098796215 ".$customer_fullname;
     $params["amount"] = 50000;
@@ -32,11 +32,11 @@ Route::get('logout', function () {
     $params["bank_promissor_number"] = 5258;
     $params["document_number"] = 1098796215;
     $params["customer_name"] = $customer_fullname;
-    $params["document_name"] = "Pagare_1098796215_".$customer_fullname;
+    $params["document_name"] = "Pagare_1098796215_".$customer_fullname;*/
 
-    return view('Pdfs.bank_promissor_note', compact('params'));
+    return view('Pdfs.reporte_extracto');
     
-})->name('contrato');*/
+})->name('pdf_extracto');
 
 Route::middleware(AdminMiddleware::class)->namespace('\App\Http\Controllers\Api\V1')->group(function(){
 

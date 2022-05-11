@@ -30,6 +30,7 @@ Route::get('v1/investments_by_param/{param}', [InvestmentController::class, 'sho
 Route::apiResource('v1/extracts', ExtractController::class)->only(['show']);
 Route::post('v1/extracts_customer_premium', [ExtractController::class, 'extractCustomerPremium']);
 Route::post('v1/extracts_by_customer_type', [ExtractController::class, 'extractByCustomerType']);
+Route::get('v1/extracts_by_customer/{customer}', [ExtractController::class, 'getByCustomer']);
 
 Route::apiResource('v1/disbursetment', DisbursetmentController::class)->only(['show','store']);
 Route::get('v1/get_disbursetments_by_params/{param}', [DisbursetmentController::class, 'showByParam']);

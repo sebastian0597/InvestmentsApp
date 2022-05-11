@@ -27,6 +27,15 @@ class Extract extends Model
 
     }
 
+    public static function getExtractByCustomer($customer) {
+
+        return Extract::join('extracts_details', 'extracts_details.id_extract', '=', 'extracts.id')
+            ->join('investments', 'investments.id', '=', 'extracts_details.id_investment')
+            ->select('extracts_details.created_at', 'investments.*', 'extracts.*')
+            ->where('extracts.id_customer', $customer)->get();
+
+    }
+
     public static function getExtractByCustomerAndStatus($customer) {
 
         return Extract::where('id_customer', $customer)->where('status', 1)->get();
