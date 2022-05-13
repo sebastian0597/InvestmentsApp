@@ -22,21 +22,6 @@ Route::get('logout', function () {
     return view('login');
 })->name('logout');
 
-Route::get('pdf_extracto', function () {
-    
-    /*$customer_fullname = "Omar Yesid Ibanez Ortiz";
-    $params["email"] = "Oibanez@unab.edu.co";
-    $params["title"] = "Pagaré del cliente 1098796215 ".$customer_fullname;
-    $params["amount"] = 50000;
-    $params["investment_date"] = date('d/m/Y');
-    $params["bank_promissor_number"] = 5258;
-    $params["document_number"] = 1098796215;
-    $params["customer_name"] = $customer_fullname;
-    $params["document_name"] = "Pagare_1098796215_".$customer_fullname;*/
-
-    return view('Pdfs.reporte_extracto');
-    
-})->name('pdf_extracto');
 
 Route::middleware(AdminMiddleware::class)->namespace('\App\Http\Controllers\Api\V1')->group(function(){
 
@@ -57,6 +42,8 @@ Route::middleware(AdminMiddleware::class)->namespace('\App\Http\Controllers\Api\
     Route::get('editar_desembolso/{id_desembolso}',  [DisbursementController::class, 'edit'] )->name('editar_desembolso');
     
     Route::get('cambiar_contrasena', function () { return view('Admins.cambiar_contrasena'); })->name('cambiar_contrasena');
+
+    Route::get('extractos_pdfs/{id_customer}', [ExtractController::class, 'pdfExtract'] )->name('extractos_pdfs');
 
 });
 

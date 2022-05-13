@@ -20,7 +20,6 @@ Route::get('v1/get_customers_param/{param}', [CustomerController::class, 'getCus
 Route::post('v1/get_customers_by_customer_type', [CustomerController::class, 'getCustomersbyCustomerType']);
 Route::post('v1/get_customers_by_customer_premium', [CustomerController::class, 'getCustomersbyCustomerPremium']);
 
-
 Route::apiResource('v1/investment', InvestmentController::class)->only(['store','index', 'show']);
 Route::post('v1/reinvestment', [InvestmentController::class, 'storeReinvest']);
 Route::post('v1/investment/update/{param}', [InvestmentController::class, 'update']);
@@ -37,9 +36,6 @@ Route::get('v1/get_disbursetments_by_params/{param}', [DisbursetmentController::
 Route::post('v1/disbursetment/update/{param}', [DisbursetmentController::class, 'update']);
 Route::post('v1/disbursetment/generate_report', [DisbursetmentController::class, 'generateReport']);
 
-
-
-
 Route::apiResource('v1/request', CustomerRequestController::class)->only(['store', 'show','index','update']);
 Route::get('v1/get_request_by_date/{param}', [CustomerRequestController::class, 'getRequestByDate']);
 Route::get('v1/get_last_active_request', [CustomerRequestController::class, 'getLastRequestActive']);
@@ -47,6 +43,6 @@ Route::get('v1/get_last_active_request', [CustomerRequestController::class, 'get
 
 Route::apiResource('v1/kpi', KpiController::class)->only(['show']);
 
-
 Route::post('login', [LoginController::class, 'login']);
 Route::post('reset_password', [LoginController::class, 'resetPassword']);
+Route::post('change_password', [LoginController::class, 'changePassword']);

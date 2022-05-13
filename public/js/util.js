@@ -172,6 +172,26 @@ const setResponseMessage = (response, url_redireccionamiento = '') => {
     }
 };
 
+const validarContrasena = (element) => {
+    console.log(element.id)
+    $('#'+element.id).strength({
+        strengthClass: 'strength',
+        strengthMeterClass: 'strength_meter',
+        strengthButtonClass: 'button_strength',
+        strengthButtonText: 'Mostrar Password',
+        strengthButtonTextToggle: 'Ocultar Password' 
+    });
+}
+
+const mostrarContrasena = (element) =>{
+    $('#'+element.id).prop('type', 'text');
+}
+
+const ocultarContrasena = (element) =>{
+    $('#'+element.id).prop('type', 'password');
+}
+
+
 /*function process(element) {
 
     const file = document.getElementById(element.id)

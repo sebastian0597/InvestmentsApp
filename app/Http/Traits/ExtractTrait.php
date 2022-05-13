@@ -35,6 +35,7 @@ trait ExtractTrait
             'id_investment' => $request['id_investment'],
             'monthly_profitability_percentage' => $request['monthly_profitability_percentage'],
             'profitability_days' => $request['profitability_days'],
+            'profitability_start_date' => $request['profitability_start_date'],
             'month' => $request['month'],
             'real_profitability_percentage' => $request['real_profitability_percentage'],
             'investment_amount' => $request['investment_amount'],

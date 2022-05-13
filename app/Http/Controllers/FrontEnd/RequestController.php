@@ -14,6 +14,8 @@ class RequestController extends Controller
     public function index(){
 
         $request = new RequestCollection(CustomerRequest::where('status',1)->get());
+        
+
         $request = json_encode($request);
         $request = json_decode($request, true);
       

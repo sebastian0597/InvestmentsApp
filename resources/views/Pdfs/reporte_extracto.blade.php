@@ -50,27 +50,30 @@
 
         <table style="margin-top:5rem" class="table table-bordered">
             <thead>
-              <tr>
-                <th scope="col">Fecha Consignación</th>
-                <th scope="col">Fecha Inicio </th>
+              <tr> 
+                <th scope="col">Fecha consignación</th>
+                <th scope="col">Fecha inicio </th>
                 <th scope="col">Número de pagaré</th>
-                <th scope="col">Valor Inversión</th>
-                <th scope="col">Capital Inicial Mes</th>
-                <th scope="col">Rentabilidad del Mes</th>
-                <th scope="col">Capital + Rentabilidad</th>
+                <th scope="col">Valor inversión</th>
+                <th scope="col">Capital inicial mes</th>
+                <th scope="col">Rentabilidad del mes</th>
+                <th scope="col">Capital + rentabilidad</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-
+              @foreach ($extracts as $item)
+                
+                <tr>
+                  <th scope="row">{{$item['fecha_consignacion']}}</th>
+                  <td>{{$item['fecha_inicio']}}</td>
+                  <td>P-{{$item['numero_pagare']}}</td>
+                  <td>{{$item['valor_inversion']}}</td>
+                  <td>{{$item['capital_inicial_mes']}}</td>
+                  <td>{{$item['investment_return']}}</td>
+                  <td>{{intval($item['capital_inicial_mes']) + intval($item['investment_return'])}}</td>
+                </tr>
+              @endforeach
+            
             </tbody>
         </table>
 

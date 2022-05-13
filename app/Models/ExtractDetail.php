@@ -15,6 +15,7 @@ class ExtractDetail extends Model
         'id_investment',
         'monthly_profitability_percentage',
         'month',
+        'profitability_start_date',
         'status',   
         'profitability_days',
         'real_profitability_percentage',

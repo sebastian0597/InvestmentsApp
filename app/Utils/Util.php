@@ -32,7 +32,7 @@ class Util
         return $codigo;
     }
 
-    public static function  setResponseJson($status,$message,$token=""){
+    public static function setResponseJson($status,$message,$token=""){
         
         return response()->json([
             'status'=> $status,
