@@ -8,6 +8,7 @@ use App\Models\CustomerType;
 use App\Models\Extract;
 use App\Http\Resources\V1\ExtractCollection;
 use App\Utils\Util; 
+use PDF;
 
 class ExtractController extends Controller
 {
@@ -25,8 +26,17 @@ class ExtractController extends Controller
 
         $extracts = json_encode($extracts);
         $extracts = json_decode($extracts, true);
+
+        $data = [
+            'titulo' => 'Styde.net'
+        ];
+    
+        $pdf = PDF::loadView('Pdfs.reporte_extracto', compact('extracts'))->stream('archivo.pdf');
+       // return PDF::loadView('vista-pdf', $data)
+        return $pdf;
+        //return $pdf->download('archivo.pdf');
       
-        return view('Pdfs.reporte_extracto', compact('extracts'));
+        //return view('Pdfs.reporte_extracto', compact('extracts'));
         
     }
 

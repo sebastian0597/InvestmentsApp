@@ -4,7 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+      .container {
+          background-color: #E7E9EB;
+          width: 100%;
+          overflow: auto;
+          position: absolute;
+          top: 0;
+          height: auto;
+      }
+      .table {
+          --bs-table-bg: transparent;
+          --bs-table-accent-bg: transparent;
+          --bs-table-striped-color: #212529;
+          --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+          --bs-table-active-color: #212529;
+          --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+          --bs-table-hover-color: #212529;
+          --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+          width: 100%;
+          margin-bottom: 1rem;
+          color: #212529;
+          vertical-align: top;
+          border-color: #dee2e6;
+      }
+
+      table {
+          caption-side: bottom;
+          border-collapse: collapse;
+          display: table;
+          text-indent: initial;
+          border-spacing: 2px;
+      }
+
+      
+
+  </style>
 </head>
 <body>
     <div style="margin-top:2rem;" class="container">
