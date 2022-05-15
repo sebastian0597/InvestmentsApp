@@ -43,9 +43,9 @@ class LoginController extends Controller
             
             //return Auth::user();
             $token = $user->createToken('myapptoken')->plainTextToken;
-            return redirect()->intended(route('clientes'));
+            //return redirect()->intended(route('clientes'));
 
-            //return Util::setResponseJson(200, auth()->user() , $token);
+            return Util::setResponseJson(200, "" , $token);
         }
    
        
