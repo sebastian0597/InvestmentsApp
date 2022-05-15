@@ -333,6 +333,22 @@ class DisbursetmentController extends Controller
       
     }
 
+    public function showFiles()
+    {
+       
+        $disbursements_files = Disbursetment::getDisbursementsFiles();
+       
+        if($disbursements_files){
+            
+            return new DisbursementCollection($disbursements_files);
+            
+        }else{
+            return array();
+        }
+      
+      
+    }
+
     /**
      * Update the specified resource in storage.
      *

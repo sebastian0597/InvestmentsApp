@@ -26,6 +26,8 @@ class DisbursementResource extends JsonResource
             'id_customer_type' => $this->id_customer_type,
             'value_consign' => $this->value_consign == null  ? 0 : $this->value_consign,
             'date' => $this->fecha  == null ? 0 : $this->fecha,
+            'date_create' => $this->date_create,
+            'date_disbursement' => $this->date_disbursement,
             'created_at' => $this->created_at->format('Y/m/d'),
             'disbursetment_file' => $this->disbursetment_file,
             'customer' => [

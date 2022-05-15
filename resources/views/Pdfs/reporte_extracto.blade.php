@@ -7,7 +7,7 @@
 
     <style>
       .container {
-          background-color: #E7E9EB;
+          /*background-color: #E7E9EB;*/
           width: 100%;
           overflow: auto;
           position: absolute;
@@ -38,6 +38,29 @@
           border-spacing: 2px;
       }
 
+    .row {
+      display: flex !important;
+      flex-wrap: wrap !important;
+    }
+
+    table, td, th {
+            border: 1px solid black;
+        }
+
+    table {
+          border-collapse: collapse;
+          width: 100%;
+            }
+
+    .table-no-border tr td th{
+          border : none;
+    }
+
+    td {
+        height: 50px;
+        vertical-align: middle;
+        text-align: center;
+      }
       
 
   </style>
@@ -47,41 +70,36 @@
         
         <div style="width: 100%;" class="row">
         
-          <div style="width: 100%; display:flex; justify-content: center;" class="col-12">
-            <h3>XXXXXXXXXXXXXXXXXXXXXXXXXX</h3>
+          <div style="width: 100%; display:flex; justify-content: center;">
+            <h3 align="center">XXXXXXXXXXXXXXXXXXXXXXXXXX</h3>
           </div>
           
         </div>
         <div style="width: 100%;" class="row">
           
-          <div style="width: 100%; display:flex; justify-content: center;" class="col-12">
+          <div style="width: 100%; display:flex; justify-content: center;">
             <h4>C.C. XXXXXXXXX de Bucaramanga</h4>
           </div>
         
         </div>
         <div style="width: 100%;" class="row">
           
-            <div style="width: 100%; display:flex; justify-content: center;" class="col-12">
+            <div style="width: 100%; display:flex; justify-content: center;" >
                 <h5>REGISTRO DE RENTABILIDAD: MES DE 2022</h5>
             </div>
           
           </div>
        
         <div class="row">
-            <div class="col-4">
-              Inversionista
-            </div>
-            <div class="col-8">
-              Omar Yesid Ibanez Ortiz
+            <div>
+              Inversionista: {{ $customer['name'].' '.$customer['last_name'] }}
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
-                Identificación
+            <div>
+                Identificación: {{ $customer['document_number'] }}
             </div>
-            <div class="col-8">
-              1098796215
-            </div>
+             
         </div>
 
         <table style="margin-top:5rem" class="table table-bordered">
@@ -103,10 +121,10 @@
                   <th scope="row">{{$item['fecha_consignacion']}}</th>
                   <td>{{$item['fecha_inicio']}}</td>
                   <td>P-{{$item['numero_pagare']}}</td>
-                  <td>{{$item['valor_inversion']}}</td>
-                  <td>{{$item['capital_inicial_mes']}}</td>
-                  <td>{{$item['investment_return']}}</td>
-                  <td>{{intval($item['capital_inicial_mes']) + intval($item['investment_return'])}}</td>
+                  <td>{{number_format($item['valor_inversion'],0,'', '.')}}</td>
+                  <td>{{number_format($item['capital_inicial_mes'],0,'', '.')}}</td>
+                  <td>{{number_format($item['investment_return'],0,'', '.')}}</td>
+                  <td>{{number_format(intval($item['capital_inicial_mes']) + intval($item['investment_return']),0,'', '.')}}</td>
                 </tr>
               @endforeach
             

@@ -163,7 +163,10 @@
                                             <br><br>
                                             <div class="col-md-6">
                                                 <button class="btn btn-outline-success btn-lg" id="Bookmark"
-                                                    onclick="submitBookMark()" type="submit">Mostrar archivos</button>
+                                                    onclick="mostrarArchivos()" type="submit">Mostrar archivos</button>
+
+                                            </div>
+                                            <div id="container_archivos"  class="col-md-12">
 
                                             </div>
 

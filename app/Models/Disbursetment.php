@@ -41,14 +41,19 @@ class Disbursetment extends Model
         ->get();
     }
 
+    public static function getDisbursementsFiles(){
+     
+        return Disbursetment::whereNotNull('disbursetments.disbursetment_file')
+        ->get();
+        
+    }
+
     
     public function getDoneAttribute(){
         
         return is_null($this->ind_done) == true ? 'Pendiente' :  'Desembolsado' ;
     
     }
-
-
 
 
     public function disbursementType()

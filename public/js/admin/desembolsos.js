@@ -765,9 +765,67 @@ const continuarBuscarDesembolsosPorFecha = (respuesta) => {
     console.log(respuesta)
 }
 
+const mostrarArchivos = (id_customer)=>{
 
-/*const generarInformeDesembolso = (tipo_cliente) =>{
-    
+    let url = window.location.origin+ `/api/v1/disbursetment/showfiles`
+    let form_data = {}
+    let method = "GET"
 
-    console.log(tipo_cliente)
-}*/
+    enviarPeticion(
+        url,
+        method,
+        form_data,
+        "continuarMostrarArchivos"
+    )
+}
+
+const continuarMostrarArchivos = (respuesta) =>{
+
+    let archivos = respuesta.data
+    archivos = archivos == undefined || null ? {} : archivos
+
+    $("#container_archivos").empty()
+    let html = ''
+    let tr_arhivos= ''
+
+    if (!isObjEmpty(archivos)) {
+
+        archivos.forEach(archivo => {
+            
+            tr_arhivos += 
+            `<tr>
+                <td><a class="text-inherit">${archivo.customer.fullname}</a></td>
+                <td>${archivo.date_create}</td>
+                <td>${archivo.date_disbursement}</td>
+                <td>${archivo.disbursetment_file}</td>
+                <td>$${formatNumber(archivo.value_consign)}</td>
+
+            </tr>`
+            
+        })
+
+        html = `<br><table class="table card-table table-vcenter text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Nombre cliente</th>
+                                <th>Fecha creación</th>
+                                <th>Fecha desembolso</th>
+                                <th>Archivo</th>
+                                <th>Valor desembolso</th>
+                             
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${tr_arhivos}
+                        </tbody>
+                </table>
+                <br><br>`
+
+    }else{
+
+        html =''
+    }
+
+    $("#container_archivos").append(html)
+
+}

@@ -125,7 +125,7 @@ const continuarBuscarClientePorParametros = (response) => {
                 <br>
                 <div class='row'>
                     <div class='col-sm'>
-                        <button type='button' onclick='generarInformeExtractos()' class='btn btn-primary'>Generar informe</button>
+                        <button type='button' onclick='generarInformeExtractos(${cliente.id})' class='btn btn-primary'>Generar informe</button>
                     </div>
                
                 </div>
@@ -136,6 +136,13 @@ const continuarBuscarClientePorParametros = (response) => {
         html = `<span>No hay datos para los parámetros ingresados.</span>`
     }
     $('#content-clientes').append(html)
+}
+
+const generarInformeExtractos = (id_cliente) =>{
+
+   let url = window.location.origin+`/extractos_pdfs/${id_cliente}`
+   var win = window.open(url, '_blank');
+    win.focus();
 }
 
 const seleccionarTipoCliente = () => {
