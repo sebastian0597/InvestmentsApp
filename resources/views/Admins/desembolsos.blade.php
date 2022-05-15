@@ -166,9 +166,7 @@
                                                     onclick="mostrarArchivos()" type="submit">Mostrar archivos</button>
 
                                             </div>
-                                            <div id="container_archivos"  class="col-md-12">
-
-                                            </div>
+                                            <div id="container_archivos"  class="col-md-12"></div>
 
                                         </div>
                                     </div>

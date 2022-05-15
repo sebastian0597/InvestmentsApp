@@ -789,12 +789,14 @@ const continuarMostrarArchivos = (respuesta) =>{
     let tr_arhivos= ''
 
     if (!isObjEmpty(archivos)) {
-
+       
         archivos.forEach(archivo => {
-            
+
+            let url = window.location.origin+`/archivos/desembolsos/${archivo.disbursetment_file}`
+
             tr_arhivos += 
             `<tr>
-                <td><a class="text-inherit">${archivo.customer.fullname}</a></td>
+                <td><a target="_blank" href="${url}" class="text-inherit">${archivo.customer.fullname}</a></td>
                 <td>${archivo.date_create}</td>
                 <td>${archivo.date_disbursement}</td>
                 <td>${archivo.disbursetment_file}</td>
