@@ -48,7 +48,7 @@
                 <li class="profile-nav onhover-dropdown p-0 me-0">
                     <div class="media profile-media"><img class="b-r-10"
                             src="{{ asset('images/profile.jpg') }}" alt="">
-                        <div class="media-body"><span>Nombre del usuario</span>
+                        <div class="media-body"><span>{{auth()->user()->name}}</span>
                           <div style="display: flex; align-items: center;">
                             <span class="mb-0 font-roboto">Admin </span>
                             <span class="material-icons-outlined">expand_more</span>

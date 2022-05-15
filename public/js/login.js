@@ -1,9 +1,9 @@
 const login = () =>{
     
        if(validarLogin()){ 
-        let url = document.location.origin+'/api/login'
+        let url = document.location.origin+'/login_validate'
         let method = 'POST'
-        
+    
         var form_data = new FormData()
         form_data.append('email', $('#correo').val().trim())
         form_data.append('password', $('#contrasena').val().trim())

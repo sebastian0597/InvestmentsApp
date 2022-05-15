@@ -14,15 +14,21 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next)
     {   
 
-        $user = Auth::user();
 
-        //dd($user);
-
-        //if(session()->has('user')) {
-            return $next($request);
-        //}
+        if(!Auth::user())
+        {
+            return redirect()->route('login');
+        }
     
-        //throw new AuthenticationException('Not authenticated.');
+        // Pass the request down the rest of pipeline
+        return $next($request); 
+        
+        //return $next($request);
+        /*if($user) {
+            return $next($request);
+        }
+    
+        throw new AuthenticationException('Not authenticated.');*/
 
     }
 }

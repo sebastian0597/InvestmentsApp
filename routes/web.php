@@ -7,6 +7,7 @@ use App\Http\Controllers\FrontEnd\RequestController;
 use App\Http\Controllers\FrontEnd\AdminController;
 use App\Http\Controllers\FrontEnd\InvestmentController;
 use App\Http\Controllers\FrontEnd\DisbursementController;
+use App\Http\Controllers\Api\LoginController;
 
 use App\Http\Middleware\AdminMiddleware;
 
@@ -14,16 +15,15 @@ Route::get('login', function () {
     return view('login');
 })->name('login');
 
+Route::post('login_validate', [LoginController::class, 'login']);
+
 Route::get('reestablecer_contrasena', function () {
     return view('reestablecer_contrasena');
 })->name('reestablecer_contrasena');
 
-Route::get('logout', function () {
-    return view('login');
-})->name('logout');
+Route::get('logout', [LoginController::class, 'logout']);
 
-
-Route::middleware(AdminMiddleware::class)->namespace('\App\Http\Controllers\Api\V1')->group(function(){
+Route::middleware(['admin'])->group(function(){
 
     Route::get('crear_cliente', [CustomerController::class, 'create'] )->name('crear_cliente');
     Route::get('editar_cliente/{id_cliente}', [CustomerController::class, 'edit'] )->name('editar_cliente');
