@@ -163,6 +163,7 @@ class ExtractController extends Controller
                     $arr_extract_details['id_investment'] = $investment->id;
                     $arr_extract_details['monthly_profitability_percentage'] = $fields['percentage'];
                     $arr_extract_details['profitability_days'] = $profitability_days;
+                    $arr_extract_details['profitability_start_date'] = $investment->profitability_start_date;
                     $arr_extract_details['real_profitability_percentage'] = $real_profitability_percentage;
                     $arr_extract_details['investment_amount'] = $investment->amount;
                     $arr_extract_details['investment_return'] = $investment_return;
@@ -266,6 +267,7 @@ class ExtractController extends Controller
                             $arr_extract_details['id_investment'] = $investment->id;
                             $arr_extract_details['monthly_profitability_percentage'] = $fields['percentage'];
                             $arr_extract_details['profitability_days'] = $profitability_days;
+                            $arr_extract_details['profitability_start_date'] = $investment->profitability_start_date;
                             $arr_extract_details['real_profitability_percentage'] = $real_profitability_percentage;
                             $arr_extract_details['investment_amount'] = $investment->amount;
                             $arr_extract_details['investment_return'] = $investment_return;
@@ -311,5 +313,11 @@ class ExtractController extends Controller
         
         return Util::setResponseJson($status[0],$status[1]);
        
+    }
+
+    public function pdfExtract($id_customer){
+
+        return new ExtractCollection(Extract::getAllExtractsByCustomer($id_customer));
+        
     }
 }

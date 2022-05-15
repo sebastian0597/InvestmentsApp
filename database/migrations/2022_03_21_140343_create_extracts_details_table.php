@@ -19,6 +19,7 @@ class CreateExtractsDetailsTable extends Migration
             $table->unsignedBigInteger('id_investment');
             $table->string('monthly_profitability_percentage');
             $table->string('month',4);
+            $table->date('profitability_start_date')->nullable(true);
             $table->tinyinteger('profitability_days')->nullable(true);
             $table->double('investment_amount',20,2);
             $table->double('real_profitability_percentage',4,2);

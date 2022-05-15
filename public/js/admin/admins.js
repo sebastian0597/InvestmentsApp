@@ -329,18 +329,34 @@ const cambiarContrasena = () =>{
         let contrasena_1 = $('#password_1').val().trim()
         let contrasena_2 = $('#password_2').val().trim()
 
-        console.log(contrasena_1)
-
         if(contrasena_1 === contrasena_2){
 
+            let form_data = new FormData()
+            form_data.append('password', contrasena_1 )
+            form_data.append('id_user', 1)
+            form_data.append('password_confirm', contrasena_2)
+            let method = 'POST'
+            let url = window.location.origin+`/api/change_password`
+            enviarPeticion(url, method, form_data, 'continuarCambiarContrasena')
+  
 
         }else{
-            alert('Las contraseñas no coinciden')
+            agregarError('password_1')
+            agregarError('password_2')
+            Swal.fire({
+                icon: 'error',
+                text: 'Las contraseñas ingresadas no coinciden, por favor revise que las contraseñas sean iguales.',
+              })
         }
         
     }
-  
 }
+const continuarCambiarContrasena = (response) =>{
+    setResponseMessage(response, '/');
+}
+
+
+
 
 const validarCambioContrasena = () =>{
     let validador = true
@@ -358,6 +374,7 @@ const validarCambioContrasena = () =>{
     }else{
         quitarError('password_2')
     }
+
 
     return validador
 

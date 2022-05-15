@@ -48,26 +48,25 @@
                 </div>
                 <!-- Container-fluid starts-->
                 <div class="container-fluid">
-                    <div class="row">
+                    <div class="ro w">
                         <div class="login-card">
                             <div class="login-main">
                                 <form class="theme-form">
                                     <h4>Cambiar tu contraseña </h4>
+                                    <br><br>
+                                    <div class="col-md-12">
+                                        <label>Ingrese Contraseña</label>
+                                      
+                                            <input onblur="ocultarContrasena(this)" onfocus="mostrarContrasena(this)" onkeydown="validarContrasena(this)" id="password_1" type="password" Class="form-control">
+                                    </div>
 
-                                    <div class="form-group">
-                                       
-                                        <div class="form-input position-relative">
-                                            <label class="col-form-label">Nueva contraseña</label>
-                                            <input class="form-control" type="password" id="password_1" required=""
-                                                placeholder="*********">
-                                            <!--<div class="show-hide"><span class="show"></span></div>-->
-                                        </div> 
+                                    <div class="col-md-12">
+                                        <label>Verificación de contraseña</label>
+                                        
+                                            <input  onblur="ocultarContrasena(this)" onfocus="mostrarContrasena(this)" onkeydown="validarContrasena(this)" id="password_2" type="password" Class="form-control">
+                                      
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-form-label">Verificación de contraseña</label>
-                                        <input class="form-control" type="password" id="password_2" required=""
-                                            placeholder="*********">
-                                    </div>
+                                    <br><br>
                                     <div class="form-group mb-0">
 
                                         <button onclick="cambiarContrasena()" class="btn btn-primary btn-block w-100" type="button">Cambiar contraseña

@@ -15,9 +15,10 @@ const login = () =>{
 }
 
 const continuarLogin = (response) =>{
-    //console.log(response)
-    //console.log(JSON.stringify(response))
-    setResponseMessage(response, "/clientes");
+
+    console.log(response)
+    setResponseMessage(response, '/');
+
   
 }
 

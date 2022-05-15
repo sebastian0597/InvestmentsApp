@@ -45,7 +45,8 @@ class LoginController extends Controller
             $token = $user->createToken('myapptoken')->plainTextToken;
             //return redirect()->intended(route('clientes'));
 
-            return Util::setResponseJson(200, "" , $token);
+            return Util::setResponseJson(200, auth()->user() , $token);
+
         }
    
        
@@ -84,6 +85,30 @@ class LoginController extends Controller
         }
 
     }
+
+    public function changePassword(Request $request){
+
+        $fields = $request->validate([
+            'id_user' => 'required',
+            'password' => 'required|string',
+            'password_confirm' => 'required|string'
+        ]);
+        
+        if($fields['password'] == $fields['password_confirm'] ){
+
+            $user = User::find($fields['id_user']);
+
+            $user->password = bcrypt($fields['password']);
+            $user->update();
+            return Util::setResponseJson(200,"Se ha cambiado la contraseña correctamente.");
+
+        }else{
+
+            return Util::setResponseJson(401,"Las contraseñas ingresadas no coninciden.");
+
+        }
+
+    }
     
 
     public function logout(Request $request){
@@ -91,7 +116,6 @@ class LoginController extends Controller
         auth()->user()->tokens()->delete();
         return response()->json([            
             'message' => "La sesión se ha finalizado.",
-
         ]);
     }
 

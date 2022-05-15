@@ -131,3 +131,7 @@ h5 {
 .page-wrapper .page-header .header-wrapper .nav-right .profile-dropdown {
     width: 300px;
 }
+
+.login-card {
+    min-height: 10vh;
+}
