@@ -60,6 +60,25 @@ const validarTelefono = (element) =>{
     return validador;
 }
 
+/*$.getJSON('https://api.ipify.org?format=json', function(data){
+            ip = data.ip
+            miStorage = window.localStorage;
+            localStorage.setItem('ip', ip);
+            console.log(localStorage.getItem('ip'))
+        });*/
+
+async function consultarIP() {
+    let opciones = { method: 'GET', headers: { Accept: 'application/json' } };
+    const response = await fetch(
+        `https://api.ipify.org?format=json`,
+        opciones
+    );
+    const json_response = await response();
+
+    return response;
+}
+
+
 async function consultarAPIDivisas(moneda = 'COP') {
     let opciones = { method: 'GET', headers: { Accept: 'application/json' } };
     const response = await fetch(
