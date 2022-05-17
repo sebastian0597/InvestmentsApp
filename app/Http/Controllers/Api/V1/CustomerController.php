@@ -75,11 +75,10 @@ class CustomerController extends Controller
                     'document_number.unique' => 'El numero de documento ya se encuentra registrado en VIP WORLD TRADING',
                     'email.unique' =>'El correo ya se encuentra registrado en el sistema',
                 ];
-                
+
                 $fields=$request->validate($rules,$messages);
                 //$this->validate($request, $rules, $messages);
-                
-                               
+           
                 //Se calcula la clasificación del cliente dependiendo del monto de la inversión.
                 $customer_type = Util::validateCustomerLevel($request->amount);
               
