@@ -13,7 +13,7 @@
                                 data-feather="users"></i><span></span></a>
                     </li>
 
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ Request::is('crear_administrador') ? 'cambio' : '' }}" href="{{url('crear_administrador')}}"><i
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ Request::is('crear_administrador', 'editar_administrador/*') ? 'cambio' : '' }}" href="{{url('crear_administrador')}}"><i
                         data-feather="user"></i><span>PERFIL ADMINISTRADOR</span></a>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title  {{ Request::is('solicitudes') ? 'cambio' : '' }}" href="{{url('solicitudes')}}"><i

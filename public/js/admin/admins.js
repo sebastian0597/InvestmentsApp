@@ -113,7 +113,7 @@ const consultarUsuariosAdmin = () => {
     form_data = {};
     let url = document.location.origin + `/api/v1/admin/`;
     let method = 'GET';
-
+    
     enviarPeticion(
         url,
         method,
@@ -134,7 +134,7 @@ const continuarConsultarUsuariosAdmin = (response) => {
         trAdmins = ``;
         aux=0
         users.forEach(function (user) {
-           
+            let url = document.location.origin + `/editar_administrador/${user.id}`
             if (user.id_rol != 2) {
                 
                 trAdmins += `
@@ -160,67 +160,7 @@ const continuarConsultarUsuariosAdmin = (response) => {
                             : user.roles.role
                     }</td>
                     <td>
-                        <ul class='nav main-menu' role='tablist'>
-                            <li class='nav-item'>
-                                <button class='btn btn-primary btn-block btn-mail w-100' type='button' data-bs-toggle='modal' data-bs-target='.modalRequests_${aux}'>Editar</button>
-
-                                <div class='modal fade modal-bookmark modalRequests_${aux}' id='exampleModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-                                        <div class='modal-dialog modal-lg' role='document'>
-                                            <div class='modal-content'>
-                                                <div class='modal-header'>
-                                                    <h5 class='modal-title' id='exampleModalLabel'>Editar administradores</h5>
-                                                    <button class='btn-close' type='button' data-bs-dismiss='modal' aria-label='Close'></button>
-                                                </div>
-
-                                                <div class='modal-body'>
-                                                    <form class='form-bookmark needs-validation' id='bookmark-form' novalidate=''>
-                                                        
-                                                    <div class='form-row'>
-                                                        <div class='form-group col-md-6'>
-                                                            <label>Nombres</label>
-                                                            <input type='text' class='form-control' id='nombres_${aux}' value='${user.name}'>
-                                                        </div>
-                                                        <div class='form-group col-md-6'>
-                                                            <label>Email</label>
-                                                            <input type='email' class='form-control' id='correo_${aux}'value='${user.email}'>
-                                                        </div>
-                                                    </div>
-                                                    <div class='form-group col-md-6'>
-                                                        <label>Estado actual</label>
-                                                        <input disabled type='text' class='form-control' id='estado_actual_${aux}' value='${user.status}'>
-                                                    </div>
-                                                    <div class='form-group col-md-6'>
-                                                        <label>Rol actual</label>
-                                                        <input disabled type='text' class='form-control' id='rol_actual_${aux}' value='${user.roles.role}' >
-                                                    </div>
-                                                    <div class='form-group col-md-6''>
-                                                        <label>Rol</label>
-                                                        <select class="form-select" id='rol_${aux}'>
-                                                            <option value="" selected>Seleccione---</option>
-                                                            <option value="3">Admin 2</option>
-                                                            <option value="4">Admin 3</option>
-                                                            <option value="5">Admin 4</option>
-                                                            <option value="6">Admin 5</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class='form-group col-md-6'>
-                                                    <label>Estado</label>
-                                                    <select class="form-select" id='estado_${aux}'>
-                                                        <option value="" selected>Seleccione---</option>
-                                                        <option value="1">Activo</option>
-                                                        <option value="0">Inactivo</option>
-                                                    </select>
-                                                </div>
-                                                    <br><br>
-                                                    <button onclick='actualizarAdmin(${user.id}, ${aux})' type='button' class='btn btn-secondary'>Guardar</button>
-                                                    <button class='btn btn-primary' type='button' data-bs-dismiss='modal'>Cancel</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>                       
+                        <a href='${url}' class='btn btn-primary btn-block btn-mail w-100'>Editar</a>                     
                     </td>
                 </tr>
                 `;
@@ -255,16 +195,16 @@ const continuarConsultarUsuariosAdmin = (response) => {
 }
 
 
-const actualizarAdmin = (id_usuario, aux) =>{
+const actualizarAdmin = (id_usuario) =>{
 
-    if(validarFormularioActualizarAdmin(aux)){
+    if(validarFormularioActualizarAdmin()){
 
         //$('#btn_crear_admin').text('Creando administrador...')
         //$('#btn_crear_admin').prop('disabled', true)
-        let nombres = $("#nombres_"+aux).val().trim();
-        let correo = $("#correo_"+aux).val().trim();
-        let rol = $("#rol_"+aux).val();
-        let estado = $("#estado_"+aux).val();
+        let nombres = $("#nombres").val().trim();
+        let correo = $("#correo").val().trim();
+        let rol = $("#rol").val();
+        let estado = $("#estado").val();
    
         let url = document.location.origin + `/api/v1/admin/${id_usuario}` 
         let method = 'PUT'
@@ -284,38 +224,38 @@ const continuarActualizarAdmin = (response) => {
     
 }
 
-const validarFormularioActualizarAdmin = (aux) =>{
+const validarFormularioActualizarAdmin = () =>{
     let validador=true
-    if($("#nombres_"+aux).val().trim() == ""){
+    if($("#nombres").val().trim() == ""){
 
-        agregarError('nombres_'+aux)
+        agregarError('nombres')
         validador = false
     }else{
-        quitarError('nombres_'+aux)
+        quitarError('nombres')
     }
 
-    if($("#correo_"+aux).val().trim() == ""){
+    if($("#correo").val().trim() == ""){
 
-        agregarError('correo_'+aux)
+        agregarError('correo')
         validador = false
     }else{
-        quitarError('correo_'+aux)
+        quitarError('correo')
     }
 
-    if($("#rol_"+aux).val() == ""){
+    if($("#rol").val() == ""){
 
-        agregarError('rol_'+aux)
+        agregarError('rol')
         validador = false
     }else{
-        quitarError('rol_'+aux)
+        quitarError('rol')
     }
 
-    if($("#estado_"+aux).val() == ""){
+    if($("#estado").val() == ""){
 
-        agregarError('estado_'+aux)
+        agregarError('estado')
         validador = false
     }else{
-        quitarError('estado_'+aux)
+        quitarError('estado')
     }
 
     return validador

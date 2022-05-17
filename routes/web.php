@@ -28,6 +28,7 @@ Route::middleware(['admin'])->group(function(){
     Route::get('extractos', [ExtractController::class, 'index'] )->name('extractos');
     Route::get('solicitudes',  [RequestController::class, 'index'] )->name('solicitudes');
     Route::get('crear_administrador',  [AdminController::class, 'index'] )->name('crear_administrador');
+    Route::get('editar_administrador/{id_usuario}',  [AdminController::class, 'show'] )->name('editar_administrador');
     Route::get('inversiones',  [InvestmentController::class, 'index'] )->name('inversiones');
     Route::get('crear_inversion/{id_cliente}',  [InvestmentController::class, 'create'] )->name('crear_inversion');
     Route::get('editar_inversion/{id_inversion}',  [InvestmentController::class, 'edit'] )->name('editar_inversion');

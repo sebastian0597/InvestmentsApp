@@ -8,7 +8,7 @@ const responderSolicitud = (id_solicitud, contador) =>{
    
         let url = document.location.origin + `/api/v1/request/${id_solicitud}` 
         let method = 'PUT'
-        form_data = { answer: respuesta, id_user_attends_request:1, '_method':'PUT'}
+        form_data = { answer: respuesta, id_user_attends_request: $('#user_id').val().trim() , '_method':'PUT'}
         enviarPeticion(url, method, form_data, 'continuarResponderSolicitud')
     }
 }
