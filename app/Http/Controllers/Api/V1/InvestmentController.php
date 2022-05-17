@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\api\V1;
-
 use App\Http\Controllers\Controller;
+
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use App\Models\PaymentMethod;
 use App\Models\Investment;
 use App\Models\Customer;
 
@@ -13,7 +16,10 @@ use App\Http\Resources\V1\InvestmentResource;
 use App\Http\Resources\V1\InvestmentCollection;
 
 use App\Utils\Util;
+use App\Utils\ProfitabilityDate;
+
 use App\Http\Traits\InvestmentTrait;
+
 
 class InvestmentController extends Controller
 {
@@ -100,17 +106,28 @@ class InvestmentController extends Controller
                 copy($file, $ruta);
             }
 
+          
+
             $investment = Investment::find($id);
-            
+
+           
+            $investment_date = Carbon::createFromFormat('Y-m-d',  $investment->investment_date); 
+ 
+
+            $payment_method = PaymentMethod::find($fields['id_payment_method']);
+            $date = ProfitabilityDate::create($investment_date->format('Y'),$investment_date->format('m'),$investment_date->format('d'));
+            $date->addBussinessDays($payment_method->enabling_days);
+            $profibality_date = $date->toDateString();
+
             $investment->code_currency = $fields['code_currency'];
             $investment->base_amount = $fields['base_amount'];
             $investment->amount = $fields['amount'];
             $investment->consignment_file = $consignment_file;
             $investment->id_payment_method = $fields['id_payment_method'];
             $investment->id_investment_type = $fields['id_investment_type'];
-            $investment->profitability_start_date = '';
+            $investment->profitability_start_date = $profibality_date;
             $investment->initial_amount = $fields['amount'];
-            //$investment->updated_by = $fields['updated_by'];
+            $investment->updated_by = $fields['updated_by'];
            
             $investment->update();
 

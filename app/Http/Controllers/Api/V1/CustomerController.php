@@ -41,7 +41,21 @@ class CustomerController extends Controller
         $customer = DB::transaction(function () use($request){
 
                 //Se validan que los campos del cliente obligatorios no estén vacíos.
-                $fields = $request->validate([
+               /* $fields = $request->validate([
+                    'name' => 'required|string',
+                    'last_name' => 'required|string',
+                    'phone' => 'required|numeric',
+                    'address' => 'required|string',
+                    'city' => 'required|string',
+                    'department' => 'required|string',
+                    'country' => 'required|string',
+                    'document_number' => 'required|numeric|unique:customers',
+                    'file_document' => 'required|file',
+                    'email' => 'required|email|unique:users,email',
+                    'id_rol' => 'required|numeric',
+                    'registered_by' => 'required|numeric',
+                ]);*/
+                $rules = [
                     'name' => 'required|string',
                     'last_name' => 'required|string',
                     'phone' => 'required|numeric',
@@ -54,20 +68,16 @@ class CustomerController extends Controller
                     'email' => 'required|email|unique:users,email',
                     /*'id_rol' => 'required|numeric',*/
                     'registered_by' => 'required|numeric',
-                ]);
+                  ];
 
-                /*$rules = [
-                    'student' => 'required|max:20',
-                    'score' => 'required|numeric|min:1|max:10',
-                ];
+             
                 $messages = [
-                    'student.required' => 'Agrega el nombre del estudiante.',
-                    'student.max' =>'El nombre del estudiante no puede ser mayor a :max caracteres.',
-                    'score.required' => 'Agrega la puntuación al estudiante.',
-                    'score.numeric' => 'La puntuación debe ser un número',
-                    'score.between' => 'La puntuación debe estar entre :min y :max'
+                    'document_number.unique' => 'El numero de documento ya se encuentra registrado en VIP WORLD TRADING',
+                    'email.unique' =>'El correo ya se encuentra registrado en el sistema',
                 ];
-                $this->validate($request, $rules, $messages);*/
+                
+                $fields=$request->validate($rules,$messages);
+                //$this->validate($request, $rules, $messages);
                 
                                
                 //Se calcula la clasificación del cliente dependiendo del monto de la inversión.

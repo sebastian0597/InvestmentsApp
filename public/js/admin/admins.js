@@ -328,12 +328,13 @@ const cambiarContrasena = () =>{
     if(validarCambioContrasena()){
         let contrasena_1 = $('#password_1').val().trim()
         let contrasena_2 = $('#password_2').val().trim()
-
+        let user_id = $('#user_id').val().trim()
+        
         if(contrasena_1 === contrasena_2){
 
             let form_data = new FormData()
             form_data.append('password', contrasena_1 )
-            form_data.append('id_user', 1)
+            form_data.append('id_user', user_id)
             form_data.append('password_confirm', contrasena_2)
             let method = 'POST'
             let url = window.location.origin+`/api/change_password`

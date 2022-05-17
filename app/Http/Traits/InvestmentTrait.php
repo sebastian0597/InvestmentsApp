@@ -84,9 +84,9 @@ trait InvestmentTrait
         //Si es una nueva inversión se envía el pagaré al correo del administrador.
         if($investment_type->ind_generate_bank_note == 1){
 
-            $adminLogged = User::find(1);
+            $admin_logged = User::find($fields["registered_by"]);
             $customer_fullname = $customer->name." ".$customer->last_name;
-            $dataAdmin["email"] = $adminLogged->email;
+            $dataAdmin["email"] = $admin_logged->email;
             $dataAdmin["title"] = "Pagaré del cliente ".$customer->document_number." ".$customer_fullname;
             $dataAdmin["amount"] = $fields['amount'];
             $dataAdmin["investment_date"] = date('d/m/Y');
@@ -156,7 +156,7 @@ trait InvestmentTrait
             'amount' => intval($fields['amount']),
             'reinvestment_date' => date('Y-m-d'),
             'id_investment_type' => 1,
-            'registered_by' => 1,
+            'registered_by' => auth()->user()->id,
 
         ]);
 

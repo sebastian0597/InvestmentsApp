@@ -76,7 +76,7 @@ const seleccionarTipoClienteDesembolsos = () => {
             </div>
             <br>
             <div class="col-md-6">
-                <input class="form-control" type="file">
+                <input id='archivo_desembolso_excel' class="form-control" type="file">
                 <br><br>
                 <button class="btn btn-outline-success" id="btn_guardar_desembolso"
                 onclick="guardarInformeDesembolso()" type="button">Guardar
@@ -503,16 +503,14 @@ const guardarRegistroDesembolso = (tipo_desembolso) => {
                             a.click()
                             a.remove()
                         }else{
-                            console.log(response)
+                           
                             Swal.fire({
                                 icon: 'warning',
                                 text: response.message
                               })
 
                         }
-                          
-                         
-                        
+
                           $("#btn_generar_informe_desembolso").text("Crear registro")
                           $("#btn_generar_informe_desembolso").prop("disabled", false)
                           $("#btn_generar_informe_desembolso").removeClass("placeholder")
@@ -523,12 +521,6 @@ const guardarRegistroDesembolso = (tipo_desembolso) => {
                           }
                     }) 
 
-                    /*enviarPeticion(
-                        url,
-                        method,
-                        form_data,
-                        "continuarGuardarRegistroDesembolso"
-                    )*/
                 }
                 if (result.isDismissed) {
                     $("#btn_generar_informe_desembolso").text("Crear registro")
@@ -830,4 +822,32 @@ const continuarMostrarArchivos = (respuesta) =>{
 
     $("#container_archivos").append(html)
 
+}
+
+const guardarInformeDesembolso = () =>{
+
+    let tipo_cliente = $('#tipo_cliente').val().trim()
+    let archivo = document.getElementById('archivo_desembolso_excel').files[0];
+    
+    quitarError('tipo_cliente')
+    quitarError('archivo_desembolso_excel')
+    if(tipo_cliente != '' && archivo != undefined ){
+
+        let method = "POST"
+        let form_data = new FormData()
+        let url = window.location.origin+'/api/v1/disbursetment/update_by_customer_type'
+        form_data.append("customer_type", tipo_cliente)
+        form_data.append("disbursement_file", archivo)
+
+        enviarPeticion(url, method, form_data, "continuarGuardarInformeDesembolso")
+
+    }else{
+        agregarError('tipo_cliente')
+        agregarError('archivo_desembolso_excel')
+    }
+}
+
+const continuarGuardarInformeDesembolso = (response) =>{
+
+    setResponseMessage(response)
 }

@@ -134,6 +134,7 @@ const setResponseMessage = (response, url_redireccionamiento = '') => {
           
 
         case 422:
+            
             Swal.fire({
                 icon: 'warning',
                 confirmButtonColor: '#6610f2',
@@ -173,7 +174,7 @@ const setResponseMessage = (response, url_redireccionamiento = '') => {
 };
 
 const validarContrasena = (element) => {
-    console.log(element.id)
+   
     $('#'+element.id).strength({
         strengthClass: 'strength',
         strengthMeterClass: 'strength_meter',

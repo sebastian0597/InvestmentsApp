@@ -32,10 +32,11 @@ Route::post('v1/extracts_by_customer_type', [ExtractController::class, 'extractB
 Route::get('v1/extracts_by_customer/{customer}', [ExtractController::class, 'getByCustomer']);
 
 Route::get('v1/disbursetment/showfiles', [DisbursetmentController::class, 'showFiles']);
-Route::apiResource('v1/disbursetment', DisbursetmentController::class)->only(['show','store']);
-Route::get('v1/get_disbursetments_by_params/{param}', [DisbursetmentController::class, 'showByParam']);
 Route::post('v1/disbursetment/update/{param}', [DisbursetmentController::class, 'update']);
+Route::post('v1/disbursetment/update_by_customer_type', [DisbursetmentController::class, 'updateByCustomerType']);
 Route::post('v1/disbursetment/generate_report', [DisbursetmentController::class, 'generateReport']);
+Route::get('v1/get_disbursetments_by_params/{param}', [DisbursetmentController::class, 'showByParam']);
+Route::apiResource('v1/disbursetment', DisbursetmentController::class)->only(['show','store']);
 
 Route::apiResource('v1/request', CustomerRequestController::class)->only(['store', 'show','index','update']);
 Route::get('v1/get_request_by_date/{param}', [CustomerRequestController::class, 'getRequestByDate']);

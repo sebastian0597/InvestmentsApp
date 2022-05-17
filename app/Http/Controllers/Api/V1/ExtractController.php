@@ -134,7 +134,7 @@ class ExtractController extends Controller
                 $arr_extract['total_reinvested'] = $total_reinvested;
                 $arr_extract['profitability_percentage'] = $fields['percentage'];
                 $arr_extract['grand_total_invested'] = $total_invested;
-                $arr_extract['registered_by'] = 1;
+                $arr_extract['registered_by'] = $request->registered_by;
                 $arr_extract['month'] = date("m");
                  
                 Util::deleteExtracts($customer->id, $arr_extract['month']);
@@ -234,7 +234,7 @@ class ExtractController extends Controller
                         $arr_extract['total_reinvested'] = $total_reinvested;
                         $arr_extract['profitability_percentage'] = $fields['percentage'];
                         $arr_extract['grand_total_invested'] = $total_invested;
-                        $arr_extract['registered_by'] = 1;
+                        $arr_extract['registered_by'] = $request->registered_by;
                         $arr_extract['month'] = date('m');
 
                         //Se deben borrar los extractos que pertenezcan al mismo cliente y son del mismo mes.

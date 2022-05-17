@@ -185,6 +185,7 @@ class LoginController extends Controller
             $user = User::find($fields['id_user']);
 
             $user->password = bcrypt($fields['password']);
+            $user->ind_first_login = 0;
             $user->update();
             return Util::setResponseJson(200,"Se ha cambiado la contraseña correctamente.");
 

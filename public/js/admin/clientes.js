@@ -276,7 +276,7 @@ const crearCliente = () => {
         form_data.append('id_document_type', tipo_documento);
         form_data.append('id_economic_activity', actividad_economica);
         form_data.append('id_bank_account', cuenta_bancaria);
-        form_data.append('registered_by', 1);
+        form_data.append('registered_by', $('#user_id').val().trim());
 
         form_data.append('base_amount', base_monto_inversion);
         form_data.append('amount', monto_inversion);
@@ -332,7 +332,7 @@ const continuarCrearCliente = (response) => {
     $('#btn_crear_cliente').text('Crear cliente');
     $('#btn_crear_cliente').prop('disabled', false);
     $('#btn_crear_cliente').removeClass('placeholder'); 
-
+  
     setResponseMessage(response, '/crear_cliente');
     //location.reload()
 };

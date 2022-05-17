@@ -266,6 +266,7 @@ const guardarPorcentajeRentabilidad = () =>{
                 url = url+`/api/v1/extracts_by_customer_type`
                 form_data.append('id_customer_type', tipo_cliente);
                 form_data.append('percentage', porcentaje);
+                form_data.append('registered_by', $('#user_id').val().trim());
                 
 
                 break;
@@ -276,6 +277,7 @@ const guardarPorcentajeRentabilidad = () =>{
 
                 form_data.append('document_number', numero_documento);
                 form_data.append('percentage', porcentaje);
+                form_data.append('registered_by', $('#user_id').val().trim());
                 break;
             
         
@@ -344,7 +346,13 @@ const validarPorcentajeRentabilidad = () =>{
         quitarError('tipo_cliente')
     }
 
-    
+    if($('#tipo_cliente').val() == '3' && $('#busqueda_cliente_premium_extractos').is(':visible') && $('#busqueda_cliente_premium_extractos').val().trim() == ''){
+        validador=false
+        agregarError('busqueda_cliente_premium_extractos');
+
+    }else{
+        quitarError('busqueda_cliente_premium_extractos')      
+    }
 
     if($('#porcentaje').is(':visible') && $('#porcentaje').val() == '' ){
         validador=false

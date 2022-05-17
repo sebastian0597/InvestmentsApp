@@ -123,21 +123,28 @@ class DisbursetmentController extends Controller
                             $request->request->set('disbursement_amount', $extract->total_profitability);
                             $request->request->set('month',  date('m'));
                             $request->request->set('date_create',  date('Y-m-d'));
-                            $request->request->set('ind_done',  '');
-                            $request->request->set('disbursetment_file',  '');
+                            $request->request->set('ind_done',  NULL);
+                            $request->request->set('disbursetment_file',  NULL);
                             
                             $disbursement = $this->storeDisbursetment($request);
                             
                         }
+
+                        $extracts_excel = Extract::join('customers', 'customers.id', '=', 'extracts.id_customer')
+                        ->select('customers.name', 'customers.last_name', 'customers.document_number', 'customers.phone', 'customers.account_number', 
+                        'customers.account_type', 'customers.bank_name', 'customers.id_customer_type',  'extracts.grand_total_invested', 'extracts.profitability_percentage',  
+                        'extracts.profitability_percentage', 'extracts.total_profitability')
+                         ->where('extracts.status', 1)
+                         ->where('customers.id_customer_type', $request->id_customer_type)->get();
     
-                        Util::inactivateExtracts($extracts);
-    
-                        
-                        $myFile =  Excel::raw(new DisbursetmentExport($extracts), 'Xlsx');
+                       
+                        $myFile =  Excel::raw(new DisbursetmentExport($extracts_excel), 'Xlsx');
                         $response =  array(
                             'name' => "extracts.xlsx",
                             'file' => "data:application/vnd.ms-excel;base64,".base64_encode($myFile)
                         );
+
+                        Util::inactivateExtracts($extracts);
                         
                         return array(201, $response);
 
@@ -375,7 +382,7 @@ class DisbursetmentController extends Controller
             if($request->hasFile("disbursement_file")){
                 $file=$request->file("disbursement_file");
                 
-                $file_document = "documento_".$customer->document_number.".".$file->guessExtension();
+                $file_document = "desembolso_".$customer->document_number.".".$file->guessExtension();
                 $ruta = public_path("archivos/desembolsos/".$file_document);
                 copy($file, $ruta);
             }
@@ -388,6 +395,48 @@ class DisbursetmentController extends Controller
         }, 3); 
         
             return Util::setResponseJson(201, 'Se ha actualizado el desembolso correctamente.');
+
+    }
+    public function updateByCustomerType(Request $request)
+    {
+    
+        $request_answer = DB::transaction(function () use($request){
+            
+            $fields = $request->validate([
+                'disbursement_file' => 'required',
+                'customer_type' => 'required',
+
+            ]);
+
+        
+            $customers = Customer::where('id_customer_type', $fields['customer_type'])->where('status',1)->get();
+
+            $file_document=$fields['disbursement_file'];
+
+            foreach ($customers as $key => $customer) {
+
+                if($request->hasFile("disbursement_file")){
+                    $file=$request->file("disbursement_file");
+                    
+                    $file_document = "desembolso_".$customer->document_number.".".$file->guessExtension();
+                    $ruta = public_path("archivos/desembolsos/".$file_document);
+                    copy($file, $ruta);
+                } 
+                 
+                $disbursements = Disbursetment::where('id_customer', $customer->id)->whereNull('ind_done')->get();
+                foreach ($disbursements as $key => $disbursement) {
+                    
+                    $disbursement->disbursetment_file = $file_document;
+                    $disbursement->ind_done = 1;
+                    $disbursement->date_disbursement = date('Y-m-d');
+                    $disbursement->update();
+
+                }
+            }
+
+        }, 3); 
+        
+            return Util::setResponseJson(201, 'Se ha cargado el archivo de desembolso correctamente.');
 
     }
 

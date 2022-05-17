@@ -372,7 +372,7 @@ const actualizarInversion = () =>{
         form_data.append('amount', monto_inversion);
         form_data.append('consignment_file', archivo_consignacion);
         form_data.append('document_number', numero_documento);        
-        form_data.append('updated_by', 1);
+        form_data.append('updated_by', $('#user_id').val().trim());
         form_data.append('status', 1);
         
         let url = document.location.origin + `/api/v1/investment/update/${id_inversion}`;
@@ -414,6 +414,7 @@ const continuarActualizarInversion = (response) =>{
     $('#btn_editar_inversion').prop('disabled', false);
     $('#btn_editar_inversion').removeClass('placeholder'); 
     setResponseMessage(response);
+    console.log(response)
 }
 
 const validarActualizarInversion = ()=>{

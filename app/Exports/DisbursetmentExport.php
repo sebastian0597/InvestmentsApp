@@ -21,7 +21,8 @@ class DisbursetmentExport implements FromCollection,WithStyles,WithHeadings,With
             $this->extracts = $extracts;
     }
     public function collection()
-    {
+    {   
+       
         return $this->extracts;
     }
 
