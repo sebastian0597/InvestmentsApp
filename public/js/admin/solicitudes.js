@@ -197,3 +197,4 @@ const continuarRenderizarSolicitudes = (response) =>{
     $('#span_cantidad').append(cantidad_solicitudes)
     $('#ultimas_solicitudes').append(html)
 }
+

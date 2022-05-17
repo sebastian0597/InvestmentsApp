@@ -27,7 +27,9 @@
                 <script>
                     window.onload = function () {
                         renderizarSolicitudes()
+                        validarInicioSesionPrimeraVez()
                     }
+
                 </script>
 
                 <li class="onhover-dropdown">
@@ -46,11 +48,13 @@
                     </div>
                 </li>
                 <li class="profile-nav onhover-dropdown p-0 me-0">
+                   
                     <div class="media profile-media"><img class="b-r-10"
                             src="{{ asset('images/profile.jpg') }}" alt="">
                         <div class="media-body"><span>{{auth()->user()->name}}</span>
+                            <input type="hidden" id="ind_inicio_sesion" value="{{auth()->user()->ind_first_login}}">
                           <div style="display: flex; align-items: center;">
-                            <span class="mb-0 font-roboto">Admin </span>
+                            <!--<span class="mb-0 font-roboto">Admin </span>-->
                             <span class="material-icons-outlined">expand_more</span>
                           </div>
                         </div>

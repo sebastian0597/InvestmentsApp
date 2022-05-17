@@ -11,15 +11,11 @@ use App\Http\Controllers\Api\LoginController;
 
 use App\Http\Middleware\AdminMiddleware;
 
-Route::get('login', function () {
-    return view('login');
-})->name('login');
+Route::get('login', function () { return view('login'); })->name('login')->withoutMiddleware('admin');
 
-Route::post('login_validate', [LoginController::class, 'login']);
+Route::post('login_validate', [LoginController::class, 'login'])->withoutMiddleware('admin');
 
-Route::get('reestablecer_contrasena', function () {
-    return view('reestablecer_contrasena');
-})->name('reestablecer_contrasena');
+Route::get('reestablecer_contrasena', function () { return view('reestablecer_contrasena'); })->name('reestablecer_contrasena')->withoutMiddleware('admin');
 
 Route::get('logout', [LoginController::class, 'logout']);
 

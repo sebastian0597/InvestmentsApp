@@ -126,8 +126,8 @@ class LoginController extends Controller
                     auth()->loginUsingId($user->id);
                     
                     $token = $user->createToken('myapptoken')->plainTextToken;
-                    //return redirect()->intended(route('clientes'));
-                    return Util::setResponseJson(200, auth()->user() , $token);
+                    return redirect()->intended(route('clientes'));
+                    //return Util::setResponseJson(200, auth()->user() , $token);
 
                 }
    

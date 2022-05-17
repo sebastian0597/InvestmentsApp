@@ -53,7 +53,7 @@
     <script src="{{ asset('js/admin/support-ticket-custom.js') }}" defer></script>
     <script src="{{ asset('js/admin/tooltip-init.js') }}" defer></script>
     <script src="{{ asset('js/admin/script.js') }}" defer></script>
-    <script src="{{ asset('js/util.js') }}" defer></script> 
+
     <script src="{{ asset('js/ajax.js') }}" defer></script> 
     <script src="{{ asset('js/sweetalert2@11.js') }}"></script>
     <script src="{{ asset('js/admin/datatable/datatables/jquery.tablesorter.min.js') }}" defer></script>
@@ -66,6 +66,7 @@
     <script src="{{ asset('js/jquery-ui.min.js') }}" defer></script>
     <script src="{{ asset('js/strength.js') }}" defer></script>
 
+    <script src="{{ asset('js/util.js') }}" defer></script> 
     <script src="{{ asset('js/admin/clientes.js') }}" defer></script>  
     <script src="{{ asset('js/admin/admins.js') }}" defer></script>  
     <script src="{{ asset('js/admin/extractos.js') }}" defer></script>  
@@ -73,6 +74,8 @@
     <script src="{{ asset('js/admin/inversiones.js') }}" defer></script>
     <script src="{{ asset('js/admin/desembolsos.js') }}" defer></script>
     <script src="{{ asset('js/admin/kpis.js') }}" defer></script>
+    
+
     
 </body>
 

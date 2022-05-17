@@ -102,7 +102,7 @@ const setResponseMessage = (response, url_redireccionamiento = '') => {
         case 200:
         case 201:
         case 202:
-            console.log(response)
+            
             Swal.fire({
                 icon: 'success',
                 confirmButtonColor: '#6610f2',
@@ -191,6 +191,33 @@ const ocultarContrasena = (element) =>{
     $('#'+element.id).prop('type', 'password');
 }
 
+
+const validarInicioSesionPrimeraVez = () =>{
+    
+    if(parseInt($('#ind_inicio_sesion').val()) == 1 && location.pathname != "/cambiar_contrasena"){
+
+        Swal.fire({ 
+            icon: 'warning', 
+            title: 'Cambio de contraseña',
+            text: "Antes de continuar, debe cambiar la contraseña.",  
+            showDenyButton: false, 
+            showCancelButton: false,  
+            confirmButtonColor: '#6610f2',
+            confirmButtonText: 'Aceptar',
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+          }).then((result) => {  
+              /* Read more about isConfirmed, isDenied below */  
+              if (result.isConfirmed) {    
+                    location.href = document.location.origin + '/cambiar_contrasena';
+              } /*else if (result.isDenied) {    
+                  Swal.fire('Changes are not saved', '', 'info')  
+               }*/
+          });
+   
+
+    }
+}
 
 /*function process(element) {
 

@@ -16,10 +16,13 @@ const login = () =>{
 
 const continuarLogin = (response) =>{
 
-    console.log(response)
-    setResponseMessage(response, '/');
+    if(response.status != undefined){
+        setResponseMessage(response);
+    }else{
 
-  
+        window.location.href = window.location.origin+'/clientes';
+    }
+   
 }
 
 const validarLogin = () =>{
