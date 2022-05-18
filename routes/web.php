@@ -44,39 +44,4 @@ Route::middleware(['admin'])->group(function(){
 
 });
 
-/*Route::group(['middleware' => ['admin']], function () {
-
-    Route::get('crear_cliente', [CustomerController::class, 'create'] )->name('crear_cliente');
-    Route::get('editar_cliente/{id_cliente}', [CustomerController::class, 'edit'] )->name('editar_cliente');
-    Route::get('clientes', [CustomerController::class, 'index'] )->name('clientes');
-    Route::get('/', [CustomerController::class, 'index'] )->name('inicio');
-    Route::get('extractos', [ExtractController::class, 'index'] )->name('extractos');
-    Route::get('solicitudes',  [RequestController::class, 'index'] )->name('solicitudes');
-    Route::get('crear_administrador',  [AdminController::class, 'index'] )->name('crear_administrador');
-    Route::get('inversiones',  [InvestmentController::class, 'index'] )->name('inversiones');
-    Route::get('crear_inversion/{id_cliente}',  [InvestmentController::class, 'create'] )->name('crear_inversion');
-    Route::get('editar_inversion/{id_inversion}',  [InvestmentController::class, 'edit'] )->name('editar_inversion');
-  
-    
-    Route::get('kpis', function () { return view('Admins.kpis'); })->name('kpis');
-    Route::get('desembolsos', [DisbursementController::class, 'index'])->name('desembolsos');
-    Route::get('editar_desembolso/{id_desembolso}',  [DisbursementController::class, 'edit'] )->name('editar_desembolso');
-    
-    Route::get('cambiar_contrasena', function () { return view('Admins.cambiar_contrasena'); })->name('cambiar_contrasena');
-    
-});*/
-
-//Route::get('clientes', [CustomerController::class, 'index'])->name('clientes');
-
-/*Route::middleware(['admin'])->group(function (){
-    Route::get('crear_cliente', [CustomerController::class, 'create'])->name('crear_cliente');
-    //Route::get('clientes', [CustomerController::class, 'index'])->name('clientes');
-    Route::get('/', [CustomerController::class, 'index'])->name('inicio');
-    Route::get('extractos', [ExtractController::class, 'index'] )->name('extractos');
-});*/
-/*Route::get('/currency', function (){
-    $currencies = Currency::all();
-    return view('Administradores/index', compact('currencies')); 
- 
-});*/
 

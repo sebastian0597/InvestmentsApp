@@ -55,7 +55,7 @@
                             <input type="hidden" id="ind_inicio_sesion" value="{{auth()->user()->ind_first_login}}">
                             <input type="hidden" id="user_id" value="{{auth()->user()->id}}">
                           <div style="display: flex; align-items: center;">
-                            <!--<span class="mb-0 font-roboto">Admin </span>-->
+                            <span class="mb-0 font-roboto">Administrador</span>
                             <span class="material-icons-outlined">expand_more</span>
                           </div>
                         </div>

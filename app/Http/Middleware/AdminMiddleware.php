@@ -13,7 +13,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next)
     {   
       
-        if (Auth::User()) {
+        if (Auth::User() && Auth::User()->id_rol <> 2) {
            
             return $next($request);
 
