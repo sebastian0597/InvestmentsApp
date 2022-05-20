@@ -10,11 +10,14 @@ use App\Http\Controllers\FrontEnd\DisbursementController;
 use App\Http\Controllers\Api\LoginController;
 
 
-Route::get('login', function () { return view('login'); })->name('login')->withoutMiddleware('admin');
 
-Route::post('login_validate', [LoginController::class, 'login'])->withoutMiddleware('admin');
+Route::withoutMiddleware(['admin'])->group(function(){
+    
+    Route::get('login', function () { return view('login'); })->name('login');
+    Route::post('login_validate', [LoginController::class, 'login']);
+    Route::get('reestablecer_contrasena', function () { return view('reestablecer_contrasena'); })->name('reestablecer_contrasena');
 
-Route::get('reestablecer_contrasena', function () { return view('reestablecer_contrasena'); })->name('reestablecer_contrasena')->withoutMiddleware('admin');
+});
 
 
 Route::middleware(['admin'])->group(function(){
