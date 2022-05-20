@@ -15,9 +15,9 @@
             
             <li class="sidebar-list"><a class="sidebar-link sidebar-title " href="{{url('cliente/perfil')}}"><i data-feather="user"></i><span>PERFIL</span></a>
             </li>
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title " href="cliente-inversiones.html"><i data-feather="check-square"></i><span>MÓDULO INVERSIÓN</span></a>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title " href="{{url('cliente/inversiones')}}"><i data-feather="check-square"></i><span>MÓDULO INVERSIÓN</span></a>
             </li>
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title " href="cliente-documentos.html"><i data-feather="check-square"></i><span>MÓDULO DOCUMENTOS</span></a>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title " href="{{url('cliente/documentos')}}"><i data-feather="check-square"></i><span>MÓDULO DOCUMENTOS</span></a>
             </li>
             <li class="sidebar-list"><a class="sidebar-link sidebar-title " href="{{url('cliente/extractos')}}"><i data-feather="briefcase"></i><span>MÓDULO EXTRACTOS</span></a>
             </li>

@@ -43,7 +43,13 @@ Route::middleware(['admin'])->group(function(){
 
 });
 
-Route::get('cliente/desembolsos', function () { return view('clientes.desembolsos'); });
-Route::get('cliente/extractos', function () { return view('clientes.extractos'); });
-Route::get('cliente/perfil', function () { return view('clientes.perfil'); });
+Route::middleware(['customer'])->group(function(){
+    
+    Route::get('cliente/desembolsos', function () { return view('clientes.desembolsos'); });
+    Route::get('cliente/extractos', function () { return view('clientes.extractos'); });
+    Route::get('cliente/perfil', function () { return view('clientes.perfil'); });
+    Route::get('cliente/inversiones', function () { return view('clientes.inversiones'); });
+    Route::get('cliente/documentos', function () { return view('clientes.documentos'); });
+
+});
 
