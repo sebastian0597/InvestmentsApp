@@ -75,7 +75,9 @@
     <script src="{{ asset('js/admin/desembolsos.js') }}" defer></script>
     <script src="{{ asset('js/admin/kpis.js') }}" defer></script>
     
-
+    <div>
+        @yield('scripts')
+    </div>
     
 </body>
 

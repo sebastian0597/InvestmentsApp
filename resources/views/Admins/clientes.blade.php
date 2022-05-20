@@ -1,4 +1,4 @@
-@extends('Admins.layout')
+@extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
     <!-- loader starts-->
@@ -36,8 +36,7 @@
                             </div>
                             <div class="col-6">
                                 <ol class="breadcrumb">
-                                        @include('Admins/componentes/enlance_navegacion')
-                                        
+                                    @include('Admins/componentes/enlance_navegacion') 
                                     <li class="breadcrumb-item active">Clientes</li>
                                 </ol>
                             </div>

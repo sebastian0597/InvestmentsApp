@@ -1,4 +1,4 @@
-@extends('Admins.layout')
+@extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
 

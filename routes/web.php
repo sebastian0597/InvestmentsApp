@@ -17,7 +17,6 @@ Route::post('login_validate', [LoginController::class, 'login'])->withoutMiddlew
 
 Route::get('reestablecer_contrasena', function () { return view('reestablecer_contrasena'); })->name('reestablecer_contrasena')->withoutMiddleware('admin');
 
-Route::get('logout', [LoginController::class, 'logout']);
 
 Route::middleware(['admin'])->group(function(){
 
@@ -32,8 +31,7 @@ Route::middleware(['admin'])->group(function(){
     Route::get('inversiones',  [InvestmentController::class, 'index'] )->name('inversiones');
     Route::get('crear_inversion/{id_cliente}',  [InvestmentController::class, 'create'] )->name('crear_inversion');
     Route::get('editar_inversion/{id_inversion}',  [InvestmentController::class, 'edit'] )->name('editar_inversion');
-  
-    
+
     Route::get('kpis', function () { return view('Admins.kpis'); })->name('kpis');
     Route::get('desembolsos', [DisbursementController::class, 'index'])->name('desembolsos');
     Route::get('editar_desembolso/{id_desembolso}',  [DisbursementController::class, 'edit'] )->name('editar_desembolso');
@@ -41,7 +39,11 @@ Route::middleware(['admin'])->group(function(){
     Route::get('cambiar_contrasena', function () { return view('Admins.cambiar_contrasena'); })->name('cambiar_contrasena');
 
     Route::get('extractos_pdfs/{id_customer}', [ExtractController::class, 'pdfExtract'] )->name('extractos_pdfs');
+    Route::get('logout', [LoginController::class, 'logout']);
 
 });
 
+Route::get('cliente/desembolsos', function () { return view('clientes.desembolsos'); });
+Route::get('cliente/extractos', function () { return view('clientes.extractos'); });
+Route::get('cliente/perfil', function () { return view('clientes.perfil'); });
 

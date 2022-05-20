@@ -1,4 +1,4 @@
-@extends('Admins.layout')
+@extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
     <!-- loader starts-->
@@ -156,7 +156,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Container-fluid Ends-->
+          
         </div>
 
     </div>
