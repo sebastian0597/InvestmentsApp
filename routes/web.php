@@ -42,7 +42,7 @@ Route::middleware(['admin'])->group(function(){
 
 });
 
-Route::middleware(['customer'])->group(function(){
+Route::withoutMiddleware(['admin'])->group(function(){
     
     Route::get('cliente/desembolsos', function () { return view('clientes.desembolsos'); });
     Route::get('cliente/extractos', function () { return view('clientes.extractos'); });

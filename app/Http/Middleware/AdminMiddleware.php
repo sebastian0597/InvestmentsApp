@@ -13,16 +13,16 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next)
     {   
       
-        if (Auth::User() && Auth::User()->id_rol <> 2) {
+        if (auth()->check()) {
             
-           // return redirect()->route('clientes');
-
-            return $next($request);
-
-        }else {
+          
+            if(Auth::User()->id_rol <> 2){
+                return $next($request);
+            }
             
-            return redirect()->route('login');
         }
+
+        return redirect()->route('login');
 
        
     
