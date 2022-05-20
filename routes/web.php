@@ -9,8 +9,6 @@ use App\Http\Controllers\FrontEnd\InvestmentController;
 use App\Http\Controllers\FrontEnd\DisbursementController;
 use App\Http\Controllers\Api\LoginController;
 
-
-
 Route::withoutMiddleware(['admin'])->group(function(){
     
     Route::get('login', function () { return view('login'); })->name('login');
