@@ -23,7 +23,7 @@
             </li>
              <li class="sidebar-list"><a class="sidebar-link sidebar-title cambio " href="{{url('cliente/desembolsos')}}"><i data-feather="dollar-sign"></i><span>MÓDULO DESEMBOLSOS</span></a>
             </li>
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title " href="cliente-solicitud.html"><i data-feather="bell"></i><span>SOLICITUDES</span></a>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title " href="{{url('cliente/solicitudes')}}"><i data-feather="bell"></i><span>SOLICITUDES</span></a>
             </li>
 
              

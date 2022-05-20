@@ -9,7 +9,6 @@ use App\Http\Controllers\FrontEnd\InvestmentController;
 use App\Http\Controllers\FrontEnd\DisbursementController;
 use App\Http\Controllers\Api\LoginController;
 
-use App\Http\Middleware\AdminMiddleware;
 
 Route::get('login', function () { return view('login'); })->name('login')->withoutMiddleware('admin');
 
@@ -50,6 +49,7 @@ Route::middleware(['customer'])->group(function(){
     Route::get('cliente/perfil', function () { return view('clientes.perfil'); });
     Route::get('cliente/inversiones', function () { return view('clientes.inversiones'); });
     Route::get('cliente/documentos', function () { return view('clientes.documentos'); });
+    Route::get('cliente/solicitudes', function () { return view('clientes.solicitudes'); });
 
 });
 

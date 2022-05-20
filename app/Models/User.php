@@ -29,4 +29,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+   /* public static function roleText()
+{   
+    $texto='';
+    switch ($this->id_rol) {
+        case '1':
+            $texto='Administrador';
+            break;
+        case '2':
+                $texto='Cliente';
+                break;
+        case '3':
+            $texto='Admin';
+            break;
+        default:
+             $texto='Admin';
+            break;
+    }
+
+    return $texto;
+}*/
+
 }

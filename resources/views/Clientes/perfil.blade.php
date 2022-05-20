@@ -126,9 +126,6 @@
                                                 <input class="form-control" placeholder="yselacreyo@gmail.com">
                                             </div>
 
-
-
-
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Dirección</label>
