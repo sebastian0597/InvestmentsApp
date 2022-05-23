@@ -73,6 +73,11 @@ class ExtractController extends Controller
         return /*new ExtractCollection(*/Extract::getExtractByCustomer($id_customer);
     }
 
+    public function getByCustomerAndDate($date)
+    {
+        return new ExtractCollection(Extract::getExtractByCustomerAndDate($date, 16));
+    }
+
 
     /**
      * Show the form for editing the specified resource.

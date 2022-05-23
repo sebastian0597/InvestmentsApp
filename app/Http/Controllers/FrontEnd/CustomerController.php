@@ -30,14 +30,14 @@ class CustomerController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware(function ($request, $next) {
 
             $this->user = Auth::user();    
             return $next($request);
         });
-    }
+    }*/
 
     public function create(Request $request){
 
@@ -55,7 +55,6 @@ class CustomerController extends Controller
     public function index(){
         
         $customers = new CustomerCollection(Customer::all());
-       
         $customers = Util::setJSONResponse($customers);
       
         return view('Admins.clientes',compact('customers'));

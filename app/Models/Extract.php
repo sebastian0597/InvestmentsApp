@@ -44,7 +44,21 @@ class Extract extends Model
 
     }
 
+    public static function getExtractByIdCustomer($customer) {
 
+        return Extract::where('id_customer', $customer)->get();
+
+    }
+
+    public static function getExtractByCustomerAndDate($date, $customer) {
+
+        return Extract::where('id_customer', $customer)->where('created_at', 'LIKE', '%'.$date.'%')->get();
+
+    }
+
+    
+
+ 
     public function extractDetail (){
 
         return $this->hasMany(ExtractDetail::class, 'id_extract', 'id');

@@ -135,4 +135,7 @@
             </div>
         </div>
     </div>
+    @section('scripts')
+        <script src="{{ asset('js/admin/extractos.js') }}" defer></script>  
+    @stop
 @stop

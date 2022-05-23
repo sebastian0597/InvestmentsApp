@@ -33,6 +33,12 @@ class Disbursetment extends Model
         
     }
 
+    public static function getDisbursementByIdCustomer($customer_id){
+      
+        return Disbursetment::where('id_customer', $customer_id)->get();
+        
+    }
+
 
     public static function getDisbursementsByParams($param){
 

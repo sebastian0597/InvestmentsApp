@@ -10,7 +10,7 @@ use Illuminate\Auth\AuthenticationException;
 class AdminMiddleware
 {
  
-    /*public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {   
       
         if (auth()->check()) {
@@ -24,9 +24,9 @@ class AdminMiddleware
 
         return redirect()->route('login');
 
-    }*/
+    }
 
-    public function handle($request, Closure $next, ...$roles)
+    /*public function handle($request, Closure $next, ...$roles)
     {   
 
         return $roles;
@@ -49,7 +49,7 @@ class AdminMiddleware
 
         return redirect('login');
 
-    }
+    }*/
 
 
 }

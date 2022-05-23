@@ -66,24 +66,26 @@
                                         <table class="table card-table table-vcenter text-nowrap">
                                             <thead>
                                                 <tr>
-                                                    <th>Tipo de Cliente</th>
+                                                    <th>Tipo cliente</th>
                                                     <th>Fecha desembolso</th>
-                                                    <th>Valor Desembolso</th>
-                                                    <th>Tipo de Desembolso</th>
+                                                    <th>Valor desembolso</th>
+                                                    <th>Tipo desembolso</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-
+                                                @foreach ($disbursetments as $item)
                                                 <tr>
-                                                    <td><a class="text-inherit">Vip </a></td>
-                                                    <td>20/04/2022</td>
-                                                    <td><span class="status-icon bg-success"></span> $1.000.000</td>
-                                                    <td>Desembolso Mensual</td>
+                                                    <td><a class="text-inherit">{{$item['customer']['customer_type']}}</a></td>
+                                                    <td>{{$item['date_disbursement']}}</td>
+                                                    <td><span class="status-icon bg-success"></span>${{$item['value_consign']}}</td>
+                                                    <td>{{$item['disbursement_type']}}</td>
                                                     <td class="text-end">
 
                                                     </td>
-                                                </tr>
+                                                </tr>   
+                                                @endforeach
+                                               
 
                                             </tbody>
                                         </table>

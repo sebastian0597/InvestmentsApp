@@ -48,3 +48,6 @@ Route::apiResource('v1/kpi', KpiController::class)->only(['show']);
 Route::post('login', [LoginController::class, 'login']);
 Route::post('reset_password', [LoginController::class, 'resetPassword']);
 Route::post('change_password', [LoginController::class, 'changePassword']);
+
+//CUSTOMER
+Route::get('v1/customer/extracts_by_customer/{date}', [ExtractController::class, 'getByCustomerAndDate']);
