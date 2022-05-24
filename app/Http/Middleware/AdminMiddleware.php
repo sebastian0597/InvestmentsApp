@@ -15,10 +15,13 @@ class AdminMiddleware
       
         if (auth()->check()) {
             
-          
-            if(Auth::User()->id_rol <> 2){
+            if (Auth::User()->id_rol == 1) {
                 return $next($request);
             }
+
+            /*if(Auth::User()->id_rol <> 2){
+                return $next($request);
+            }*/
             
         }
 

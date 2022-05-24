@@ -11,7 +11,7 @@
       </div>
     </form>
     <div class="header-logo-wrapper col-auto p-0">
-      <div class="logo-wrapper"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo.png" alt=""></a></div>
+      <!--<div class="logo-wrapper"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo.png" alt=""></a></div>-->
       <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
     </div>
     <div class="left-header col horizontal-wrapper ps-0">
@@ -24,7 +24,7 @@
       <ul class="nav-menus">
         
      
-        <li class="onhover-dropdown">
+        <!--<li class="onhover-dropdown">
           <div class="notification-box"><i data-feather="bell"> </i><span class="badge rounded-pill badge-secondary">4 </span></div>
           <div class="onhover-show-div notification-dropdown">
             <h6 class="f-18 mb-0 dropdown-title">Notificaciones                             </h6>
@@ -45,15 +45,16 @@
               </a></li>
             </ul>
           </div>
-        </li>
+        </li>-->
         
         <li>
-          <div class="mode"><i class="fa fa-moon-o"></i></div>
+          <div class="mode">
+            <span class="material-icons-outlined">dark_mode</span>
+          </div>
         </li>
-        
-        
+         
         <li class="profile-nav onhover-dropdown p-0 me-0">
-          <div class="media profile-media"><img class="b-r-10" src="../assets/images/profile.jpg" alt="">
+          <div class="media profile-media"><img class="b-r-10" src="{{ asset('images/profile.jpg') }}" alt="">
             <div class="media-body"><span>Nombre del usuario</span>
               <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
 
@@ -61,7 +62,7 @@
           </div>
           <ul class="profile-dropdown onhover-show-div">
               
-            <li><a href="#"><i data-feather="log-in"> </i><span>Cerrar sesión</span></a></li>
+            <li><a href="{{url('logout')}}"><i data-feather="log-in"> </i><span>Cerrar sesión</span></a></li>
           </ul>
         </li>
       </ul>

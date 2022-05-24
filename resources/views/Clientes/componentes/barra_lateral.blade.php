@@ -13,17 +13,17 @@
               <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
             </li>
             
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title " href="{{url('cliente/perfil')}}"><i data-feather="user"></i><span>PERFIL</span></a>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title  {{ Request::is('cliente/perfil') ? 'cambio' : '' }}" href="{{url('cliente/perfil')}}"><i data-feather="user"></i><span>PERFIL</span></a>
             </li>
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title " href="{{url('cliente/inversiones')}}"><i data-feather="check-square"></i><span>MÓDULO INVERSIÓN</span></a>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title  {{ Request::is('cliente/inversiones') ? 'cambio' : '' }}" href="{{url('cliente/inversiones')}}"><i data-feather="check-square"></i><span>MÓDULO INVERSIÓN</span></a>
             </li>
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title " href="{{url('cliente/documentos')}}"><i data-feather="check-square"></i><span>MÓDULO DOCUMENTOS</span></a>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title  {{ Request::is('cliente/documentos') ? 'cambio' : '' }}" href="{{url('cliente/documentos')}}"><i data-feather="check-square"></i><span>MÓDULO DOCUMENTOS</span></a>
             </li>
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title " href="{{url('cliente/extractos')}}"><i data-feather="briefcase"></i><span>MÓDULO EXTRACTOS</span></a>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title  {{ Request::is('cliente/extractos') ? 'cambio' : '' }}" href="{{url('cliente/extractos')}}"><i data-feather="briefcase"></i><span>MÓDULO EXTRACTOS</span></a>
             </li>
-             <li class="sidebar-list"><a class="sidebar-link sidebar-title cambio " href="{{url('cliente/desembolsos')}}"><i data-feather="dollar-sign"></i><span>MÓDULO DESEMBOLSOS</span></a>
+             <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ Request::is('cliente/desembolsos') ? 'cambio' : '' }}" href="{{url('cliente/desembolsos')}}"><i data-feather="dollar-sign"></i><span>MÓDULO DESEMBOLSOS</span></a>
             </li>
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title " href="{{url('cliente/solicitudes')}}"><i data-feather="bell"></i><span>SOLICITUDES</span></a>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title  {{ Request::is('cliente/solicitudes') ? 'cambio' : '' }}" href="{{url('cliente/solicitudes')}}"><i data-feather="bell"></i><span>SOLICITUDES</span></a>
             </li>
 
              
