@@ -13,7 +13,7 @@ use App\Http\Controllers\FrontEnd\Customer\ProfileController;
 use App\Http\Controllers\FrontEnd\Customer\InvestmentController AS InvestmentCustomerController;
 use App\Http\Controllers\FrontEnd\Customer\DisbursetmentController AS DisbursetmentCustomerController;
 use App\Http\Controllers\FrontEnd\Customer\ExtractController AS ExtractCustomerController;
-
+use App\Http\Controllers\FrontEnd\Customer\RequestCustomerController;
 
 use App\Http\Controllers\Api\LoginController;
 
@@ -59,10 +59,11 @@ Route::withoutMiddleware(['admin'])->group(function(){
     Route::get('cliente/inversiones', [InvestmentCustomerController::class, 'index'])->name('clientes.inversiones');
     Route::get('cliente/desembolsos', [DisbursetmentCustomerController::class, 'index'])->name('clientes.desembolsos');
     Route::get('cliente/extractos', [ExtractCustomerController::class, 'index'])->name('clientes.extractos');
+    Route::get('cliente/solicitudes', [RequestCustomerController::class, 'index'])->name('clientes.solicitudes');
     
     
     Route::get('cliente/documentos', function () { return view('clientes.documentos'); });
-    Route::get('cliente/solicitudes', function () { return view('clientes.solicitudes'); });
+    //Route::get('cliente/solicitudes', function () { return view('clientes.solicitudes'); });
 
 });
 
