@@ -21,6 +21,7 @@
     <link href="{{ asset('css/admin/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/responsive.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/admin.css') }}" rel="stylesheet">   
+    <link href="{{ asset('css/cliente/cliente.css') }}" rel="stylesheet">   
     <link href="{{ asset('css/admin/tables.css') }}" rel="stylesheet">    
     <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery-ui.structure.css') }}" rel="stylesheet">   
