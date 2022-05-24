@@ -168,30 +168,27 @@
 
                                             <div class="col-md-5">
                                                 <div class="mb-3">
-                                                    <label class="form-label">Tipo de Solicitud</label>
-                                                    <select class="form-control btn-square">
-                                                        <option value="0">--Select--</option>
-                                                        <option value="1">Quejas y reclamos</option>
-                                                        <option value="2">Inversiones</option>
-                                                        <option value="3">Reinversiones</option>
-                                                        <option value="4">Retiro Capital Parcial </option>
-                                                        <option value="5">Retiro Capital Total </option>
-                                                        <option value="6">Preguntas </option>
-                                                        <option value="7">Otra </option>
+                                                    <label class="form-label">Tipo de solicitud</label>
+                                                    <select id="tipo_solicitud" class="form-control">
+                                                      <option value="">Seleccione--</option>
+                                                      @foreach ($requests_types as $item)
+                                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                                      @endforeach
+                                                       
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div>
                                                     <label class="form-label">Descripción:</label>
-                                                    <textarea maxlength="250" class="form-control" rows="3" placeholder="Describe tu solicitud para ayudarte"></textarea>
+                                                    <textarea id="descripcion_solicitud" maxlength="250" class="form-control" rows="3" placeholder="Describe tu solicitud para ayudarte"></textarea>
                                                 </div>
 
                                             </div>
 
                                             <div class="mb-3">
                                                 <br>
-                                                <button class="btn btn-primary" type="submit">Enviar solitud</button>
+                                                <button onclick="registrarSolicitud()" class="btn btn-primary" type="button">Enviar solitud</button>
                                             </div>
                                         </div>
                                     </div>
@@ -216,4 +213,7 @@
             </footer>
         </div>
     </div>
+@section('scripts')
+  <script src="{{ asset('js/cliente/solicitudes.js') }}" defer></script>
+@stop
 @stop

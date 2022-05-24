@@ -59,3 +59,4 @@ const continuarBuscarExtractosPorfecha = (response) =>{
     $('#extractos_container').append(html)
    
 }
+
