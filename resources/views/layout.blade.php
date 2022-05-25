@@ -27,6 +27,7 @@
     <link href="{{ asset('css/jquery-ui.theme.css') }}" rel="stylesheet">   
     <link href="{{ asset('css/date-picker.css') }}" rel="stylesheet">
     <link href="{{ asset('css/strength.css') }}" rel="stylesheet"> 
+    <link href="{{ asset('css/scrollable.css') }}" rel="stylesheet"> 
     <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
 
 </head>
