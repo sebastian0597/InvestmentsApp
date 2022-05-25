@@ -37,7 +37,9 @@
                 </div>
                 <div class="col-6">
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">                                       <i data-feather="home"></i></a></li>
+                    @include(
+                      'Clientes/componentes/enlance_navegacion'
+                   )
                     <li class="breadcrumb-item">Usuario</li>
                     <li class="breadcrumb-item active"> Inversiones</li>
                   </ol>
@@ -68,25 +70,25 @@
                           </tr>
                         </thead>
                         <tbody>
-                 
-                           <tr>
-                            <td><a class="text-inherit" >Vip </a></td>
-                            <td>08897</td>
-                            <td><span class="status-icon bg-success"></span> 20/04/2022</td>
-                            <td>$15.000.000,00</td>
-                            <td class="text-end">
-                              <a class="icon" href="javascript:void(0)"></a>
-                              <a class="btn btn-primary btn-sm" href="javascript:void(0)">
-                                <i class="fa fa-download"></i> Descargar Pagaré </a>
+                            @foreach ($investments as $item)
+                            <tr>
+                              <td><a class="text-inherit" >{{$item['customer']['customer_type']}}</a></td>
+                              <td>P-{{$item['id']}}</td>
+                              <td><span class="status-icon bg-success"></span>{{$item['investment_date']}}</td>
+                              <td>${{$item['base_amount']}}</td>
+                              <td class="text-end">
                                 <a class="icon" href="javascript:void(0)"></a>
-                                
-                                 
-                                  <a class="btn btn-success btn-sm" href="javascript:void(0)">
-                                    <i class="fa fa-upload"></i>  Subir archivo </a>
-                            </td>
-                          </tr>
-
-                          
+                                <a class="btn btn-primary btn-sm" href="javascript:void(0)">
+                                  <i class="fa fa-download"></i> Descargar Pagaré </a>
+                                  <a class="icon" href="javascript:void(0)"></a>
+                                  
+                                    <a class="btn btn-success btn-sm" href="javascript:void(0)">
+                                      <i class="fa fa-upload"></i>  Subir archivo </a>
+                              </td>
+                            </tr>
+   
+                            @endforeach
+                                                    
                         </tbody>
                       </table>
                     </div>

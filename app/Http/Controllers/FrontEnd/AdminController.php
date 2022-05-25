@@ -16,6 +16,13 @@ use App\Utils\Util;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {   
+    
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+    
     public function index(){
         $roles = Rol::where('status',1)->where('ind_admin_rol',1)->get();
         return view('Admins.perfil_administrador', compact('roles'));

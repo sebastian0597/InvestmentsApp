@@ -25,6 +25,7 @@ class InvestmentResource extends JsonResource
             'customer' => [
                 'name' => $this->customer->name,
                 'lastname' => $this->customer->last_name,
+                'customer_type' => $this->customer->customerType->name,
             ],
             'id_payment_method' => $this->id_payment_method,
             'payment_method' => $this->paymentMethod->name,

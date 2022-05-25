@@ -33,6 +33,7 @@ class DisbursementResource extends JsonResource
             'customer' => [
                 'fullname' => $this->customer->name.' '.$this->customer->last_name,
                 'document_number' => $this->customer->document_number,
+                'customer_type' => $this->customer->customerType->name,
             ],
             'status' => $this->done,
 

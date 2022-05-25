@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
     <title>@yield('title')</title>
 
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap"
@@ -21,6 +22,7 @@
     <link href="{{ asset('css/admin/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/responsive.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/admin.css') }}" rel="stylesheet">   
+    <link href="{{ asset('css/cliente/cliente.css') }}" rel="stylesheet">   
     <link href="{{ asset('css/admin/tables.css') }}" rel="stylesheet">    
     <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery-ui.structure.css') }}" rel="stylesheet">   
@@ -71,7 +73,6 @@
     <script src="{{ asset('js/admin/clientes.js') }}" defer></script>  
     <script src="{{ asset('js/admin/admins.js') }}" defer></script>  
     <script src="{{ asset('js/admin/extractos.js') }}" defer></script>  
-    <script src="{{ asset('js/admin/solicitudes.js') }}" defer></script>
     <script src="{{ asset('js/admin/inversiones.js') }}" defer></script>
     <script src="{{ asset('js/admin/desembolsos.js') }}" defer></script>
     <script src="{{ asset('js/admin/kpis.js') }}" defer></script>

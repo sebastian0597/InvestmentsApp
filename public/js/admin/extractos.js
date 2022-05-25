@@ -56,7 +56,7 @@ const continuarBuscarClientePorParametros = (response) => {
 
         html =
             ` 
-            <div style='margin-top:20px; margin-bottom:20px;    '>
+            <div style='margin-top:20px; margin-bottom:20px; '>
                 <h5>Datos del cliente</h5>
                 
                 <div class='row'>

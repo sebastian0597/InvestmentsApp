@@ -42,6 +42,12 @@ class Investment extends Model
 
     }
 
+    public static function getAllInvestmentsByIdCustomer($id_customer){
+
+        return Investment::where('id_customer',$id_customer)->get();
+
+    }
+
     public static function getInvestmentsByParam($param){
 
         //return Investment::where('status', '1')->where('id',$param)->orWhere()->get();

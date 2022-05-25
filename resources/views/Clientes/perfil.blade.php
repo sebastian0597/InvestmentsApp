@@ -40,7 +40,9 @@
                             </div>
                             <div class="col-6">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html"> <i data-feather="home"></i></a></li>
+                                    @include(
+                                        'Clientes/componentes/enlance_navegacion'
+                                    )
                                     <li class="breadcrumb-item">Usuario</li>
                                     <li class="breadcrumb-item active"> Ver perfil</li>
                                 </ol>
@@ -63,45 +65,40 @@
                                                             src="../assets/images/profile.jpg">
                                                         <div class="media-body">
                                                             <!-- nombre del usuario-->
-                                                            <h5 class="mb-1">JUAN SEBASTIAN CORREA DELGADO</h5>
+                                                            <h5 class="mb-1">{{mb_strtoupper($customer['name'].' '.$customer['last_name'])}}</h5>
                                                             <!-- Estado-->
-                                                            <b>
-                                                                <p>CLIENTE VIP</p>
-                                                            </b>
+                                                            <b><p>{{mb_strtoupper($customer['customer_type'])}}</p></b>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            
                                             <div class="mb-3">
                                                 <label class="form-label">Tipo de documento</label>
-                                                <input class="form-control" placeholder="Cedula de ciudadania">
+                                                <input disabled class="form-control" placeholder="{{$customer['document_type']}}">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">N° Identificacion</label>
-                                                <input class="form-control" placeholder="1100970966">
+                                                <input disabled class="form-control" placeholder="{{$customer['document_number']}}">
                                             </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">lugar de expedición</label>
-                                                <input class="form-control" placeholder="San Gil">
-                                            </div>
-
+                                            
                                             <h5>Cuenta bancaria desembolso</h5>
                                             <div class="mb-3">
-                                                <label class="form-label">Cuenta bancaria personal: </label>
-                                                <input class="form-control" placeholder="Bancolombia">
+                                                <label class="form-label">{{$customer['name_bank_account']}}</label>
+                                                <input disabled class="form-control" placeholder="{{$customer['bank_name']}}">
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm-6 col-md-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Tipo de cuenta</label>
-                                                        <input class="form-control" type="text" placeholder="Ahoros">
+                                                        <input disabled class="form-control" type="text" placeholder="{{$customer['account_type']}}">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-md-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">N° de cuenta</label>
-                                                        <input class="form-control" type="text"
-                                                            placeholder="3212445465463">
+                                                        <input disabled class="form-control" type="text"
+                                                            placeholder="{{$customer['account_number']}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -117,43 +114,43 @@
 
                                             <div class="mb-3">
                                                 <label class="form-label">Celular</label>
-                                                <input class="form-control" placeholder="3105672309">
+                                                <input disabled class="form-control" placeholder="{{$customer['phone']}}">
                                             </div>
 
-
+                                            
                                             <div class="mb-3">
                                                 <label class="form-label">Correo</label>
-                                                <input class="form-control" placeholder="yselacreyo@gmail.com">
+                                                <input disabled class="form-control" placeholder="{{$customer['email']}}">
                                             </div>
 
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Dirección</label>
-                                                    <input class="form-control" placeholder="cra 9 # 0 - 0">
+                                                    <input disabled class="form-control" placeholder="{{$customer['address']}}">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Ciudad</label>
-                                                    <input class="form-control" placeholder="San Gil">
+                                                    <input disabled class="form-control" placeholder="{{$customer['city']}}">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Departamento</label>
-                                                    <input class="form-control" placeholder="Santander">
+                                                    <input disabled class="form-control" placeholder="{{$customer['department']}}">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Pais</label>
-                                                    <input class="form-control" placeholder="Colombia">
+                                                    <input disabled class="form-control" placeholder="{{$customer['country']}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="mb-3">
                                                     <label class="form-label">Actividad económica</label>
-                                                    <input class="form-control" placeholder="Independiente">
+                                                    <input disabled class="form-control" placeholder="{{$customer['economic_activity']}}">
                                                 </div>
                                             </div>
 
@@ -169,7 +166,7 @@
                 <!-- Container-fluid Ends-->
             </div>
             <!-- footer start-->
-
+           
         </div>
     </div>
 @stop
