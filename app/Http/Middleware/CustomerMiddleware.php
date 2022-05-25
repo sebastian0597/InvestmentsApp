@@ -15,7 +15,19 @@ class CustomerMiddleware
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-    {
-        return $next($request);
+    {   
+      
+        if (auth()->check()) {
+            
+            if (auth()->user()->id_rol == 2) {
+                return $next($request);
+            }else{
+                return redirect()->route('clientes');
+            }
+
+        }
+
+        return redirect()->route('cliente/perfil');
+
     }
 }

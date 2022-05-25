@@ -15,14 +15,12 @@ class AdminMiddleware
       
         if (auth()->check()) {
             
-            if (Auth::User()->id_rol == 1) {
+            if (auth()->user()->id_rol == 1) {
                 return $next($request);
+            }else{
+                return redirect()->route('cliente');
             }
 
-            /*if(Auth::User()->id_rol <> 2){
-                return $next($request);
-            }*/
-            
         }
 
         return redirect()->route('login');
