@@ -40,7 +40,6 @@
                     @include(
                       'Clientes/componentes/enlance_navegacion'
                    )
-                    <i data-feather="home"></i></a></li>
                     <li class="breadcrumb-item">Usuario</li>
                     <li class="breadcrumb-item active"> Inversiones</li>
                   </ol>

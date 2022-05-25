@@ -13,9 +13,17 @@ use App\Utils\Util;
 
 class ProfileController extends Controller
 {
+
+    public function __construct()
+    {   
+    
+        $this->middleware('auth');
+        $this->middleware('customer');
+    }
+    
     public function index(){
-       
-        $customer = new CustomerResource(Customer::find(16));
+        $customer = Customer::where('id_user', auth()->user()->id)->first();
+        $customer = new CustomerResource(Customer::find($customer->id));
         $customer = Util::setJSONResponseUniqueData($customer);
         //dd($customer);
         /*$documents_types = DocumentType::getByStatus(1);

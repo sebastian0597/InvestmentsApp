@@ -11,6 +11,14 @@ use App\Http\Resources\V1\RequestCollection;
 
 class RequestController extends Controller
 {
+
+    public function __construct()
+    {   
+    
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+    
     public function index(){
 
         $request = new RequestCollection(CustomerRequest::where('status',1)->get());

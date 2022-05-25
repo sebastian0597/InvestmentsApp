@@ -55,8 +55,10 @@
          
         <li class="profile-nav onhover-dropdown p-0 me-0">
           <div class="media profile-media"><img class="b-r-10" src="{{ asset('images/profile.jpg') }}" alt="">
-            <div class="media-body"><span>Nombre del usuario</span>
-              <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
+            <div class="media-body"><span>{{auth()->user()->name}}</span>
+              <input type="hidden" id="ind_inicio_sesion" value="{{auth()->user()->ind_first_login}}">
+              <input type="hidden" id="user_id" value="{{auth()->user()->id}}">
+              <p class="mb-0 font-roboto">Cliente<i class="middle fa fa-angle-down"></i></p>
 
             </div>
           </div>

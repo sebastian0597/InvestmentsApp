@@ -15,9 +15,17 @@ use App\Utils\Util;
 
 class RequestCustomerController extends Controller
 {
+
+    public function __construct()
+    {   
+    
+        $this->middleware('auth');
+        $this->middleware('customer');
+    }
+    
     public function index(){
-       
-        $requests = new RequestCollection(CustomerRequest::where('id_customer',16)->get());
+        $customer = Customer::where('id_user', auth()->user()->id)->first();
+        $requests = new RequestCollection(CustomerRequest::where('id_customer',$customer->id)->get());
         $requests = Util::setJSONResponseUniqueData($requests);
         $requests_types = RequestType::all();
        // dd($requests_types);

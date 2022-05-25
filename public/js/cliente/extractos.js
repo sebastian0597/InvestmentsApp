@@ -1,18 +1,23 @@
 const buscarExtractosPorfecha = () =>{
-    let fecha = $('#fecha_busqueda').val()
-
-    form_data = {}
-    let url =
-        document.location.origin +
-        `/api/v1/customer/extracts_by_customer/${fecha}`
-    let method = 'GET'
-
-    enviarPeticion(
-        url,
-        method,
-        form_data,
-        'continuarBuscarExtractosPorfecha'
-    )    
+    quitarError('fecha_busqueda')
+    let fecha = $('#fecha_busqueda').val().trim()
+    if(fecha!= ''){
+        form_data = {}
+        let url =
+            document.location.origin +
+            `/api/v1/customer/extracts_by_customer/${fecha}`
+        let method = 'GET'
+    
+        enviarPeticion(
+            url,
+            method,
+            form_data,
+            'continuarBuscarExtractosPorfecha'
+        ) 
+    }else{
+        agregarError('fecha_busqueda')
+    }
+       
 }
 
 const continuarBuscarExtractosPorfecha = (response) =>{

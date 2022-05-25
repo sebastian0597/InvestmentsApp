@@ -44,40 +44,39 @@ Route::withoutMiddleware(['admin', 'customer'])->group(function(){
 
 //Route::middleware('admin:1')->group(function(){
 
-    Route::get('crear_cliente', [CustomerController::class, 'create'] )->name('crear_cliente')->middleware('admin');
-    Route::get('editar_cliente/{id_cliente}', [CustomerController::class, 'edit'] )->name('editar_cliente')->middleware('admin');
-    Route::get('clientes', [CustomerController::class, 'index'] )->name('clientes')->middleware('admin');
-    Route::get('/', [CustomerController::class, 'index'] )->name('inicio')->middleware('admin');
-    Route::get('extractos', [ExtractController::class, 'index'] )->name('extractos')->middleware('admin');
-    Route::get('solicitudes',  [RequestController::class, 'index'] )->name('solicitudes')->middleware('admin');
-    Route::get('crear_administrador',  [AdminController::class, 'index'] )->name('crear_administrador')->middleware('admin');
-    Route::get('editar_administrador/{id_usuario}',  [AdminController::class, 'show'] )->name('editar_administrador')->middleware('admin');
-    Route::get('inversiones',  [InvestmentController::class, 'index'] )->name('inversiones')->middleware('admin');
-    Route::get('crear_inversion/{id_cliente}',  [InvestmentController::class, 'create'] )->name('crear_inversion')->middleware('admin');
-    Route::get('editar_inversion/{id_inversion}',  [InvestmentController::class, 'edit'] )->name('editar_inversion')->middleware('admin');
+    Route::get('crear_cliente', [CustomerController::class, 'create'] )->name('crear_cliente');
+    Route::get('editar_cliente/{id_cliente}', [CustomerController::class, 'edit'] )->name('editar_cliente');
+    Route::get('clientes', [CustomerController::class, 'index'] )->name('clientes');
+    Route::get('/', [CustomerController::class, 'index'] )->name('inicio');
+    Route::get('extractos', [ExtractController::class, 'index'] )->name('extractos');
+    Route::get('solicitudes',  [RequestController::class, 'index'] )->name('solicitudes');
+    Route::get('crear_administrador',  [AdminController::class, 'index'] )->name('crear_administrador');
+    Route::get('editar_administrador/{id_usuario}',  [AdminController::class, 'show'] )->name('editar_administrador');
+    Route::get('inversiones',  [InvestmentController::class, 'index'] )->name('inversiones');
+    Route::get('crear_inversion/{id_cliente}',  [InvestmentController::class, 'create'] )->name('crear_inversion');
+    Route::get('editar_inversion/{id_inversion}',  [InvestmentController::class, 'edit'] )->name('editar_inversion');
 
-    Route::get('kpis', function () { return view('Admins.kpis'); })->name('kpis')->middleware('admin');
-    Route::get('desembolsos', [DisbursementController::class, 'index'])->name('desembolsos')->middleware('admin');
-    Route::get('editar_desembolso/{id_desembolso}',  [DisbursementController::class, 'edit'] )->name('editar_desembolso')->middleware('admin');
+    Route::get('kpis', function () { return view('Admins.kpis'); })->name('kpis');
+    Route::get('desembolsos', [DisbursementController::class, 'index'])->name('desembolsos');
+    Route::get('editar_desembolso/{id_desembolso}',  [DisbursementController::class, 'edit'] )->name('editar_desembolso');
     
-    Route::get('cambiar_contrasena', function () { return view('Admins.cambiar_contrasena'); })->name('cambiar_contrasena')->middleware('admin');
+    Route::get('cambiar_contrasena', function () { return view('Admins.cambiar_contrasena'); })->name('cambiar_contrasena');
 
-    Route::get('extractos_pdfs/{id_customer}', [ExtractController::class, 'pdfExtract'] )->name('extractos_pdfs')->middleware('admin');
-    Route::get('logout', [LoginController::class, 'logout'])->middleware('admin');
+    Route::get('extractos_pdfs/{id_customer}', [ExtractController::class, 'pdfExtract'] )->name('extractos_pdfs');
+    Route::get('logout', [LoginController::class, 'logout']);
 
 //});
 
 
 //Route::withoutMiddleware('admin:1')->group(function(){
     
-    Route::get('cliente/perfil', [ProfileController::class, 'index'])->name('clientes.perfil')->middleware('customer');
-    Route::get('cliente/inversiones', [InvestmentCustomerController::class, 'index'])->name('clientes.inversiones')->middleware('customer');
-    Route::get('cliente/desembolsos', [DisbursetmentCustomerController::class, 'index'])->name('clientes.desembolsos')->middleware('customer');
-    Route::get('cliente/extractos', [ExtractCustomerController::class, 'index'])->name('clientes.extractos')->middleware('customer');
-    Route::get('cliente/solicitudes', [RequestCustomerController::class, 'index'])->name('clientes.solicitudes')->middleware('customer');
+    Route::get('cliente/perfil', [ProfileController::class, 'index'])->name('clientes.perfil');
+    Route::get('cliente/inversiones', [InvestmentCustomerController::class, 'index'])->name('clientes.inversiones');
+    Route::get('cliente/desembolsos', [DisbursetmentCustomerController::class, 'index'])->name('clientes.desembolsos');
+    Route::get('cliente/extractos', [ExtractCustomerController::class, 'index'])->name('clientes.extractos');
+    Route::get('cliente/solicitudes', [RequestCustomerController::class, 'index'])->name('clientes.solicitudes');
     
-    
-    Route::get('cliente/documentos', function () { return view('clientes.documentos'); })->middleware('customer');
+    Route::get('cliente/documentos', function () { return view('clientes.documentos'); });
     //Route::get('cliente/solicitudes', function () { return view('clientes.solicitudes'); });
 
 //});

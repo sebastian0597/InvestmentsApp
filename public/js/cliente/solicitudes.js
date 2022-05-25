@@ -3,7 +3,7 @@ const registrarSolicitud = () =>{
     if(validarFormularioSolicitudes()){
         
         let form_data = new FormData();
-        form_data.append('id_customer', 16);
+        form_data.append('id_customer', $('#user_id').val());
         form_data.append('request_type', $('#tipo_solicitud').val());
         form_data.append('description', $('#descripcion_solicitud').val().trim());
         let url = document.location.origin + '/api/v1/request';

@@ -17,17 +17,12 @@ class CustomerMiddleware
     public function handle(Request $request, Closure $next)
     {   
       
-        if (auth()->check()) {
+        if (auth()->check() /*&& auth()->user()->id_rol == 2*/) {
             
-            if (auth()->user()->id_rol == 2) {
-                return $next($request);
-            }else{
-                return redirect()->route('clientes');
-            }
-
+            return $next($request);
         }
-
-        return redirect()->route('cliente/perfil');
+            //return redirect('clientes');
+       
 
     }
 }

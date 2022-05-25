@@ -21,6 +21,14 @@ use App\Utils\Util;
 
 class InvestmentController extends Controller
 {
+
+    public function __construct()
+    {   
+    
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+    
     public function index(){
 
         $customers = new CustomerCollection(Customer::where('status',1)->get());

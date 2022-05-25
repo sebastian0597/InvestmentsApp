@@ -19,6 +19,15 @@ use App\Utils\Util;
 
 class DisbursementController extends Controller
 {
+
+    public function __construct()
+    {   
+    
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+
+    
     public function index(){
          
         $disbursement_types = DisbursementType::getByStatus(1);
