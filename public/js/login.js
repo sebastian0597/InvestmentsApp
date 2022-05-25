@@ -19,11 +19,12 @@ const login = () =>{
 
 const continuarLogin = (response) =>{
 
-    if(response.status != undefined){
-        setResponseMessage(response);
-    }else{
-
+    if(response.status == 200){
+        
         window.location.href = window.location.origin+'/clientes';
+        
+    }else{
+        setResponseMessage(response);
     }
    
 }
