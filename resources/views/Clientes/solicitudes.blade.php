@@ -205,22 +205,11 @@
                 <!-- Container-fluid Ends-->
             </div>
             <!-- footer start-->
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12 footer-copyright text-center">
-                            <p class="mb-0">Copyright 2022 © </p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+       
         </div>
-<<<<<<< HEAD
-        <!-- footer start-->
-        
+
       </div>
-=======
->>>>>>> c077af47bf018061522d23a00d491676faf13536
+
     </div>
 @section('scripts')
   <script src="{{ asset('js/cliente/solicitudes.js') }}" defer></script>

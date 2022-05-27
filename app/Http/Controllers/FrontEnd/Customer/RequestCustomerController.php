@@ -10,7 +10,7 @@ use App\Http\Resources\V1\RequestCollection;
 
 use App\Models\CustomerRequest;
 use App\Models\RequestType;
-
+use App\Models\Customer;
 use App\Utils\Util;
 
 class RequestCustomerController extends Controller
