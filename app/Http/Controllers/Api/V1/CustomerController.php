@@ -400,5 +400,64 @@ class CustomerController extends Controller
 
     }
 
-  
+    public function chargeCustomerContract(Request $request){
+
+        $contract_response = DB::transaction(function () use($request){
+           
+            $fields = $request->validate([
+                'file' => 'required|file',
+                'id_user' => 'required|numeric',
+            ]); 
+    
+            $customer = Customer::where('id_user',$fields['id_user'])->first();
+            $contrato=NULL;
+    
+            if($request->hasFile("file")){
+                $file=$request->file("file");
+                
+                $contrato = "contrato_".$customer->document_number.".".$file->guessExtension();
+                $ruta = public_path("archivos/contratos/".$contrato);
+                copy($file, $ruta);
+            }   
+
+            $customer->contract_file = $contrato;
+            $customer->update();
+
+            return $contrato;
+        }, 3); 
+
+        return Util::setResponseJson(201, 'Se ha cargado el contrato exitosamente, el documento se guardó con el nombre de '.$contract_response);
+ 
+    }
+
+    public function chargeSARLAFTDocument(Request $request){
+
+        $SARLAFT_response = DB::transaction(function () use($request){
+           
+            $fields = $request->validate([
+                'file' => 'required|file',
+                'id_user' => 'required|numeric',
+            ]); 
+    
+            $customer = Customer::where('id_user',$fields['id_user'])->first();
+            $documento=NULL;
+    
+            if($request->hasFile("file")){
+                $file=$request->file("file");
+                
+                $documento = "SARLAFT_".$customer->document_number.".".$file->guessExtension();
+                $ruta = public_path("archivos/SARLAFT/".$documento);
+                copy($file, $ruta);
+            }   
+             
+            $customer->sarlaft_file = $documento;
+            $customer->update();
+
+            return $documento;
+        }, 3); 
+
+        return Util::setResponseJson(201, 'Se ha cargado el documento SARLAFT exitosamente, el documento se guardó con el nombre de '.$SARLAFT_response);
+ 
+    }
+ 
 }

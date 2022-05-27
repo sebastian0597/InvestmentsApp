@@ -19,6 +19,8 @@ Route::post('v1/customer/update/{param}', [CustomerController::class, 'update'])
 Route::get('v1/get_customers_param/{param}', [CustomerController::class, 'getCustomers']);
 Route::post('v1/get_customers_by_customer_type', [CustomerController::class, 'getCustomersbyCustomerType']);
 Route::post('v1/get_customers_by_customer_premium', [CustomerController::class, 'getCustomersbyCustomerPremium']);
+Route::post('v1/customer/charge_customer_contract', [CustomerController::class, 'chargeCustomerContract']);
+Route::post('v1/customer/charge_sarlaft_document', [CustomerController::class, 'chargeSARLAFTDocument']);
 
 Route::apiResource('v1/investment', InvestmentController::class)->only(['store','index', 'show']);
 Route::post('v1/reinvestment', [InvestmentController::class, 'storeReinvest']);
@@ -51,3 +53,4 @@ Route::post('change_password', [LoginController::class, 'changePassword']);
 
 //CUSTOMER
 Route::get('v1/customer/extracts_by_customer/{date}', [ExtractController::class, 'getByCustomerAndDate']);
+

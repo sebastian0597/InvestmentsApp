@@ -47,55 +47,64 @@
               </div>
             </div>
           </div>
+          <?php 
+            $contract_file =  'archivos/contratos/'.$customer['contract_file']; 
+            $sarlaft_file =  'archivos/SARLAFT/'.$customer['sarlaft_file']; 
+          
+          
+          ?>
           <!-- Container-fluid starts-->
           <div class="container-fluid">
             <div class="edit-profile">
               <div class="row">
                 <div class="col-xl-6">
                   <div class="card">
-                   <!--   <div class="card-header">
-                      <h4 class="card-title mb-0">Mi perfil</h4>
-                      <div class="card-options"><a class="card-options-collapse" href="#" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a class="card-options-remove" href="#" data-bs-toggle="card-remove"><i class="fe fe-x"></i></a></div>
-                    </div> -->
+              
                     <div class="card-body">
                       <b><h5>SARLAFT</h5></b>
                        <div class="mb-3">
-                         <a class="btn btn-primary btn-sm" href="javascript:void(0)">
-                                <i class="fa fa-download"></i> Descargar SARLAFT</a>
+                         @if (!empty($customer['sarlaft_file']) && !is_null($customer['sarlaft_file']))
+                            <a target="_blank" class="btn btn-primary btn-sm" href="{{ asset($sarlaft_file) }}">
+                              <i class="fa fa-download"></i> Descargar SARLAFT</a>
+                         @endif
+                        
                       </div>
                       <hr>
                       <div class="mb-3">
                             
                             <div class="col-sm-9">
-                              <input class="form-control" type="file">
+                              <input class="form-control" id="documento_sarlaft" type="file">
                             </div>
                       </div>
                       <div class="mb-3">
-                         <a class="btn btn-success btn-lg" href="javascript:void(0)">
-                                <i class="fa fa-save"></i> GUARDAR</a>
+                         <button class="btn btn-success btn-lg" onclick="cargarDocumentoSARLAFT();">
+                                <i class="fa fa-save"></i>Cargar</button>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-xl-6">
                   <form class="card">
-                    
+                   
                     <div class="card-body">
-                      <b><h5>SARLAFT</h5></b>
+                      <b><h5>Contrato de inversión</h5></b>
                        <div class="mb-3">
-                         <a class="btn btn-primary btn" href="javascript:void(0)">
-                                <i class="fa fa-download"></i> Descargar SARLAFT</a>
+                        @if (!empty($customer['contract_file']) && !is_null($customer['contract_file']))
+                          <a target="_blank" class="btn btn-primary btn" href="{{ asset($contract_file) }}">
+                          <i class="fa fa-download"></i>Descargar contrato</a>
+                        @endif
+                        
                       </div>
                       <hr>
                       <div class="mb-3">
                             
                             <div class="col-sm-9">
-                              <input class="form-control" type="file">
+                              <input class="form-control" id="contrato_inversion" type="file">
                             </div>
                       </div>
                       <div class="mb-3">
-                         <a class="btn btn-success btn" href="javascript:void(0)">
-                                <i class="fa fa-save"></i> GUARDAR</a>
+                         <button type='button' class="btn btn-success btn" onclick="cargarDocumentoContrato();">
+                                <i class="fa fa-save"></i> Cargar</button>
                       </div>
                     </div>
                     
@@ -120,4 +129,7 @@
         </footer>
       </div>
     </div>
+@section('scripts')
+    <script src="{{ asset('js/cliente/documentos.js') }}" defer></script>
+@stop
 @stop

@@ -50,6 +50,8 @@ class CustomerResource extends JsonResource
             'kinship_third'=> $this->kinship_third,
             'rut_third'=> $this->rut_third,
             'customer_type'=> $this->customerType->name,
+            'contract_file'=> $this->contract_file,
+            'sarlaft_file'=> $this->sarlaft_file,
             'id_economic_activity'=> $this->id_economic_activity,
             'id_bank_account'=> $this->id_bank_account,
             'registered_at' => $this->registered_date,
