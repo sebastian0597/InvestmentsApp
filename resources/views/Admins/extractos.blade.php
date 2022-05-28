@@ -137,5 +137,6 @@
     </div>
     @section('scripts')
         <script src="{{ asset('js/admin/extractos.js') }}" defer></script>  
+        <script src="{{ asset('js/admin/solicitudes.js') }}" defer></script>
     @stop
 @stop

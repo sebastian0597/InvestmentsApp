@@ -5,6 +5,8 @@ namespace App\Http\Controllers\api\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CustomerRequest;
+use App\Models\Customer;
+
 
 use Illuminate\Support\Facades\DB;
 use App\Utils\Util;
@@ -34,10 +36,11 @@ class CustomerRequestController extends Controller
 
             $fecha_local = Util::getCurrentDate();
             
-
+            $customer = Customer::where('id_user', $fields['id_customer'])->first();
+            
             $requestModel = CustomerRequest::create([
 
-                'id_customer' =>   $fields['id_customer'],
+                'id_customer' =>   $customer->id,
                 'request_date' =>  $fecha_local,
                 'request_type' =>  $fields['request_type'],
                 'description' =>   $fields['description'],

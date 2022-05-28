@@ -123,6 +123,7 @@
 
     </div>
     </div>
-
-    </html>
+@section('scripts')
+    <script src="{{ asset('js/admin/solicitudes.js') }}" defer></script>
+@stop
 @stop
