@@ -40,21 +40,7 @@ class CustomerController extends Controller
     {
         $customer = DB::transaction(function () use($request){
 
-                //Se validan que los campos del cliente obligatorios no estén vacíos.
-               /* $fields = $request->validate([
-                    'name' => 'required|string',
-                    'last_name' => 'required|string',
-                    'phone' => 'required|numeric',
-                    'address' => 'required|string',
-                    'city' => 'required|string',
-                    'department' => 'required|string',
-                    'country' => 'required|string',
-                    'document_number' => 'required|numeric|unique:customers',
-                    'file_document' => 'required|file',
-                    'email' => 'required|email|unique:users,email',
-                    'id_rol' => 'required|numeric',
-                    'registered_by' => 'required|numeric',
-                ]);*/
+            
                 $rules = [
                     'name' => 'required|string',
                     'last_name' => 'required|string',
@@ -245,6 +231,15 @@ class CustomerController extends Controller
                     /*'updated_by' => 'required|numeric',*/
                 ]);
 
+                $contract_file=$request->contract_file;
+                if($request->hasFile("contract_file")){
+                    $file=$request->file("contract_file");
+                    
+                    $contract_file = "contrato_".$fields["document_number"].".".$file->guessExtension();
+                    $ruta = public_path("archivos/contratos/".$contract_file);
+                    copy($file, $ruta);
+                }
+                
 
                 $file_document=$fields['file_document'];
                 if($request->hasFile("file_document")){
@@ -335,7 +330,7 @@ class CustomerController extends Controller
                 $customer->work_certificate=$request->work_certificate;
                 $customer->pension_fund=$request->pension_fund;
                 $customer->especification_other=$request->especification_other;
-                /*$customer->status=$request->status;*/
+                $customer->contract_file=$contract_file;
                 $customer->account_number=$request->account_number;
                 $customer->account_type=$request->account_type;
                 $customer->bank_name=$request->bank_name;
@@ -400,5 +395,64 @@ class CustomerController extends Controller
 
     }
 
-  
+    public function chargeCustomerContract(Request $request){
+
+        $contract_response = DB::transaction(function () use($request){
+           
+            $fields = $request->validate([
+                'file' => 'required|file',
+                'id_user' => 'required|numeric',
+            ]); 
+    
+            $customer = Customer::where('id_user',$fields['id_user'])->first();
+            $contrato=NULL;
+    
+            if($request->hasFile("file")){
+                $file=$request->file("file");
+                
+                $contrato = "contrato_".$customer->document_number.".".$file->guessExtension();
+                $ruta = public_path("archivos/contratos/".$contrato);
+                copy($file, $ruta);
+            }   
+
+            $customer->contract_file = $contrato;
+            $customer->update();
+
+            return $contrato;
+        }, 3); 
+
+        return Util::setResponseJson(201, 'Se ha cargado el contrato exitosamente, el documento se guardó con el nombre de '.$contract_response);
+ 
+    }
+
+    public function chargeSARLAFTDocument(Request $request){
+
+        $SARLAFT_response = DB::transaction(function () use($request){
+           
+            $fields = $request->validate([
+                'file' => 'required|file',
+                'id_user' => 'required|numeric',
+            ]); 
+    
+            $customer = Customer::where('id_user',$fields['id_user'])->first();
+            $documento=NULL;
+    
+            if($request->hasFile("file")){
+                $file=$request->file("file");
+                
+                $documento = "SARLAFT_".$customer->document_number.".".$file->guessExtension();
+                $ruta = public_path("archivos/SARLAFT/".$documento);
+                copy($file, $ruta);
+            }   
+             
+            $customer->sarlaft_file = $documento;
+            $customer->update();
+
+            return $documento;
+        }, 3); 
+
+        return Util::setResponseJson(201, 'Se ha cargado el documento SARLAFT exitosamente, el documento se guardó con el nombre de '.$SARLAFT_response);
+ 
+    }
+ 
 }

@@ -14,6 +14,7 @@ use App\Http\Controllers\FrontEnd\Customer\InvestmentController AS InvestmentCus
 use App\Http\Controllers\FrontEnd\Customer\DisbursetmentController AS DisbursetmentCustomerController;
 use App\Http\Controllers\FrontEnd\Customer\ExtractController AS ExtractCustomerController;
 use App\Http\Controllers\FrontEnd\Customer\RequestCustomerController;
+use App\Http\Controllers\FrontEnd\Customer\DocumentController;
 
 use App\Http\Controllers\Api\LoginController;
 
@@ -57,4 +58,4 @@ Route::withoutMiddleware(['admin', 'customer'])->group(function(){
     Route::get('cliente/desembolsos', [DisbursetmentCustomerController::class, 'index'])->name('clientes.desembolsos');
     Route::get('cliente/extractos', [ExtractCustomerController::class, 'index'])->name('clientes.extractos');
     Route::get('cliente/solicitudes', [RequestCustomerController::class, 'index'])->name('clientes.solicitudes');
-    Route::get('cliente/documentos', function () { return view('clientes.documentos'); });
+    Route::get('cliente/documentos', [DocumentController::class, 'index'])->name('clientes.documentos');

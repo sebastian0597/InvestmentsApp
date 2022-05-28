@@ -49,7 +49,7 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Formulario de edición para clientes nuevos</h5>
+                                    <h5>Formulario edición de clientes</h5>
                                 </div>
                                 <div class="card-body">
                                     <form class="needs-validation" novalidate="" accept-charset="UTF-8" enctype="multipart/form-data">
@@ -113,6 +113,20 @@
                                                 </div>";
                                             }
 
+                                            $icon_contract =  '';
+                                            if(($customer['contract_file']) <> ''){
+
+                                                $icon_contract = "<div class='input-group-prepend'>
+                                                        <div class='input-group-text'>
+                                                            <span style='color:#7366ff' class='material-icons-outlined'>image</span></div>
+                                                </div>";
+                                            }
+
+                                            $sarlaft_file =  '';
+                                            if(($customer['sarlaft_file']) <> ''){
+                                                $sarlaft_file =  'archivos/SARLAFT/'.$customer['sarlaft_file']; 
+                                                
+                                            }
                                         ?>
                                         <div class="row g-3">
                                             <div class="col-md-4">
@@ -126,7 +140,32 @@
                                                 </div>
                                             </div>
                                         </div>
-                                                                       
+
+                                        <div class="row g-3">
+                                            <div class="col-md-4">
+                                                <label class="form-label">Archivo contrato</label>
+                                                <div class="input-group mb-2">
+                                                   
+                                                    <input class="form-control" id="archivo_contrato" accept=".pdf, .png, .jpg, .jpeg" type="file">
+                                                    <input type="hidden" id="archivo_contrato_txt" value="{{$customer['contract_file']}}" >
+                                                    <span class="msg_error_form" id="error_archivo_contrato"></span>
+                                                    <?= $icon_contract ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @if (!empty($customer['sarlaft_file']) && !is_null($customer['sarlaft_file']))
+                                            <div class="row g-3">
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Archivo SARLAFT</label>
+                                                    <div class="input-group mb-2">
+                                                    
+                                                        <a target="_blank" class="btn btn-primary btn-sm" href="{{ asset($sarlaft_file) }}">
+                                                        <i class="fa fa-download"></i> Descargar SARLAFT</a>
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif                           
                                         <div class="row g-3">
 
                                             <div class="col-md-4">
@@ -135,7 +174,6 @@
                                                     <option value="">Seleccione---</option>
                                                     @foreach ($countries as $item)
                                                         <option value="{{ $item->name }}" {{ $item->name == $customer['country'] ? 'selected' : '' }}>{{ $item->name }}</option>
-                                                        
                                                     @endforeach
                                                 </select>
                                                 <span class="msg_error_form" id="error_pais"></span>
