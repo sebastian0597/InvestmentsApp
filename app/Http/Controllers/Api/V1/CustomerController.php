@@ -40,21 +40,7 @@ class CustomerController extends Controller
     {
         $customer = DB::transaction(function () use($request){
 
-                //Se validan que los campos del cliente obligatorios no estén vacíos.
-               /* $fields = $request->validate([
-                    'name' => 'required|string',
-                    'last_name' => 'required|string',
-                    'phone' => 'required|numeric',
-                    'address' => 'required|string',
-                    'city' => 'required|string',
-                    'department' => 'required|string',
-                    'country' => 'required|string',
-                    'document_number' => 'required|numeric|unique:customers',
-                    'file_document' => 'required|file',
-                    'email' => 'required|email|unique:users,email',
-                    'id_rol' => 'required|numeric',
-                    'registered_by' => 'required|numeric',
-                ]);*/
+            
                 $rules = [
                     'name' => 'required|string',
                     'last_name' => 'required|string',
@@ -245,6 +231,15 @@ class CustomerController extends Controller
                     /*'updated_by' => 'required|numeric',*/
                 ]);
 
+                $contract_file=$request->contract_file;
+                if($request->hasFile("contract_file")){
+                    $file=$request->file("contract_file");
+                    
+                    $contract_file = "contrato_".$fields["document_number"].".".$file->guessExtension();
+                    $ruta = public_path("archivos/contratos/".$contract_file);
+                    copy($file, $ruta);
+                }
+                
 
                 $file_document=$fields['file_document'];
                 if($request->hasFile("file_document")){
@@ -335,7 +330,7 @@ class CustomerController extends Controller
                 $customer->work_certificate=$request->work_certificate;
                 $customer->pension_fund=$request->pension_fund;
                 $customer->especification_other=$request->especification_other;
-                /*$customer->status=$request->status;*/
+                $customer->contract_file=$contract_file;
                 $customer->account_number=$request->account_number;
                 $customer->account_type=$request->account_type;
                 $customer->bank_name=$request->bank_name;

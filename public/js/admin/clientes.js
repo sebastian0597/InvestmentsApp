@@ -651,6 +651,11 @@ const actualizarCliente = (id_cliente) => {
                 ? $('#archivo_documento_txt').val()
                 : document.getElementById('archivo_documento').files[0]
 
+        let archivo_contrato =
+            document.getElementById('archivo_contrato').files[0] == undefined
+                ? $('#archivo_contrato_txt').val()
+                : document.getElementById('archivo_contrato').files[0]
+
         let descripcion_independiente = ''
         if ($('#descripcion_independiente').is(':visible')) {
             descripcion_independiente =
@@ -818,7 +823,8 @@ const actualizarCliente = (id_cliente) => {
         form_data.append('economic_activity', actividad_economica)
         form_data.append('bank_account', cuenta_bancaria)
         form_data.append('registered_by', 1)
-
+        form_data.append('contract_file', archivo_contrato)
+        
         enviarPeticion(url, method, form_data, 'continuarActualizarCliente')
     }
 }

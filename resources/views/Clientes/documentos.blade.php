@@ -8,7 +8,7 @@
         <defs></defs>
         <filter id="goo">
           <fegaussianblur in="SourceGraphic" stddeviation="11" result="blur"></fegaussianblur>
-          <fecolormatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo"> </fecolormatrix>
+          <fecolormatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo"></fecolormatrix>
         </filter>
       </svg>
     </div>
@@ -20,8 +20,7 @@
     <div class="page-wrapper compact-wrapper" id="pageWrapper">
       <!-- Page Header Start-->
       <div class="page-header">
-        @include('Clientes/componentes/barra_superior')
-        
+        @include('Clientes/componentes/barra_superior')  
       </div>
       <!-- Page Header Ends                              -->
       <!-- Page Body Start-->
@@ -50,8 +49,7 @@
           <?php 
             $contract_file =  'archivos/contratos/'.$customer['contract_file']; 
             $sarlaft_file =  'archivos/SARLAFT/'.$customer['sarlaft_file']; 
-          
-          
+
           ?>
           <!-- Container-fluid starts-->
           <div class="container-fluid">
@@ -77,8 +75,9 @@
                             </div>
                       </div>
                       <div class="mb-3">
-                         <button class="btn btn-success btn-lg" onclick="cargarDocumentoSARLAFT();">
-                                <i class="fa fa-save"></i>Cargar</button>
+                          <button class="btn btn-success btn-lg" onclick="cargarDocumentoSARLAFT();">
+                                <i class="fa fa-save"></i>Cargar
+                          </button>
                       </div>
                     </div>
                   </div>
@@ -96,15 +95,15 @@
                         
                       </div>
                       <hr>
-                      <div class="mb-3">
-                            
-                            <div class="col-sm-9">
-                              <input class="form-control" id="contrato_inversion" type="file">
-                            </div>
+                      <div class="mb-3"> 
+                          <div class="col-sm-9">
+                            <input class="form-control" id="contrato_inversion" type="file">
+                          </div>
                       </div>
                       <div class="mb-3">
-                         <button type='button' class="btn btn-success btn" onclick="cargarDocumentoContrato();">
-                                <i class="fa fa-save"></i> Cargar</button>
+                          <button type='button' class="btn btn-success btn" onclick="cargarDocumentoContrato();">
+                                <i class="fa fa-save"></i> Cargar
+                          </button>
                       </div>
                     </div>
                     
