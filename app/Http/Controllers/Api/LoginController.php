@@ -124,9 +124,20 @@ class LoginController extends Controller
                     $user->save();
 
                     auth()->loginUsingId($user->id);
-                    
+                    if($user->id_rol == 2){
+
+                        $user->start_sesion_date = Util::getCurrentDate();
+                        $user->finish_sesion_date = Util::getDateHourMinutes(30);
+                        $user->save();
+
+                    }else{
+
+                        $user->start_sesion_date = Util::getCurrentDate();
+                        $user->finish_sesion_date = Util::getDateHourMinutes(15);
+                        $user->save();
+                    }
                     $token = $user->createToken('myapptoken')->plainTextToken;
-                    //return redirect()->intended(route('clientes'));
+
                     return Util::setResponseJson(200, auth()->user() , $token);
 
                 }
@@ -201,6 +212,24 @@ class LoginController extends Controller
 
         Auth::logout();
         return redirect('login');
+    }
+
+    public function validateSesionTime(Request $request){
+        $fields = $request->validate([
+            'id_user' => 'required',
+        ]);
+
+        $id_user = $fields['id_user'];
+        $user = User::find($id_user);
+
+        $finish_sesion_date = $user->finish_sesion_date;
+        $fin_sesion = Util::validateDiffDate($finish_sesion_date, Util::getCurrentDate());
+
+        if($fin_sesion){
+            Auth::logout();
+            return Util::setResponseJson(200,"Se ha terminado la sesión");
+        }
+        return Util::setResponseJson(400,"No se ha terminado la sesión");
     }
 
 }

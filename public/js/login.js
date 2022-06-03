@@ -20,8 +20,11 @@ const login = () =>{
 const continuarLogin = (response) =>{
 
     if(response.status == 200){
-        
-        window.location.href = window.location.origin+'/clientes';
+        if(response.message.id_rol != '2'){
+            window.location.href = window.location.origin+'/clientes';
+        }else {
+            window.location.href = window.location.origin+'/cliente/perfil';
+        }
         
     }else{
         setResponseMessage(response);

@@ -20,24 +20,26 @@
     <!-- page-wrapper Start-->
     <div class="page-wrapper compact-wrapper" id="pageWrapper">
         <!-- Page Header Start-->
-        @include('Admins.componentes.barra_superior')
+        <div class="page-header">
+            @include('Clientes/componentes/barra_superior')  
+          </div>
         <!-- Page Header Ends                              -->
         <!-- Page Body Start-->
         <div class="page-body-wrapper">
             <!-- Page Sidebar Start-->
-            @include('Admins/componentes/barra_lateral')
+            @include('Clientes/componentes/barra_lateral')
             <!-- Page Sidebar Ends-->
             <div class="page-body">
                 <div class="container-fluid">
                     <div class="page-title">
                         <div class="row">
                             <div class="col-6">
-                                <h3>ADMINISTRADOR</h3>
+                                <h3>USUARIO</h3>
                             </div>
                             <div class="col-6">
                                 <ol class="breadcrumb">
                                     @include(
-                                        'Admins/componentes/enlance_navegacion'
+                                        'Clientes/componentes/enlance_navegacion'
                                     )
 
                                     <li class="breadcrumb-item active">Cambiar contraseña</li>
@@ -58,19 +60,19 @@
                                     <div class="col-md-12">
                                         <label>Ingrese Contraseña</label>
                                       
-                                            <input onblur="ocultarContrasena(this)" onfocus="mostrarContrasena(this)" onkeydown="validarContrasena(this)" id="password_1" type="password" Class="form-control">
+                                            <input onblur="ocultarContrasena(this)" onfocus="mostrarContrasena(this)" onkeydown="validarContrasena(this)" id="password_cliente" type="password" Class="form-control">
                                     </div>
 
                                     <div class="col-md-12">
                                         <label>Verificación de contraseña</label>
                                         
-                                            <input  onblur="ocultarContrasena(this)" onfocus="mostrarContrasena(this)" onkeydown="validarContrasena(this)" id="password_2" type="password" Class="form-control">
+                                            <input  onblur="ocultarContrasena(this)" onfocus="mostrarContrasena(this)" onkeydown="validarContrasena(this)" id="password_cliente_2" type="password" Class="form-control">
                                       
                                     </div>
                                     <br><br>
                                     <div class="form-group mb-0">
 
-                                        <button onclick="cambiarContrasena()" class="btn btn-primary btn-block w-100" type="button">Cambiar contraseña
+                                        <button onclick="cambiarContrasenaCliente()" class="btn btn-primary btn-block w-100" type="button">Cambiar contraseña
                                         </button>
                                     </div>
 
@@ -87,5 +89,7 @@
 
         </div>
     </div>
- 
+    @section('scripts')
+        <script src="{{ asset('js/cliente/cliente.js') }}" defer></script>
+    @stop
 @stop

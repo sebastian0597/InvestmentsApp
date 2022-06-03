@@ -17,6 +17,12 @@
     <div class="left-header col horizontal-wrapper ps-0">
       <ul class="horizontal-menu">
         
+        <script>
+          window.onload = function () {
+              validarInicioSesionPrimeraVezCliente()
+          }
+
+      </script>
         
       </ul>
     </div>
@@ -63,7 +69,7 @@
             </div>
           </div>
           <ul class="profile-dropdown onhover-show-div">
-              
+            <li><a href="{{url('cliente/cambiar_contrasena')}}"><i data-feather="password"> </i><span>Cambiar contrasena</span></a></li>
             <li><a href="{{url('logout')}}"><i data-feather="log-in"> </i><span>Cerrar sesión</span></a></li>
           </ul>
         </li>

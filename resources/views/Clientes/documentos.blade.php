@@ -75,7 +75,7 @@
                             </div>
                       </div>
                       <div class="mb-3">
-                          <button class="btn btn-success btn-lg" onclick="cargarDocumentoSARLAFT();">
+                          <button class="btn btn-success btn-sm" onclick="cargarDocumentoSARLAFT();">
                                 <i class="fa fa-save"></i>Cargar
                           </button>
                       </div>
@@ -89,7 +89,7 @@
                       <b><h5>Contrato de inversión</h5></b>
                        <div class="mb-3">
                         @if (!empty($customer['contract_file']) && !is_null($customer['contract_file']))
-                          <a target="_blank" class="btn btn-primary btn" href="{{ asset($contract_file) }}">
+                          <a target="_blank" class="btn btn-primary btn-sm" href="{{ asset($contract_file) }}">
                           <i class="fa fa-download"></i>Descargar contrato</a>
                         @endif
                         
@@ -101,7 +101,7 @@
                           </div>
                       </div>
                       <div class="mb-3">
-                          <button type='button' class="btn btn-success btn" onclick="cargarDocumentoContrato();">
+                          <button type='button' class="btn btn-success btn-sm" onclick="cargarDocumentoContrato();">
                                 <i class="fa fa-save"></i> Cargar
                           </button>
                       </div>
