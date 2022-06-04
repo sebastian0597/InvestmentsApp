@@ -63,7 +63,7 @@
                                                 <div class="profile-title">
 
                                                     <style>
-                                                        /*.images-cards figure {
+                                                        .images-cards figure {
                                                             position: relative;
                                                         
                                                         }
@@ -97,7 +97,7 @@
                                                             width: 100px !important;
                                                             height: auto !important;
                                                             
-                                                        }*/
+                                                        }
 
                                                     </style>
 
@@ -107,13 +107,12 @@
                                                         <h5> Inserta tu foto de perfil</h5>
                                                         
                                                         <section id="Images" class="images-cards">
-                                                            <form action="upload.php" method="post" enctype="multipart/form-data">
                                                                <div class="row">
                                                                   <div class="row g-3">
                                                                      <!-- aqui la pinta-->
                                                                      <div class="col-md-3" class="img-perfil rounded-circle" id="add-photo-container">
                                                                         <div class="add-new-photo first" id="add-photo">
-                                                                           <span><i data-feather="camera"> Inserta tu foto de</i></span>
+                                                                        <span class="material-icons-outlined">add_a_photo</span>
                                                                         </div>
                                                                         <input type="file" multiple id="add-new-photo" name="images[]">
                                                                      </div>

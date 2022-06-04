@@ -98,24 +98,20 @@ $(document).ready(function(){
             }
         }
 
-        if (seEncontraronElementoNoValidos) {
-            showMessage("Se encontraron archivos no validos.");
+       /* if (seEncontraronElementoNoValidos) {
+            alert("Se encontraron archivos no validos.");
         }
         else {
-            showMessage("Todos los archivos se subieron correctamente.");
-        }
+            alert("Todos los archivos se subieron correctamente.");
+        }*/
     
     });
-    
-    // -> Cachamos el evento change
 
     // Eliminar previsualizaciones
     
     $(document).on("click", "#Images .image-container", function(e){
         $(this).parent().remove();
     });
-    
-    // -> Eliminar previsualizaciones
 
 });
 
@@ -124,7 +120,7 @@ $(document).ready(function(){
 
 function createPreview(file) {
     var imgCodified = URL.createObjectURL(file);
-    var img = $('<div class="col-md-3" ><div class="image-container"> <figure> <img class="img-perfil rounded-circle" src="' + imgCodified + '" alt="Foto del usuario"> <figcaption> <i class="icon-cross"></i> </figcaption> </figure> </div></div>');
+    var img = $('<div class="col-md-3" ><div class="image-container"> <figure> <img class="img-perfil rounded-circle" src="' + imgCodified + '" alt="Foto del usuario"> <figcaption> x </figcaption> </figure> </div></div>');
      $(img).insertBefore("#add-photo-container");
 
 }
