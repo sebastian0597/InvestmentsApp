@@ -88,6 +88,19 @@ class Util
        return $fields;
     }
 
+    public static function validateDiffDate($fecha_fin_sesion, $curdate){
+
+        $fecha_fin_sesion = strtotime($fecha_fin_sesion);
+        $fecha_actual = strtotime($curdate);
+            
+        $fin_sesion=true;
+        if($fecha_fin_sesion > $fecha_actual){
+            $fin_sesion=false;
+        }
+
+        return $fin_sesion;
+    }
+
     public static function validateBlockedTime($date, $user){
 
          //convertimos la fecha 1 a objeto Carbon
@@ -175,6 +188,13 @@ class Util
         $fecha_local = date("Y-m-d H:i:s", $time);
 
         return $fecha_local;
+    }
+
+    public static function getDateHourMinutes($minutes){
+        $date=date('Y-m-d H:i:s'); 
+        $newDate=strtotime ( $minutes.'minute' , strtotime($date) ) ; 
+        $newDate=date ( 'Y-m-d H:i:s' , $newDate); 
+        return $newDate;
     }
 
     public static function setJSONResponse($object){

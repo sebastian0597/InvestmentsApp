@@ -239,6 +239,33 @@ const validarInicioSesionPrimeraVez = () =>{
     }
 }
 
+const validarInicioSesionPrimeraVezCliente = () =>{
+    
+    if(parseInt($('#ind_inicio_sesion').val()) == 1 && location.pathname != "/cliente/cambiar_contrasena"){
+
+        Swal.fire({ 
+            icon: 'warning', 
+            title: 'Cambio de contraseña',
+            text: "Antes de continuar, debe cambiar la contraseña.",  
+            showDenyButton: false, 
+            showCancelButton: false,  
+            confirmButtonColor: '#6610f2',
+            confirmButtonText: 'Aceptar',
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+          }).then((result) => {  
+              /* Read more about isConfirmed, isDenied below */  
+              if (result.isConfirmed) {    
+                    location.href = document.location.origin + '/cliente/cambiar_contrasena';
+              } /*else if (result.isDenied) {    
+                  Swal.fire('Changes are not saved', '', 'info')  
+               }*/
+          });
+   
+
+    }
+}
+
 
 const renderizarSolicitudes = () =>{
 
@@ -282,7 +309,27 @@ const continuarRenderizarSolicitudes = (response) =>{
     $('#span_cantidad').append(cantidad_solicitudes)
     $('#ultimas_solicitudes').append(html)
 }
+
+const validarTiempoSesion = ()=>{
+
+    if($('#user_id').val() != '' && $('#user_id').val() != undefined){
+        let url = document.location.origin + `/api/validate_sesion`
+        let method = 'POST'
+    
+        let form_data = new FormData()
+        form_data.append('id_user', $('#user_id').val())
+        enviarPeticion(url, method, form_data, 'continuarvalidarTiempoSesion')
+    }
+}
+
+const continuarvalidarTiempoSesion = (response) =>{
+   
+    if(response.status == 200){
+        location.href = document.location.origin + '/login';
+    }
+}
  
+setInterval('validarTiempoSesion()',15000);
 /*function process(element) {
 
     const file = document.getElementById(element.id)

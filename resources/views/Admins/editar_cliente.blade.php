@@ -124,9 +124,12 @@
 
                                             $sarlaft_file =  '';
                                             if(($customer['sarlaft_file']) <> ''){
-                                                $sarlaft_file =  'archivos/SARLAFT/'.$customer['sarlaft_file']; 
-                                                
+                                                $sarlaft_file =  'archivos/SARLAFT/'.$customer['sarlaft_file'];    
                                             }
+                                            if(($customer['contract_file']) <> ''){
+                                                $contract_file =  'archivos/contratos/'.$customer['contract_file'];    
+                                            }  
+                                             
                                         ?>
                                         <div class="row g-3">
                                             <div class="col-md-4">
@@ -152,6 +155,17 @@
                                                     <?= $icon_contract ?>
                                                 </div>
                                             </div>
+                                            @if (!empty($customer['contract_file']) && !is_null($customer['contract_file']))
+                                                <div class="col-md-4">
+                                                    <label class="form-label"></label>
+                                                    <div class="input-group mb-2">
+                                                    
+                                                        <a target="_blank" class="btn btn-primary btn-sm" href="{{ asset($contract_file) }}">
+                                                            <i class="fa fa-download"></i> Descargar contrato</a>
+                                                        
+                                                    </div>
+                                                </div>
+                                            @endif    
                                         </div>
                                         @if (!empty($customer['sarlaft_file']) && !is_null($customer['sarlaft_file']))
                                             <div class="row g-3">
@@ -593,7 +607,5 @@
 
     </div>
     </div>
-    @section('scripts')
-        <script src="{{ asset('js/admin/solicitudes.js') }}" defer></script>
-    @stop
+   
 @stop

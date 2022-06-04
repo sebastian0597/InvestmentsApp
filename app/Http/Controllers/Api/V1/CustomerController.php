@@ -307,7 +307,6 @@ class CustomerController extends Controller
 
                 $user = User::find($request->id_user);
                 $user->email=$request->email;
-                /*$user->status=$request->status;*/
                 $user->save();
 
                 $customer = Customer::find($customer);

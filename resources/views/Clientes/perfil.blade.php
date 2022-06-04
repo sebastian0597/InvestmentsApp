@@ -61,8 +61,72 @@
                                         <form>
                                             <div class="row mb-2">
                                                 <div class="profile-title">
-                                                    <div class="media"> <img class="img-70 rounded-circle" alt=""
-                                                            src="../assets/images/profile.jpg">
+
+                                                    <style>
+                                                        /*.images-cards figure {
+                                                            position: relative;
+                                                        
+                                                        }
+
+                                                        #Images .add-new-photo {
+                                                        display: flex;
+                                                          
+                                                            font-size: 50px;
+                                                            cursor: pointer;
+                                                            background-size: 50% 50%;
+                                                            width: 70px;
+                                                            height: 70px;
+                                                            -moz-border-radius: 50%;
+                                                            -webkit-border-radius: 50%;
+                                                            border-radius: 50%;
+                                                            border: 3px solid #555;
+                                                            align-content: flex-end;
+                                                            justify-content: center;
+                                                            flex-wrap: wrap;
+                                                            
+                                                            background-size: cover;
+                                                        }
+
+
+
+                                                        #add-photo-container input {
+                                                            display: none;
+                                                        }
+
+                                                        .img-perfil {
+                                                            width: 100px !important;
+                                                            height: auto !important;
+                                                            
+                                                        }*/
+
+                                                    </style>
+
+
+
+                                                    <div class="media"> 
+                                                        <h5> Inserta tu foto de perfil</h5>
+                                                        
+                                                        <section id="Images" class="images-cards">
+                                                            <form action="upload.php" method="post" enctype="multipart/form-data">
+                                                               <div class="row">
+                                                                  <div class="row g-3">
+                                                                     <!-- aqui la pinta-->
+                                                                     <div class="col-md-3" class="img-perfil rounded-circle" id="add-photo-container">
+                                                                        <div class="add-new-photo first" id="add-photo">
+                                                                           <span><i data-feather="camera"> Inserta tu foto de</i></span>
+                                                                        </div>
+                                                                        <input type="file" multiple id="add-new-photo" name="images[]">
+                                                                     </div>
+                                                                     <!-- aqui esta el boton de guardar-->
+                                                                     <div class="col-md-4">
+                                                                        <a class="btn btn-success btn-sm" href="javascript:void(0)" data-bs-original-title="" title="">
+                                                                        <i class="fa fa-save"></i>  Guardar</a>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                            </form>
+                                                         </section>
+                                                        <hr >   
                                                         <div class="media-body">
                                                             <!-- nombre del usuario-->
                                                             <h5 class="mb-1">{{mb_strtoupper($customer['name'].' '.$customer['last_name'])}}</h5>
@@ -169,4 +233,7 @@
            
         </div>
     </div>
+@section('scripts')
+    <script src="{{ asset('js/cliente/cliente.js') }}" defer></script>
+@stop
 @stop
