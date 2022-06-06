@@ -90,15 +90,35 @@ class Util
 
     public static function validateDiffDate($fecha_fin_sesion, $curdate){
 
-        $fecha_fin_sesion = strtotime($fecha_fin_sesion);
+        
+        $date1 = new \DateTime($fecha_fin_sesion);
+        $date2 = new \DateTime($curdate);
+        $diff = $date1->diff($date2);
+
         $fecha_actual = strtotime($curdate);
-            
+        $fecha_entrada = strtotime($fecha_fin_sesion);
+
+        $diff_minutes = $diff->i;
+
+        $diff_minutes = $fecha_actual > $fecha_entrada ? -abs($diff_minutes) : $diff_minutes;
+
+        $response = array();
         $fin_sesion=true;
-        if($fecha_fin_sesion > $fecha_actual){
-            $fin_sesion=false;
+
+        if($diff_minutes > 0){
+
+            $response = [
+                "time" => $diff_minutes,
+                "fin_sesion" => false
+            ];
+        }else{
+            $response = [
+                "time" => 0,
+                "fin_sesion" => true
+            ];
         }
 
-        return $fin_sesion;
+        return $response;
     }
 
     public static function validateBlockedTime($date, $user){

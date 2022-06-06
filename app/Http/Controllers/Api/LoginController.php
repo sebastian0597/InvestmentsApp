@@ -223,13 +223,47 @@ class LoginController extends Controller
         $user = User::find($id_user);
 
         $finish_sesion_date = $user->finish_sesion_date;
-        $fin_sesion = Util::validateDiffDate($finish_sesion_date, Util::getCurrentDate());
+        $session_array = Util::validateDiffDate($finish_sesion_date, Util::getCurrentDate());
 
-        if($fin_sesion){
+        if($session_array['fin_sesion']){
+
             Auth::logout();
             return Util::setResponseJson(200,"Se ha terminado la sesión");
+
+        }else if($session_array['time'] > 0 && $session_array['time'] <= 2){
+
+            return Util::setResponseJson(201,"En ".$session_array['time']. " minutos se terminará la sesión, ¿desea ampliar su sesión por otros 15 minutos?");
+        }else{
+            return Util::setResponseJson(400,"Restan ".$session_array['time']. " minutos, para que se termine la sesión.");
         }
-        return Util::setResponseJson(400,"No se ha terminado la sesión");
+       
+    }
+
+    public function assignSessionTime(Request $request){
+        $fields = $request->validate([
+            'id_user' => 'required',
+        ]);
+
+        $id_user = $fields['id_user'];
+        $user = User::find($id_user);
+        $session_time = 0;
+        if($user->id_rol == 2){
+
+            $user->start_sesion_date = Util::getCurrentDate();
+            $user->finish_sesion_date = Util::getDateHourMinutes(30);
+            $session_time=30;
+            $user->save();
+
+        }else{
+
+            $user->start_sesion_date = Util::getCurrentDate();
+            $user->finish_sesion_date = Util::getDateHourMinutes(15);
+            $session_time=15;
+            $user->save();
+        }
+
+        return Util::setResponseJson(200,"Se ha extendido el tiempo de sesión, por ".$session_time." minutos.");
+
     }
 
 }

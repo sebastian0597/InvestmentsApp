@@ -2,15 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>CONTRATO - VIP WORLD TRADING</title>
+    <title>CONTRATO DE INVERSIÓN - VIP WORLD TRADING</title>
     <style type="text/css">
-  /*@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
-.font-roboto {
-     font-family: 'Rubik', sans-serif;
- }*/
- @media print {
-    .page-break { display: block; page-break-before: always; }
-}
+ 
 
 .clearfix:after {
   content: "";
@@ -224,27 +218,22 @@ h4{
     </style>
   </head>
   <body>
- 
+   
     <header class="clearfix">
       
       <h1 >PAGARÉ A FAVOR DE INVERSORES DEL FONDO DE INVERSIÓN VIP WORLD TRADING</h1>
-      <span id="invoice" style="margin-top: 0px;font-size: 18px;">ISF-{{$params["bank_promissor_number"]}}</span>
+      <span id="invoice" style="margin-top: 0px;font-size: 18px;">ISF-XXXXX</span>
     </header>
     <main>
       <div id="details" class="clearfix">
         <div >
-            <p >Entre nosotros, los señores <strong> <span>{{$params["customer_name"]}}</span></strong>, mayor de edad, identificada con la cédula de ciudadanía número <strong>  
-                <span>{{$params["document_number"]}}</span></strong> expedida en <strong> <span>(LUGAR DE EXPEDICION)</span></strong>, 
-                quienes en adelante se denominarán LOS BENEFICIARIOS <strong> <span>(INVERSORES)</span></strong>, y SERGIO ANDRÉS FIGUEROA GÓMEZ, 
-                mayor de edad, identificado con la cédula de ciudadanía número 1.098.816.339 expedida en Bucaramanga, quien en adelante se denominará 
-                <strong> <span>EL OTORGANTE (OPERADOR)</span></strong>, hemos acordado la elaboración del presente pagaré, de conformidad con el portafolio de 
-                inversiones puesto en consideración de las partes, el cual se traduce en las siguientes cláusulas:</p>
+            <p >Entre nosotros, los señores <strong> <span>(NOMBRE DEL INVERSOR)</span></strong>, mayor de edad, identificada con la cédula de ciudadanía número <strong>  <span>(NÚMERO DE CEDULA)</span></strong> expedida en <strong> <span>(LUGAR DE EXPEDICION)</span></strong>, quienes en adelante se denominarán LOS BENEFICIARIOS <strong> <span>(INVERSORES)</span></strong>, y SERGIO ANDRÉS FIGUEROA GÓMEZ, mayor de edad, identificado con la cédula de ciudadanía número 1.098.816.339 expedida en Bucaramanga, quien en adelante se denominará <strong> <span>EL OTORGANTE (OPERADOR)</span></strong>, hemos acordado la elaboración del presente pagaré, de conformidad con el portafolio de inversiones puesto en consideración de las partes, el cual se traduce en las siguientes cláusulas:</p>
         </div>
-        
+
         <div>
           <p>
             <strong>PRIMERA: </strong>  Cuantía Mínima.El monto mínimo para pertenecer a esta categoría asciende a un
-            capital mínimo de Cincuenta Millones de pesos ($50.000.000) Moneda Legal Colombiana.
+            capital de <strong>($xx.xxx.xxx) </strong>Moneda Legal Colombiana.
 
           </p>
         </div>
@@ -266,8 +255,8 @@ h4{
           <!-- aqui va el porcentaje de la rentabilidad -->
           <tr>
             <td class="no">Mes/Año</td>
-            <td class="qty">15%</td>
-            <td class="unit">-5%</td>
+            <td class="qty">x%</td>
+            <td class="unit">-x%</td>
           </tr>
           <!-- aqui va la rentabilidad del año mes a mes -->
           <tr>
@@ -355,8 +344,8 @@ h4{
           <!-- aqui va la rentabilidad del año mes a mes -->
           <tr>
             <td class="no">Rentabilidad</td>
-            <td class="qty">15%</td>
-            <td class="unit">-15%</td>
+            <td class="qty">x%</td>
+            <td class="unit">-x%</td>
           </tr>
           <tr>
             <td class="no">Rentabilidad mensual</td>
@@ -385,21 +374,21 @@ h4{
         <thead>
           <tr>
             <th class="no">Rentabilidad real generada estimada </th>
-            <th class="qty">15%</th>
+            <th class="qty">x%</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td class="no">Rentabilidad pagada al inversor</td>
-            <td class="qty">15%</td>
+            <td class="qty">x%</td>
           </tr>
           <tr>
             <td class="no">Rentabilidad pagada al inversor</td>
-            <td class="qty">15%</td>
+            <td class="qty">x%</td>
           </tr>
           <tr>
             <td class="no">Rentabilidad recibida para el operador</td>
-            <td class="qty">5%</td>
+            <td class="qty">x%</td>
           </tr>
           <tr>
             <td class="no">Beneficio generado para cliente</td>
@@ -423,8 +412,8 @@ h4{
       </div>
 
       <div>
-        <h4>Liquidez:  <span>0 %</span></h4>
-        <h4>Inversión: <span>${{$params["amount"]}}</span></h4>
+        <h4>Liquidez:  <span>x%</span></h4>
+        <h4>Inversión: <span>$XXX.XXX.XXX</span></h4>
         <h4>Activos financieros <span></span></h4>
         <h4>90% <span>derivados Financieros</span></h4>
         <h4>10% <span>reserva bancaria</span></h4>
@@ -435,13 +424,13 @@ h4{
 
       <div>
         <p>
-          <strong>QUINTA:</strong> Rentabilidad Mínima. El fondo de inversión <strong> <span>(EL OTORGANTE)</span></strong>  buscara una rentabilidad mínima mensual del 15 % de rentabilidad sobre el capital entregado por LOS BENEFICIARIOS <strong> <span>(Inversores)</span></strong>.
+          <strong>QUINTA:</strong> Rentabilidad Mínima. El fondo de inversión <strong> <span>(EL OTORGANTE)</span></strong>  buscara una rentabilidad mínima mensual del <strong>x%</strong> de rentabilidad sobre el capital entregado por LOS BENEFICIARIOS <strong> <span>(Inversores)</span></strong>.
         </p>
       </div>
 
       <div >
         <p>
-          <strong>SEXTA:</strong> Pérdidas Financieras. En caso de existir pérdidas financieras y que se reconozca la imposibilidad de generar ganancias en el mes acordado se buscara que la perdida máxima se ha del 5% sobre el capital de LOS BENEFICIARIOS <strong> <span>(Inversores)</span></strong>.
+          <strong>SEXTA:</strong> Pérdidas Financieras. En caso de existir pérdidas financieras y que se reconozca la imposibilidad de generar ganancias en el mes acordado se buscara que la perdida máxima se ha del <strong>x%</strong>  sobre el capital de LOS BENEFICIARIOS <strong> <span>(Inversores)</span></strong>.
         </p>
       </div>
 
@@ -497,8 +486,8 @@ h4{
    
             </div>
            <div style="line-height:10px">
-                <h4>{{$params["customer_name"]}}</h4>
-                <h4>{{$params["document_number"]}}</h4>
+                <h4>Nombre del cliente</h4>
+                <h4>N° Identificación</h4>
                 <h4>Expedición</h4>
    
             </div>
