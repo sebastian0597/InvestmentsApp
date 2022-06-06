@@ -156,8 +156,8 @@ class Util
 
     
     public static function sendEmailWithPDFFile($template,$params){
-    
-        $pdf = PDF::loadView($template, compact('params'));
+      
+        $pdf = PDF::loadView($template, compact('params'))->setPaper('a4', 'landscape');
     
         Mail::send('Emails.empty', [], function ($message) use ($params, $pdf) {
             $message->to($params["email"], $params["email"])

@@ -81,7 +81,6 @@ $(document).ready(function(){
     
     $(document).on("change", "#add-new-photo", function () {
     
-        console.log(this.files);
         var files = this.files;
         var element;
         var supportedImages = ["image/jpeg", "image/png", "image/gif"];
@@ -98,12 +97,12 @@ $(document).ready(function(){
             }
         }
 
-        if (seEncontraronElementoNoValidos) {
+        /*if (seEncontraronElementoNoValidos) {
             showMessage("Se encontraron archivos no validos.");
         }
         else {
             showMessage("Todos los archivos se subieron correctamente.");
-        }
+        }*/
     
     });
     
@@ -126,5 +125,32 @@ function createPreview(file) {
     var imgCodified = URL.createObjectURL(file);
     var img = $('<div class="col-md-3" ><div class="image-container"> <figure> <img class="img-perfil rounded-circle" src="' + imgCodified + '" alt="Foto del usuario"> <figcaption> <i class="icon-cross"></i> </figcaption> </figure> </div></div>');
      $(img).insertBefore("#add-photo-container");
+
+}
+
+
+const cargarFoto = ()=>{
+
+    let foto = document.getElementById('add-new-photo').files[0];
+    quitarError('add-new-photo')
+    if(foto != '' && foto != undefined){
+
+        let url = document.location.origin + `/api/v1/customer/changeprofilepicture`
+        let method = 'POST'
+        let form_data = new FormData()
+        form_data.append('id_user', $('#user_id').val())
+        form_data.append('file', foto)
+        enviarPeticion(url, method, form_data, 'continuarCargarFoto')
+
+    }else{
+
+        agregarError('add-new-photo')
+
+    }
+    
+}
+const continuarCargarFoto = (response) =>{
+    setResponseMessage(response, '/cliente/perfil')
+    console.log(response)
 
 }

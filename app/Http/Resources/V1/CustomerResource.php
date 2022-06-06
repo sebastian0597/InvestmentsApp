@@ -29,6 +29,7 @@ class CustomerResource extends JsonResource
             'city'=> $this->city,
             'department'=> $this->department,
             'country'=> $this->country,
+            'photo' => $this->photo,
             'file_document'=> $this->file_document,
             'description_ind'=> $this->description_ind,
             'file_rut'=> $this->file_rut,

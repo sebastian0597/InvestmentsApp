@@ -27,6 +27,6 @@ class InvestmentController extends Controller
         $investments = new InvestmentCollection(Investment::getAllInvestmentsByIdCustomer($customer->id));
         $investments = Util::setJSONResponseUniqueData($investments);
         
-        return view('clientes.inversiones', compact('investments'));
+        return view('clientes.inversiones', compact('investments', 'customer'));
     }
 }

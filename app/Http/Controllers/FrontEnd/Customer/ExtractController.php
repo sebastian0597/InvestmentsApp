@@ -26,7 +26,7 @@ class ExtractController extends Controller
         $extracts = new ExtractCollection(Extract::getExtractByIdCustomer($customer->id));
         $extracts = Util::setJSONResponseUniqueData($extracts);
         //dd($extracts);
-        return view('clientes.extractos', compact('extracts'));
+        return view('clientes.extractos', compact('extracts', 'customer'));
     }
 
 }

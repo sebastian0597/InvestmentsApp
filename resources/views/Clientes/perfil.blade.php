@@ -107,20 +107,20 @@
                                                         <h5> Inserta tu foto de perfil</h5>
                                                         
                                                         <section id="Images" class="images-cards">
-                                                            <form action="upload.php" method="post" enctype="multipart/form-data">
+                                                            <form method="post" enctype="multipart/form-data">
                                                                <div class="row">
                                                                   <div class="row g-3">
                                                                      <!-- aqui la pinta-->
                                                                      <div class="col-md-3" class="img-perfil rounded-circle" id="add-photo-container">
                                                                         <div class="add-new-photo first" id="add-photo">
-                                                                           <span><i data-feather="camera"> Inserta tu foto de</i></span>
+                                                                           <!--<span><i data-feather="camera"> Inserta tu foto de</i></span>-->
                                                                         </div>
-                                                                        <input type="file" multiple id="add-new-photo" name="images[]">
+                                                                        <input type="file" id="add-new-photo">
                                                                      </div>
                                                                      <!-- aqui esta el boton de guardar-->
                                                                      <div class="col-md-4">
-                                                                        <a class="btn btn-success btn-sm" href="javascript:void(0)" data-bs-original-title="" title="">
-                                                                        <i class="fa fa-save"></i>  Guardar</a>
+                                                                        <a class="btn btn-success btn-sm" onclick="cargarFoto()" data-bs-original-title="" title="">
+                                                                        <i class="fa fa-save"></i>Guardar</a>
                                                                      </div>
                                                                   </div>
                                                                </div>

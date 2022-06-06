@@ -55,7 +55,7 @@ Route::post('extend_session', [LoginController::class, 'assignSessionTime']);
 
 //CUSTOMER
 Route::get('v1/customer/extracts_by_customer/{date}', [ExtractController::class, 'getByCustomerAndDate']);
-
+Route::post('v1/customer/changeprofilepicture', [CustomerController::class, 'changeProfilePicture']);
 
 
 Route::get('contrato_pdf', function () { 
