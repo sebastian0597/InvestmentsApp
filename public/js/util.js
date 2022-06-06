@@ -323,7 +323,7 @@ const validarTiempoSesion = ()=>{
 }
 
 const continuarvalidarTiempoSesion = (response) =>{
-    console.log(response)
+  
     if(response.status == 200){
         location.href = document.location.origin + '/login';
     }
