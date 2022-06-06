@@ -65,14 +65,15 @@ Route::get('contrato_pdf', function () {
 
     $params["email"] = "oibanez@unab.edu.co";
     $params["title"] = "Pagaré del cliente 1098796215"." ".$customer_fullname;
-    $params["amount"] = '5000000000';
+    $params["amount"] = '50000000';
     $params["investment_date"] = date('d/m/Y');
     $params["bank_promissor_number"] = "20";
     $params["document_number"] = "1098796215";
     $params["customer_name"] = $customer_fullname;
     $params["document_name"] = "Pagare_1098796215_".$customer_fullname;
-   
-    $pdf = PDF::loadView('Pdfs.bank_promissor_note', compact('params'));
+
+    $pdf = PDF::loadView('Pdfs.bank_promissor_note', compact('params'))->setPaper('a4', 'landscape');
+    //$pdf->stream('archivo.pdf');
     return $pdf->download('archivo.pdf');
     //Util::sendEmailWithPDFFile('Pdfs.bank_promissor_note', $params);
 });
@@ -91,7 +92,7 @@ Route::get('extracto_pdf', function () {
     $params["customer_name"] = $customer_fullname;
     $params["document_name"] = "Pagare_1098796215_".$customer_fullname;
    
-    $pdf = PDF::loadView('Pdfs.extract');
+    $pdf = PDF::loadView('Pdfs.extract')->setPaper('a4', 'landscape');
     return $pdf->download('archivo.pdf');
     //Util::sendEmailWithPDFFile('Pdfs.bank_promissor_note', $params);
 });
