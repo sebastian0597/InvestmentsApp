@@ -232,7 +232,7 @@ class LoginController extends Controller
 
         }else if($session_array['time'] > 0 && $session_array['time'] <= 2){
 
-            return Util::setResponseJson(201,"En ".$session_array['time']. " minutos se terminará la sesión, ¿desea ampliar su sesión por otros 15 minutos?");
+            return Util::setResponseJson(201,"En ".$session_array['time']. " minutos se terminará la sesión, ¿desea ampliar su tiempo de sesión en VIP World Trading?");
         }else{
             return Util::setResponseJson(400,"Restan ".$session_array['time']. " minutos, para que se termine la sesión.");
         }
