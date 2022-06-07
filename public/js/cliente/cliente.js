@@ -97,21 +97,7 @@ $(document).ready(function(){
             }
         }
 
-<<<<<<< HEAD
-       /* if (seEncontraronElementoNoValidos) {
-            alert("Se encontraron archivos no validos.");
-        }
-        else {
-            alert("Todos los archivos se subieron correctamente.");
-=======
-        /*if (seEncontraronElementoNoValidos) {
-            showMessage("Se encontraron archivos no validos.");
-        }
-        else {
-            showMessage("Todos los archivos se subieron correctamente.");
->>>>>>> 09a60fa908713bbb911772b8fa624051b180387c
-        }*/
-    
+
     });
 
     // Eliminar previsualizaciones
@@ -127,12 +113,22 @@ $(document).ready(function(){
 
 function createPreview(file) {
     var imgCodified = URL.createObjectURL(file);
-    var img = $('<div class="col-md-3" ><div class="image-container"> <figure> <img class="img-perfil rounded-circle" src="' + imgCodified + '" alt="Foto del usuario"> <figcaption> x </figcaption> </figure> </div></div>');
+    var img = $('<div class="col-md-3" ><div class="image-container"> <figure> <img class="img-perfil rounded-circle" src="' + imgCodified + '" alt="Foto del usuario"> <figcaption><i class="icon-cross"></i></figcaption></figure> </div></div>');
      $(img).insertBefore("#add-photo-container");
 
 }
 
+$(document).ready(function () {
+    $("#add-photo-container").click(function (evento) {
+        if ($("#add-new-photo").attr("checked")) {
+            $("#add-new-photo").css("display", "block");
+        } else {
+            $("#add-photo").css("display", "none");
+        }
+    });
+});
 
+  
 const cargarFoto = ()=>{
 
     let foto = document.getElementById('add-new-photo').files[0];

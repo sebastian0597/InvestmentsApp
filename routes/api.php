@@ -61,13 +61,13 @@ Route::post('v1/customer/changeprofilepicture', [CustomerController::class, 'cha
 Route::get('contrato_pdf', function () { 
     
     
-    $customer_fullname = "OMAR YESID IBÁÑEZ ORTIZ";
+    $customer_fullname = "CESAR AUGUSTO RAMIREZ RAMIREZ";
 
     $params["email"] = "oibanez@unab.edu.co";
     $params["title"] = "Pagaré del cliente 1098796215"." ".$customer_fullname;
-    $params["amount"] = '50000000';
+    $params["amount"] = '25000000';
     $params["investment_date"] = date('d/m/Y');
-    $params["bank_promissor_number"] = "20";
+    $params["bank_promissor_number"] = "23";
     $params["document_number"] = "1098796215";
     $params["customer_name"] = $customer_fullname;
     $params["document_name"] = "Pagare_1098796215_".$customer_fullname;

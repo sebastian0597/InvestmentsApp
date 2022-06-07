@@ -38,7 +38,7 @@
                     <div class="onhover-show-div notification-dropdown">
                         <h6 class="f-18 mb-0 dropdown-title">Notificaciones</h6>
                 
-                        <ul id="ultimas_solicitudes"></ul>
+                        <ul class="vertical-scroll scroll-demo" id="ultimas_solicitudes"></ul>
                        
                     </div>
                 </li>

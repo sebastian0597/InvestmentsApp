@@ -298,12 +298,12 @@ const continuarRenderizarSolicitudes = (response) =>{
 
     })
 
-    html+=`<li><a class="f-w-700" href="${document.location.origin+'/solicitudes'}">Ver todas las notificaciones</a></li>`
+    html+=`<li><a class="f-w-700 btn btn-secondary" href="${document.location.origin+'/solicitudes'}">Ver todas las notificaciones</a></li>`
     
 
     }else{
     
-    html+=`<li><a class="f-w-700" href="${document.location.origin+'/solicitudes'}">Ver todas las notificaciones</a></li>`
+    html+=`<li><a class="f-w-700 btn btn-secondary" href="${document.location.origin+'/solicitudes'}">Ver todas las notificaciones</a></li>`
     }
 
     $('#span_cantidad').append(cantidad_solicitudes)
