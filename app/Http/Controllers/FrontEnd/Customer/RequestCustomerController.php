@@ -29,6 +29,6 @@ class RequestCustomerController extends Controller
         $requests = Util::setJSONResponseUniqueData($requests);
         $requests_types = RequestType::all();
    
-        return view('clientes.solicitudes', compact('requests','requests_types'));
+        return view('clientes.solicitudes', compact('requests','requests_types','customer'));
     }
 }

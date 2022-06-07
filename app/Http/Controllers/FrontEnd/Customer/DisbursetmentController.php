@@ -29,6 +29,6 @@ class DisbursetmentController extends Controller
         $disbursetments = new DisbursementCollection(Disbursetment::getDisbursementByIdCustomer($customer->id));
         $disbursetments = Util::setJSONResponseUniqueData($disbursetments);
         
-        return view('clientes.desembolsos', compact('disbursetments'));
+        return view('clientes.desembolsos', compact('disbursetments', 'customer'));
     }
 }

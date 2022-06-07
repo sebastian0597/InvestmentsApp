@@ -323,10 +323,42 @@ const validarTiempoSesion = ()=>{
 }
 
 const continuarvalidarTiempoSesion = (response) =>{
-   
+  
     if(response.status == 200){
         location.href = document.location.origin + '/login';
     }
+    else if(response.status == 201){
+        
+        Swal.fire({ 
+            icon: 'warning', 
+            title: 'Cierre de sesión',
+            text: response.message,  
+            showDenyButton: true, 
+            showCancelButton: false,  
+            confirmButtonColor: '#6610f2',
+            confirmButtonText: 'Sí',
+            cancelButtonText:'No',
+            cancelButtonColor: '#f73164',
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+          }).then((result) => {  
+             
+              if (result.isConfirmed) {    
+                   
+                let url = document.location.origin + `/api/extend_session`
+                let method = 'POST'
+                let form_data = new FormData()
+                form_data.append('id_user', $('#user_id').val())
+                enviarPeticion(url, method, form_data, 'terminarvalidarTiempoSesion')
+
+              }else if (result.isCancel) {
+                Swal.close()
+              }
+          });
+    }
+}
+const terminarvalidarTiempoSesion = (response) =>{
+    setResponseMessage(response)
 }
  
 setInterval('validarTiempoSesion()',15000);

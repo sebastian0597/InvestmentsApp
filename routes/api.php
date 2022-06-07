@@ -51,7 +51,48 @@ Route::post('login', [LoginController::class, 'login']);
 Route::post('reset_password', [LoginController::class, 'resetPassword']);
 Route::post('change_password', [LoginController::class, 'changePassword']);
 Route::post('validate_sesion', [LoginController::class, 'validateSesionTime']);
+Route::post('extend_session', [LoginController::class, 'assignSessionTime']);
 
 //CUSTOMER
 Route::get('v1/customer/extracts_by_customer/{date}', [ExtractController::class, 'getByCustomerAndDate']);
+Route::post('v1/customer/changeprofilepicture', [CustomerController::class, 'changeProfilePicture']);
 
+
+Route::get('contrato_pdf', function () { 
+    
+    
+    $customer_fullname = "OMAR YESID IBÁÑEZ ORTIZ";
+
+    $params["email"] = "oibanez@unab.edu.co";
+    $params["title"] = "Pagaré del cliente 1098796215"." ".$customer_fullname;
+    $params["amount"] = '50000000';
+    $params["investment_date"] = date('d/m/Y');
+    $params["bank_promissor_number"] = "20";
+    $params["document_number"] = "1098796215";
+    $params["customer_name"] = $customer_fullname;
+    $params["document_name"] = "Pagare_1098796215_".$customer_fullname;
+
+    $pdf = PDF::loadView('Pdfs.bank_promissor_note', compact('params'))->setPaper('a4', 'landscape');
+    //$pdf->stream('archivo.pdf');
+    return $pdf->download('archivo.pdf');
+    //Util::sendEmailWithPDFFile('Pdfs.bank_promissor_note', $params);
+});
+
+Route::get('extracto_pdf', function () { 
+    
+    
+    $customer_fullname = "OMAR YESID IBÁÑEZ ORTIZ";
+
+    $params["email"] = "oibanez@unab.edu.co";
+    $params["title"] = "Pagaré del cliente 1098796215"." ".$customer_fullname;
+    $params["amount"] = '5000000000';
+    $params["investment_date"] = date('d/m/Y');
+    $params["bank_promissor_number"] = "20";
+    $params["document_number"] = "1098796215";
+    $params["customer_name"] = $customer_fullname;
+    $params["document_name"] = "Pagare_1098796215_".$customer_fullname;
+   
+    $pdf = PDF::loadView('Pdfs.extract')->setPaper('a4', 'landscape');
+    return $pdf->download('archivo.pdf');
+    //Util::sendEmailWithPDFFile('Pdfs.bank_promissor_note', $params);
+});

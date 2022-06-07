@@ -453,5 +453,35 @@ class CustomerController extends Controller
         return Util::setResponseJson(201, 'Se ha cargado el documento SARLAFT exitosamente, el documento se guardó con el nombre de '.$SARLAFT_response);
  
     }
+
+    public function changeProfilePicture(Request $request){
+
+        $photo_response = DB::transaction(function () use($request){
+           
+            $fields = $request->validate([
+                'file' => 'required|file',
+                'id_user' => 'required|numeric',
+            ]); 
+    
+            $customer = Customer::where('id_user',$fields['id_user'])->first();
+            $photo=NULL;
+    
+            if($request->hasFile("file")){
+                $file=$request->file("file");
+                
+                $photo = "foto".$customer->document_number.".".$file->guessExtension();
+                $ruta = public_path("archivos/fotos/".$photo);
+                copy($file, $ruta);
+            }   
+             
+            $customer->photo = $photo;
+            $customer->update();
+
+            return $photo;
+        }, 3); 
+
+        return Util::setResponseJson(201, 'Se ha cargado la foto exitosamente');
+
+    }
  
 }

@@ -60,7 +60,12 @@
         </li>
          
         <li class="profile-nav onhover-dropdown p-0 me-0">
-          <div class="media profile-media"><img class="b-r-10" src="{{ asset('images/profile.jpg') }}" alt="">
+          <?php 
+        
+          $image_profile = !is_null($customer['photo']) ? 'archivos/fotos/'.$customer['photo'] : 'images/profile.jpg';
+      
+          ?>
+          <div class="media profile-media"><img width='54px' heigth='54px' class="b-r-10" src="{{  asset($image_profile) }}" alt="">
             <div class="media-body"><span>{{auth()->user()->name}}</span>
               <input type="hidden" id="ind_inicio_sesion" value="{{auth()->user()->ind_first_login}}">
               <input type="hidden" id="user_id" value="{{auth()->user()->id}}">

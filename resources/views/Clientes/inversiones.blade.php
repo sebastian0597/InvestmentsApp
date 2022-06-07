@@ -33,7 +33,7 @@
             <div class="page-title">
               <div class="row">
                 <div class="col-6">
-                  <h3>Modulo de inversiones</h3>
+                  <h3>Módulo de inversiones</h3>
                 </div>
                 <div class="col-6">
                   <ol class="breadcrumb">
@@ -78,12 +78,12 @@
                               <td>${{$item['base_amount']}}</td>
                               <td class="text-end">
                                 <a class="icon" href="javascript:void(0)"></a>
-                                <a class="btn btn-primary btn-sm" href="javascript:void(0)">
+                                <!--<a class="btn btn-primary btn-sm" href="javascript:void(0)">
                                   <i class="fa fa-download"></i> Descargar Pagaré </a>
                                   <a class="icon" href="javascript:void(0)"></a>
                                   
                                     <a class="btn btn-success btn-sm" href="javascript:void(0)">
-                                      <i class="fa fa-upload"></i>  Subir archivo </a>
+                                      <i class="fa fa-upload"></i>  Subir archivo </a> -->
                               </td>
                             </tr>
    

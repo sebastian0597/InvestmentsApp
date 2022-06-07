@@ -79,7 +79,7 @@
                                                 <tr>
                                                     <td><a class="text-inherit">{{$item['customer']['customer_type']}}</a></td>
                                                     <td>{{$item['date_disbursement']}}</td>
-                                                    <td><span class="status-icon bg-success"></span>${{$item['value_consign']}}</td>
+                                                    <td><span class="status-icon bg-success"></span>${{number_format($item['value_consign'], 0, ',', '.')}}</td>
                                                     <td>{{$item['disbursement_type']}}</td>
                                                     <td class="text-end">
 
