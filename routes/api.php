@@ -58,7 +58,7 @@ Route::get('v1/customer/extracts_by_customer/{date}', [ExtractController::class,
 Route::post('v1/customer/changeprofilepicture', [CustomerController::class, 'changeProfilePicture']);
 
 
-Route::get('contrato_pdf', function () { 
+/*Route::get('contrato_pdf', function () { 
     
     
     $customer_fullname = "CESAR AUGUSTO RAMIREZ RAMIREZ";
@@ -92,7 +92,8 @@ Route::get('extracto_pdf', function () {
     $params["customer_name"] = $customer_fullname;
     $params["document_name"] = "Pagare_1098796215_".$customer_fullname;
    
-    $pdf = PDF::loadView('Pdfs.extract')->setPaper('a4', 'landscape');
+    $pdf = PDF::loadView('Pdfs.extract', compact('params'))->setPaper('a4', 'landscape');
     return $pdf->download('archivo.pdf');
     //Util::sendEmailWithPDFFile('Pdfs.bank_promissor_note', $params);
 });
+*/

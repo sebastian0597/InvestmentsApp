@@ -239,8 +239,8 @@ h2 {
       <br>
 
       <div style="line-height:5px">
-        <h2>Inversionista:  <strong> <span>nombre del cliente</span></strong></h2>
-      <h2>Identificación:  <strong> <span>N° identificación</span></strong></h2>
+        <h2>Inversionista:  <strong> <span>{{$customer['name']}} {{$customer['last_name']}}</span></strong></h2>
+      <h2>Identificación:  <strong> <span>{{$customer['document_number']}}</span></strong></h2>
       </div>
       
       <span id="invoice" style="margin-top: 0px;font-size: 18px;">ISF-XXXXX</span>
@@ -249,99 +249,38 @@ h2 {
       <div id="details" class="clearfix">
        
         <br>
+     
       <table border="0" cellspacing="0" cellpadding="0">
-           <thead>
-          <tr>
-            <th style="background: white;"></th>
-            <th class="qty">1</th>
-            <th class="unit ">2</th>
-            <th class="qty ">3</th>
-            <th class="unit">4</th>
-            <th class="qty">5</th>
-            <th class="unit ">6</th>
-          
-          </tr>
-        </thead>
         <thead>
+       <tr>
+         <th class="no" scope="row">Fecha consignación</th>
+         <th class="no" scope="row">Fecha operación</th>
+         <th class="no" scope="row">No. contrato</th>
+         <th class="no" scope="row">Vlr. inversión</th>
+         <th class="no" scope="row">Capital</th>
+         <th class="no" scope="row">Rentabilidad</th>
+         <th class="no" scope="row">Capital + Rentabilidad</th>
+       
+       </tr>
+     </thead>
+    
+     <tbody>
+      
+      @foreach ($extracts as $item)
+                
           <tr>
-            <th class="no">Fecha Consignación </th>
-            <th class="qty">XX/XX/2022</th>
-            <th class="unit "></th>
-            <th class="qty "></th>
-            <th class="unit"></th>
-            <th class="qty"></th>
-            <th class="unit "></th>
-          
+            <td class="unit">{{$item['fecha_consignacion']}}</td>
+            <td class="qty" >{{$item['fecha_inicio']}}</td>
+            <td class="unit" >P-{{$item['numero_pagare']}}</td>
+            <td class="qty" >{{number_format($item['valor_inversion'],0,'', '.')}}</td>
+            <td class="unit" >{{number_format($item['capital_inicial_mes'],0,'', '.')}}</td>
+            <td class="qty" >{{number_format($item['investment_return'],0,'', '.')}}</td>
+            <td class="unit ">{{number_format(intval($item['capital_inicial_mes']) + intval($item['investment_return']),0,'', '.')}}</td>
           </tr>
-        </thead>
-        <tbody>
-          <!-- aqui va el porcentaje de la rentabilidad -->
-          <tr>
-            <td class="no">Fecha Inicio Operación </td>
-            <th class="qty">XX/XX/2022</th>
-            <th class="unit "></th>
-            <th class="qty "></th>
-            <th class="unit"></th>
-            <th class="qty"></th>
-            <th class="unit "></th>
-          </tr>
-          <!-- aqui va la rentabilidad del año mes a mes -->
-          <tr>
-            <td class="no">Número de Pagaré</td>
-            <th class="qty">P-00042</th>
-            <th class="unit "></th>
-            <th class="qty "></th>
-            <th class="unit"></th>
-            <th class="qty"></th>
-            <th class="unit "></th>
-          </tr>
-          <tr>
-            <td class="no">Valor Inversión</td>
-            <th class="qty">$XX.XXX.XXX</th>
-            <th class="unit "></th>
-            <th class="qty "></th>
-            <th class="unit"></th>
-            <th class="qty"></th>
-            <th class="unit "></th>
-          </tr>
-          <tr >
-            <td style="background: white;"></td>
-             <th style="background: white;"></th>
-            <th style="background: white;"></th>
-            <th style="background: white;"></th>
-            <th style="background: white;"></th>
-            <th style="background: white;"></th>
-            <th style="background: white;"></th>
-          </tr>
-          <tr>
-            <td class="no">Capital Inicial Mes</td>
-            <th class="qty">$XX.XXX.XXX</th>
-            <th class="unit "></th>
-            <th class="qty "></th>
-            <th class="unit"></th>
-            <th class="qty"></th>
-            <th class="unit "></th>
-          </tr>
-          <tr>
-            <td class="no">Rentabilidad del Mes </td>
-           <th class="qty">$XX.XXX.XXX</th>
-            <th class="unit "></th>
-            <th class="qty "></th>
-            <th class="unit"></th>
-            <th class="qty"></th>
-            <th class="unit "></th>
-          </tr>
-          <tr>
-            <td class="no">Capital + Rentabilidad</td>
-            <th class="qty">$XX.XXX.XXX</th>
-            <th class="unit "></th>
-            <th class="qty "></th>
-            <th class="unit"></th>
-            <th class="qty"></th>
-            <th class="unit "></th>
-          </tr> 
-        </tbody>
-      </table>
+        @endforeach
+                 
+     </tbody>
+   </table>
 
 <h1>HISTORICO</h1>
       <table border="0" cellspacing="0" cellpadding="0">
@@ -352,8 +291,7 @@ h2 {
             <th class="qty">Rentabilidad Acumulada </th>
             <th class="unit ">Desembolsos Efectuados</th>
             <th class="unit ">Subtotal</th>
-         
-          
+           
           </tr>
         </thead>
         <tbody>

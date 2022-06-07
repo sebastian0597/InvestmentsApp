@@ -39,8 +39,8 @@ class ExtractController extends Controller
         $customer = Customer::find($id_customer);
         $customer = json_encode($customer);
         $customer = json_decode($customer, true);
-       
-        $pdf = PDF::loadView('Pdfs.reporte_extracto', compact('extracts','customer'))->stream('archivo.pdf');
+        
+        $pdf = PDF::loadView('Pdfs.extract', compact('extracts','customer'))->setPaper('a4', 'landscape')->stream('archivo.pdf');
        // return PDF::loadView('vista-pdf', $data)
         return $pdf;
         //return $pdf->download('archivo.pdf');
