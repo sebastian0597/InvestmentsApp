@@ -69,24 +69,22 @@
                                                         }
 
                                                         #Images .add-new-photo {
-                                                        display: flex;
-                                                          
+                                                            display: flex;
                                                             font-size: 50px;
                                                             cursor: pointer;
                                                             background-size: 50% 50%;
                                                             width: 70px;
-                                                            height: 70px;
+                                                            height: 69px;
                                                             -moz-border-radius: 50%;
                                                             -webkit-border-radius: 50%;
                                                             border-radius: 50%;
                                                             border: 3px solid #555;
                                                             align-content: flex-end;
-                                                            justify-content: center;
+                                                            justify-content: space-around;
                                                             flex-wrap: wrap;
-                                                            
                                                             background-size: cover;
+                                                            flex-direction: row;
                                                         }
-
 
 
                                                         #add-photo-container input {
@@ -95,10 +93,9 @@
 
                                                         .img-perfil {
                                                             width: 100px !important;
-                                                            height: auto !important;
-                                                            
+                                                            height: 100px !important;
+                                                        object-fit: cover;
                                                         }
-
                                                     </style>
 
 
@@ -107,20 +104,15 @@
                                                         <h5> Inserta tu foto de perfil</h5>
                                                         
                                                         <section id="Images" class="images-cards">
-<<<<<<< HEAD
-=======
+
                                                             <form method="post" enctype="multipart/form-data">
->>>>>>> 09a60fa908713bbb911772b8fa624051b180387c
+
                                                                <div class="row">
                                                                   <div class="row g-3">
                                                                      <!-- aqui la pinta-->
                                                                      <div class="col-md-3" class="img-perfil rounded-circle" id="add-photo-container">
                                                                         <div class="add-new-photo first" id="add-photo">
-<<<<<<< HEAD
-                                                                        <span class="material-icons-outlined">add_a_photo</span>
-=======
-                                                                           <!--<span><i data-feather="camera"> Inserta tu foto de</i></span>-->
->>>>>>> 09a60fa908713bbb911772b8fa624051b180387c
+
                                                                         </div>
                                                                         <input type="file" id="add-new-photo">
                                                                      </div>
