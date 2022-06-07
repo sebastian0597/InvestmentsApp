@@ -30,7 +30,7 @@ const cambiarContrasenaCliente = () =>{
 }
 
 const continuarcambiarContrasenaCliente = (response) =>{
-    setResponseMessage(response, '/');
+    setResponseMessage(response, '/cliente/perfil');
 }
 
 
