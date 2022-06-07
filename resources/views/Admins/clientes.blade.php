@@ -15,7 +15,7 @@
     </div>
     <!-- loader ends-->
     <!-- tap on top starts-->
-    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
+    <div class="tap-top"></div>
     <!-- tap on tap ends-->
     <!-- page-wrapper Start-->
     <div class="page-wrapper compact-wrapper" id="pageWrapper">

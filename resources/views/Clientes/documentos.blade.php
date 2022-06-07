@@ -14,7 +14,7 @@
     </div>
     <!-- loader ends-->
     <!-- tap on top starts-->
-    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
+    <div class="tap-top"></i></div>
     <!-- tap on tap ends-->
     <!-- page-wrapper Start-->
     <div class="page-wrapper compact-wrapper" id="pageWrapper">
@@ -76,7 +76,7 @@
                       </div>
                       <div class="mb-3">
                           <button class="btn btn-success btn-sm" onclick="cargarDocumentoSARLAFT();">
-                                <i class="fa fa-save"></i>Cargar
+                                <i class="fa fa-save"></i> Cargar
                           </button>
                       </div>
                     </div>
@@ -90,7 +90,7 @@
                        <div class="mb-3">
                         @if (!empty($customer['contract_file']) && !is_null($customer['contract_file']))
                           <a target="_blank" class="btn btn-primary btn-sm" href="{{ asset($contract_file) }}">
-                          <i class="fa fa-download"></i>Descargar contrato</a>
+                          <i class="fa fa-download"></i> Descargar contrato</a>
                         @endif
                         
                       </div>

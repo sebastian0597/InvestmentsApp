@@ -1,1 +1,1 @@
-<li class="breadcrumb-item"><a href="{{ url('/') }}"><i data-feather="home"></i></a></li>
+<li class="breadcrumb-item"><a href="{{ url('/') }}"><i class="fa fa-home"></i></a></li>

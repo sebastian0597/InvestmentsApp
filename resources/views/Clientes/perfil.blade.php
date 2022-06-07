@@ -15,7 +15,7 @@
     </div>
     <!-- loader ends-->
     <!-- tap on top starts-->
-    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
+    <div class="tap-top"></div>
     <!-- tap on tap ends-->
     <!-- page-wrapper Start-->
     <div class="page-wrapper compact-wrapper" id="pageWrapper">
@@ -118,8 +118,8 @@
                                                                      </div>
                                                                      <!-- aqui esta el boton de guardar-->
                                                                      <div class="col-md-4">
-                                                                        <a class="btn btn-success btn-sm" onclick="cargarFoto()" data-bs-original-title="" title="">
-                                                                        <i class="fa fa-save"></i>Guardar</a>
+                                                                        <a class="btn btn-success btn-sm" onclick="cargarFoto()">
+                                                                        <i class="fa fa-save"></i></a>
                                                                      </div>
                                                                   </div>
                                                                </div>

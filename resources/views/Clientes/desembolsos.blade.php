@@ -15,7 +15,7 @@
     </div>
     <!-- loader ends-->
     <!-- tap on top starts-->
-    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
+    <div class="tap-top"></div>
     <!-- tap on tap ends-->
     <!-- page-wrapper Start-->
     <div class="page-wrapper compact-wrapper" id="pageWrapper">
@@ -63,8 +63,8 @@
                                                 class="card-options-remove" href="#" data-bs-toggle="card-remove"><i
                                                     class="fe fe-x"></i></a></div>
                                     </div>
-                                    <div class="table-responsive add-project">
-                                        <table class="table card-table table-vcenter text-nowrap">
+                                    <div class="table-responsive add-project p-4">
+                                        <table class="table  table-bordered card-table table-vcenter text-nowrap">
                                             <thead>
                                                 <tr>
                                                     <th>Tipo cliente</th>

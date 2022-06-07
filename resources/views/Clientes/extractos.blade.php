@@ -15,7 +15,7 @@
     </div>
     <!-- loader ends-->
     <!-- tap on top starts-->
-    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
+    <div class="tap-top"></div>
     <!-- tap on tap ends-->
     <!-- page-wrapper Start-->
     <div class="page-wrapper compact-wrapper" id="pageWrapper">
@@ -58,14 +58,14 @@
                                 <div class="card-body">
 
                                     <div class="mb-12 row g-12">
-                                        <label class="col-sm-3 col-form-label text-sm-end">BUSQUEDA</label>
+                                        <label class="col-sm-3 col-form-label text-sm-end">Búsqueda</label>
                                         <div class="col-xl-5 col-sm-9">
                                             <div class="input-group">
 
                                                 <input id="fecha_busqueda" type="month" />
                                                 <button class="btn btn-secondary" id="btn_extractos"
                                                     onclick="buscarExtractosPorfecha()" type="button"><i
-                                                        class="fa fa-download"></i>Generar</button>
+                                                        class="fa fa-download"></i> Generar</button>
                                             </div>
                                         </div>
                                        
