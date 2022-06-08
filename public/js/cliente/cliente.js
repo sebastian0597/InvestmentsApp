@@ -109,8 +109,6 @@ $(document).ready(function(){
 });
 
 
-
-
 function createPreview(file) {
     var imgCodified = URL.createObjectURL(file);
     var img = $('<div class="col-md-3" ><div class="image-container"> <figure> <img class="img-perfil rounded-circle" src="' + imgCodified + '" alt="Foto del usuario"> <figcaption><i class="icon-cross"></i></figcaption></figure> </div></div>');
