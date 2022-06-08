@@ -11,14 +11,13 @@ class CustomerMiddleware
     public function handle(Request $request, Closure $next)
     {   
       
-        if (auth()->check()/* && auth()->user()->id_rol == 2*/) {
+        if (auth()->check() && auth()->user()->id_rol == 2) {//Cliente
             
             return $next($request);
 
         }
 
-            //return redirect('clientes');
-            //return back();
+        return redirect('clientes');//Admin
        
     }
 }
