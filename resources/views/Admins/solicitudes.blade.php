@@ -175,10 +175,11 @@
                 </div>
             </div>
         </div>
+        @include('Admins.componentes.footer')
     </div>
     </div>
-@section('scripts')
-    <script src="{{ asset('js/admin/solicitudes.js') }}" defer></script>
-@stop
+    @section('scripts')
+        <script src="{{ asset('js/admin/solicitudes.js') }}" defer></script>
+    @stop
 @stop
 @endcan

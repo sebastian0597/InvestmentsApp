@@ -178,6 +178,7 @@
                     </div>
                 </div>
             </div>
+            @include('Admins.componentes.footer')
         </div>
     </div>
   

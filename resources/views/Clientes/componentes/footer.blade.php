@@ -1,4 +1,4 @@
-@can('admin.inicio')
+@can('cliente.inicio')
 <footer class="footer">
     <div class="container-fluid">
         <div class="row">

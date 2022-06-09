@@ -431,9 +431,9 @@
     <!-- Container-fluid Ends-->
     </div>
     <!-- footer start-->
-
+        @include('Admins.componentes.footer')
     </div>
-    </div>
+</div>
    
 @stop
 @endcan

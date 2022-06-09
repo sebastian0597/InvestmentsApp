@@ -103,7 +103,7 @@
           <!-- Container-fluid Ends-->
         </div>
         <!-- footer start-->
-
+        @include('Clientes.componentes.footer')
       </div>
     </div>
 @stop
