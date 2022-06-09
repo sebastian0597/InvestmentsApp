@@ -54,7 +54,7 @@ const continuarBuscarExtractosPorfecha = (response) =>{
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Total invetido</th>
+                        <th scope="col">Total invertido</th>
                         <th scope="col">Porcentaje rentabilidad</th>
                         <th scope="col">Total rentabilidad</th>
                     </tr>
