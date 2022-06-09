@@ -14,7 +14,7 @@ class AddFeaturesToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_rol');
+            //$table->unsignedBigInteger('id_rol');
             $table->tinyinteger('status')->default(1)->nullable(true);
             $table->tinyinteger('ind_blocked')->nullable(true);
             $table->tinyinteger('time_blocked')->nullable(true);
@@ -23,7 +23,7 @@ class AddFeaturesToUsers extends Migration
             $table->timestamp('blocked_date')->nullable(true);
             $table->timestamp('banned_date')->nullable(true);
             $table->string('personal_code')->unique();
-            $table->foreign('id_rol')->references('id')->on('roles');  
+            //$table->foreign('id_rol')->references('id')->on('roles');  
         });
     }
 

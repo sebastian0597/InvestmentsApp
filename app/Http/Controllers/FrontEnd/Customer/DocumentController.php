@@ -22,9 +22,11 @@ class DocumentController extends Controller
     public function index(){
        
         $customer = Customer::where('id_user', auth()->user()->id)->first();
-        $customer = new CustomerResource($customer);
-        $customer = Util::setJSONResponseUniqueData($customer);
-  
+
+        if($customer){
+            $customer = new CustomerResource($customer);
+            $customer = Util::setJSONResponseUniqueData($customer);
+        }
         return view('clientes.documentos', compact('customer'));
     }
 }

@@ -10,22 +10,21 @@ class Admin extends Model
     use HasFactory;
     protected $table = 'users';
     protected $fillable = [
-        'id_user',
-        'admin_code',
+        'name',
     ];
 
-    public function rol(){
+    public function model_rol(){
 
-        return $this->hasOne(Rol::class,'id','id_rol');
+       return $this->hasOne(ModelHasRol::class, 'model_id', 'id');
     }
 
 
-    public function getStatusTextAttribute(){
+    /*public function getStatusTextAttribute(){
        
         $status = $this->status == 1 ? "Activo" : "Inactivo";
         return $status;
 
-    }
+    }*/
 
 
 }

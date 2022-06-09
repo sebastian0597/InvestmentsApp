@@ -1,3 +1,4 @@
+@can('cliente.inicio')
 <div class="sidebar-wrapper">
     <div>
         <div class="logo-wrapper"><a href="">VIP WORLD TRADING</a>
@@ -49,3 +50,4 @@
         </nav>
     </div>
 </div>
+@endcan

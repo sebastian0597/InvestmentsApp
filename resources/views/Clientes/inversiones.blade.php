@@ -1,6 +1,8 @@
+@can('cliente.inicio')
 @extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
+
     <!-- loader starts-->
     <div class="loader-wrapper">
       <div class="loader-index"><span></span></div>
@@ -58,7 +60,7 @@
                       <h4 class="card-title mb-0">Listado de inversiones</h4>
                       <div class="card-options"><a class="card-options-collapse" href="#" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a class="card-options-remove" href="#" data-bs-toggle="card-remove"><i class="fe fe-x"></i></a></div>
                     </div>
-                    <div class="table-responsive add-project">
+                    <div class="table-responsive add-project p-4">
                       <table class="table card-table table-vcenter text-nowrap">
                         <thead>
                           <tr>
@@ -105,3 +107,4 @@
       </div>
     </div>
 @stop
+@endcan

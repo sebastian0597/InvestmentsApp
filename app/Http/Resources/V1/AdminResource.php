@@ -18,14 +18,10 @@ class AdminResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'id_rol' => $this->id_rol,
             'ind_status' => $this->status,
-            'status' => $this->status_text,
-            'roles' => [
-                'role' => $this->rol->rol,
-                'ind_admin' => $this->rol->ind_admin_rol,
-                'status' => $this->rol->status,
-                ]
+            'status' => 'Activo',
+            'model_rol' => $this->model_rol,
+            /*'roles' => $this->rol,*/
         ];
     }
 }

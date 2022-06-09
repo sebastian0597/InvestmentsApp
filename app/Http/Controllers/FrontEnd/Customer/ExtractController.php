@@ -23,9 +23,13 @@ class ExtractController extends Controller
     
     public function index(){
         $customer = Customer::where('id_user', auth()->user()->id)->first();
-        $extracts = new ExtractCollection(Extract::getExtractByIdCustomer($customer->id));
-        $extracts = Util::setJSONResponseUniqueData($extracts);
-        //dd($extracts);
+        $extracts = array();
+
+        if($customer){
+
+            $extracts = new ExtractCollection(Extract::getExtractByIdCustomer($customer->id));
+            $extracts = Util::setJSONResponseUniqueData($extracts);
+        }
         return view('clientes.extractos', compact('extracts', 'customer'));
     }
 

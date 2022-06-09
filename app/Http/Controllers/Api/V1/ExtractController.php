@@ -73,11 +73,16 @@ class ExtractController extends Controller
         return /*new ExtractCollection(*/Extract::getExtractByCustomer($id_customer);
     }
 
-    public function getByCustomerAndDate($date)
+    public function getByCustomerAndDate(Request $request)
     {
-        return new ExtractCollection(Extract::getExtractByCustomerAndDate($date, 16));
-    }
+        $fields = $request->validate([   
+            'date' => 'required',
+            'id_user' => 'required',
+        ]);
 
+        $customer = Customer::where('id_user',$fields['id_user'])->first();
+        return new ExtractCollection(Extract::getExtractByCustomerAndDate($fields['date'], $customer->id));
+    }
 
     /**
      * Show the form for editing the specified resource.

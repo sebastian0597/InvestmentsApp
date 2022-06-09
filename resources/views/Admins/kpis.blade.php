@@ -1,3 +1,4 @@
+@can(['admin.inicio','admin.kpis.index'])
 @extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
@@ -81,3 +82,4 @@
         </div>
     </div>
 @stop
+@endcan

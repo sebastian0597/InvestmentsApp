@@ -1,3 +1,4 @@
+@can(['admin.inicio','admin.inversiones.index'])
 @extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
@@ -76,9 +77,11 @@
                                             
                                                 <ol style="float:right;" class="breadcrumb">
                                                     <!--<b style="float: right">Total clientes: {{count($customers)}}</b> -->
-                                                    @include(
-                                                        'Admins/componentes/modal_busqueda_inversiones'
-                                                    )   
+                                                    @can('admin.inversiones.editar')
+                                                        @include(
+                                                            'Admins/componentes/modal_busqueda_inversiones'
+                                                        ) 
+                                                    @endcan  
                                                 </ol>
 
                                             </div>
@@ -147,3 +150,4 @@
         </div>
 
 @stop
+@endcan

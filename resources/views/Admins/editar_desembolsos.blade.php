@@ -1,3 +1,4 @@
+@can(['admin.inicio','admin.desembolsos.editar'])
 @extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
@@ -208,3 +209,4 @@
     </div>
     
 @stop
+@endcan

@@ -254,12 +254,10 @@ const validarInicioSesionPrimeraVezCliente = () =>{
             allowEscapeKey: false,
             allowOutsideClick: false,
           }).then((result) => {  
-              /* Read more about isConfirmed, isDenied below */  
+             
               if (result.isConfirmed) {    
                     location.href = document.location.origin + '/cliente/cambiar_contrasena';
-              } /*else if (result.isDenied) {    
-                  Swal.fire('Changes are not saved', '', 'info')  
-               }*/
+              } 
           });
    
 
@@ -362,55 +360,3 @@ const terminarvalidarTiempoSesion = (response) =>{
 }
  
 setInterval('validarTiempoSesion()',15000);
-/*function process(element) {
-
-    const file = document.getElementById(element.id)
-        .files[0];
-    
-
-    filetype = file.type.replace(/(.*)\//g, '')
-    fileSize = (Math.round((file.size * 100) / 1024) / 100).toString() + 'KB';
-
-    /*document.getElementById('details').innerHTML +=
-        'FOTO: ' +
-        file.name +
-        '<br>Size: ' +
-        fileSize +
-        '<br>Type: ' +
-        file.type;
-    document.getElementById('details').innerHTML += '<p>';
-
-    if (!file || filetype=='pdf') return;
-  
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-
-    reader.onload = function (event) {
-        const imgElement = document.createElement('img');
-        imgElement.src = event.target.result;
-        //document.querySelector('#input').src = event.target.result;
-
-        imgElement.onload = function (e) {
-            //console.log('leyo:2');
-
-            const canvas = document.createElement('canvas');
-            const MAX_WIDTH = 400;
-
-            const scaleSize = MAX_WIDTH / e.target.width;
-            canvas.width = MAX_WIDTH;
-            canvas.height = e.target.height * scaleSize;
-
-            const ctx = canvas.getContext('2d');
-
-            ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
-
-            const srcEncoded = ctx.canvas.toDataURL(e.target, 'image/jpeg');
-            console.log(srcEncoded)
-            // you can send srcEncoded to the server
-            document.querySelector('#output').src = srcEncoded;
-
-            //get the resized image from src
-            var resized = document.querySelector('#output').src;
-        };
-    };
-}*/

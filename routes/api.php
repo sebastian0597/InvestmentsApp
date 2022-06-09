@@ -21,6 +21,7 @@ Route::post('v1/get_customers_by_customer_type', [CustomerController::class, 'ge
 Route::post('v1/get_customers_by_customer_premium', [CustomerController::class, 'getCustomersbyCustomerPremium']);
 Route::post('v1/customer/charge_customer_contract', [CustomerController::class, 'chargeCustomerContract']);
 Route::post('v1/customer/charge_sarlaft_document', [CustomerController::class, 'chargeSARLAFTDocument']);
+Route::post('v1/customer/changeprofilepicture', [CustomerController::class, 'changeProfilePicture']);
 
 Route::apiResource('v1/investment', InvestmentController::class)->only(['store','index', 'show']);
 Route::post('v1/reinvestment', [InvestmentController::class, 'storeReinvest']);
@@ -32,6 +33,7 @@ Route::apiResource('v1/extracts', ExtractController::class)->only(['show']);
 Route::post('v1/extracts_customer_premium', [ExtractController::class, 'extractCustomerPremium']);
 Route::post('v1/extracts_by_customer_type', [ExtractController::class, 'extractByCustomerType']);
 Route::get('v1/extracts_by_customer/{customer}', [ExtractController::class, 'getByCustomer']);
+Route::post('v1/customer/extracts_by_customer_date', [ExtractController::class, 'getByCustomerAndDate']);
 
 Route::get('v1/disbursetment/showfiles', [DisbursetmentController::class, 'showFiles']);
 Route::post('v1/disbursetment/update/{param}', [DisbursetmentController::class, 'update']);
@@ -54,5 +56,4 @@ Route::post('validate_sesion', [LoginController::class, 'validateSesionTime']);
 Route::post('extend_session', [LoginController::class, 'assignSessionTime']);
 
 //CUSTOMER
-Route::get('v1/customer/extracts_by_customer/{date}', [ExtractController::class, 'getByCustomerAndDate']);
-Route::post('v1/customer/changeprofilepicture', [CustomerController::class, 'changeProfilePicture']);
+

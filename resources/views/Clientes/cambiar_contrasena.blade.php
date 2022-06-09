@@ -1,3 +1,4 @@
+@can(['cliente.inicio', 'cliente.cambiarcontrasena'])
 @extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
@@ -93,3 +94,4 @@
         <script src="{{ asset('js/cliente/cliente.js') }}" defer></script>
     @stop
 @stop
+@endcan

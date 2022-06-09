@@ -20,7 +20,7 @@ const login = () =>{
 const continuarLogin = (response) =>{
 
     if(response.status == 200){
-        if(response.message.id_rol != '2'){
+        if(response.message.user_type != '2'){
             window.location.href = window.location.origin+'/clientes';
         }else {
             window.location.href = window.location.origin+'/cliente/perfil';

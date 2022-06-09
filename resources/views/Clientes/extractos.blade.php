@@ -1,3 +1,4 @@
+@can('cliente.inicio')
 @extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
@@ -41,7 +42,7 @@
                                 <ol class="breadcrumb">
                                     @include(
                                         'Clientes/componentes/enlance_navegacion'
-                                     )
+                                    )
                                     <li class="breadcrumb-item">Usuario</li>
                                     <li class="breadcrumb-item active"> Extractos</li>
                                 </ol>
@@ -68,7 +69,7 @@
                                                         class="fa fa-download"></i> Generar</button>
                                             </div>
                                         </div>
-                                       
+                                    
                                     </div>
                                     <br><br>
                                     <div id="extractos_container" class="mb-12 row g-12"></div>
@@ -89,7 +90,8 @@
         </div>
 
     </div>
-@section('scripts')
-    <script src="{{ asset('js/cliente/extractos.js') }}" defer></script>
+    @section('scripts')
+        <script src="{{ asset('js/cliente/extractos.js') }}" defer></script>
+    @stop
 @stop
-@stop
+@endcan

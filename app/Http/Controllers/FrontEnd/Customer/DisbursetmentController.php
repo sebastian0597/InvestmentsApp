@@ -25,10 +25,13 @@ class DisbursetmentController extends Controller
     public function index(){
        
         $customer = Customer::where('id_user', auth()->user()->id)->first();
+        $disbursetments = array();
+
+        if($customer){
+            $disbursetments = new DisbursementCollection(Disbursetment::getDisbursementByIdCustomer($customer->id));
+            $disbursetments = Util::setJSONResponseUniqueData($disbursetments);
+        }
        
-        $disbursetments = new DisbursementCollection(Disbursetment::getDisbursementByIdCustomer($customer->id));
-        $disbursetments = Util::setJSONResponseUniqueData($disbursetments);
-        
         return view('clientes.desembolsos', compact('disbursetments', 'customer'));
     }
 }

@@ -1,3 +1,4 @@
+@can(['admin.inicio','admin.extractos.index'])
 @extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
@@ -139,3 +140,4 @@
         <script src="{{ asset('js/admin/extractos.js') }}" defer></script>  
     @stop
 @stop
+@endcan

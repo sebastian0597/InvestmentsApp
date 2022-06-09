@@ -1,3 +1,4 @@
+@can(['admin.inicio','admin.editar'])
 @extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
@@ -72,7 +73,7 @@
                                     <select class="form-select" id='rol'>
                                         <option value="" selected>Seleccione---</option>
                                         @foreach ($roles as $item)
-                                            <option value="{{$item->id}}" {{ $item->id == $admin['id_rol'] ? 'selected' : '' }}>{{$item->rol}}</option>
+                                            <option value="{{$item->id}}" {{ $item->id == $admin['model_rol']['role_id'] ? 'selected' : '' }}>{{$item->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -98,3 +99,4 @@
     </div>
   
 @stop
+@endcan

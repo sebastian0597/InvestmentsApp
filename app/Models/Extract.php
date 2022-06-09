@@ -51,6 +51,7 @@ class Extract extends Model
     }
 
     public static function getExtractByCustomerAndDate($date, $customer) {
+            
 
         return Extract::where('id_customer', $customer)->where('created_at', 'LIKE', '%'.$date.'%')->get();
 

@@ -1,3 +1,4 @@
+@can(['admin.inicio','admin.crear'])
 @extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
@@ -59,11 +60,13 @@
                                         <div class="col-6">
                                             <h5>Registro administradores</h5>
                                         </div>
+                                        @can('admin.editar')
                                         <div class="col-6">
                                             <ol style="float:right;" class="breadcrumb">
                                                 <a onclick="consultarUsuariosAdmin()" class="btn btn-primary">Consultar usuarios</a>
                                             </ol>
                                         </div>
+                                        @endcan
                                     </div> 
                                 </div>
                                 <div class="card-body">
@@ -90,7 +93,7 @@
                                                     <select class="form-select" id="rol">
                                                         <option value="">Seleccione---</option>
                                                       @foreach ($roles as $item)
-                                                        <option value="{{$item['id']}}">{{$item['rol']}}</option>
+                                                        <option value="{{$item['id']}}">{{$item['name']}}</option>
                                                       @endforeach
                                                     </select>
                                                 </div>
@@ -125,3 +128,4 @@
     </div>
 
 @stop
+@endcan

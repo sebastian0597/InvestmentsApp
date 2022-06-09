@@ -13,16 +13,15 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next)
     {   
       
-        if (auth()->check() && auth()->user()->id_rol <> 2) {//Si no es cliente
+        if (auth()->check() /*&& auth()->user()->id_rol === 1*/) {//Si no es cliente
 
             return $next($request);
 
         }
-        //return back();
-        return redirect('cliente/perfil');//Si es cliente
+        return back();
+        //return redirect('cliente/perfil');//Si es cliente
         //return $next($request);
      
-
     }
 
 }

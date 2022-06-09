@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Models\Extract;
 use App\Models\ExtractDetail;
+use App\Models\User;
 
 use App\Utils\ProfitabilityDate;
 
@@ -29,7 +30,14 @@ class Util
         $codigo_base = mb_strtoupper(strstr($email, '@', true));
         $codigo_base = strlen($codigo_base)>4 ? substr($codigo_base, 0, 4) : $codigo_base;
         $codigo = $codigo_base.rand(1000, 9999);
-        return $codigo;
+        //Se valida que no exista el codigo en el sistema.
+        $user = User::where('personal_code',$codigo)->first();
+        if($user && $user->personal_code == $codigo){
+            Util::generatePersonalCode($email);
+        }else{
+            return $codigo;
+        }
+        
     }
 
     public static function setResponseJson($status,$message,$token=""){

@@ -24,8 +24,12 @@ class InvestmentController extends Controller
     
     public function index(){
         $customer = Customer::where('id_user', auth()->user()->id)->first();
-        $investments = new InvestmentCollection(Investment::getAllInvestmentsByIdCustomer($customer->id));
-        $investments = Util::setJSONResponseUniqueData($investments);
+        $investments = array();
+
+        if($customer){
+            $investments = new InvestmentCollection(Investment::getAllInvestmentsByIdCustomer($customer->id));
+            $investments = Util::setJSONResponseUniqueData($investments);
+        }
         
         return view('clientes.inversiones', compact('investments', 'customer'));
     }

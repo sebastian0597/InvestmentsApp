@@ -25,9 +25,13 @@ class RequestCustomerController extends Controller
     
     public function index(){
         $customer = Customer::where('id_user', auth()->user()->id)->first();
-        $requests = new RequestCollection(CustomerRequest::where('id_customer',$customer->id)->get());
-        $requests = Util::setJSONResponseUniqueData($requests);
-        $requests_types = RequestType::all();
+        $investments = array();
+
+        if($customer){
+            $requests = new RequestCollection(CustomerRequest::where('id_customer',$customer->id)->get());
+            $requests = Util::setJSONResponseUniqueData($requests);
+            $requests_types = RequestType::all();
+        }
    
         return view('clientes.solicitudes', compact('requests','requests_types','customer'));
     }

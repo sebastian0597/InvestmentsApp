@@ -247,7 +247,8 @@ class LoginController extends Controller
         $id_user = $fields['id_user'];
         $user = User::find($id_user);
         $session_time = 0;
-        if($user->id_rol == 2){
+        
+        if($user->user_type == 2){
 
             $user->start_sesion_date = Util::getCurrentDate();
             $user->finish_sesion_date = Util::getDateHourMinutes(30);

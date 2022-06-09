@@ -13,13 +13,13 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        /*Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->string('rol');
             $table->tinyinteger('ind_admin_rol')->nullable(true);
             $table->tinyinteger('status')->default(1)->nullable(true);
             $table->timestamps();
-        });
+        });*/
     }
 
     /**
@@ -29,6 +29,6 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        //Schema::dropIfExists('roles');
     }
 }

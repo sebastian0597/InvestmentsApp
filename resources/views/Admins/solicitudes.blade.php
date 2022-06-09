@@ -1,3 +1,4 @@
+@can(['admin.inicio','admin.solicitudes.index'])
 @extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
@@ -177,6 +178,7 @@
     </div>
     </div>
 @section('scripts')
-    <script src="{{ asset('js/admin/solicitudes..js') }}" defer></script>
+    <script src="{{ asset('js/admin/solicitudes.js') }}" defer></script>
 @stop
 @stop
+@endcan

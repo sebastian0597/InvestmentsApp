@@ -1,13 +1,19 @@
 const buscarExtractosPorfecha = () =>{
     quitarError('fecha_busqueda')
+
     let fecha = $('#fecha_busqueda').val().trim()
+    let id_usuario = $('#user_id').val()
+
     if(fecha!= ''){
-        form_data = {}
+        let form_data = new FormData()
         let url =
             document.location.origin +
-            `/api/v1/customer/extracts_by_customer/${fecha}`
-        let method = 'GET'
+            `/api/v1/customer/extracts_by_customer_date`
+        let method = 'POST'
     
+        form_data.append('date', fecha)
+        form_data.append('id_user', id_usuario)
+       
         enviarPeticion(
             url,
             method,
@@ -21,13 +27,13 @@ const buscarExtractosPorfecha = () =>{
 }
 
 const continuarBuscarExtractosPorfecha = (response) =>{
-
+    
     $('#extractos_container').empty()
     let extractos = response.data
     extractos = extractos == undefined || null ? {} : extractos
     let tr_extractos = ''
     let html = ''
-
+  
     if(!isObjEmpty(extractos)) {
         
         extractos.forEach(function (extracto) {

@@ -1,3 +1,5 @@
+@can(['admin.inicio', 'admin.cambiarcontrasena'])
+
 @extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
@@ -89,3 +91,4 @@
     </div>
  
 @stop
+@endcan

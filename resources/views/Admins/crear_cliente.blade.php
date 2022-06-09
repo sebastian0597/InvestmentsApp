@@ -1,3 +1,4 @@
+@can(['admin.inicio','admin.clientes.crear'])
 @extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
@@ -435,3 +436,4 @@
     </div>
    
 @stop
+@endcan

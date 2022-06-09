@@ -15,6 +15,7 @@ class AddIndFirstLoginToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('ind_first_login')->default(1)->nullable(true);
+            $table->string('user_type')->default(1)->nullable(true);//1. Customer, 2. Admin.
         });
     }
 

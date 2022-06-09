@@ -1,3 +1,4 @@
+@can(['admin.inicio','admin.clientes.index'])
 @extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
@@ -53,12 +54,14 @@
                                         <div class="col-6">
                                             <h5>Clientes vinculados</h5>
                                         </div>
-                                        <div class="col-6">
-                                            <ol style="float:right;" class="breadcrumb">
-                                                <a class="btn btn-primary" href="{{ url('crear_cliente') }}">Crear
-                                                    cliente</a>
-                                            </ol>
-                                        </div>
+                                        @can('admin.clientes.crear')
+                                            <div class="col-6">
+                                                <ol style="float:right;" class="breadcrumb">
+                                                    <a class="btn btn-primary" href="{{ url('crear_cliente') }}">Crear
+                                                        cliente</a>
+                                                </ol>
+                                            </div>
+                                        @endcan
                                     </div> 
                                 </div>
                                
@@ -126,3 +129,4 @@
     </div>
  
 @stop
+@endcan

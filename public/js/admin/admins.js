@@ -126,6 +126,7 @@ const continuarConsultarUsuariosAdmin = (response) => {
     
    
     let users = response.data;
+   
     users = users == undefined || null ? {} : users;
     $('#content-users').empty();
 
@@ -135,7 +136,7 @@ const continuarConsultarUsuariosAdmin = (response) => {
         aux=0
         users.forEach(function (user) {
             let url = document.location.origin + `/editar_administrador/${user.id}`
-            if (user.id_rol != 2) {
+            if (user.model_rol.role_id != 2) {
                 
                 trAdmins += `
                 <tr>
@@ -155,9 +156,9 @@ const continuarConsultarUsuariosAdmin = (response) => {
                             : user.status
                     }</td>
                     <td>${
-                        user.roles.role == null
+                        user.model_rol.role_id == null
                             ? ''
-                            : user.roles.role
+                            : user.model_rol.role_id
                     }</td>
                     <td>
                         <a href='${url}' class='btn btn-primary btn-block btn-mail w-100'>Editar</a>                     
@@ -196,7 +197,7 @@ const continuarConsultarUsuariosAdmin = (response) => {
 
 
 const actualizarAdmin = (id_usuario) =>{
-
+    
     if(validarFormularioActualizarAdmin()){
 
         //$('#btn_crear_admin').text('Creando administrador...')
@@ -206,9 +207,11 @@ const actualizarAdmin = (id_usuario) =>{
         let rol = $("#rol").val();
         let estado = $("#estado").val();
    
-        let url = document.location.origin + `/api/v1/admin/${id_usuario}` 
+        let url = document.location.origin + `/api/v1/admin/${id_usuario}`
+        
         let method = 'PUT'
         form_data = { name: nombres, email:correo, rol:rol, status:estado, '_method':'PUT'}
+      
         enviarPeticion(url, method, form_data, 'continuarActualizarAdmin')
         
     }
@@ -216,11 +219,12 @@ const actualizarAdmin = (id_usuario) =>{
 }
 
 const continuarActualizarAdmin = (response) => {
-   
+   console.log(response)
+
     setResponseMessage(response)
-    if(response.status == 200 || response.status == 201 || response.status ==  202){
+    /*if(response.status == 200 || response.status == 201 || response.status ==  202){
         location.reload()
-    }
+    }*/
     
 }
 

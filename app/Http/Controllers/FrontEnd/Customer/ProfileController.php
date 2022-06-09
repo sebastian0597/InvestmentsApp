@@ -23,8 +23,11 @@ class ProfileController extends Controller
     
     public function index(){
         $customer = Customer::where('id_user', auth()->user()->id)->first();
-        $customer = new CustomerResource(Customer::find($customer->id));
-        $customer = Util::setJSONResponseUniqueData($customer);
+
+        if($customer){
+            $customer = new CustomerResource(Customer::find($customer->id));
+            $customer = Util::setJSONResponseUniqueData($customer);
+        }
     
 
         return view('clientes.perfil', compact('customer'));

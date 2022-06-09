@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\User;
 use App\Models\Investment;
+use App\Models\ModelHasRol;
 use Illuminate\Http\Request;
 use App\Utils\Util;
 
@@ -79,8 +80,15 @@ class CustomerController extends Controller
                     'name' => $fields['name']." ".$fields['last_name'],
                     'email' => $fields['email'],
                     'password' => bcrypt($password),
-                    'id_rol' => 2,
-                    'personal_code' => $personal_code
+                    'personal_code' => $personal_code,
+                    'user_type' =>2
+                ]);
+
+                $rol = ModelHasRol::create([
+                    'role_id' => 2,
+                    'model_type' => 'App\Models\User',
+                    'model_id' => $user->id
+                   
                 ]);
                 
                 $file_document=NULL;

@@ -1,3 +1,4 @@
+@can('admin.inicio')
 <div class="page-header">
     <div class="header-wrapper row m-0">
         <form class="form-inline search-full col" action="#" method="get">
@@ -70,3 +71,4 @@
         </div>
     </div>
 </div>
+@endcan

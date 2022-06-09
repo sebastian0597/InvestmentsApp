@@ -1,3 +1,4 @@
+@can('cliente.inicio')
 <div class="header-wrapper row m-0">
     <form class="form-inline search-full col" action="#" method="get">
       <div class="form-group w-100">
@@ -82,3 +83,4 @@
     </div>
   
   </div>
+@endcan

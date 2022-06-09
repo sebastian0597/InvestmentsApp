@@ -19,15 +19,13 @@ use App\Http\Controllers\FrontEnd\Customer\DocumentController;
 use App\Http\Controllers\Api\LoginController;
 
 
-Route::withoutMiddleware(['admin', 'customer'])->group(function(){
+Route::withoutMiddleware(['admin', 'customer', 'auth'])->group(function(){
     
     Route::get('login', function () { return view('login'); })->name('login');
     Route::post('login_validate', [LoginController::class, 'login']);
     Route::get('reestablecer_contrasena', function () { return view('reestablecer_contrasena'); })->name('reestablecer_contrasena');
 
 });
-
-
 
 
     //ADMINS
@@ -48,8 +46,6 @@ Route::withoutMiddleware(['admin', 'customer'])->group(function(){
     Route::get('cambiar_contrasena', function () { return view('Admins.cambiar_contrasena'); })->name('cambiar_contrasena');
     Route::get('extractos_pdfs/{id_customer}', [ExtractController::class, 'pdfExtract'] )->name('extractos_pdfs');
     Route::get('logout', [LoginController::class, 'logout']);
-
-
 
 
     //CUSTOMERS

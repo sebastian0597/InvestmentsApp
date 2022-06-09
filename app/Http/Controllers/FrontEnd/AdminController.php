@@ -24,7 +24,8 @@ class AdminController extends Controller
     }
     
     public function index(){
-        $roles = Rol::where('status',1)->where('ind_admin_rol',1)->get();
+        
+        $roles = Rol::where('id',1)->orWhere('id',3)->orWhere('id',4)->orWhere('id',5)->get();
         return view('Admins.perfil_administrador', compact('roles'));
     }
 
@@ -32,8 +33,7 @@ class AdminController extends Controller
 
         $admin = new AdminResource(Admin::find($id_user));
         $admin = Util::setJSONResponseUniqueData($admin);
-      
-        $roles = Rol::where('status',1)->where('ind_admin_rol',1)->get();
+        $roles = Rol::where('id',1)->orWhere('id',3)->orWhere('id',4)->orWhere('id',5)->get();
         return view('Admins.editar_admin', compact('admin','roles'));
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\User;
+use App\Models\ModelHasRol;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Utils\Util;
@@ -40,15 +41,22 @@ class AdminController extends Controller
 
             $password = Util::generatePassword();
             $personal_code = Util::generatePersonalCode($fields['email']);
-
+           
             $user = User::create([
                 'name' => $fields['name'],
                 'email' => $fields['email'],
                 'password' => bcrypt($password),
-                'id_rol' => $fields['id_rol'],
                 'personal_code' => $personal_code,
 
             ]);
+
+            $rol = ModelHasRol::create([
+                'role_id' => $fields['id_rol'],
+                'model_type' => 'App\Models\User',
+                'model_id' => $user->id,
+               
+            ]);
+
     
             $token = $user->createToken('myapptoken')->plainTextToken;
 
@@ -100,8 +108,9 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $admin = Admin::find($id);
-        
-        $admin_response = DB::transaction(function () use($admin,$request){
+        $model_has_rol = ModelHasRol::where('model_id',$id)->first();
+
+        $admin_response = DB::transaction(function () use($admin,$model_has_rol,$request){
             
             if($admin){
                 
@@ -115,10 +124,13 @@ class AdminController extends Controller
                 
                 $admin->name = $fields["name"];
                 $admin->email = $fields["email"];
-                $admin->id_rol = $fields["rol"];
+                //$admin->id_rol = $fields["rol"];
                 $admin->status = $fields["status"];
                 $admin->update();
-              
+                
+                $model_has_rol->role_id = $fields["rol"];
+                $model_has_rol->update();
+
                 return array(201,"Se ha actualizado el administrador correctamente.");
             
             }else{
