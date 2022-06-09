@@ -131,5 +131,5 @@
 @stop
 @endcan
 @cannot('admin.inicio')
-    @include('unauthorized')
+    @include('errors.403')
 @endcannot

@@ -96,5 +96,5 @@
 @stop
 @endcan
 @cannot('cliente.inicio')
-    @include('unauthorized')
+    @include('errors.403')
 @endcannot
