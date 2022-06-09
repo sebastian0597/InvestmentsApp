@@ -1,4 +1,4 @@
-@can(['admin.inicio','admin.editar'])
+@can('admin.inicio','admin.editar')
 @extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
@@ -100,3 +100,6 @@
   
 @stop
 @endcan
+@cannot('admin.inicio', 'admin.editar')
+    @include('unauthorized')
+@endcannot

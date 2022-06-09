@@ -129,3 +129,6 @@
 
 @stop
 @endcan
+@cannot('admin.inicio', 'admin.crear')
+    @include('unauthorized')
+@endcannot

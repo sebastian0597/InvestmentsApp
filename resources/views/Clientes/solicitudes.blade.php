@@ -218,3 +218,6 @@
 @stop
 @stop
 @endcan
+@cannot('cliente.inicio')
+    @include('unauthorized')
+@endcannot

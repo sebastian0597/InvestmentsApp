@@ -25,7 +25,8 @@ class RequestCustomerController extends Controller
     
     public function index(){
         $customer = Customer::where('id_user', auth()->user()->id)->first();
-        $investments = array();
+        $requests = array();
+        $requests_types = array();
 
         if($customer){
             $requests = new RequestCollection(CustomerRequest::where('id_customer',$customer->id)->get());
