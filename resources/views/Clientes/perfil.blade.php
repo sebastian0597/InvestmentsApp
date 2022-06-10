@@ -67,6 +67,7 @@
                                                         .images-cards figure {
                                                             position: relative;
                                                         
+                                                        
                                                         }
 
                                                         #Images .add-new-photo {
@@ -88,6 +89,7 @@
                                                         }
 
 
+
                                                         #add-photo-container input {
                                                             display: none;
                                                         }
@@ -97,13 +99,43 @@
                                                             height: 100px !important;
                                                         object-fit: cover;
                                                         }
+
+
+                                                        .images-cards figure figcaption {
+                                                            position: absolute;
+                                                            top: 0;
+                                                            left: 0;
+                                                            display: flex;
+                                                            width: 100px !important;
+                                                            height: 100px !important;
+                                                            border-radius: 50%;
+                                                            align-items: center;
+                                                            justify-content: center;
+                                                            background: rgba(0, 0, 0, 0.4);
+                                                            color: #ffffff;
+                                                            font-size: 44px;
+                                                            cursor: pointer;
+                                                            
+                                                            transition: 0.3s all ease;
+                                                            -webkit-transition: 0.3s all ease;
+                                                            -moz-transition: 0.3s all ease;
+                                                            -ms-transition: 0.3s all ease;
+                                                            -o-transition: 0.3s all ease;
+                                                        }       
+
+                                                        .mover{
+                                                            margin-top: 40px;
+
+                                                        }
                                                     </style>
+
+                                                    
 
 
 
                                                     <div class="media"> 
                                                         <h5> Inserta tu foto de perfil</h5>
-                                                        
+                                                    
                                                         <section id="Images" class="images-cards">
 
                                                             <form method="post" enctype="multipart/form-data">
@@ -112,14 +144,16 @@
                                                                   <div class="row g-3">
                                                                      <!-- aqui la pinta-->
                                                                      <div class="col-md-3" class="img-perfil rounded-circle" id="add-photo-container">
+                                                                        <span class="material-symbols-outlined"></span>
                                                                         <div class="add-new-photo first" id="add-photo">
-
+                                                                            <span><i data-feather="camera"> Inserta tu foto de</i></span>
                                                                         </div>
-                                                                        <input type="file" id="add-new-photo">
+                                                                        <input type="file" id="add-new-photo" name="images[]">
                                                                      </div>
                                                                      <!-- aqui esta el boton de guardar-->
                                                                      <div class="col-md-4">
-                                                                        <a class="btn btn-success btn-sm" onclick="cargarFoto()">
+                                                                        <span><i class="fa-regular fa-circle-xmark"></i></span>
+                                                                        <a class="btn btn-success btn-sm mover" onclick="cargarFoto()">
                                                                         <i class="fa fa-save"></i></a>
                                                                      </div>
                                                                   </div>
@@ -127,16 +161,17 @@
                                                             </form>
                                                          </section>
                                                         <hr >   
-                                                        <div class="media-body">
-                                                            <!-- nombre del usuario-->
-                                                            <h5 class="mb-1">{{mb_strtoupper($customer['name'].' '.$customer['last_name'])}}</h5>
-                                                            <!-- Estado-->
-                                                            <b><p>{{mb_strtoupper($customer['customer_type'])}}</p></b>
-                                                        </div>
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
                                             
+                                            <div class="mb-3">
+                                                <!-- nombre del usuario-->
+                                                <h5 class="mb-1">{{mb_strtoupper($customer['name'].' '.$customer['last_name'])}}</h5>
+                                                <!-- Estado-->
+                                                <b><p>{{mb_strtoupper($customer['customer_type'])}}</p></b>
+                                            </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Tipo de documento</label>
                                                 <input disabled class="form-control" placeholder="{{$customer['document_type']}}">
