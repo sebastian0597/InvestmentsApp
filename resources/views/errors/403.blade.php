@@ -1,18 +1,22 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>403 no autorizado</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-   
-</head>
-<body>
-    <div class="container mt-5 pt-5">
-        <div class="alert alert-danger text-center">
-            <h2 class="display-3">403</h2>
-            <p class="display-5">Usted no tiene permisos para acceder a este módulo.</p>
+@extends('layout')
+@section('title', 'VIP WORLD TRADING')
+@section('content')
+    <!-- tap on top starts-->
+    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
+    <!-- tap on tap ends-->
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+      <!-- error-403 start-->
+      <div class="error-wrapper">
+        <div class="container"><img class="img-100" src="{{ asset('images/sad.png') }}" alt="">
+          <div class="error-heading">
+            <h2 class="headline font-danger">403</h2>
+          </div>
+          <div class="col-md-8 offset-md-2">
+            <p class="sub-content">El cliente no posee los permisos necesarios para cierto contenido, por lo que el servidor está rechazando otorgar una respuesta apropiada.</p>
+          </div>
         </div>
+      </div>
+      <!-- error-403 end-->
     </div>
-</body>
-</html>
+@stop

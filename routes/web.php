@@ -55,4 +55,4 @@ Route::withoutMiddleware(['admin', 'customer', 'auth'])->group(function(){
     Route::get('cliente/extractos', [ExtractCustomerController::class, 'index'])->name('clientes.extractos');
     Route::get('cliente/solicitudes', [RequestCustomerController::class, 'index'])->name('clientes.solicitudes');
     Route::get('cliente/documentos', [DocumentController::class, 'index'])->name('clientes.documentos');
-    Route::get('cliente/cambiar_contrasena', function () { return view('Clientes.cambiar_contrasena'); })->name('clientes.cambiar_contrasena');
+    Route::get('cliente/cambiar_contrasena', [ProfileController::class, 'changePassword'])->name('clientes.cambiar_contrasena');
