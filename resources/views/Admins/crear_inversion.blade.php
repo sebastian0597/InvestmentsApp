@@ -168,7 +168,9 @@
                                                     <th scope="col">Rentabilidad mes</th>
                                                     <th scope="col">Fecha inversión</th>
                                                     <th scope="col">Fecha rentabilidad</th>
+                                                    @can('admin.inversiones.crear')
                                                     <th scope="col"></th>
+                                                    @endcan
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -217,6 +219,7 @@
                                                             <td>${{number_format($rentabilidad_activa,0,'','.')}}</td>
                                                             <td>{{$item['investment_date']}}</td>
                                                             <td>{{$item['profitability_start_date']}}</td>
+                                                            @can('admin.inversiones.crear')
                                                             <td>
                                                                 <?php if($rentabilidad_activa>0){ ?>
                                                                     <input type="hidden" id="valor_reinversion_{{$item['id']}}" value="{{ number_format($rentabilidad_activa,0,'','.')}}">
@@ -225,13 +228,14 @@
                                                                 <?php } ?>
                                                                 
                                                             </td>
+                                                            @endcan
                                                         </tr>
                                                     @endforeach 
                                                  
                                                 </tbody>
                                             </table>
                                         </div>
-                                        
+                                        @can('admin.inversiones.crear')
                                         <br>
                                         <h4>Inversión</h4>
                                         
@@ -324,15 +328,16 @@
                                                 
                                             </div>
                                         </div>
-                                        @can('admin.inversiones.crear')
+                                        
                                             <br><br>
-                                            <div class="mb-4 placeholder-glow">
+                                        <div class="mb-4 placeholder-glow">
 
-                                                <button class="btn btn-primary" id="btn_crear_inversion" type="button" onclick="crearInversion()">Crear inversión</button>
-                                                
-                                            </div>
-                                        @endcan
+                                            <button class="btn btn-primary" id="btn_crear_inversion" type="button" onclick="crearInversion()">Crear inversión</button>
+                                            
+                                        </div>
+                                       
                                         <br>
+                                        @endcan
                                 </div>
                               
 

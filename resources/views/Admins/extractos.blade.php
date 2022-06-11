@@ -75,6 +75,7 @@
                                         <div id="content-clientes"></div>
                                     </div>
                                     <br><br>
+                                    @can('admin.extractos.crear')
                                     <div class='row'>
                                         <h4 class="ng-binding">Porcentaje de rentabilidad</h4>
                                         <div class='col-md-4'>
@@ -118,18 +119,14 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                     <div id="div_premium_form"></div>
                                     <br>
-                                    @can('admin.extractos.crear')
-                                    
                                         <div class="row">
                                             <div class='col-sm placeholder-glow'>
                                                 <button type="button" id="btn_guardar_porcentaje" style="display:none" onclick="guardarPorcentajeRentabilidad()" class="btn btn-primary">Guardar % rentabilidad</button>
                                             </div>
-                                        </div>
-                                        
+                                        </div> 
                                     @endcan
                                 </div> 
                             </div>

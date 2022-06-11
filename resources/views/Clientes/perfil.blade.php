@@ -154,7 +154,7 @@
                                                                      <div class="col-md-4">
                                                                         <span><i class="fa-regular fa-circle-xmark"></i></span>
                                                                         <a class="btn btn-success btn-sm mover" onclick="cargarFoto()">
-                                                                        <i class="fa fa-save"></i></a>
+                                                                        <i class="fa fa-save"></i>Guardar</a>
                                                                      </div>
                                                                   </div>
                                                                </div>

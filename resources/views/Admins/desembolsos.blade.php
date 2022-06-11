@@ -78,6 +78,7 @@
                                     <br><br>
                                     <div id="content_clientes_tabla"></div>
 
+                                    @can('admin.desembolsos.crear')
                                     <div class="col-12">
                      
                                         <h5>Tipo de desembolso:</h5>
@@ -129,10 +130,9 @@
 
                                             </div>
                                         </div>
-
-
-
                                     </div>
+                                    @endcan
+
                                 </div>
                             </div>
 
