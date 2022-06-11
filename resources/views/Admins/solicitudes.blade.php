@@ -148,10 +148,16 @@
                                                                                     </div>
                                                                                     <input id="index_var" type="hidden"
                                                                                         value="6">
+                                                                                    
+                                                                                    @can('admin.solicitudes.editar')
+
                                                                                     <button class="btn btn-secondary"
                                                                                         id="btn_responder"
                                                                                         onclick="responderSolicitud({{ $item['id'] }}, {{ $aux }})"
                                                                                         type="button">Enviar</button>
+
+                                                                                    @endcan
+
                                                                                     <button class="btn btn-primary"
                                                                                         type="button"
                                                                                         data-bs-dismiss="modal">Cancel</button>

@@ -15,9 +15,9 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name' => 'Omar Yesid Ibanez Ortiz',
-            'email' => 'oibanez@unab.edu.co',
+            'email' => 'oibanez30@unab.edu.co',
             'password' => bcrypt('OMARibanez9704'),
-            'personal_code' => 'OIBA4211',
+            'personal_code' => 'OIBA4511',
             'ind_first_login' => 1,
             'start_sesion_date' => date('Y-m-d H:i:s')
         ])->assignRole('ADMINISTRADOR');

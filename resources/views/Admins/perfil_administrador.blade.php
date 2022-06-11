@@ -61,11 +61,11 @@
                                             <h5>Registro administradores</h5>
                                         </div>
                                         @can('admin.editar')
-                                        <div class="col-6">
-                                            <ol style="float:right;" class="breadcrumb">
-                                                <a onclick="consultarUsuariosAdmin()" class="btn btn-primary">Consultar usuarios</a>
-                                            </ol>
-                                        </div>
+                                            <div class="col-6">
+                                                <ol style="float:right;" class="breadcrumb">
+                                                    <a onclick="consultarUsuariosAdmin()" class="btn btn-primary">Consultar usuarios</a>
+                                                </ol>
+                                            </div>
                                         @endcan
                                     </div> 
                                 </div>

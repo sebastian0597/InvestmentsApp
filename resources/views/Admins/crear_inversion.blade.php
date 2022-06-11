@@ -324,14 +324,14 @@
                                                 
                                             </div>
                                         </div>
-                                        
-                                        <br><br>
-                                        <div class="mb-4 placeholder-glow">
+                                        @can('admin.inversiones.crear')
+                                            <br><br>
+                                            <div class="mb-4 placeholder-glow">
 
-                                            <button class="btn btn-primary" id="btn_crear_inversion" type="button" onclick="crearInversion()">Crear inversión</button>
-                                            
-                                        </div>
-
+                                                <button class="btn btn-primary" id="btn_crear_inversion" type="button" onclick="crearInversion()">Crear inversión</button>
+                                                
+                                            </div>
+                                        @endcan
                                         <br>
                                 </div>
                               

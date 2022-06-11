@@ -25,17 +25,31 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.inicio'])->syncRoles([$role1, $role3,$role4,$role5]);
         Permission::create(['name' => 'admin.crear'])->syncRoles([$role1]);
         Permission::create(['name' => 'admin.editar'])->syncRoles([$role1]);
+
         Permission::create(['name' => 'admin.clientes.index'])->syncRoles([$role1,$role3,$role4,$role5]);
         Permission::create(['name' => 'admin.clientes.crear'])->syncRoles([$role1,$role3,$role4,$role5]);
         Permission::create(['name' => 'admin.clientes.editar'])->syncRoles([$role1,$role3,$role4,$role5]);
-        Permission::create(['name' => 'admin.extractos.index'])->syncRoles([$role1,$role3,$role4,$role5]);
+       
         Permission::create(['name' => 'admin.extractos.pdf'])->syncRoles([$role1,$role3]);
+        Permission::create(['name' => 'admin.extractos.index'])->syncRoles([$role1,$role3,$role4,$role5]);
+        Permission::create(['name' => 'admin.extractos.crear'])->syncRoles([$role1,$role3]);
+        Permission::create(['name' => 'admin.extractos.editar'])->syncRoles([$role1,$role3]);
+
+
         Permission::create(['name' => 'admin.solicitudes.index'])->syncRoles([$role1,$role3,$role4,$role5]);
+        Permission::create(['name' => 'admin.solicitudes.crear'])->syncRoles([$role1,$role3,$role5]);
+        Permission::create(['name' => 'admin.solicitudes.editar'])->syncRoles([$role1,$role3,$role5]); 
+
         Permission::create(['name' => 'admin.inversiones.index'])->syncRoles([$role1,$role3,$role4,$role5]);
-        Permission::create(['name' => 'admin.inversiones.create'])->syncRoles([$role1,$role3]);  
+        Permission::create(['name' => 'admin.inversiones.crear'])->syncRoles([$role1,$role3]);  
         Permission::create(['name' => 'admin.inversiones.editar'])->syncRoles([$role1,$role3]); 
-        Permission::create(['name' => 'admin.kpis.index'])->syncRoles([$role1,$role3,$role4,$role5]); 
+
+        Permission::create(['name' => 'admin.kpis.index'])->syncRoles([$role1,$role3,$role4]); 
+        Permission::create(['name' => 'admin.kpis.crear'])->syncRoles([$role1,$role3,$role4]); 
+        Permission::create(['name' => 'admin.kpis.editar'])->syncRoles([$role1,$role3,$role4]); 
+
         Permission::create(['name' => 'admin.desembolsos.index'])->syncRoles([$role1,$role3,$role4,$role5]); 
+        Permission::create(['name' => 'admin.desembolsos.crear'])->syncRoles([$role1,$role3]); 
         Permission::create(['name' => 'admin.desembolsos.editar'])->syncRoles([$role1,$role3]); 
         Permission::create(['name' => 'admin.cambiarcontrasena'])->syncRoles([$role1,$role3,$role4,$role5]); 
 

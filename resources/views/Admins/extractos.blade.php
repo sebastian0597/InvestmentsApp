@@ -1,4 +1,4 @@
-@can(['admin.inicio','admin.extractos.index'])
+@can('admin.inicio','admin.extractos.index')
 @extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
@@ -122,12 +122,15 @@
                                     </div>
                                     <div id="div_premium_form"></div>
                                     <br>
-                                    <div class="row">
-                                        <div class='col-sm placeholder-glow'>
-                                            <button type="button" id="btn_guardar_porcentaje" style="display:none" onclick="guardarPorcentajeRentabilidad()" class="btn btn-primary">Guardar % rentabilidad</button>
+                                    @can('admin.extractos.crear')
+                                    
+                                        <div class="row">
+                                            <div class='col-sm placeholder-glow'>
+                                                <button type="button" id="btn_guardar_porcentaje" style="display:none" onclick="guardarPorcentajeRentabilidad()" class="btn btn-primary">Guardar % rentabilidad</button>
+                                            </div>
                                         </div>
-                                    </div>
-
+                                        
+                                    @endcan
                                 </div> 
                             </div>
                         </div>

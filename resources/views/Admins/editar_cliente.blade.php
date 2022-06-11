@@ -1,4 +1,4 @@
-@can(['admin.inicio','admin.clientes.editar'])
+@can('admin.inicio','admin.clientes.editar')
 @extends('layout')
 @section('title', 'VIP WORLD TRADING')
 @section('content')
