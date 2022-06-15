@@ -136,7 +136,7 @@
                                                     <div class="media"> 
                                                         <h5> Inserta tu foto de perfil</h5>
                                                     
-                                                        <section id="Images" class="images-cards">
+                                                        <section id="Images" class="images-cards col-xl-10">
 
                                                             <form method="post" enctype="multipart/form-data">
 

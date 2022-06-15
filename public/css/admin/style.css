@@ -670,7 +670,9 @@
      width: 60px !important
  }
  .img-70 {
-     width: 70px !important
+     width: 100px !important;
+    height: auto !important;
+     
  }
  .img-80 {
      width: 80px !important
@@ -17517,7 +17519,7 @@
      text-align: center
  }
  .error-wrapper.maintenance-bg {
-     background-image: url(../images/other-images/maintenance-bg.jpg);
+     background-image: url(../images/maintenance-bg.jpg);
      background-color: rgba(255, 255, 255, 0.6);
      background-blend-mode: overlay
  }
@@ -20696,7 +20698,7 @@
      }
  }
  .login-card {
-     min-height: 100vh;
+    
      display: -webkit-box;
      display: -ms-flexbox;
      display: flex;
@@ -20707,7 +20709,7 @@
      -ms-flex-pack: center;
      justify-content: center;
      margin: 0 auto;
-     background: url("../images/login/login_bg.jpg");
+    
      background-position: center;
      padding: 30px 12px
  }
@@ -30100,6 +30102,7 @@
      line-height: inherit;
      background: #fff;
      width: 280px;
+
      text-align: left;
      -webkit-transition: 0.3s;
      transition: 0.3s;
@@ -35429,3 +35432,82 @@
          display: none !important
      }
  }
+
+ .ui-dat-calendar {
+    display: none;
+    }
+
+.vip{
+     font-size: large;
+     font-weight: bold;
+}
+
+
+
+.images-cards figure {
+    position: relative;
+   
+   
+}
+
+#Images .add-new-photo {
+    display: flex;
+    font-size: 50px;
+    cursor: pointer;
+    background-size: 50% 50%;
+    width: 70px;
+    height: 69px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    border: 3px solid #555;
+    align-content: flex-end;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-size: cover;
+    flex-direction: row;
+}
+
+
+
+#add-photo-container input {
+    display: none;
+}
+
+.img-perfil {
+     width: 100px !important;
+    height: 100px !important;
+   object-fit: cover;
+}
+
+
+.images-cards figure figcaption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    color: #ffffff;
+    font-size: 44px;
+    cursor: pointer;
+    
+    transition: 0.3s all ease;
+    -webkit-transition: 0.3s all ease;
+    -moz-transition: 0.3s all ease;
+    -ms-transition: 0.3s all ease;
+    -o-transition: 0.3s all ease;
+}       
+
+ .mover{
+    margin-top: 40px;
+
+ }
+
+
+
+
