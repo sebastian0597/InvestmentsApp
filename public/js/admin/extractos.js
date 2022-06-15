@@ -142,7 +142,7 @@ const generarInformeExtractos = (id_cliente) =>{
 
    let url = window.location.origin+`/extractos_pdfs/${id_cliente}`
    var win = window.open(url, '_blank');
-    win.focus();
+   win.focus();
 }
 
 const seleccionarTipoCliente = () => {

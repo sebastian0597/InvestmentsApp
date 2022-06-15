@@ -3,6 +3,7 @@
 namespace App\Http\Resources\V1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\V1\CustomerResource;
 
 class ExtractResource extends JsonResource
 {
@@ -27,6 +28,7 @@ class ExtractResource extends JsonResource
             'month' => $this->month,
             'created_at' => $this->created_at,
             'extract_detail' => $this->extractDetail,
+            //'customer'=> CustomerResource::collection($this->customer),
         ];
     }
 }

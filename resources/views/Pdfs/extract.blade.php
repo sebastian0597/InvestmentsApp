@@ -233,13 +233,13 @@ h2 {
       <br><br> <br><br> <br><br>
       <div style="line-height:5px">
         <h1 >VIP WORLD TRADING</h1>
-        <h1>REGISTRO DE RENTABILIDAD:<strong> <span>(MES DE 2022)</span></strong></h1>
+        <h1>REGISTRO DE RENTABILIDAD:<strong> <span>(MES {{date('m')}} DE 2022)</span></strong></h1>
         
       </div>
       <br>
 
       <div style="line-height:5px">
-        <h2>Inversionista:  <strong> <span>{{$customer['name']}} {{$customer['last_name']}}</span></strong></h2>
+        <h2>Inversionista:  <strong> <span>{{mb_strtoupper($customer['name'])}} {{mb_strtoupper($customer['last_name'])}}</span></strong></h2>
       <h2>Identificación:  <strong> <span>{{$customer['document_number']}}</span></strong></h2>
       </div>
       
@@ -271,7 +271,7 @@ h2 {
           <tr>
             <td class="unit">{{$item['fecha_consignacion']}}</td>
             <td class="qty" >{{$item['fecha_inicio']}}</td>
-            <td class="unit" >P-{{$item['numero_pagare']}}</td>
+            <td class="unit" >C-{{$item['numero_pagare']}}</td>
             <td class="qty" >{{number_format($item['valor_inversion'],0,'', '.')}}</td>
             <td class="unit" >{{number_format($item['capital_inicial_mes'],0,'', '.')}}</td>
             <td class="qty" >{{number_format($item['investment_return'],0,'', '.')}}</td>
@@ -295,12 +295,12 @@ h2 {
           </tr>
         </thead>
         <tbody>
-          
+         
           <tr>
-            <td class="no">$XX.XXX.XXX</td>
-            <th class="qty">$XX.XXX.XXX</th>
-            <th class="unit ">$XX.XXX.XXX</th>
-            <th class="qty">$XX.XXX.XXX</th>
+            <td class="no">${{number_format(intval($capital_inicial),0,'', '.')}}</td>
+            <th class="qty">${{number_format(intval($rentabilidad_acumulada),0,'', '.')}}</th>
+            <th class="unit ">${{number_format(intval($desembolsos_efectuados),0,'', '.')}}</th>
+            <th class="qty">${{number_format(intval($capital_inicial),0,'', '.')}}</th>
            
           </tr>
         </tbody>
@@ -312,20 +312,16 @@ h2 {
            
         <thead>
           <tr>
-            <th class="no">Rentabilidad del Mes <span>Aqui va el %</span> </th>
+            <th class="no">Rentabilidad del mes <span>{{$current_extract['profitability_percentage']}}%</span> </th>
             <th class="qty">Capital Neto</th>
-            
-         
-          
+                      
           </tr>
         </thead>
         <tbody>
           
           <tr>
-            <td class="no">$XX.XXX.XXX</td>
-            <th class="qty">$XX.XXX.XXX</th>
-            
-           
+            <td class="no">${{number_format(intval($current_extract['total_profitability']),0,'', '.')}}</td>
+            <th class="qty">${{number_format(intval($capital_neto),0,'', '.')}}</th>
           </tr>
         </tbody>
 

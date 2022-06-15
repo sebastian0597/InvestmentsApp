@@ -225,15 +225,15 @@
 
     <header class="clearfix">
 
-        <h1>PAGARÉ A FAVOR DE INVERSORES DEL FONDO DE INVERSIÓN VIP WORLD TRADING</h1>
+        <h1>CONTRATO A FAVOR DE INVERSORES DEL FONDO DE INVERSIÓN VIP WORLD TRADING</h1>
         <span id="invoice" style="margin-top: 0px;font-size: 18px;">ISF-XXXXX</span>
     </header>
     <main>
         <div id="details" class="clearfix">
             <div>
-                <p>Entre nosotros, los señores <strong> <span>{{ $params['customer_name'] }}</span></strong>, mayor de
+                <p>Entre nosotros, los señores <strong> <span>{{ mb_strtoupper($params['customer_name']) }}</span></strong>, mayor de
                     edad, identificado con la cédula de ciudadanía número
-                    <strong><span>{{ $params['document_number'] }}</span></strong> expedida en <strong>
+                    <strong><span>{{ mb_strtoupper($params['document_number']) }}</span></strong> expedida en <strong>
                         <span>XXXXXXXXXXXXX</span></strong>, quienes en adelante se denominarán LOS BENEFICIARIOS
                     <strong> <span>(INVERSORES)</span></strong>, y SERGIO ANDRÉS FIGUEROA GÓMEZ, mayor de edad,
                     identificado con la cédula de ciudadanía número 1.098.816.339 expedida en Bucaramanga,
@@ -538,11 +538,11 @@
                 
                 <div style="line-height:10px">
 
-                  <h4>{{ $params['customer_name'] }}</h4>
-                  <h4>{{ $params['document_number'] }}</h4>
-                  <h4>XXXXXXXXXXXXXXX</h4>
+                  <h4>{{ mb_strtoupper($params['customer_name']) }}</h4>
+                  <h4>{{ mb_strtoupper($params['document_number']) }}</h4>
+                  <h4>Expedida en  XXXXXXXXXXX.</h4>
 
-              </div>
+                </div>
 
             </div>
 

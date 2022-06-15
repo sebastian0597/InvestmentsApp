@@ -58,8 +58,6 @@ class Extract extends Model
     }
 
     
-
- 
     public function extractDetail (){
 
         return $this->hasMany(ExtractDetail::class, 'id_extract', 'id');
@@ -67,6 +65,6 @@ class Extract extends Model
 
     public function customer (){
 
-        return $this->belongsTo(Customer::class, 'id', 'id_customer');
+        return $this->belongsTo(Customer::class, 'id_customer', 'id');
     }
 }
