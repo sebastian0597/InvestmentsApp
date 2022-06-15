@@ -131,8 +131,9 @@ class DisbursetmentController extends Controller
                         }
 
                         $extracts_excel = Extract::join('customers', 'customers.id', '=', 'extracts.id_customer')
+                        ->join('customer_types', 'customer_types.id', '=', 'customers.id_customer_type')
                         ->select('customers.name', 'customers.last_name', 'customers.document_number', 'customers.phone', 'customers.account_number', 
-                        'customers.account_type', 'customers.bank_name', 'customers.id_customer_type',  'extracts.grand_total_invested', 'extracts.profitability_percentage',  
+                        'customers.account_type', 'customers.bank_name', 'customer_types.name AS id_customer_type',  'extracts.grand_total_invested', 'extracts.profitability_percentage',  
                         'extracts.profitability_percentage', 'extracts.total_profitability')
                          ->where('extracts.status', 1)
                          ->where('customers.id_customer_type', $request->id_customer_type)->get();
