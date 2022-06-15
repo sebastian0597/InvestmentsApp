@@ -43,9 +43,9 @@ const continuarBuscarExtractosPorfecha = (response) =>{
                     <td style='text-align: center; vertical-align: middle;'>${
                         extracto.id
                     }</td>
-                    <td style='text-align: center; vertical-align: middle;'>$${formatNumber(extracto.grand_total_invested)}</td>
+                    <td style='text-align: center; vertical-align: middle;'>$${formatNumber(parseInt(extracto.grand_total_invested))}</td>
                     <td style='text-align: center; vertical-align: middle;'>${extracto.profitability_percentage}%</td>
-                    <td style='text-align: center; vertical-align: middle;'>$${formatNumber(extracto.total_profitability)}</td>
+                    <td style='text-align: center; vertical-align: middle;'>$${formatNumber(parseInt(extracto.total_profitability))}</td>
                 </tr>
                 `
         })

@@ -120,7 +120,7 @@
                 <tr>
                   <th scope="row">{{$item['fecha_consignacion']}}</th>
                   <td>{{$item['fecha_inicio']}}</td>
-                  <td>P-{{$item['numero_pagare']}}</td>
+                  <td>C-{{$item['numero_pagare']}}</td>
                   <td>{{number_format($item['valor_inversion'],0,'', '.')}}</td>
                   <td>{{number_format($item['capital_inicial_mes'],0,'', '.')}}</td>
                   <td>{{number_format($item['investment_return'],0,'', '.')}}</td>

@@ -75,7 +75,7 @@
                             @foreach ($investments as $item)
                             <tr>
                               <td><a class="text-inherit" >{{$item['customer']['customer_type']}}</a></td>
-                              <td>P-{{$item['id']}}</td>
+                              <td>C-{{$item['id']}}</td>
                               <td><span class="status-icon bg-success"></span>{{$item['investment_date']}}</td>
                               <td>${{$item['base_amount']}}</td>
                               <td class="text-end">

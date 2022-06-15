@@ -28,7 +28,7 @@ class DisbursetmentController extends Controller
         $disbursetments = array();
 
         if($customer){
-            $disbursetments = new DisbursementCollection(Disbursetment::getDisbursementByIdCustomer($customer->id));
+            $disbursetments = new DisbursementCollection(Disbursetment::getDisbursementDoneByIdCustomer($customer->id));
             $disbursetments = Util::setJSONResponseUniqueData($disbursetments);
         }
        
