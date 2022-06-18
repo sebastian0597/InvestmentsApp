@@ -118,7 +118,7 @@
 
                                             <div class="col-md-4">
                                                 <label class="form-label">País</label>
-                                                <select class="form-select" id="pais">
+                                                <select onchange="seleccionarPais()" class="form-select" id="pais">
                                                     <option value="">Seleccione---</option>
                                                     @foreach ($countries as $item)
                                                         <option value="{{ $item->name }}">{{ $item->name }}</option>
@@ -127,7 +127,7 @@
                                                 <span class="msg_error_form" id="error_pais"></span>
                                             </div>
 
-                                            <div class="col-md-4">
+                                            <div id='div_departamentos' class="col-md-4">
                                                 <label class="form-label">Departamento</label>
                                                 <input class="form-control" id="departamento" type="text">
                                                 <span class="msg_error_form" id="error_departamento"></span>

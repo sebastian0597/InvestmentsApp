@@ -1161,3 +1161,35 @@ const validarFormularioActualizarCliente = () => {
 
     return validador
 }
+
+async function consultarDepartamentos(id_pais = '1') {
+    let opciones = { method: 'GET', headers: { Accept: 'application/json' } };
+    const response = await fetch(
+        `https://api.fastforex.io/fetch-multi?from=${moneda}&to=COP&api_key=34f13d24cc-60ddfbf0ab-rbqsu9`,
+        opciones
+    );
+    //const monedas = await response.json();
+    console.log(response)
+    //return monedas.results.COP;
+}
+
+
+const consultarDepartamentos = () =>{
+    let html  = `  <label class="form-label">Departamento</label>
+    <input class="form-control" id="departamento" type="text" data-bs-original-title="" title="">
+    <span class="msg_error_form" id="error_departamento"></span>`
+    
+    $('#div_departamentos').empty()
+
+    if($('#pais').val().trim() === 'Colombia'){
+
+        consultarPais($('#pais').val().trim()).then(paises => {
+            
+        });
+
+    }else if($('#pais').val().trim() != ''){
+
+        $('#div_departamentos').append(html)
+    }
+
+}
