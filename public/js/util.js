@@ -60,13 +60,6 @@ const validarTelefono = (element) =>{
     return validador;
 }
 
-/*$.getJSON('https://api.ipify.org?format=json', function(data){
-            ip = data.ip
-            miStorage = window.localStorage;
-            localStorage.setItem('ip', ip);
-            console.log(localStorage.getItem('ip'))
-        });*/
-
 async function consultarIP() {
     let opciones = { method: 'GET', headers: { Accept: 'application/json' } };
     const response = await fetch(
@@ -82,7 +75,7 @@ async function consultarIP() {
 async function consultarAPIDivisas(moneda = 'COP') {
     let opciones = { method: 'GET', headers: { Accept: 'application/json' } };
     const response = await fetch(
-        `https://api.fastforex.io/fetch-multi?from=${moneda}&to=COP&api_key=34f13d24cc-60ddfbf0ab-rbqsu9`,
+        `https://api.fastforex.io/fetch-multi?from=${moneda}&to=COP&api_key=16a4bb7cfa-c06c3ae762-rdow9y`,
         opciones
     );
     const monedas = await response.json();
