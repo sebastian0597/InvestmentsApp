@@ -1,3 +1,4 @@
+
 const seleccionarActividadEconomica = () => {
     $('#div_independiente').css('display', 'none')
     $('#div_empleado').css('display', 'none')
@@ -1163,29 +1164,44 @@ const validarFormularioActualizarCliente = () => {
 }
 
 async function consultarDepartamentos(id_pais = '1') {
-    let opciones = { method: 'GET', headers: { Accept: 'application/json' } };
+    let opciones = { method: 'GET', headers: { Accept: 'application/json' } }
+
+    let url = document.location.origin  + `/api/v1/get_state_by_country/1`
+
     const response = await fetch(
-        `https://api.fastforex.io/fetch-multi?from=${moneda}&to=COP&api_key=34f13d24cc-60ddfbf0ab-rbqsu9`,
+        url,
         opciones
-    );
-    //const monedas = await response.json();
-    console.log(response)
-    //return monedas.results.COP;
+    )
+    const departamentos = await response.json()
+    return departamentos
 }
 
 
-const consultarDepartamentos = () =>{
+const seleccionarPais = () =>{
     let html  = `  <label class="form-label">Departamento</label>
-    <input class="form-control" id="departamento" type="text" data-bs-original-title="" title="">
+    <input class="form-control" id="departamento" type="text">
     <span class="msg_error_form" id="error_departamento"></span>`
     
     $('#div_departamentos').empty()
 
+  
     if($('#pais').val().trim() === 'Colombia'){
+        let opciones = ``
+        consultarDepartamentos($('#pais').val().trim()).then(departamentos => {
+           
+            departamentos.forEach(function(depto) {
+                opciones += `<opcion>${depto.name}</opcion>`
+                
+            });
 
-        consultarPais($('#pais').val().trim()).then(paises => {
+            let html  = `<label class="form-label">Departamento</label>
+            <select  class="form-control" id="departamento">${opciones}</select>
+            <span class="msg_error_form" id="error_departamento"></span>`
             
+            $('#div_departamentos').append(html)
+ 
         });
+        
 
     }else if($('#pais').val().trim() != ''){
 
