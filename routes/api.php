@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\V1\InvestmentController;
 use App\Http\Controllers\Api\V1\DisbursetmentController;
 use App\Http\Controllers\Api\V1\ExtractController;
 use App\Http\Controllers\Api\V1\KpiController;
+use App\Http\Controllers\Api\V1\QueryController;
 
 Route::apiResource('v1/admin', AdminController::class)->only(['store', 'index', 'update']);
 
@@ -48,6 +49,10 @@ Route::get('v1/get_last_active_request', [CustomerRequestController::class, 'get
 
 
 Route::apiResource('v1/kpi', KpiController::class)->only(['show']);
+
+
+Route::get('v1/get_state_by_country/{country_id}', [QueryController::class, 'showStatesByCountry']);
+
 
 Route::post('login', [LoginController::class, 'login']);
 Route::post('reset_password', [LoginController::class, 'resetPassword']);
