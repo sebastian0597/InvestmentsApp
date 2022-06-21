@@ -109,8 +109,6 @@ class InvestmentController extends Controller
           
 
             $investment = Investment::find($id);
-
-           
             $investment_date = Carbon::createFromFormat('Y-m-d',  $investment->investment_date); 
  
 
@@ -130,6 +128,13 @@ class InvestmentController extends Controller
             $investment->updated_by = $fields['updated_by'];
            
             $investment->update();
+
+            $customer = Customer::find($investment->id_customer);
+            $total_amount = Investment::getTotalInvestmentCustomer($customer->id);
+            $customer_type = Util::validateCustomerLevel($total_amount);
+            $customer->id_customer_type = $customer_type;
+            $customer->update();
+
 
             return "Se ha actualizado la inversión correctamente.";
            

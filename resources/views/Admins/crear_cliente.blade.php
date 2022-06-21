@@ -137,7 +137,7 @@
                                         </div>
                                         <div class="row g-3">
 
-                                            <div class="col-md-4">
+                                            <div id='div_municipios' class="col-md-4">
                                                 <label class="form-label">Ciudad</label>
                                                 <input class="form-control" id="ciudad" type="text">
                                                 <span class="msg_error_form" id="error_ciudad"></span>

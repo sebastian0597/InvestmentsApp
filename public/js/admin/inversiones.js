@@ -354,7 +354,6 @@ const actualizarInversion = () =>{
             $('#monto_inversion').val().trim()
         );
 
-    
         let archivo_consignacion = document.getElementById(
             'archivo_consignacion'
         ).files[0] == undefined ? $('#archivo_consignacion_txt').val() : document.getElementById(

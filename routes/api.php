@@ -52,6 +52,7 @@ Route::apiResource('v1/kpi', KpiController::class)->only(['show']);
 
 
 Route::get('v1/get_state_by_country/{country_id}', [QueryController::class, 'showStatesByCountry']);
+Route::get('v1/get_municipality_by_state/{state_id}', [QueryController::class, 'showMunicipalityByState']);
 
 
 Route::post('login', [LoginController::class, 'login']);

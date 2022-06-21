@@ -1178,26 +1178,24 @@ async function consultarDepartamentos(id_pais = '1') {
 
 
 const seleccionarPais = () =>{
-    let html  = `  <label class="form-label">Departamento</label>
-    <input class="form-control" id="departamento" type="text">
-    <span class="msg_error_form" id="error_departamento"></span>`
-    
+    let html  = ``
+    let opciones = ``
     $('#div_departamentos').empty()
 
   
     if($('#pais').val().trim() === 'Colombia'){
-        let opciones = ``
+        
         consultarDepartamentos($('#pais').val().trim()).then(departamentos => {
-           
+            opciones = "<option value=''>Seleccione---</option>"
             departamentos.forEach(function(depto) {
-                opciones += `<opcion>${depto.name}</opcion>`
+                opciones += "<option value='"+depto.name+"'>"+depto.name+"</option>"
                 
             });
-
-            let html  = `<label class="form-label">Departamento</label>
-            <select  class="form-control" id="departamento">${opciones}</select>
-            <span class="msg_error_form" id="error_departamento"></span>`
             
+            html  = `<label class="form-label">Departamento</label>
+            <select onchange="seleccionarDepartamento()"  class="form-control" id="departamento">`+opciones+`</select>
+            <span class="msg_error_form" id="error_departamento"></span>`
+
             $('#div_departamentos').append(html)
  
         });
@@ -1205,7 +1203,49 @@ const seleccionarPais = () =>{
 
     }else if($('#pais').val().trim() != ''){
 
-        $('#div_departamentos').append(html)
+        $('#div_departamentos').append(`<label class="form-label">Departamento</label>
+        <input class="form-control" id="departamento" type="text">
+        <span class="msg_error_form" id="error_departamento"></span>`)
+    }
+
+}
+
+async function consultarMunicipios(id_depto) {
+    let opciones = { method: 'GET', headers: { Accept: 'application/json' } }
+
+    let url = document.location.origin  + `/api/v1/get_municipality_by_state/${id_depto}`
+
+    const response = await fetch(
+        url,
+        opciones
+    )
+    const municipios = await response.json()
+    return municipios
+}
+
+
+const seleccionarDepartamento = () =>{
+    
+    let html  = ``
+    let opciones = ``
+    $('#div_municipios').empty()
+
+    if($('#departamento').val().trim() != ''){
+       
+        consultarMunicipios($('#departamento').val().trim()).then(municipios => {
+            opciones = "<option value=''>Seleccione---</option>"
+            municipios.forEach(function(municipio) {
+                opciones += "<option value='"+municipio.name+"'>"+municipio.name+"</option>"
+               
+            });
+            
+            html  = `<label class="form-label">Ciudad</label>
+            <select class="form-control" id="ciudad">`+opciones+`</select>
+            <span class="msg_error_form" id="error_ciudad"></span>`
+
+            $('#div_municipios').append(html)
+ 
+        });
     }
 
 }
