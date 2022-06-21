@@ -14,10 +14,10 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'Omar Yesid Ibanez Ortiz',
-            'email' => 'oibanez30@unab.edu.co',
+            'name' => 'Super Administrador',
+            'email' => 'oibanez@unab.edu.co',
             'password' => bcrypt('OMARibanez9704'),
-            'personal_code' => 'OIBA4511',
+            'personal_code' => 'SUPER2022',
             'ind_first_login' => 1,
             'start_sesion_date' => date('Y-m-d H:i:s')
         ])->assignRole('ADMINISTRADOR');
