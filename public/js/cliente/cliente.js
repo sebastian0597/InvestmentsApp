@@ -88,11 +88,6 @@ $(document).ready(function () {
             }
         }
 
-        if (seEncontraronElementoNoValidos) {
-            showMessage("Se encontraron archivos no validos.");
-        } else {
-            showMessage("Todos los archivos se subieron correctamente.");
-        }
     });
 
     $(document).on("click", "#Images .image-container", function (e) {

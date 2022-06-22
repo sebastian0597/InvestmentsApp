@@ -77,7 +77,7 @@
                               <td><a class="text-inherit" >{{$item['customer']['customer_type']}}</a></td>
                               <td>C-{{$item['id']}}</td>
                               <td><span class="status-icon bg-success"></span>{{$item['investment_date']}}</td>
-                              <td>${{$item['base_amount']}}</td>
+                              <td>${{$item['initial_amount']}}</td>
                               <!--<td class="text-end">
                                 <a class="icon" href="javascript:void(0)"></a>
                                 <a class="btn btn-primary btn-sm" href="javascript:void(0)">
