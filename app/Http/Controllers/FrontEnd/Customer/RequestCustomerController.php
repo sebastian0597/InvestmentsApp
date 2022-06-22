@@ -34,6 +34,6 @@ class RequestCustomerController extends Controller
             $requests_types = RequestType::all();
         }
    
-        return view('clientes.solicitudes', compact('requests','requests_types','customer'));
+        return view('Clientes.solicitudes', compact('requests','requests_types','customer'));
     }
 }

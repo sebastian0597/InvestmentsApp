@@ -27,6 +27,6 @@ class DocumentController extends Controller
             $customer = new CustomerResource($customer);
             $customer = Util::setJSONResponseUniqueData($customer);
         }
-        return view('clientes.documentos', compact('customer'));
+        return view('Clientes.documentos', compact('customer'));
     }
 }

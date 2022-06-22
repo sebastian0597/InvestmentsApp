@@ -30,7 +30,7 @@ class ProfileController extends Controller
         }
     
 
-        return view('clientes.perfil', compact('customer'));
+        return view('Clientes.perfil', compact('customer'));
     }
 
     public function changePassword(){

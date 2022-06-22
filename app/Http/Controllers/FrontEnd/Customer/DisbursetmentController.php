@@ -32,6 +32,6 @@ class DisbursetmentController extends Controller
             $disbursetments = Util::setJSONResponseUniqueData($disbursetments);
         }
        
-        return view('clientes.desembolsos', compact('disbursetments', 'customer'));
+        return view('Clientes.desembolsos', compact('disbursetments', 'customer'));
     }
 }
