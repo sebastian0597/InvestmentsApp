@@ -14,8 +14,7 @@ const crearAdmin = () =>{
         form_data.append('email', correo)
         form_data.append('id_rol', rol)
        
-        let url = document.location.origin + '/api/v1/admin/'
-        console.log(url)
+        let url = document.location.origin + '/api/v1/admin/store'
         let method = 'POST'
 
         enviarPeticion(url, method, form_data, 'continuarCrearAdmin')

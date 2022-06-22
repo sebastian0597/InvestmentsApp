@@ -14,6 +14,9 @@ use App\Http\Controllers\Api\V1\KpiController;
 use App\Http\Controllers\Api\V1\QueryController;
 
 Route::apiResource('v1/admin', AdminController::class)->only(['store', 'index', 'update']);
+Route::post('v1/admin/store', [AdminController::class, 'store']);
+Route::get('v1/admin/index', [AdminController::class, 'index']);
+Route::put('v1/admin/update', [AdminController::class, 'update']);
 
 Route::apiResource('v1/customer', CustomerController::class)->only(['store','show','index','edit']);
 Route::post('v1/customer/update/{param}', [CustomerController::class, 'update']);
