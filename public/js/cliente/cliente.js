@@ -55,7 +55,7 @@ const validarCambioContrasenaCliente = () => {
 $(document).ready(function () {
 
     $(".modal").on("click", function (e) {
-        console.log(e);
+        
         if (
             ($(e.target).hasClass("modal-main") ||
                 $(e.target).hasClass("close-modal")) &&
@@ -72,7 +72,7 @@ $(document).ready(function () {
 
 
     $(document).on("change", "#add-new-photo", function () {
-        console.log(this.files);
+      
         var files = this.files;
         var element;
         var supportedImages = ["image/jpeg", "image/png", "image/gif"];
@@ -129,5 +129,5 @@ const cargarFoto = () => {
 
 const continuarCargarFoto = (response) => {
     setResponseMessage(response, "/cliente/perfil");
-    console.log(response);
+   
 };

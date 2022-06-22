@@ -752,7 +752,7 @@ const buscarDesembolsosPorFecha = () => {
 }
 
 const continuarBuscarDesembolsosPorFecha = (respuesta) => {
-    console.log(respuesta)
+    //console.log(respuesta)
 }
 
 const mostrarArchivos = (id_customer)=>{

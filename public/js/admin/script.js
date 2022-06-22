@@ -102,7 +102,7 @@
         }
     });
     $(".search-full input").keyup(function (e) {
-        console.log(e.target.value);
+    
         if (e.target.value) {
             $("body").addClass("offcanvas");
         } else {

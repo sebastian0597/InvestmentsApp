@@ -54,8 +54,6 @@ const continuarGenerarKPI = (response) => {
     if (!isObjEmpty(clientes)) {
         clientes.forEach(function (cliente) {
             
-            console.log(cliente)
-
             if(cliente.status == 1){ //Clientes activos.
 
                 if(cliente.id_customer_type == 1){ //Standards

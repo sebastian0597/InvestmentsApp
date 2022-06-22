@@ -1,8 +1,5 @@
 const login = () =>{
        
-    /*let ip = consultarIP()
-    console.log(ip)*/
-        
     if(validarLogin()){ 
         let url = document.location.origin+'/login_validate'
         let method = 'POST'

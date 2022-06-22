@@ -235,8 +235,7 @@ const continuarBuscarInversionesPorParametros = (response) => {
        
         inversiones.forEach(function (inversion) {
 
-            console.log(inversion)
-
+          
             let url = document.location.origin + `/editar_inversion/${inversion.id}`
             tr_inversiones +=`
             <tr>

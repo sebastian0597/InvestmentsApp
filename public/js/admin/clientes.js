@@ -842,14 +842,14 @@ const validarFormularioActualizarCliente = () => {
     if ($('#nombres').val().trim() == '') {
         agregarError('nombres')
         validador = false
-        console.log(1)
+       
     } else {
         quitarError('nombres')
     }
     if ($('#apellidos').val().trim() == '') {
         agregarError('apellidos')
         validador = false
-        console.log(2)
+       
     } else {
         quitarError('apellidos')
     }
@@ -857,7 +857,7 @@ const validarFormularioActualizarCliente = () => {
     if ($('#correo').val().trim() == '') {
         agregarError('correo')
         validador = false
-        console.log(3)
+       
     } else {
         quitarError('correo')
     }
@@ -865,7 +865,7 @@ const validarFormularioActualizarCliente = () => {
     if ($('#telefono').val().trim() == '') {
         agregarError('telefono')
         validador = false
-        console.log(4)
+       
     } else {
         quitarError('telefono')
     }
@@ -876,7 +876,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError('archivo_documento')
         validador = false
-        console.log(5)
+       
     } else {
         quitarError('archivo_documento')
     }
@@ -884,7 +884,7 @@ const validarFormularioActualizarCliente = () => {
     if ($('#pais').val().trim() == '') {
         agregarError('pais')
         validador = false
-        console.log(6)
+      
     } else {
         quitarError('pais')
     }
@@ -892,7 +892,7 @@ const validarFormularioActualizarCliente = () => {
     if ($('#departamento').val().trim() == '') {
         agregarError('departamento')
         validador = false
-        console.log(7)
+       
     } else {
         quitarError('departamento')
     }
@@ -900,7 +900,7 @@ const validarFormularioActualizarCliente = () => {
     if ($('#ciudad').val().trim() == '') {
         agregarError('ciudad')
         validador = false
-        console.log(8)
+       
     } else {
         quitarError('ciudad')
     }
@@ -908,7 +908,7 @@ const validarFormularioActualizarCliente = () => {
     if ($('#direccion').val().trim() == '') {
         agregarError('direccion')
         validador = false
-        console.log(9)
+      
     } else {
         quitarError('direccion')
     }
@@ -916,21 +916,21 @@ const validarFormularioActualizarCliente = () => {
     if ($('#apellidos').val().trim() == '') {
         agregarError('apellidos')
         validador = false
-        console.log(10)
+     
     } else {
         quitarError('apellidos')
     }
     if ($('#tipo_documento').val() == '') {
         agregarError('tipo_documento')
         validador = false
-        console.log(11)
+        
     } else {
         quitarError('tipo_documento')
     }
     if ($('#numero_documento').val().trim() == '') {
         agregarError('numero_documento')
         validador = false
-        console.log(12)
+      
     } else {
         quitarError('numero_documento')
     }
@@ -939,7 +939,7 @@ const validarFormularioActualizarCliente = () => {
     if ($('#actividad_economica').val() == '') {
         agregarError('actividad_economica')
         validador = false
-        console.log(13)
+       
     } else {
         quitarError('actividad_economica')
     }
@@ -951,34 +951,23 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError('descripcion_independiente')
         validador = false
-        console.log(14)
+       
     } else {
         quitarError('descripcion_independiente')
     }
 
-    /*if (
-        $('#archivo_rut').val().trim() == '' &&
-        $('#archivo_rut').is(':visible') &&
-        $('#file_rut_txt').val().trim() == ''
-    ) {
-        agregarError('archivo_rut')
-        validador = false
-        console.log(15)
-    } else {
-        quitarError('archivo_rut')
-    }*/
 
     if ($('#empresa').val().trim() == '' && $('#empresa').is(':visible')) {
         agregarError('empresa')
         validador = false
-        console.log(16)
+       
     } else {
         quitarError('empresa')
     }
     if ($('#cargo').val().trim() == '' && $('#cargo').is(':visible')) {
         agregarError('cargo')
         validador = false
-        console.log(17)
+       
     } else {
         quitarError('cargo')
     }
@@ -988,7 +977,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError('antiguedad')
         validador = false
-        console.log(18)
+       
     } else {
         quitarError('antiguedad')
     }
@@ -996,7 +985,7 @@ const validarFormularioActualizarCliente = () => {
     if ($('#tipo_contrato').val() == '' && $('#tipo_contrato').is(':visible')) {
         agregarError('tipo_contrato')
         validador = false
-        console.log(19)
+        
     } else {
         quitarError('tipo_contrato')
     }
@@ -1008,7 +997,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError('certificado_laboral')
         validador = false
-        console.log(20)
+        
     } else {
         quitarError('certificado_laboral')
     }
@@ -1018,7 +1007,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError('fondo_pension')
         validador = false
-        console.log(21)
+        
     } else {
         quitarError('fondo_pension')
     }
@@ -1029,7 +1018,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError('otros_actividad')
         validador = false
-        console.log(22)
+        
     } else {
         quitarError('otros_actividad')
     }
@@ -1037,7 +1026,7 @@ const validarFormularioActualizarCliente = () => {
     if ($('#cuenta_bancaria').val() == '') {
         agregarError('cuenta_bancaria')
         validador = false
-        console.log(23)
+        
     } else {
         quitarError('cuenta_bancaria')
     }
@@ -1050,7 +1039,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError('numero_cuenta')
         validador = false
-        console.log(24)
+        
     } else {
         quitarError('numero_cuenta')
     }
@@ -1061,7 +1050,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError('tipo_cuenta')
         validador = false
-        console.log(25)
+        
     } else {
         quitarError('tipo_cuenta')
     }
@@ -1072,7 +1061,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError('nombre_banco')
         validador = false
-        console.log(26)
+        
     } else {
         quitarError('nombre_banco')
     }
@@ -1084,7 +1073,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError('certificado_cuenta')
         validador = false
-        console.log(27)
+       
     } else {
         quitarError('certificado_cuenta')
     }
@@ -1097,7 +1086,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError('cedula_tercero')
         validador = false
-        console.log(28)
+      
     } else {
         quitarError('cedula_tercero')
     }
@@ -1108,7 +1097,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError('nombre_tercero')
         validador = false
-        console.log(29)
+        
     } else {
         quitarError('nombre_tercero')
     }
@@ -1119,7 +1108,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError('parentesco')
         validador = false
-        console.log(30)
+        
     } else {
         quitarError('parentesco')
     }
@@ -1131,7 +1120,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError('certificado_bancario_tercero')
         validador = false
-        console.log(31)
+        
     } else {
         quitarError('certificado_bancario_tercero')
     }
@@ -1143,7 +1132,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError('carta_tercero')
         validador = false
-        console.log(32)
+       
     } else {
         quitarError('carta_tercero')
     }
@@ -1155,7 +1144,7 @@ const validarFormularioActualizarCliente = () => {
     ) {
         agregarError('rut_tercero')
         validador = false
-        console.log(33)
+        
     } else {
         quitarError('rut_tercero')
     }

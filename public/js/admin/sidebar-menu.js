@@ -254,7 +254,7 @@ $("#right-arrow").click(function () {
         })
         if (currentPosition == sliderLimit) {
             $(this).addClass("disabled");
-            console.log("sliderLimit", sliderLimit);
+         
         }
     }
 });
