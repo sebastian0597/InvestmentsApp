@@ -93,7 +93,7 @@ trait InvestmentTrait
             $dataAdmin["bank_promissor_number"] = $investment->id;
             $dataAdmin["document_number"] = $customer->document_number;
             $dataAdmin["customer_name"] = $customer_fullname;
-            $dataAdmin["document_name"] = "Pagare_".$customer->document_number."_".$customer_fullname;
+            $dataAdmin["document_name"] = "Contrato_inversion_".$customer->document_number."_".$customer_fullname;
 
             if($customer_type == 1 || $customer_type == 2){//Standard o VIP
 
