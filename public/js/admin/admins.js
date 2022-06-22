@@ -15,6 +15,7 @@ const crearAdmin = () =>{
         form_data.append('id_rol', rol)
        
         let url = document.location.origin + '/api/v1/admin/'
+        console.log(url)
         let method = 'POST'
 
         enviarPeticion(url, method, form_data, 'continuarCrearAdmin')
@@ -24,7 +25,7 @@ const crearAdmin = () =>{
 const continuarCrearAdmin = (response) =>{
     $('#btn_crear_admin').text('Crear administrador')
     $('#btn_crear_admin').prop('disabled', false)
-    console.log(response)
+    
     setResponseMessage(response)
 
 }
