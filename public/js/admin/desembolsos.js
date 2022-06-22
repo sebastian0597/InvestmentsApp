@@ -383,7 +383,7 @@ const guardarRegistroDesembolso = (tipo_desembolso) => {
                 $("#btn_guardar_desembolso").prop("disabled", false)
                 $("#btn_guardar_desembolso").removeClass("placeholder")
 
-                let url = window.location.origin + `/api/v1/disbursetment`
+                let url = window.location.origin + `/api/v1/disbursetment/store`
 
                 let form_data = new FormData()
                 form_data.append("id_disbursement_type", tipo_desembolso)
@@ -444,7 +444,7 @@ const guardarRegistroDesembolso = (tipo_desembolso) => {
             $("#btn_generar_informe_desembolso").prop("disabled", false)
             $("#btn_generar_informe_desembolso").removeClass("placeholder")
 
-            let url = window.location.origin + `/api/v1/disbursetment`
+            let url = window.location.origin + `/api/v1/disbursetment/store`
 
             let form_data = new FormData()
             let id_tipo_cliente = $('#tipo_cliente').val()
