@@ -1181,8 +1181,7 @@ const seleccionarPais = () =>{
     let html  = ``
     let opciones = ``
     $('#div_departamentos').empty()
-
-  
+    
     if($('#pais').val().trim() === 'Colombia'){
         
         consultarDepartamentos($('#pais').val().trim()).then(departamentos => {
@@ -1202,10 +1201,15 @@ const seleccionarPais = () =>{
         
 
     }else if($('#pais').val().trim() != ''){
+        $('#div_municipios').empty()
 
         $('#div_departamentos').append(`<label class="form-label">Departamento</label>
         <input class="form-control" id="departamento" type="text">
         <span class="msg_error_form" id="error_departamento"></span>`)
+
+        $('#div_municipios').append(` <label class="form-label">Ciudad</label>
+        <input class="form-control" id="ciudad" type="text">
+        <span class="msg_error_form" id="error_ciudad"></span>`)
     }
 
 }
