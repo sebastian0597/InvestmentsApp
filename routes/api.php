@@ -19,6 +19,11 @@ Route::get('v1/admin/index', [AdminController::class, 'index']);
 Route::put('v1/admin/update', [AdminController::class, 'update']);
 
 Route::apiResource('v1/customer', CustomerController::class)->only(['store','show','index','edit']);
+
+Route::post('v1/customer/store', [CustomerController::class, 'store']);
+Route::get('v1/customer/show/{id}', [CustomerController::class, 'show']);
+Route::get('v1/customer/index', [CustomerController::class, 'index']);
+
 Route::post('v1/customer/update/{param}', [CustomerController::class, 'update']);
 Route::get('v1/get_customers_param/{param}', [CustomerController::class, 'getCustomers']);
 Route::post('v1/get_customers_by_customer_type', [CustomerController::class, 'getCustomersbyCustomerType']);

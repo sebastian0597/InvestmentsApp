@@ -287,7 +287,7 @@ const crearCliente = () => {
 
         form_data.append('consignment_file', archivo_consignacion)
 
-        let url = document.location.origin + '/api/v1/customer/'
+        let url = document.location.origin + '/api/v1/customer/store'
         let method = 'POST'
         let txt_numero_cuenta =
             numero_cuenta != ''
