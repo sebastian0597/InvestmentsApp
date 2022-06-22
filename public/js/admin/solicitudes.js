@@ -6,7 +6,7 @@ const responderSolicitud = (id_solicitud, contador) =>{
         //$('#btn_crear_admin').prop('disabled', true)
         let respuesta = $('#respuesta_solicitud_'+contador).val().trim()
    
-        let url = document.location.origin + `/api/v1/request/${id_solicitud}` 
+        let url = document.location.origin + `/api/v1/request/update/${id_solicitud}` 
         let method = 'PUT'
         form_data = { answer: respuesta, id_user_attends_request: $('#user_id').val().trim() , '_method':'PUT'}
         enviarPeticion(url, method, form_data, 'continuarResponderSolicitud')

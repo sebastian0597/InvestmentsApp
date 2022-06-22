@@ -40,7 +40,7 @@ const crearReinversion = (id_inversion) =>{
         form_data.append('document_number', numero_documento);
         
         
-        let url = document.location.origin + '/api/v1/reinvestment';
+        let url = document.location.origin + '/api/v1/reinvestment/store';
         let method = 'POST';
 
         Swal.fire({
@@ -123,7 +123,7 @@ const crearNuevaInversion = ()=>{
     
         form_data.append('registered_by', 1);
         
-        let url = document.location.origin + '/api/v1/investment';
+        let url = document.location.origin + '/api/v1/investment/store';
         let method = 'POST';
 
         Swal.fire({
@@ -298,7 +298,7 @@ const seleccionarTipoInversion = () =>{
 const consultarExtractos = ()=>{
     form_data = {}
     let param = $('#id_cliente').val().trim();
-    let url = document.location.origin + `/api/v1/extracts/${param}`;
+    let url = document.location.origin + `/api/v1/extracts/show/${param}`;
     let method = 'GET';
     enviarPeticion(url, method, form_data, 'continuarConsultarExtractos');
 }

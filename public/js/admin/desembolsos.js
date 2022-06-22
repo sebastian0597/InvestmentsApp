@@ -615,8 +615,6 @@ const continuarBuscarDesembolsosPorParametros = (response) => {
     $("#disbursements_container").append(html)
 }
 
-// /api/v1/disbursetment/
-
 const actualizarDesembolso = () => {
     quitarError("archivo_desembolso")
 
@@ -661,7 +659,7 @@ const consultarHistoricoDesembolsos = () => {
         let method = "GET"
         let form_data = {}
 
-        let url = window.location.origin + `/api/v1/disbursetment/${param}`
+        let url = window.location.origin + `/api/v1/disbursetment/show/${param}`
         enviarPeticion(
             url,
             method,
@@ -737,7 +735,7 @@ const buscarDesembolsosPorFecha = () => {
     let fecha = $("#fecha_busqueda_desembolsos").val().trim()
 
     if (fecha != "") {
-        let url = window.location.origin + `/api/v1/disbursetment/${fecha}`
+        let url = window.location.origin + `/api/v1/disbursetment/show/${fecha}`
         form_data = {}
 
         let method = "GET"

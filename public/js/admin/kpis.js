@@ -7,7 +7,7 @@ const generarKPI = () =>{
         form_data = {}
         let url =
             document.location.origin +
-            `/api/v1/kpi/${fecha}`
+            `/api/v1/kpi/show/${fecha}`
         let method = 'GET'
 
         enviarPeticion(
