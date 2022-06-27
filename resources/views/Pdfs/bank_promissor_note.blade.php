@@ -529,13 +529,16 @@
             <br><br> <br><br> <br><br>
 
             <div id="contenedor">
-                <div style="line-height:10px">
+            <div style="line-height:10px">
+                <div >
+                    <img style="width: 246px;height: auto;margin-inline: 6px;margin-top: -72px;margin: top;"  
+                    src="{{ public_path('/images/firma.png') }}">
+                </div>
                     <h4>SERGIO ANDRES FIGUEROA GOMEZ</h4>
                     <h4>CC. 1.098.816.339</h4>
                     <h4>Expedida en Bucaramanga.</h4>
-
                 </div>
-                
+                <br><br><br><br><br>
                 <div style="line-height:10px">
 
                   <h4>{{ mb_strtoupper($params['customer_name']) }}</h4>
