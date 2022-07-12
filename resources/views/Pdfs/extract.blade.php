@@ -312,7 +312,7 @@ h2 {
            
         <thead>
           <tr>
-            <th class="no">Rentabilidad del mes <span>{{!is_null($current_extract['profitability_percentage']) ? $current_extract['profitability_percentage'] : 0 }}%</span> </th>
+            <th class="no">Rentabilidad del mes <span>{{isset($current_extract['profitability_percentage']) ? $current_extract['profitability_percentage'] : 0 }}%</span> </th>
             <th class="no">Capital Neto</th>
                       
           </tr>
