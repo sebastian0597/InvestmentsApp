@@ -320,7 +320,7 @@ h2 {
         <tbody>
           
           <tr>
-            <td class="unit">${{number_format(intval($current_extract['total_profitability']),0,'', '.')}}</td>
+            <td class="unit">${{ number_format(intval(isset($current_extract['total_profitability']) ? $current_extract['total_profitability'] : 0),0,'', '.')}}</td>
             <td class="qty">${{number_format(intval($capital_neto),0,'', '.')}}</td>
           </tr>
         </tbody>
