@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Platform to navigate global financial markets and explore a bouquet of exquisitely crafted service"/>
     
     <title>@yield('title')</title>
 
