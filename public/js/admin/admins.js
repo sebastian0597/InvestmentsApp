@@ -62,7 +62,7 @@ const validarCrearAdmin = () =>{
 const consultarUsuariosAdmin = () => {
 
     form_data = {};
-    let url = document.location.origin + `/api/v1/admin/`;
+    let url = document.location.origin + `/api/v1/admin/index`;
     let method = 'GET';
     
     enviarPeticion(
@@ -151,19 +151,26 @@ const actualizarAdmin = (id_usuario) =>{
     
     if(validarFormularioActualizarAdmin()){
 
-        //$('#btn_crear_admin').text('Creando administrador...')
-        //$('#btn_crear_admin').prop('disabled', true)
+
         let nombres = $("#nombres").val().trim();
         let correo = $("#correo").val().trim();
         let rol = $("#rol").val();
         let estado = $("#estado").val();
    
-        let url = document.location.origin + `/api/v1/admin/${id_usuario}`
-        
-        let method = 'PUT'
-        form_data = { name: nombres, email:correo, rol:rol, status:estado, '_method':'PUT'}
+        let url = document.location.origin + `/api/v1/admin/update/${id_usuario}`
+        console.log(url)
+        let method = 'POST'
+        //form_data = { name: nombres, email:correo, rol:rol, status:estado, '_method':'PUT'}
       
+        let form_data = new FormData()
+        form_data.append('name', nombres)
+        form_data.append('email', correo)
+        form_data.append('rol', rol)
+        form_data.append('status', estado)
+ 
+    
         enviarPeticion(url, method, form_data, 'continuarActualizarAdmin')
+        
         
     }
 
