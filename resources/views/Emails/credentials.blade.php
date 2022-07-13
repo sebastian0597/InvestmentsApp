@@ -259,7 +259,7 @@
                                              <table role="presentation" align="center" cellspacing="0" cellpadding="0" border="0" class="center-on-narrow" style="text-align: center;">
                                                  <tr>
                                                      <td style="border-radius: 50px; background: #7366ff; text-align: center;" class="button-td">
-                                                         <a href="http://127.0.0.1:8000/login" style="background: #7366ff; border: 15px solid #7366ff; font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 50px; font-weight: bold;" class="button-a">
+                                                         <a href="https://www.vipworldtrading.com" style="background: #7366ff; border: 15px solid #7366ff; font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 50px; font-weight: bold;" class="button-a">
                                                              <span style="color:#ffffff;" class="button-link">&nbsp;&nbsp;&nbsp;&nbsp;Ir a la plataforma &nbsp;&nbsp;&nbsp;&nbsp;</span>
                                                          </a>
                                                      </td>
