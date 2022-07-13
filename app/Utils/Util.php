@@ -64,21 +64,25 @@ class Util
         $customer_level='';
         $amount = intval($amount);
         
-        if($amount >= 1000000 && $amount < 25000000){
+        if($amount >= 1000000 && $amount < 50000000){
 
-            $customer_level = 1;  
+            $customer_level = 0;  
             
-        }else if($amount >= 25000000 && $amount < 100000000){
+        }else if($amount >= 50000000 && $amount < 100000000){
+
+            $customer_level = 1; 
+        }
+        else if($amount >= 100000000 && $amount < 1000000000){
 
             $customer_level = 2; 
-        }
-        else if($amount >= 100000000){
+            
+        } else if($amount>=1000000000){
 
             $customer_level = 3; 
             
         }else{
 
-            $customer_level = 1;   
+            $customer_level = 0;   
         }
 
         return $customer_level;
@@ -200,7 +204,7 @@ class Util
     }
 
     public static function validateDaysNumberByMonth($month){
-        //Se validan que todos los meses tengam 30 dias de rentabilidad, excepto marzo.
+        //Se validan que todos los meses tengam 30 dias de rentabilidad, excepto Febrero.
         $days = 30;
         if($month == "02"){
             $days=28;
@@ -252,34 +256,7 @@ class Util
 
     }
 
-    /*public function compressImage($source, $destination, $quality) { 
-        // Obtenemos la información de la imagen
-        $imgInfo = getimagesize($source); 
-        $mime = $imgInfo['mime']; 
-        
-        // Creamos una imagen
-        switch($mime){ 
-            case 'image/jpeg': 
-                $image = imagecreatefromjpeg($source); 
-                break; 
-            case 'image/png': 
-                $image = imagecreatefrompng($source); 
-                break; 
-            case 'image/gif': 
-                $image = imagecreatefromgif($source); 
-                break; 
-            default: 
-                $image = $source; 
-                break;
-        } 
-        
-        // Guardamos la imagen
-        imagejpeg($image, $destination, $quality); 
-        
-        // Devolvemos la imagen comprimida
-        return $destination; 
-    } */
-
+   
     public static function inactivateInvestments($investments){
 
         if(count($investments)>0){
