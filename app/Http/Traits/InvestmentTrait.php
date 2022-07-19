@@ -95,11 +95,11 @@ trait InvestmentTrait
             $dataAdmin["customer_name"] = $customer_fullname;
             $dataAdmin["document_name"] = "Contrato_inversion_".$customer->document_number."_".$customer_fullname;
 
-            if($customer_type == 1 || $customer_type == 2){//Standard o VIP
+            if($customer_type == 1 || $customer_type == 0 || $customer_type == 2){//Basic, Standard o VIP
 
                 Util::sendEmailWithPDFFile('Pdfs.bank_promissor_note', $dataAdmin);
 
-            }else if($customer_type == 3){//Premium
+            }else /*if($customer_type == 3)*/{//Premium
 
                 Util::sendEmailWithPDFFile('Pdfs.bank_promissor_note', $dataAdmin);
             }
